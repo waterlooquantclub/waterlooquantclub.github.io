@@ -24,7 +24,7 @@ function Hero() {
     <>
       <div className="w-[100vw] h-[100vh] bg-black flex items-center justify-center">
         <PixelatedCanvas
-          src="/hero-background.png"
+          src={size.w < 600 ? "/phone-background.png" : "/hero-background.png"}
           width={size.w}
           height={size.h}
           cellSize={5}
@@ -33,15 +33,18 @@ function Hero() {
           backgroundColor="#000000"
           dropoutStrength={0}
           interactive
-          distortionStrength={0.1}
-          distortionRadius={200}
+          responsive={true}
+          distortionStrength={1}
+          distortionRadius={220}
           distortionMode="repel"
           followSpeed={0.2}
-          jitterStrength={4}
-          jitterSpeed={1}
+          maxFps={50}
+          jitterStrength={8}
+          jitterSpeed={2}
           sampleAverage
-          tintColor="#000000"
-          tintStrength={0.15}
+          tintColor="#230c24ff"
+          tintStrength={0.05}
+          fadeSpeed={0.01}
         />
         <div className="absolute bottom-[30px] w-[80vw]">
           <LogoCarousel />
