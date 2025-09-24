@@ -4,3 +4,17 @@ html, body, #root {
   background-color: #000000; 
   color: white; 
 }
+
+.companyList {
+    animation: infinity 20s linear infinite;
+    filter: brightness(95%);
+}
+
+@keyframes infinity {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}

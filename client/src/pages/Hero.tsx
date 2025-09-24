@@ -1,11 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { PixelatedCanvas } from "../components/pixel-canvas";
+import LogoCarousel from "../components/logo-carousel";
 
 function Hero() {
   const [size, setSize] = useState({
     w: window.innerWidth,
     h: window.innerHeight,
   });
+
+  useEffect(() => {
+    function handleResize() {
+      setSize({
+        w: window.innerWidth,
+        h: window.innerHeight,
+      });
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <>
@@ -27,8 +40,12 @@ function Hero() {
           jitterStrength={4}
           jitterSpeed={1}
           sampleAverage
-          tintStrength={0}
+          tintColor="#000000"
+          tintStrength={0.15}
         />
+        <div className="absolute bottom-[30px] w-[80vw]">
+          <LogoCarousel />
+        </div>
       </div>
     </>
   );
