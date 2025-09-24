@@ -1,10 +1,18 @@
+import Hero from "./pages/Hero"
+import About from "./pages/About"
+import Events from "./pages/Events"
+import Team from "./pages/Team"
+import Join from "./pages/Join"
+
 function App() {
 
   return (
     <>
-      <div>
-        Hello world!
-        </div>
+      <Hero />
+      <About />
+      <Events />
+      <Team />
+      <Join />
     </>
   )
 }
