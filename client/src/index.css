@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Lato:wght@400;700&family=Krona+One&display=swap');
 @import "tailwindcss";
 
 html, body, #root {
   background-color: #000000; 
   color: white; 
+  scroll-behavior: smooth;
 }
 
 .companyList {
@@ -17,4 +19,16 @@ html, body, #root {
     to {
         transform: translateX(-100%);
     }
+}
+
+.font-roboto {
+  font-family: 'Roboto', sans-serif;
+}
+
+.font-lato {
+  font-family: 'Lato', sans-serif;
+}
+
+.font-krona {
+  font-family: 'Krona One', sans-serif;
 }
