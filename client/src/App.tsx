@@ -4,6 +4,7 @@ import Events from "./pages/Events"
 import Team from "./pages/Team"
 import Join from "./pages/Join"
 import NavBar from "./components/navbar"
+import Competition from "./pages/Competition"
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
       <Hero />
       <About />
       <Events />
+      <Competition />
       <Team />
       <Join />
     </>
