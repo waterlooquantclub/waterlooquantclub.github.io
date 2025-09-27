@@ -6,12 +6,12 @@ type TextFont = "inter" | "lato" | "krona";
 type TextColor = "white" | "accent";
 
 interface TextProps extends React.HtmlHTMLAttributes<HTMLParagraphElement> {
-    size?: TextSize;
-    font?: TextFont;
-    className?: string;
-    color?: TextColor;
-    as?: ElementType;
-    children?: ReactNode;
+  size?: TextSize;
+  font?: TextFont;
+  className?: string;
+  color?: TextColor;
+  as?: ElementType;
+  children?: ReactNode;
 }
 
 const sizeMap: Record<TextSize, string> = {
@@ -42,7 +42,10 @@ export const Text: React.FC<TextProps> = ({
   ...props
 }) => {
   return (
-    <Component className={clsx(sizeMap[size as keyof typeof sizeMap], fontMap[font as keyof typeof fontMap], colorMap[color as keyof typeof colorMap], className)} {...props}>
+    <Component
+      className={clsx(sizeMap[size], fontMap[font], colorMap[color], className)}
+      {...props}
+    >
       {children}
     </Component>
   );

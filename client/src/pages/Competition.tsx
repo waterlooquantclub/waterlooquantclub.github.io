@@ -1,7 +1,7 @@
+import { useState, type FormEvent } from "react";
 import { Text } from "../components/text";
-import { useState } from "react";
 import { Button } from "../components/button";
-import type { FormEvent } from "react";
+import Section from "../components/section";
 
 function Competition() {
   const [email, setEmail] = useState("");
@@ -11,17 +11,11 @@ function Competition() {
     setEmail("");
   };
   return (
-    <div
-      className="w-[100vw] h-[100vh] flex-col text-white flex items-center justify-center relative"
+    <Section
       id="competition"
+      title="Competition"
+      className="flex-col flex items-center justify-center relative"
     >
-      <Text
-        font="lato"
-        className="font-bold sm:text-[36px] text-[28px] sm:mb-10 mb-8"
-      >
-        Competition
-      </Text>
-
       <div className="relative sm:w-[70vw] w-[80vw] sm:h-[60vh] flex items-center justify-center">
         <div className="absolute sm:-top-4 -top-2 sm:-right-4 -right-2 w-[62vw] sm:h-[50vh] h-[250px] bg-[#603474] rounded-3xl blur-2xl mix-blend-plus-lighter" />
         <div className="absolute sm:top-0 top-1 sm:right-0 right-1 w-[62vw] sm:h-[50vh] h-[250px] bg-[#ffa7ff] rounded-3xl blur-xl mix-blend-plus-lighter" />
@@ -64,7 +58,7 @@ function Competition() {
           className="animate-float1 absolute sm:w-[200px] sm:h-[200px] w-[100px] h-[100px] sm:bottom-[-10px] sm:right-[-120px] bottom-[10px] right-[-40px] z-[80]"
         />
       </div>
-    </div>
+    </Section>
   );
 }
 

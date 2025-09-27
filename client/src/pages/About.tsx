@@ -1,10 +1,7 @@
-function About() {
+import Section from "../components/section";
 
-  return (
-    <div className="w-[100vw] h-[100vh] text-white" id="about">
-      About
-    </div>
-  )
+function About() {
+  return <Section id="about" title="About Us" />;
 }
 
-export default About
+export default About;
