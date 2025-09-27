@@ -12,20 +12,22 @@ function Competition() {
   };
   return (
     <div
-      className="w-[100vw] h-[100vh] flex-col text-white flex items-center justify-center"
+      className="w-[100vw] h-[100vh] flex-col text-white flex items-center justify-center relative"
       id="competition"
     >
       <Text
         font="lato"
-        className="font-bold sm:text-[36px] text-[28px] sm:mb-8 mb-6"
+        className="font-bold sm:text-[36px] text-[28px] sm:mb-10 mb-8"
       >
         Competition
       </Text>
 
-      <div className="relative sm:w-[70vw] w-[85vw] sm:h-[60vh] flex items-center justify-center">
-        <div className="absolute sm:-top-4 -top-2 sm:-right-4 -right-2 w-[65vw] sm:h-[50vh] h-[250px] bg-[#603474] rounded-3xl blur-2xl mix-blend-plus-lighter" />
-        <div className="absolute sm:top-0 -top-0 sm:right-0 -right-0 w-[65vw] sm:h-[50vh] h-[250px] bg-[#ffa7ff] rounded-3xl blur-xl mix-blend-plus-lighter" />
-        <div className="bg-gradient-to-b from-black to-[#603067] backdrop-blur-sm rounded-3xl border border-[#818181] flex flex-col items-center justify-center sm:w-[70vw] w-[85vw] h-auto sm:h-[60vh] z-10 px-8 py-16">
+      <div className="relative sm:w-[70vw] w-[80vw] sm:h-[60vh] flex items-center justify-center">
+        <div className="absolute sm:-top-4 -top-2 sm:-right-4 -right-2 w-[62vw] sm:h-[50vh] h-[250px] bg-[#603474] rounded-3xl blur-2xl mix-blend-plus-lighter" />
+        <div className="absolute sm:top-0 top-1 sm:right-0 right-1 w-[62vw] sm:h-[50vh] h-[250px] bg-[#ffa7ff] rounded-3xl blur-xl mix-blend-plus-lighter" />
+        <div className="absolute sm:top-0 top-1 sm:right-0 right-1 w-[62vw] sm:h-[50vh] h-[250px] bg-[#ffa7ff] rounded-3xl blur-xl mix-blend-plus-lighter" />
+
+        <div className="bg-gradient-to-b from-black to-[#603067] backdrop-blur-sm rounded-3xl border border-[#818181] flex flex-col items-center justify-center sm:w-[70vw] w-[80vw] h-auto sm:h-[60vh] z-10 px-8 py-16">
           <Text
             font="inter"
             className="sm:text-[18px] text-center sm:mb-4 mb-4"
@@ -51,11 +53,11 @@ function Competition() {
         </div>
         <img
           src={"/Point.png"}
-          className="animate-float1 absolute sm:w-[200px] sm:h-[200px] w-[100px] h-[100px] sm:bottom-[-80px] sm:right-[0px] bottom-[-40px] right-[10px] z-[80]"
+          className="animate-float2 absolute sm:w-[200px] sm:h-[200px] w-[100px] h-[100px] sm:bottom-[-80px] sm:right-[0px] bottom-[-40px] right-[10px] z-[80]"
         />
         <img
           src={"/Navigation.png"}
-          className="animate-float2 absolute sm:w-[250px] sm:h-[250px] w-[130px] h-[130px] sm:bottom-[-100px] sm:left-[-120px] left-[-55px] bottom-[-50px] z-[80]"
+          className="animate-float1 absolute sm:w-[250px] sm:h-[250px] w-[130px] h-[130px] sm:bottom-[-100px] sm:left-[-120px] left-[-55px] bottom-[-50px] z-[80]"
         />
         <img
           src={"/Trophy.png"}
