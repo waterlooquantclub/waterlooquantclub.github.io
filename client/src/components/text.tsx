@@ -2,7 +2,7 @@ import React, { type ElementType, type ReactNode } from "react";
 import clsx from "clsx";
 
 type TextSize = "sm" | "md" | "lg" | "xl";
-type TextFont = "roboto" | "lato" | "krona";
+type TextFont = "inter" | "lato" | "krona";
 type TextColor = "white" | "accent";
 
 interface TextProps extends React.HtmlHTMLAttributes<HTMLParagraphElement> {
@@ -27,14 +27,14 @@ const colorMap: Record<TextColor, string> = {
 };
 
 const fontMap: Record<TextFont, string> = {
-  roboto: "font-roboto",
+  inter: "font-inter",
   lato: "font-lato",
   krona: "font-krona",
 };
 
 export const Text: React.FC<TextProps> = ({
   size = "md",
-  font = "roboto",
+  font = "inter",
   color = "white",
   className,
   as: Component = "p",

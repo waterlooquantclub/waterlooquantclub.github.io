@@ -50,7 +50,7 @@ function Hero() {
         />
       </div>
       <div className="relative z-[10] flex flex-col items-center">
-        <Text font="krona" className="sm:text-[60px] text-[40px] leading-[1.1] flex flex-col items-center justify-center mb-8">
+        <Text font="krona" className="sm:text-[60px] text-[40px] leading-[1.1] font-bold flex flex-col items-center justify-center mb-8">
           Waterloo <br />
           <span className="text-[#9770D6]">Quant</span>
           Club

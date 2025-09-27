@@ -37,7 +37,7 @@ function NavBar() {
       </ul>
 
       <button
-        className="md:hidden flex items-center justify-center w-6 h-10 text-white"
+        className="md:hidden flex items-center justify-center h-10 text-white"
         onClick={toggleMenu}
       >
         {open ? <X size={20} /> : <Menu size={20} />}
