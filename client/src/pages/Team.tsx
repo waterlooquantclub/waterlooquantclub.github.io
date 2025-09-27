@@ -1,10 +1,7 @@
-function Team() {
+import Section from "../components/section";
 
-  return (
-    <div className="w-[100vw] h-[100vh] text-white" id="team">
-      Team
-    </div>
-  )
+function Team() {
+  return <Section id="team" title="Our Team" />;
 }
 
-export default Team
+export default Team;

@@ -1,10 +1,7 @@
-function Join() {
+import Section from "../components/section";
 
-  return (
-    <div className="w-[100vw] h-[100vh] text-white" id="join">
-      Join
-    </div>
-  )
+function Join() {
+  return <Section id="join" title="Join Us" />;
 }
 
-export default Join
+export default Join;
