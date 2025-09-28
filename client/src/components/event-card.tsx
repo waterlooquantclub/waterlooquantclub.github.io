@@ -18,7 +18,7 @@ function EventCard({
   onSignUp,
 }: EventCardProps) {
   return (
-    <div className="flex flex-col sm:flex-row bg-[#171B1F] rounded-xl overflow-hidden max-w-sm sm:max-w-4xl w-[90%] shadow-[0_0_4px_2px_#EECFEF] hover:shadow-[0_0_8px_4px_#EECFEF] transition-shadow duration-200 ease-out">
+    <div className="flex flex-col sm:flex-row bg-gradient-to-b from-[#171B1Fcc] to-[#392940cc] rounded-xl overflow-hidden max-w-sm sm:max-w-4xl w-[85vw] border border-[#818181] hover:shadow-[0_0_8px_4px_#EECFEF] transition-shadow duration-200 ease-out z-[50]">
       <div className="relative h-48 sm:w-64 sm:h-64 sm:m-6 sm:rounded-full sm:flex-shrink-0 overflow-hidden">
         <img
           src={imageUrl}

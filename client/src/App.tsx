@@ -9,15 +9,15 @@ import Competition from "./pages/Competition"
 function App() {
 
   return (
-    <>
+    <div className="overflow-x-hidden">
     <NavBar />
       <Hero />
       <About />
       <Events />
-      <Competition />
+      <Competition/>
       <Team />
       <Join />
-    </>
+    </div>
   )
 }
 

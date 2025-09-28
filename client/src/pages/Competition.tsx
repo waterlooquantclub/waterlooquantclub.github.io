@@ -1,10 +1,20 @@
 import { useState, type FormEvent } from "react";
+import { useEffect } from "react";
 import { Text } from "../components/text";
 import { Button } from "../components/button";
 import Section from "../components/section";
 
 function Competition() {
+  useEffect(() => {
+    const handleScroll = () => {
+      setOffset(window.scrollY);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const [email, setEmail] = useState("");
+  const [offset, setOffset] = useState(0);
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!email) return;
@@ -16,12 +26,28 @@ function Competition() {
       title="Competition"
       className="flex-col flex items-center justify-center relative"
     >
-      <div className="relative sm:w-[70vw] w-[80vw] sm:h-[60vh] flex items-center justify-center">
+      <div className="relative sm:w-[70vw] w-[85vw] sm:h-[60vh] flex items-center justify-center">
+        <img
+          src={"/glow.png"}
+          style={{
+            transform: `translateX(${offset * 0.15}px)`,
+          }}
+          className="sm:hidden block -left-[370px] h-[550px] -top-[420px]  absolute mix-blend-plus-lighter z-[0] transition-transform duration-75"
+        ></img>
+
+        <img
+          src={"/glow.png"}
+          style={{
+            transform: `translateX(${offset * 0.4}px)`,
+          }}
+          className="hidden sm:block -left-[500px] h-[700px] -top-[560px] absolute mix-blend-plus-lighter z-[0] transition-transform duration-75"
+        ></img>
+
         <div className="absolute sm:-top-4 -top-2 sm:-right-4 -right-2 w-[62vw] sm:h-[50vh] h-[250px] bg-[#603474] rounded-3xl blur-2xl mix-blend-plus-lighter" />
         <div className="absolute sm:top-0 top-1 sm:right-0 right-1 w-[62vw] sm:h-[50vh] h-[250px] bg-[#ffa7ff] rounded-3xl blur-xl mix-blend-plus-lighter" />
         <div className="absolute sm:top-0 top-1 sm:right-0 right-1 w-[62vw] sm:h-[50vh] h-[250px] bg-[#ffa7ff] rounded-3xl blur-xl mix-blend-plus-lighter" />
 
-        <div className="bg-gradient-to-b from-black to-[#603067] backdrop-blur-sm rounded-3xl border border-[#818181] flex flex-col items-center justify-center sm:w-[70vw] w-[80vw] h-auto sm:h-[60vh] z-10 px-8 py-16">
+        <div className="bg-gradient-to-b from-black to-[#603067] backdrop-blur-sm rounded-3xl border border-[#818181] flex flex-col items-center justify-center sm:w-[70vw] w-[85vw] h-auto sm:h-[60vh] z-10 px-8 py-16">
           <Text
             font="inter"
             className="sm:text-[18px] text-center sm:mb-4 mb-4"
