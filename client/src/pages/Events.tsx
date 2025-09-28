@@ -4,7 +4,7 @@ import EventCard from "../components/event-card";
 
 function Events() {
   return (
-    <Section id="events" title="Upcoming Events">
+    <Section id="events" title="Upcoming Events" className="z-10 relative">
       <Text size="xl" className="-mt-4 mb-10 text-center">
         Join us for our upcoming events.
       </Text>
