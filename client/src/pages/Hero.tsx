@@ -60,6 +60,7 @@ function Hero() {
       <div className="absolute bottom-[50px] w-[80vw]">
         <LogoCarousel />
       </div>
+      <img src={"/logo.png"} className="absolute sm:top-7 sm:left-12 top-9 left-6 z-[20] w-12 h-12"/>
     </div>
   );
 }
