@@ -11,8 +11,8 @@ function About() {
   }, []);
 
   return (
-    <Section id="about" title="About Us">
-      <div className="max-w-sm sm:max-w-3xl w-[85vw] mx-auto relative">
+    <Section id="about" title="About Us" className="h-auto sm:pt-8 pt-20">
+      <div className="max-w-sm sm:max-w-3xl w-[85vw] mx-auto relative h-auto">
         <div className="absolute -top-2 left-[calc(10%-8px)] rounded-[50%] w-80 h-80 blur-2xl bg-[#603474]/50 mix-blend-plus-lighter animate-[bounce_5s_ease-in-out_infinite]" />
         <div className="absolute -top-4 left-1/10 rounded-[50%] w-80 h-80 blur-2xl bg-[#603474]/50 mix-blend-plus-lighter" />
         <div className="absolute top-16 right-1/10 rounded-[50%] w-80 h-80 blur-2xl bg-[#603474]/80 mix-blend-plus-lighter animate-[bounce_6s_ease-in-out_infinite]" />
