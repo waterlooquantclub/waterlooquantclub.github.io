@@ -22,7 +22,7 @@ function Hero() {
   }, []);
 
   return (
-    <div className="w-screen h-screen flex items-center justify-center">
+    <div className="w-screen h-screen flex items-center justify-center relative">
       <div className="inset-0 z-[0] absolute">
         <PixelatedCanvas
           src={size.w < 600 ? "/phone-background.png" : "/hero-background.png"}
