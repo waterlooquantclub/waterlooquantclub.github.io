@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { PixelatedCanvas } from "../components/pixel-canvas";
-import LogoCarousel from "../components/logo-carousel";
 import { Text } from "../components/text";
 import { Button } from "../components/button";
 function Hero() {
@@ -50,17 +49,23 @@ function Hero() {
         />
       </div>
       <div className="relative z-[10] flex flex-col items-center">
-        <Text font="krona" className="sm:text-[60px] text-[40px] leading-[1.1] font-bold flex flex-col items-center justify-center mb-8">
+        <Text
+          font="krona"
+          className="sm:text-[60px] text-[40px] leading-[1.1] font-bold flex flex-col items-center justify-center mb-8"
+        >
           Waterloo <br />
           <span className="text-[#9770D6]">Quant</span>
           Club
         </Text>
         <Button filled={size.w < 600 ? true : false}>Join Now</Button>
       </div>
-      <div className="absolute bottom-[50px] w-[80vw]">
+      {/* <div className="absolute bottom-[50px] w-[80vw]">
         <LogoCarousel />
-      </div>
-      <img src={"/logo.png"} className="absolute sm:top-7 sm:left-12 top-9 left-6 z-[20] w-12 h-12"/>
+      </div> */}
+      <img
+        src={"/logo.png"}
+        className="absolute sm:top-7 sm:left-12 top-9 left-6 z-[20] w-12 h-12"
+      />
     </div>
   );
 }
