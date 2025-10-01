@@ -5,6 +5,7 @@ import Team from "./pages/Team";
 import Join from "./pages/Join";
 import NavBar from "./components/navbar";
 import Competition from "./pages/Competition";
+import Footer from "./components/footer";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Competition />
       <Team />
       <Join />
+      <Footer />
     </div>
   );
 }
