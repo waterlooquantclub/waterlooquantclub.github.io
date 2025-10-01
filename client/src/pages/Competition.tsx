@@ -15,10 +15,49 @@ function Competition() {
 
   const [email, setEmail] = useState("");
   const [offset, setOffset] = useState(0);
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!email) return;
-    setEmail("");
+
+    setIsLoading(true);
+    setError("");
+    setSuccess(false);
+
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/subscribe`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email }),
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response
+          .json()
+          .catch(() => ({ error: "Unknown error" }));
+        throw new Error(
+          `Failed to subscribe: ${errorData.error || "Server error"}`
+        );
+      }
+
+      setSuccess(true);
+      setEmail("");
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : "Failed to subscribe. Please try again."
+      );
+    } finally {
+      setIsLoading(false);
+    }
   };
   return (
     <Section
@@ -57,6 +96,11 @@ function Competition() {
           <Text font="inter" className="sm:text-[18px] sm:mb-12 mb-8">
             Stay tuned for more info.
           </Text>
+          {(error || success) && (
+            <Text font="inter" className="text-sm mb-4">
+              {error || "Successfully subscribed!"}
+            </Text>
+          )}
           <form
             onSubmit={handleSubmit}
             className="flex sm:flex-row flex-col items-center justify-center sm:gap-5 gap-4"
@@ -68,7 +112,9 @@ function Competition() {
               onChange={(e) => setEmail(e.target.value)}
               className="border border-white/80 bg-white/20 rounded-full py-2 px-4 sm:w-[250px] w-full focus:outline-none focus:ring-2 focus:ring-[#B670D6]"
             />
-            <Button type="submit">Subscribe</Button>
+            <Button type="submit" disabled={isLoading}>
+              {isLoading ? "Subscribing..." : "Subscribe"}
+            </Button>
           </form>
         </div>
         <img
