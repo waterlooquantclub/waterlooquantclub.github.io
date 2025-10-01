@@ -34,14 +34,16 @@ function Competition() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ emaila: email }),
+          body: JSON.stringify({ email }),
         }
       );
 
       if (!response.ok) {
+        const errorData = await response
+          .json()
+          .catch(() => ({ error: "Unknown error" }));
         throw new Error(
-          "Failed to subscribe: " +
-            ((await response.json()) as { error: string }).error
+          `Failed to subscribe: ${errorData.error || "Server error"}`
         );
       }
 
