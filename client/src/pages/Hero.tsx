@@ -57,7 +57,12 @@ function Hero() {
           <span className="text-[#9770D6]">Quant</span>
           Club
         </Text>
-        <Button filled={size.w < 600 ? true : false}>Join Now</Button>
+        <Button
+          filled={size.w < 600 ? true : false}
+          onClick={() => window.open("https://discord.gg/QwmucS8qBv", "_blank")}
+        >
+          Join now
+        </Button>
       </div>
       {/* <div className="absolute bottom-[50px] w-[80vw]">
         <LogoCarousel />
