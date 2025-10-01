@@ -77,7 +77,7 @@ function Footer() {
                   <Linkedin size={28} />
                 </a>
                 <a
-                  href="https://discord.gg/Hu3FxfHnZt"
+                  href="https://discord.gg/QwmucS8qBv"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="transition-colors"
@@ -236,7 +236,7 @@ function Footer() {
                 <Linkedin size={28} />
               </a>
               <a
-                href="https://discord.gg/waterlooquant"
+                href="https://discord.gg/QwmucS8qBv"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="transition-colors"
