@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Button } from "../components/button";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function SponsorshipForm() {
   const [formData, setFormData] = useState({
     first_name: "",
@@ -13,8 +15,6 @@ function SponsorshipForm() {
     type: "success" | "error" | null;
     text: string;
   }>({ type: null, text: "" });
-
-  const API_URL = import.meta.env.VITE_API_URL;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

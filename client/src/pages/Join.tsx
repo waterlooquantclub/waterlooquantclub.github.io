@@ -1,6 +1,7 @@
 import Section from "../components/section";
 import { Button } from "../components/button";
 import SponsorshipForm from "../components/sponsorship-form";
+import { DISCORD_LINK } from "../util/constants";
 
 function Join() {
   return (
@@ -24,13 +25,14 @@ function Join() {
             <p className="text-lg mb-16 mt-8">
               Interested in what we're doing?
             </p>
-            <a
-              href="https://discord.gg/QwmucS8qBv"
+            <Button
+              as="a"
+              href={DISCORD_LINK}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button type="submit">Join now</Button>
-            </a>
+              Join now
+            </Button>
             <img
               src="/logo_glow.png"
               alt="Glowing logo"
