@@ -31,17 +31,15 @@ function Hero() {
           dotScale={0.8}
           shape="square"
           backgroundColor="#000000"
-          dropoutStrength={0}
           interactive
           responsive={size.w < 600 ? false : true}
           distortionStrength={1}
-          distortionRadius={220}
+          distortionRadius={100}
           distortionMode="repel"
           followSpeed={0.2}
           maxFps={50}
           jitterStrength={9}
           jitterSpeed={2}
-          sampleAverage
           tintColor="#230c24ff"
           tintStrength={0.05}
           fadeSpeed={0.01}
