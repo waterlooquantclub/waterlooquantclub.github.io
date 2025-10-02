@@ -30,3 +30,5 @@ export const SECTIONS = [
     component: Join,
   },
 ];
+
+export const DISCORD_LINK = "https://discord.gg/QwmucS8qBv";

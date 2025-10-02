@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { PixelatedCanvas } from "../components/pixel-canvas";
 import { Text } from "../components/text";
 import { Button } from "../components/button";
+import { DISCORD_LINK } from "../util/constants";
+
 function Hero() {
   const [size, setSize] = useState({
     w: window.innerWidth,
@@ -58,7 +60,7 @@ function Hero() {
         <Button
           as="a"
           filled={size.w < 600 ? true : false}
-          href="https://discord.gg/QwmucS8qBv"
+          href={DISCORD_LINK}
           target="_blank"
           rel="noopener noreferrer"
         >
