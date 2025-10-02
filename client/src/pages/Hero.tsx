@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { PixelatedCanvas } from "../components/pixel-canvas";
 import { Text } from "../components/text";
 import { Button } from "../components/button";
-import { DISCORD_LINK } from "../util/constants";
+import { SOCIAL_LINKS } from "../util/constants";
 
 function Hero() {
   const [size, setSize] = useState({
@@ -34,7 +34,7 @@ function Hero() {
           shape="square"
           backgroundColor="#000000"
           interactive
-          responsive={size.w < 600 ? false : true}
+          responsive={size.w >= 600}
           distortionStrength={1}
           distortionRadius={100}
           distortionMode="repel"
@@ -59,8 +59,8 @@ function Hero() {
         </Text>
         <Button
           as="a"
-          filled={size.w < 600 ? true : false}
-          href={DISCORD_LINK}
+          filled={size.w < 600}
+          href={SOCIAL_LINKS.DISCORD}
           target="_blank"
           rel="noopener noreferrer"
         >

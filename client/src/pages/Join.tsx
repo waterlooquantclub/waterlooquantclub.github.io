@@ -1,7 +1,7 @@
 import Section from "../components/section";
 import { Button } from "../components/button";
 import SponsorshipForm from "../components/sponsorship-form";
-import { DISCORD_LINK } from "../util/constants";
+import { SOCIAL_LINKS } from "../util/constants";
 
 function Join() {
   return (
@@ -27,7 +27,7 @@ function Join() {
             </p>
             <Button
               as="a"
-              href={DISCORD_LINK}
+              href={SOCIAL_LINKS.DISCORD}
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -1,6 +1,7 @@
 import { Text } from "../components/text";
 import Section from "../components/section";
 import EventCard from "../components/event-card";
+import { SOCIAL_LINKS } from "../util/constants";
 
 function Events() {
   return (
@@ -11,12 +12,12 @@ function Events() {
       <div className="flex flex-col gap-8 items-center">
         <EventCard
           eventName="Panel Event"
-          dateTime="October 8, 2025 6:00 PM"
-          location="MC 1234"
-          description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi quis enim tortor. Donec aliquet sapien sapien, eu vulputate lorem rhoncus ac."
+          dateTime="October 8, 2025 7:30-8:30 PM"
+          location="RCH 302"
+          description="Ever wondered what quants really do? Join us for our inaugural event to hear from students with experience at top firms like Jane Street, SIG, HRT, and Point72. Learn more about the industry, roles, and what working in quant is like! You'll also have the opportunity to ask questions. No prior knowledge required!"
           imageUrl="/hero-background.png"
           linkText="More Info"
-          linkHref="#"
+          linkHref={SOCIAL_LINKS.INSTAGRAM}
         />
         <EventCard
           eventName="Stay Tuned for More!"

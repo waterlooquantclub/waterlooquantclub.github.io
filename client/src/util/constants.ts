@@ -31,4 +31,9 @@ export const SECTIONS = [
   },
 ];
 
-export const DISCORD_LINK = "https://discord.gg/QwmucS8qBv";
+export const SOCIAL_LINKS = {
+  DISCORD: "https://discord.gg/QwmucS8qBv",
+  INSTAGRAM: "https://www.instagram.com/wlooquantclub/",
+  LINKEDIN: "https://linkedin.com/company/waterloo-quant-club",
+  EMAIL: "mailto:info@waterlooquantclub.com",
+};
