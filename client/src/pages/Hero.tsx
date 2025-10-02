@@ -58,8 +58,11 @@ function Hero() {
           Club
         </Text>
         <Button
+          as="a"
           filled={size.w < 600 ? true : false}
-          onClick={() => window.open("https://discord.gg/QwmucS8qBv", "_blank")}
+          href="https://discord.gg/QwmucS8qBv"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           Join now
         </Button>
