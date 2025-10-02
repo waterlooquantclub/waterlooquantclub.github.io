@@ -1,20 +1,37 @@
-import { useState, type FormEvent } from "react";
-import { useEffect } from "react";
+import { useState, type FormEvent, useEffect, useRef } from "react";
 import { Text } from "../components/text";
 import { Button } from "../components/button";
 import Section from "../components/section";
 
 function Competition() {
+  const glowImageRef1 = useRef<HTMLImageElement>(null);
+  const glowImageRef2 = useRef<HTMLImageElement>(null);
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setOffset(window.scrollY);
+      const scrollY = window.scrollY;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          if (glowImageRef1.current) {
+            glowImageRef1.current.style.transform = `translateX(${
+              scrollY * 0.15
+            }px)`;
+          }
+          if (glowImageRef2.current) {
+            glowImageRef2.current.style.transform = `translateX(${
+              scrollY * 0.4
+            }px)`;
+          }
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const [email, setEmail] = useState("");
-  const [offset, setOffset] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
@@ -67,20 +84,16 @@ function Competition() {
     >
       <div className="relative sm:w-[70vw] w-[85vw] sm:h-[60vh] flex items-center justify-center">
         <img
+          ref={glowImageRef1}
           src={"/glow.png"}
-          style={{
-            transform: `translateX(${offset * 0.15}px)`,
-          }}
-          className="sm:hidden block -left-[370px] h-[550px] -top-[420px]  absolute mix-blend-plus-lighter z-[0] transition-transform duration-75"
-        ></img>
+          className="sm:hidden block -left-[370px] h-[550px] -top-[420px] absolute mix-blend-plus-lighter z-[0] transition-transform duration-75"
+        />
 
         <img
+          ref={glowImageRef2}
           src={"/glow.png"}
-          style={{
-            transform: `translateX(${offset * 0.4}px)`,
-          }}
           className="hidden sm:block -left-[500px] h-[700px] -top-[560px] absolute mix-blend-plus-lighter z-[0] transition-transform duration-75"
-        ></img>
+        />
 
         <div className="absolute sm:-top-4 -top-2 sm:-right-4 -right-2 w-[62vw] sm:h-[50vh] h-[250px] bg-[#603474] rounded-3xl blur-2xl mix-blend-plus-lighter" />
         <div className="absolute sm:top-0 top-1 sm:right-0 right-1 w-[62vw] sm:h-[50vh] h-[250px] bg-[#ffa7ff] rounded-3xl blur-xl mix-blend-plus-lighter" />
