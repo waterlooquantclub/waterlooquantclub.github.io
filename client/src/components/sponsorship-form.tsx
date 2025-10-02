@@ -42,7 +42,6 @@ function SponsorshipForm() {
         throw new Error("Failed to submit sponsorship form");
       }
 
-      // reset form
       setFormData({
         first_name: "",
         last_name: "",
@@ -52,13 +51,13 @@ function SponsorshipForm() {
 
       setStatusMessage({
         type: "success",
-        text: "✅ Thanks for sponsoring us! 🎉",
+        text: "Thanks for sponsoring us!",
       });
     } catch (err) {
       console.error(err);
       setStatusMessage({
         type: "error",
-        text: "❌ Something went wrong. Please try again.",
+        text: "Something went wrong. Please try again.",
       });
     } finally {
       setIsLoading(false);
@@ -112,10 +111,7 @@ function SponsorshipForm() {
 
       <div className="flex flex-col sm:flex-row gap-6 sm:gap-7">
         <div className="flex flex-col w-full">
-          <label
-            htmlFor="company"
-            className="text-sm text-white/80 mb-1 ml-3"
-          >
+          <label htmlFor="company" className="text-sm text-white/80 mb-1 ml-3">
             Company
           </label>
           <input
@@ -130,10 +126,7 @@ function SponsorshipForm() {
         </div>
 
         <div className="flex flex-col w-full">
-          <label
-            htmlFor="email"
-            className="text-sm text-white/80 mb-1 ml-3"
-          >
+          <label htmlFor="email" className="text-sm text-white/80 mb-1 ml-3">
             Email
           </label>
           <input
@@ -151,26 +144,25 @@ function SponsorshipForm() {
 
       <div className="mt-4 flex flex-col items-center">
         <Button
-            type="submit"
-            disabled={isLoading}
-            className="rounded-full px-16 py-3 border border-white/80 bg-transparent text-white hover:bg-white hover:text-black transition"
+          type="submit"
+          disabled={isLoading}
+          className="rounded-full px-16 py-3 border border-white/80 bg-transparent text-white hover:bg-white hover:text-black transition"
         >
-            {isLoading ? "Submitting..." : "Submit"}
+          {isLoading ? "Submitting..." : "Submit"}
         </Button>
 
         {statusMessage.type && (
-            <p
+          <p
             className={`mt-3 text-sm ${
-                statusMessage.type === "success"
+              statusMessage.type === "success"
                 ? "text-green-400"
                 : "text-red-400"
             }`}
-            >
+          >
             {statusMessage.text}
-            </p>
+          </p>
         )}
-        </div>
-
+      </div>
     </form>
   );
 }
