@@ -64,7 +64,7 @@ function Hero() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Join now
+          Join on Discord
         </Button>
       </div>
       {/* <div className="absolute bottom-[50px] w-[80vw]">

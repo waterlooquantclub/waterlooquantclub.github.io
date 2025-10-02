@@ -1,7 +1,6 @@
 import { Text } from "../components/text";
 import Section from "../components/section";
 import EventCard from "../components/event-card";
-import { SOCIAL_LINKS } from "../util/constants";
 
 function Events() {
   return (
@@ -19,7 +18,7 @@ function Events() {
           links={[
             {
               text: "More Info",
-              href: SOCIAL_LINKS.INSTAGRAM,
+              href: "https://www.instagram.com/p/DPUXK6TjueQ/",
             },
             {
               text: "RSVP Here",

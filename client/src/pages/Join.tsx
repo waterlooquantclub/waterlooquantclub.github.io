@@ -31,7 +31,7 @@ function Join() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Join now
+              Join on Discord
             </Button>
             <img
               src="/logo_glow.png"
