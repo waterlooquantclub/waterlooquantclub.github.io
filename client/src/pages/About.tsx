@@ -16,13 +16,16 @@ function About() {
         <div className="absolute -top-2 left-[calc(10%-8px)] rounded-[50%] w-80 h-80 blur-2xl bg-[#603474]/50 mix-blend-plus-lighter animate-[bounce_5s_ease-in-out_infinite]" />
         <div className="absolute -top-4 left-1/10 rounded-[50%] w-80 h-80 blur-2xl bg-[#603474]/50 mix-blend-plus-lighter" />
         <div className="absolute top-16 right-1/10 rounded-[50%] w-80 h-80 blur-2xl bg-[#603474]/80 mix-blend-plus-lighter animate-[bounce_6s_ease-in-out_infinite]" />
-        {Array(3).fill(
-          <div className="absolute -bottom-12 inset-x-0 rounded-[50%] h-52 blur-2xl bg-[#603474]/100 mix-blend-plus-lighter" />
-        )}
+        {Array.from({ length: 3 }, (_, i) => (
+          <div
+            key={i}
+            className="absolute -bottom-12 inset-x-0 rounded-[50%] h-52 blur-2xl bg-[#603474]/100 mix-blend-plus-lighter"
+          />
+        ))}
         <div className="absolute bottom-[-30vw] left-[calc(-50vw+50%)] w-screen h-[50vw]">
           <div className="absolute inset-0 rounded-t-[50%] blur-[100px] bg-[#603474]/50  animate-[pulse_5s_ease-in-out_infinite]" />
           <div className="absolute inset-x-0 -inset-y-20 overflow-hidden flex">
-            {Array.from(Array(Math.ceil(width / 48)), (_, i) => (
+            {Array.from({ length: Math.ceil(width / 48) }, (_, i) => (
               <div
                 key={i}
                 className="flex-1 bg-[linear-gradient(to_right,rgba(0,0,0,0.5),rgba(0,0,0,0))]"
