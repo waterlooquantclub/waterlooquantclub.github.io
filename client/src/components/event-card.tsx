@@ -6,8 +6,7 @@ interface EventCardProps {
   location?: string;
   description?: string;
   imageUrl: string;
-  linkText?: string;
-  linkHref?: string;
+  links?: { text: string; href: string }[];
 }
 
 function EventCard({
@@ -16,8 +15,7 @@ function EventCard({
   location,
   description,
   imageUrl,
-  linkText,
-  linkHref,
+  links,
 }: EventCardProps) {
   return (
     <div className="flex flex-col sm:flex-row bg-gradient-to-b from-[#171B1Fcc] to-[#392940cc] rounded-xl overflow-hidden max-w-sm sm:max-w-4xl w-[85vw] border border-[#818181] hover:shadow-[0_0_8px_4px_#EECFEF] transition-shadow duration-200 ease-out z-[50]">
@@ -45,19 +43,24 @@ function EventCard({
             {description}
           </Text>
         )}
-        {linkHref && linkText && (
-          <a
-            href={linkHref}
-            target="_blank"
-            className="flex items-center cursor-pointer group"
-          >
-            <Text className="font-medium group-hover:text-[#BB68C5]">
-              {linkText}
-            </Text>
-            <span className="ml-2 transform group-hover:translate-x-1 group-hover:text-[#BB68C5] transition-transform duration-200">
-              &rsaquo;
-            </span>
-          </a>
+        {links && links.length > 0 && (
+          <div className="space-y-2">
+            {links.map(({ text, href }, i) => (
+              <a
+                href={href}
+                target="_blank"
+                className="flex items-center cursor-pointer group"
+                key={i}
+              >
+                <Text className="font-medium group-hover:text-[#BB68C5]">
+                  {text}
+                </Text>
+                <span className="ml-2 transform group-hover:translate-x-1 group-hover:text-[#BB68C5] transition-transform duration-200">
+                  &rsaquo;
+                </span>
+              </a>
+            ))}
+          </div>
         )}
       </div>
     </div>
