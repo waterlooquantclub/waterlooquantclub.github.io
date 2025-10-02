@@ -35,12 +35,12 @@ function Hero() {
           backgroundColor="#000000"
           interactive
           responsive={size.w >= 600}
-          distortionStrength={1}
-          distortionRadius={100}
+          distortionStrength={1.5}
+          distortionRadius={160}
           distortionMode="repel"
           followSpeed={0.2}
           maxFps={50}
-          jitterStrength={9}
+          jitterStrength={10}
           jitterSpeed={2}
           tintColor="#230c24ff"
           tintStrength={0.05}
