@@ -14,7 +14,7 @@ function Events() {
           dateTime="October 8, 2025 7:30PM"
           location="RCH 302"
           description="Ever wondered what quants really do? Join us for our inaugural event to hear from students with experience at top firms like Jane Street, SIG, HRT, and Point72. Learn more about the industry, roles, and what working in quant is like! You'll also have the opportunity to ask questions. No prior knowledge required!"
-          imageUrl="/hero-background.png"
+          imageUrl="/panelicon.png"
           links={[
             {
               text: "More Info",
@@ -28,7 +28,7 @@ function Events() {
         />
         <EventCard
           eventName="Stay Tuned for More!"
-          imageUrl="/hero-background.png"
+          imageUrl="/placeholder.png"
         />
       </div>
     </Section>
