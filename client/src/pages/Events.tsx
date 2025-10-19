@@ -18,7 +18,7 @@ function Events() {
       <Text size="md" className="-mt-4 mb-10 text-center text-xs sm:text-xl">
         Check out our upcoming events or view our events archive.
         <br />
-        Fill out the general member form if you want to attend any of our
+        Fill out the general member form to attend any of our
         events!
       </Text>
       <div className="flex flex-wrap gap-4 justify-center mb-10">
