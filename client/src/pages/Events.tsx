@@ -18,8 +18,7 @@ function Events() {
       <Text size="md" className="-mt-4 mb-10 text-center text-xs sm:text-xl">
         Check out our upcoming events or view our events archive.
         <br />
-        Fill out the general member form to attend any of our
-        events!
+        Fill out the general member form to attend any of our events!
       </Text>
       <div className="flex flex-wrap gap-4 justify-center mb-10">
         <Button
@@ -38,7 +37,7 @@ function Events() {
         {!showArchive ? (
           <>
             <EventCard
-              eventName="Intro to Trading 101"
+              eventName="Intro to Trading"
               dateTime="Oct 29, 2025 @ 6:00PM"
               location="RCH 302"
               description="An introductory workshop on trading and market structure — covering market making terminology, order book mechanics, and real trade examples."
@@ -52,24 +51,24 @@ function Events() {
               // ]}
             />
             <EventCard
-              eventName="Options 101"
+              eventName="Asset Class Deep Dive"
               dateTime="Nov 12, 2025 @ 6:00PM"
               location="RCH 302"
-              description="An introduction to options trading — covering calls, puts, payoffs, and the basics of pricing and risk management."
-              imageUrl="/events/options101.png"
+              description="A survey of all other asset classes — exploring fixed income, equities, commodities, and more."
+              imageUrl="/events/assetclassdeepdive.png"
             />
             <EventCard
-              eventName="Asset Class Deep Dive"
+              eventName="Options 101"
               dateTime="Nov 19, 2025 @ 6:00PM"
               location="RCH 302"
-              description="A survey of non-equity markets — exploring fixed income, FX, and commodities from a quantitative perspective."
-              imageUrl="/events/assetclassdeepdive.png"
+              description="An introduction to options trading — calls, puts, volatility and all the greeks."
+              imageUrl="/events/options101.png"
             />
             <EventCard
               eventName="Capital Markets"
               dateTime="Nov 26, 2025 @ 6:00PM"
               location="RCH 302"
-              description="An overview of how financial markets operate — covering primary vs. secondary markets, participants, and the flow of capital."
+              description="An overview of Capital Markets theory (CapM) — understanding and exploring the relationship between risk and expected return."
               imageUrl="/events/capitalmarkets.png"
             />
             <EventCard
