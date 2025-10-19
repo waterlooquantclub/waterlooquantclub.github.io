@@ -18,8 +18,8 @@ function EventCard({
   links,
 }: EventCardProps) {
   return (
-    <div className="flex flex-col sm:flex-row bg-gradient-to-b from-[#171B1Fcc] to-[#392940cc] rounded-xl overflow-hidden max-w-sm sm:max-w-4xl w-[85vw] border border-[#818181] hover:shadow-[0_0_8px_4px_#EECFEF] transition-shadow duration-200 ease-out z-[50]">
-      <div className="relative h-48 sm:w-64 sm:h-64 sm:m-6 sm:rounded-full sm:flex-shrink-0 overflow-hidden">
+    <div className="flex flex-col sm:flex-row rounded-xl overflow-hidden max-w-sm sm:max-w-4xl w-[85vw] hover:shadow-[0_0_8px_4px_#EECFEF] transition-shadow duration-200 ease-out z-[50]">
+  <div className="relative flex-shrink-0 h-32 w-32 mx-auto mt-6 rounded-full overflow-hidden sm:h-64 sm:w-64 sm:m-6 sm:flex-shrink-0">
         <img
           src={imageUrl}
           alt={eventName}
@@ -27,18 +27,18 @@ function EventCard({
         />
       </div>
       <div className="p-6 sm:pl-0 flex flex-col sm:justify-center flex-1 items-center sm:items-start">
-        <Text size="xl" className="font-semibold mb-2 sm:mb-3 sm:text-2xl">
+        <Text size="xl" className="font-semibold mb-2 sm:mb-3 text-lg sm:text-2xl text-center sm:text-left">
           {eventName}
         </Text>
         {dateTime && location && (
-          <Text className="font-medium mb-3 sm:mb-4">
+          <Text className="font-medium mb-3 sm:mb-4 text-sm sm:text-base text-center sm:text-left">
             {dateTime} | {location}
           </Text>
         )}
         {description && (
           <Text
             size="sm"
-            className="mb-6 flex-1 sm:flex-none leading-relaxed text-left"
+            className="mb-6 flex-1 sm:flex-none leading-relaxed text-xs sm:text-sm text-center sm:text-left"
           >
             {description}
           </Text>
@@ -52,7 +52,7 @@ function EventCard({
                 className="flex items-center cursor-pointer group"
                 key={i}
               >
-                <Text className="font-medium group-hover:text-[#BB68C5]">
+                <Text className="font-medium group-hover:text-[#BB68C5] text-sm sm:text-base">
                   {text}
                 </Text>
                 <span className="ml-2 transform group-hover:translate-x-1 group-hover:text-[#BB68C5] transition-transform duration-200">
