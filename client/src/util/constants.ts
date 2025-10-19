@@ -42,59 +42,87 @@ export const SOCIAL_LINKS = {
 
 export const MEMBERS: Member[] = [
   {
-    name: "Ian Zhao",
-    program: "CS",
-    image: "/members/ian_zhao.jpeg",
+    name: "Angelina Wu",
+    role: "Creative Design",
+    link: "https://linkedin.com/in/anglerona",
+    image: "/members/default_profile.png",
   },
   {
-    name: "Daniel Shen",
-    program: "CS",
-    image: "/members/daniel_shen.png",
+    name: "Meilin Cai",
+    role: "Social Media",
+    image: "/members/default_profile.png",
   },
 
   {
-    name: "Harry Jiang",
-    program: "CS/Stats",
-    link: "https://www.linkedin.com/in/harryjiang7/",
-    image: "/members/harry_jiang.JPG",
+    name: "Richard Yang",
+    role: "Advisor",
+    link: "https://www.linkedin.com/in/richardyang03/",
+    image: "/members/richard_yang.jpg",
+  },
+
+  {
+    name: "Kenneth Xiao",
+    role: "Industry Relations",
+    link: "https://www.linkedin.com/in/kdxiao",
+    image: "/members/kenneth_xiao.JPG",
+  },
+  {
+    name: "Soham Parmar",
+    role: "Industry Relations",
+    link: "https://www.linkedin.com/in/soham-parmar",
+    image: "/members/soham_parmar.jpeg",
+  },
+
+  {
+    name: "Marcus Lee",
+    role: "External Relations",
+    link: "https://www.linkedin.com/in/marcus-lee-4355aa214?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+    image: "/members/marcus_lee.jpeg",
   },
 
   {
     name: "Aurora Shi",
-    program: "SE",
+    role: "General Executive",
     link: "https://aurorashi.com/",
     image: "/members/aurora_shi.JPG",
   },
 
   {
     name: "Patrick Huang",
-    program: "SE",
+    role: "General Executive",
     link: "https://www.patrickhuang.co/",
     image: "/members/patrick_huang.jpeg",
   },
+];
+
+export const VPMEMBERS: Member[] = [
   {
-    name: "Marcus Lee",
-    program: "Math/Econ",
-    link: "https://www.linkedin.com/in/marcus-lee-4355aa214?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-    image: "/members/marcus_lee.jpeg",
+    name: "Ian Zhao",
+    role: "VP Tech",
+    image: "/members/ian_zhao.jpeg",
+  },
+  {
+    name: "Daniel Shen",
+    role: "VP Trading",
+    image: "/members/daniel_shen.png",
   },
 
   {
-    name: "Soham Parmar",
-    program: "CE",
-    link: "https://www.linkedin.com/in/soham-parmar",
-    image: "/members/soham_parmar.jpeg",
-  },
-  {
     name: "Samantha La",
-    program: "SYDE",
+    role: "VP Logistics",
     link: "https://www.linkedin.com/in/samanthala/",
     image: "/members/sam_la.jpg",
   },
   {
-    name: "Jacob Yan",
-    program: "CS/Stats",
-    link: "https://www.linkedin.com/in/jacob-yan/",
-    image: "/members/jacob_yan.jpg",
+    name: "John Huang",
+    role: "VP Research",
+    image: "/members/john_huang.jpg",
   },
 ];
+
+export const PRESIDENT: Member = {
+  name: "Harry Jiang",
+  role: "President",
+  link: "https://www.linkedin.com/in/harryjiang7/",
+  image: "/members/harry_jiang.JPG",
+};
