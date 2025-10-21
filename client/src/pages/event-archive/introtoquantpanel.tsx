@@ -2,7 +2,7 @@ import { Text } from "../../components/text";
 import { Button } from "../../components/button";
 import { ROUTES } from "../../util/constants";
 import { Link } from "react-router-dom";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import "yet-another-react-lightbox/styles.css";
@@ -11,6 +11,9 @@ import "yet-another-react-lightbox/plugins/thumbnails.css";
 function IntroToQuantPanel() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== "undefined" ? window.innerWidth < 640 : false
+  );
 
   const galleryImages = useMemo(
     () => [
@@ -25,10 +28,42 @@ function IntroToQuantPanel() {
     []
   );
 
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile && lightboxOpen) {
+      const { body } = document;
+      const previousOverflow = body.style.overflow;
+      body.style.overflow = "hidden";
+      return () => {
+        body.style.overflow = previousOverflow;
+      };
+    }
+  }, [isMobile, lightboxOpen]);
+
   const handleOpen = useCallback((index: number) => {
     setCurrentImageIndex(index);
     setLightboxOpen(true);
   }, []);
+
+  const goToPrevious = useCallback(() => {
+    setCurrentImageIndex((prev) =>
+      prev === 0 ? galleryImages.length - 1 : prev - 1
+    );
+  }, [galleryImages.length]);
+
+  const goToNext = useCallback(() => {
+    setCurrentImageIndex((prev) =>
+      prev === galleryImages.length - 1 ? 0 : prev + 1
+    );
+  }, [galleryImages.length]);
 
   return (
     <div className="w-screen min-h-screen bg-gradient-to-b from-black via-[#2a1a3d] to-[#1a0f2e]">
@@ -147,44 +182,134 @@ function IntroToQuantPanel() {
         </div>
 
         {/* Lightbox */}
-        <Lightbox
-          plugins={[Thumbnails]}
-          open={lightboxOpen}
-          close={() => setLightboxOpen(false)}
-          index={currentImageIndex}
-          slides={galleryImages}
-          carousel={{ preload: 2 }}
-          controller={{ closeOnBackdropClick: true, closeOnPullDown: false }}
-          thumbnails={{ position: "bottom", width: 96, height: 64, gap: 12, border: 1 }}
-          render={{
-            slide: ({ slide, rect }) => (
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  width: "100%",
-                  height: "100%",
+        {!isMobile ? (
+          <Lightbox
+            plugins={[Thumbnails]}
+            open={lightboxOpen}
+            close={() => setLightboxOpen(false)}
+            index={currentImageIndex}
+            slides={galleryImages}
+            carousel={{ preload: 1 }}
+            controller={{ closeOnBackdropClick: true, closeOnPullDown: false }}
+            thumbnails={{ position: "bottom", width: 96, height: 64, gap: 12, border: 1 }}
+            render={{
+              slide: ({ slide, rect }) => (
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "100%",
+                    height: "100%",
+                  }}
+                >
+                  <img
+                    src={slide.src}
+                    alt={slide.alt}
+                    loading="eager"
+                    decoding="async"
+                    style={{
+                      maxWidth: rect.width,
+                      maxHeight: rect.height,
+                      objectFit: "contain",
+                    }}
+                  />
+                </div>
+              ),
+            }}
+            styles={{
+              container: { backgroundColor: "rgba(0, 0, 0, 0.95)" },
+            }}
+          />
+        ) : (
+          lightboxOpen && (
+            <div
+              className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
+              onClick={() => setLightboxOpen(false)}
+            >
+              <button
+                onClick={() => setLightboxOpen(false)}
+                className="absolute top-5 right-5 text-white hover:text-[#BB68C5] transition-colors"
+                aria-label="Close lightbox"
+              >
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goToPrevious();
                 }}
+                className="absolute left-3 text-white hover:text-[#BB68C5] transition-colors"
+                aria-label="Previous image"
+              >
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+              </button>
+
+              <div
+                className="w-full max-w-lg"
+                onClick={(e) => e.stopPropagation()}
               >
                 <img
-                  src={slide.src}
-                  alt={slide.alt}
+                  src={galleryImages[currentImageIndex].src}
+                  alt={galleryImages[currentImageIndex].alt}
+                  className="w-full max-h-[60vh] object-contain"
                   loading="eager"
                   decoding="async"
-                  style={{
-                    maxWidth: rect.width,
-                    maxHeight: rect.height,
-                    objectFit: "contain",
-                  }}
+                  draggable={false}
                 />
+                <Text className="text-center mt-4 text-gray-300 text-sm">
+                  {galleryImages[currentImageIndex].alt}
+                </Text>
               </div>
-            ),
-          }}
-          styles={{
-            container: { backgroundColor: "rgba(0, 0, 0, 0.95)" },
-          }}
-        />
+
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goToNext();
+                }}
+                className="absolute right-3 text-white hover:text-[#BB68C5] transition-colors"
+                aria-label="Next image"
+              >
+                <svg
+                  width="40"
+                  height="40"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <polyline points="9 18 15 12 9 6" />
+                </svg>
+              </button>
+            </div>
+          )
+        )}
 
         {/* Event Resources */}
         <div className="mb-12 text-center">
