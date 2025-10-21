@@ -21,7 +21,7 @@ function Join() {
       <Section id="join" className="text-white py-16 font-lato">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-12 px-6">
           <div className="relative flex flex-col items-center text-center space-y-6 md:pr-8 md:border-r-2 md:border-white">
-            <h2 className="text-4xl font-bold mb-4">Join Us</h2>
+            <h2 className="text-4xl font-bold mb-4 font-krona">Join Us</h2>
             <p className="text-lg mb-16 mt-8">
               Interested in what we're doing?
             </p>
@@ -41,7 +41,7 @@ function Join() {
           </div>
 
           <div className="relative flex flex-col items-center space-y-6 w-full">
-            <h2 className="text-4xl font-bold mb-4 z-10">Sponsorship</h2>
+            <h2 className="text-4xl font-bold mb-4 z-10 font-krona">Sponsorship</h2>
             <p className="text-lg mb-6 z-10 mt-8">
               Interested in sponsoring us?
             </p>

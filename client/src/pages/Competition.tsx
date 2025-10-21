@@ -83,6 +83,7 @@ function Competition() {
     <Section
       id="competition"
       title="Competition"
+      titleFont="krona"
       className="flex-col flex items-center justify-center relative"
     >
       <div
