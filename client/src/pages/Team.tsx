@@ -40,6 +40,7 @@ function Team() {
     <Section
       id="team"
       title="Board Members"
+      titleFont="krona"
       className="z-10 relative flex items-center justify-center flex-col"
     >
       <div className="flex flex-wrap justify-center sm:mx-0 mx-8 sm:max-w-[1000px]">
