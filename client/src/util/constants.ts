@@ -5,6 +5,12 @@ import Team from "../pages/Team";
 import Competition from "../pages/Competition";
 import type { Member } from "../pages/Team";
 
+export const ROUTES = {
+  HOME: "/",
+  EVENTS_ARCHIVE: "/events-archive",
+  EVENT_DETAIL: "/events/:eventId",
+} as const;
+
 export const SECTIONS = [
   {
     id: "about",
