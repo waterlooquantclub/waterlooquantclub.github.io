@@ -1,4 +1,5 @@
 import { Text } from "./text";
+import { Link } from "react-router-dom";
 
 interface EventCardProps {
   eventName: string;
@@ -17,6 +18,9 @@ function EventCard({
   imageUrl,
   links,
 }: EventCardProps) {
+  const isExternalLink = (href: string) => {
+    return href.startsWith("http://") || href.startsWith("https://");
+  };
   return (
     <div className="flex flex-col sm:flex-row rounded-xl overflow-hidden max-w-sm sm:max-w-4xl w-[85vw] hover:shadow-[0_0_8px_4px_#EECFEF] transition-shadow duration-200 ease-out z-[50]">
   <div className="relative flex-shrink-0 h-32 w-32 mx-auto mt-6 rounded-full overflow-hidden sm:h-64 sm:w-64 sm:m-6 sm:flex-shrink-0">
@@ -45,21 +49,37 @@ function EventCard({
         )}
         {links && links.length > 0 && (
           <div className="space-y-2">
-            {links.map(({ text, href }, i) => (
-              <a
-                href={href}
-                target="_blank"
-                className="flex items-center cursor-pointer group"
-                key={i}
-              >
-                <Text className="font-medium group-hover:text-[#BB68C5] text-sm sm:text-base">
-                  {text}
-                </Text>
-                <span className="ml-2 transform group-hover:translate-x-1 group-hover:text-[#BB68C5] transition-transform duration-200">
-                  &rsaquo;
-                </span>
-              </a>
-            ))}
+            {links.map(({ text, href }, i) =>
+              isExternalLink(href) ? (
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center cursor-pointer group"
+                  key={i}
+                >
+                  <Text className="font-medium group-hover:text-[#BB68C5] text-sm sm:text-base">
+                    {text}
+                  </Text>
+                  <span className="ml-2 transform group-hover:translate-x-1 group-hover:text-[#BB68C5] transition-transform duration-200">
+                    &rsaquo;
+                  </span>
+                </a>
+              ) : (
+                <Link
+                  to={href}
+                  className="flex items-center cursor-pointer group"
+                  key={i}
+                >
+                  <Text className="font-medium group-hover:text-[#BB68C5] text-sm sm:text-base">
+                    {text}
+                  </Text>
+                  <span className="ml-2 transform group-hover:translate-x-1 group-hover:text-[#BB68C5] transition-transform duration-200">
+                    &rsaquo;
+                  </span>
+                </Link>
+              )
+            )}
           </div>
         )}
       </div>
