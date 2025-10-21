@@ -3,30 +3,33 @@ import { Text } from "../components/text";
 import { Button } from "../components/button";
 import Section from "../components/section";
 
+function easeOut(t: number): number {
+  return 1 - (1 - t) ** 2;
+}
+
 function Competition() {
-  const glowImageRef1 = useRef<HTMLImageElement>(null);
-  const glowImageRef2 = useRef<HTMLImageElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const glowImageRef = useRef<HTMLImageElement>(null);
   useEffect(() => {
     let ticking = false;
     const handleScroll = () => {
-      const scrollY = window.scrollY;
+      if (!containerRef.current) return;
       if (!ticking) {
+        const containerRect = containerRef.current.getBoundingClientRect();
+        const relativeTop = containerRect.top / window.innerHeight;
+        const t = easeOut(Math.min(Math.max(1.3 - relativeTop, 0), 1));
+        const translationX = t * 0.8 * containerRect.width - 200;
+        const transform = `translateX(${translationX}px)`;
         window.requestAnimationFrame(() => {
-          if (glowImageRef1.current) {
-            glowImageRef1.current.style.transform = `translateX(${
-              scrollY * 0.15
-            }px)`;
-          }
-          if (glowImageRef2.current) {
-            glowImageRef2.current.style.transform = `translateX(${
-              scrollY * 0.4
-            }px)`;
+          if (glowImageRef.current) {
+            glowImageRef.current.style.transform = transform;
           }
           ticking = false;
         });
         ticking = true;
       }
     };
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -82,17 +85,14 @@ function Competition() {
       title="Competition"
       className="flex-col flex items-center justify-center relative"
     >
-      <div className="relative sm:w-[70vw] w-[85vw] sm:h-[60vh] flex items-center justify-center">
+      <div
+        ref={containerRef}
+        className="relative sm:w-[70vw] w-[85vw] sm:h-[60vh] flex items-center justify-center"
+      >
         <img
-          ref={glowImageRef1}
+          ref={glowImageRef}
           src={"/glow.png"}
-          className="sm:hidden block -left-[370px] h-[550px] -top-[420px] absolute mix-blend-plus-lighter z-[0] transition-transform duration-75"
-        />
-
-        <img
-          ref={glowImageRef2}
-          src={"/glow.png"}
-          className="hidden sm:block -left-[500px] h-[700px] -top-[560px] absolute mix-blend-plus-lighter z-[0] transition-transform duration-75"
+          className="absolute left-0 h-[550px] sm:h-[700px] -top-[420px] sm:-top-[560px] w-[480px] mix-blend-plus-lighter z-[0] transition-transform duration-75"
         />
 
         <div className="absolute sm:-top-4 -top-2 sm:-right-4 -right-2 w-[62vw] sm:h-[50vh] h-[250px] bg-[#603474] rounded-3xl blur-2xl mix-blend-plus-lighter" />
