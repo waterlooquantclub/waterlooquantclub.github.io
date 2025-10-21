@@ -18,7 +18,7 @@ function Join() {
         className="hidden md:block absolute -top-36 right-0 h-[116vh] w-auto"
       />
 
-      <Section id="join" title="" className="text-white py-16 font-lato">
+      <Section id="join" className="text-white py-16 font-lato">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-12 px-6">
           <div className="relative flex flex-col items-center text-center space-y-6 md:pr-8 md:border-r-2 md:border-white">
             <h2 className="text-4xl font-bold mb-4">Join Us</h2>
