@@ -2,28 +2,33 @@ import { Text } from "../../components/text";
 import { Button } from "../../components/button";
 import { ROUTES } from "../../util/constants";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Lightbox from "yet-another-react-lightbox";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import "yet-another-react-lightbox/styles.css";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 function IntroToQuantPanel() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const galleryImages = [
-    { src: "/events/introtoquantpanel/qanda.jpg", alt: "Q&A Session" },
-    { src: "/events/introtoquantpanel/crowd.jpg", alt: "Event Crowd" },
-    { src: "/events/introtoquantpanel/harry.jpg", alt: "Harry Jiang: QT @ Jane Street" },
-    { src: "/events/introtoquantpanel/wpanel.jpg", alt: "Waterloo Quant Club Execs" },
-    { src: "/events/introtoquantpanel/john.jpg", alt: "John Huang: QR at Cubist" },
-    { src: "/events/introtoquantpanel/daniel.jpg", alt: "Daniel Shen: QT @ SIG" },
-    { src: "/events/introtoquantpanel/ian.jpg", alt: "Ian Zhao: SWE @ HRT" },
-  ];
+  const galleryImages = useMemo(
+    () => [
+      { src: "/events/introtoquantpanel/qanda.jpg", alt: "Q&A Session" },
+      { src: "/events/introtoquantpanel/crowd.jpg", alt: "Event Crowd" },
+      { src: "/events/introtoquantpanel/harry.jpg", alt: "Harry Jiang: QT @ Jane Street" },
+      { src: "/events/introtoquantpanel/wpanel.jpg", alt: "Waterloo Quant Club Execs" },
+      { src: "/events/introtoquantpanel/john.jpg", alt: "John Huang: QR at Cubist" },
+      { src: "/events/introtoquantpanel/daniel.jpg", alt: "Daniel Shen: QT @ SIG" },
+      { src: "/events/introtoquantpanel/ian.jpg", alt: "Ian Zhao: SWE @ HRT" },
+    ],
+    []
+  );
 
-  const handleOpen = (index: number) => {
+  const handleOpen = useCallback((index: number) => {
     setCurrentImageIndex(index);
     setLightboxOpen(true);
-  };
+  }, []);
 
   return (
     <div className="w-screen min-h-screen bg-gradient-to-b from-black via-[#2a1a3d] to-[#1a0f2e]">
@@ -143,11 +148,39 @@ function IntroToQuantPanel() {
 
         {/* Lightbox */}
         <Lightbox
+          plugins={[Thumbnails]}
           open={lightboxOpen}
           close={() => setLightboxOpen(false)}
           index={currentImageIndex}
           slides={galleryImages}
           carousel={{ preload: 2 }}
+          controller={{ closeOnBackdropClick: true, closeOnPullDown: false }}
+          thumbnails={{ position: "bottom", width: 96, height: 64, gap: 12, border: 1 }}
+          render={{
+            slide: ({ slide, rect }) => (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  width: "100%",
+                  height: "100%",
+                }}
+              >
+                <img
+                  src={slide.src}
+                  alt={slide.alt}
+                  loading="eager"
+                  decoding="async"
+                  style={{
+                    maxWidth: rect.width,
+                    maxHeight: rect.height,
+                    objectFit: "contain",
+                  }}
+                />
+              </div>
+            ),
+          }}
           styles={{
             container: { backgroundColor: "rgba(0, 0, 0, 0.95)" },
           }}
