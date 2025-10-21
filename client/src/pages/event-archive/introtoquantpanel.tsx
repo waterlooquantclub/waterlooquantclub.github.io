@@ -189,7 +189,7 @@ function IntroToQuantPanel() {
             close={() => setLightboxOpen(false)}
             index={currentImageIndex}
             slides={galleryImages}
-            carousel={{ preload: 2 }}
+            carousel={{ preload: 1 }}
             controller={{ closeOnBackdropClick: true, closeOnPullDown: false }}
             thumbnails={{ position: "bottom", width: 96, height: 64, gap: 12, border: 1 }}
             render={{
