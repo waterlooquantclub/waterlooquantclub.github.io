@@ -20,7 +20,7 @@ function IntroToQuantPanel() {
     { src: "/events/introtoquantpanel/ian.jpg", alt: "Ian Zhao: SWE @ HRT" },
   ];
 
-  const openLightbox = (index: number) => {
+  const handleOpen = (index: number) => {
     setCurrentImageIndex(index);
     setLightboxOpen(true);
   };
@@ -52,6 +52,8 @@ function IntroToQuantPanel() {
               src="/events/introtoquantpanelposter.png"
               alt="Intro to Quant Panel"
               className="w-full border border-[#EECFEF] shadow-[0_0_8px_4px_#EECFEF]"
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>
@@ -78,55 +80,64 @@ function IntroToQuantPanel() {
 
           {/* Large image */}
           <div className="mb-4">
-            <img
-              src={galleryImages[0].src}
-              alt={galleryImages[0].alt}
-              onClick={() => openLightbox(0)}
-              className="w-full h-64 sm:h-96 object-cover border border-[#EECFEF] shadow-[0_0_8px_2px_#EECFEF] cursor-pointer hover:opacity-90 transition-opacity"
-            />
+            <button
+              type="button"
+              onClick={() => handleOpen(0)}
+              className="w-full"
+              aria-label={`Open lightbox: ${galleryImages[0].alt}`}
+            >
+              <img
+                src={galleryImages[0].src}
+                alt={galleryImages[0].alt}
+                className="w-full h-64 sm:h-96 object-cover border border-[#EECFEF] shadow-[0_0_8px_2px_#EECFEF] cursor-pointer hover:opacity-90 transition-opacity"
+                loading="lazy"
+                decoding="async"
+                draggable={false}
+              />
+            </button>
           </div>
 
           {/* Grid of smaller images */}
           <div className="grid grid-cols-3 gap-4 mb-4">
-            <img
-              src={galleryImages[1].src}
-              alt={galleryImages[1].alt}
-              onClick={() => openLightbox(1)}
-              className="aspect-square object-cover border border-[#EECFEF] shadow-[0_0_8px_2px_#EECFEF] cursor-pointer hover:opacity-90 transition-opacity"
-            />
-            <img
-              src={galleryImages[2].src}
-              alt={galleryImages[2].alt}
-              onClick={() => openLightbox(2)}
-              className="aspect-square object-cover border border-[#EECFEF] shadow-[0_0_8px_2px_#EECFEF] cursor-pointer hover:opacity-90 transition-opacity"
-            />
-            <img
-              src={galleryImages[3].src}
-              alt={galleryImages[3].alt}
-              onClick={() => openLightbox(3)}
-              className="aspect-square object-cover border border-[#EECFEF] shadow-[0_0_8px_2px_#EECFEF] cursor-pointer hover:opacity-90 transition-opacity"
-            />
+            {galleryImages.slice(1, 4).map((image, index) => (
+              <button
+                key={image.src}
+                type="button"
+                onClick={() => handleOpen(index + 1)}
+                className="w-full"
+                aria-label={`Open lightbox: ${image.alt}`}
+              >
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="aspect-square w-full object-cover border border-[#EECFEF] shadow-[0_0_8px_2px_#EECFEF] cursor-pointer hover:opacity-90 transition-opacity"
+                  loading="lazy"
+                  decoding="async"
+                  draggable={false}
+                />
+              </button>
+            ))}
           </div>
 
           <div className="grid grid-cols-3 gap-4">
-            <img
-              src={galleryImages[4].src}
-              alt={galleryImages[4].alt}
-              onClick={() => openLightbox(4)}
-              className="aspect-square object-cover border border-[#EECFEF] shadow-[0_0_8px_2px_#EECFEF] cursor-pointer hover:opacity-90 transition-opacity"
-            />
-            <img
-              src={galleryImages[5].src}
-              alt={galleryImages[5].alt}
-              onClick={() => openLightbox(5)}
-              className="aspect-square object-cover border border-[#EECFEF] shadow-[0_0_8px_2px_#EECFEF] cursor-pointer hover:opacity-90 transition-opacity"
-            />
-            <img
-              src={galleryImages[6].src}
-              alt={galleryImages[6].alt}
-              onClick={() => openLightbox(6)}
-              className="aspect-square object-cover border border-[#EECFEF] shadow-[0_0_8px_2px_#EECFEF] cursor-pointer hover:opacity-90 transition-opacity"
-            />
+            {galleryImages.slice(4).map((image, index) => (
+              <button
+                key={image.src}
+                type="button"
+                onClick={() => handleOpen(index + 4)}
+                className="w-full"
+                aria-label={`Open lightbox: ${image.alt}`}
+              >
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="aspect-square w-full object-cover border border-[#EECFEF] shadow-[0_0_8px_2px_#EECFEF] cursor-pointer hover:opacity-90 transition-opacity"
+                  loading="lazy"
+                  decoding="async"
+                  draggable={false}
+                />
+              </button>
+            ))}
           </div>
         </div>
 
@@ -136,6 +147,7 @@ function IntroToQuantPanel() {
           close={() => setLightboxOpen(false)}
           index={currentImageIndex}
           slides={galleryImages}
+          carousel={{ preload: 2 }}
           styles={{
             container: { backgroundColor: "rgba(0, 0, 0, 0.95)" },
           }}

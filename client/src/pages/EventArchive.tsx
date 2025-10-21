@@ -14,7 +14,10 @@ function EventArchive() {
         className="z-10 relative pt-24"
         titleFont="krona"
       >
-        <Text size="md" className="-mt-4 mb-10 text-center text-xs sm:text-xl">
+        <Text
+          size="md"
+          className="-mt-4 mb-10 text-center text-[0.7rem] leading-relaxed sm:text-xl"
+        >
           Missed an event? Catch up on what we've been up to through highlights,
           photos, and recaps from our Quant Club sessions.
         </Text>
