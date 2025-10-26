@@ -3,7 +3,7 @@ import Events from "../pages/Events";
 import Join from "../pages/Join";
 import Team from "../pages/Team";
 import Competition from "../pages/Competition";
-import type { Member } from "../pages/Team";
+import type { Member, Memberinfo } from "../pages/Team";
 
 export const ROUTES = {
   HOME: "/",
@@ -132,4 +132,82 @@ export const PRESIDENT: Member = {
   role: "President",
   link: "https://www.linkedin.com/in/harryjiang7/",
   image: "/members/harry_jiang.JPG",
+};
+
+export const MEMBERINFO: Record<string, Memberinfo> = {
+  "Harry Jiang": {
+    bio: "",
+    role: "President",
+    image: "/members/harry_jiang.JPG",
+  },
+
+  "Ian Zhao": { bio: "", role: "VP Tech", image: "/members/ian_zhao.jpeg" },
+  "Daniel Shen": {
+    bio: "",
+    role: "VP Trading",
+    image: "/members/daniel_shen.png",
+  },
+  "Samantha La": {
+    bio: "",
+    role: "VP Logistics",
+    image: "/members/sam_la.jpg",
+  },
+  "John Huang": {
+    bio: "",
+    role: "VP Research",
+    image: "/members/john_huang.jpg",
+  },
+
+  "Angelina Wu": {
+    bio: "",
+    role: "Creative Design",
+    image: "/members/default_profile.png",
+  },
+  "Meilin Cai": {
+    bio: "",
+    role: "Social Media",
+    image: "/members/default_profile.png",
+  },
+  "Richard Yang": {
+    bio: "Mathematics student working in finance, serving as advisor within the club",
+    role: "Advisor",
+    image: "/members/richard_yang.jpg",
+    linkedin: "https://www.linkedin.com/in/richardyang03/",
+    email: "richard.yang1@uwaterloo.ca",
+  },
+  "Kenneth Xiao": {
+    bio: "I like math and games.",
+    role: "Industry Relations",
+    image: "/members/kenneth_xiao.JPG",
+    linkedin: "https://www.linkedin.com/in/kdxiao",
+    email: "kdxiao@uwaterloo.ca",
+  },
+  "Soham Parmar": {
+    bio: "I’m a Computer Engineering student with experience at Jane Street and an interest in software engineering, trading, and the world of finance.",
+    role: "Industry Relations",
+    image: "/members/soham_parmar.jpeg",
+    linkedin: "https://www.linkedin.com/in/soham-parmar",
+    email: "s24parma@uwaterloo.ca",
+  },
+  "Marcus Lee": {
+    bio: "",
+    role: "External Relations",
+    image: "/members/marcus_lee.jpeg",
+  },
+  "Aurora Shi": {
+    bio: "I'm a software eng student with 2x internships at Bloomberg! I love baking + painting, check out my website :)!",
+    role: "General Executive",
+    image: "/members/aurora_shi.JPG",
+    linkedin: "https://www.linkedin.com/in/ashi16/",
+    email: "aurorashi16@gmail.com",
+    website: "https://aurorashi.com/",
+  },
+  "Patrick Huang": {
+    bio: "30x'd trading marbles in elementary school. In my free time, I like eating food.",
+    role: "General Executive",
+    image: "/members/patrick_huang.jpeg",
+    linkedin: "https://www.linkedin.com/in/patrick-y-huang/",
+    email: "patrick.huang@uwaterloo.ca",
+    website: "https://www.patrickhuang.co/",
+  },
 };
