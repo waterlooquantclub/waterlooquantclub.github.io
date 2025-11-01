@@ -41,12 +41,10 @@ function Join() {
           </div>
 
           <div className="relative flex flex-col items-center space-y-6 w-full">
-            <h2 className="text-4xl font-bold mb-4 z-10 font-krona">Sponsorship</h2>
-            <p className="text-lg mb-6 z-10 mt-8">
-              Interested in sponsoring us?
-            </p>
+            <h2 className="text-4xl font-bold mb-4 font-krona">Sponsorship</h2>
+            <p className="text-lg mb-6 mt-8">Interested in sponsoring us?</p>
 
-            <div className="bg-black/60 backdrop-blur-md p-8 rounded-2xl w-full max-w-lg z-10 mt-8">
+            <div className="bg-black/60 backdrop-blur-md p-8 rounded-2xl w-full max-w-lg mt-8">
               <SponsorshipForm />
             </div>
           </div>
