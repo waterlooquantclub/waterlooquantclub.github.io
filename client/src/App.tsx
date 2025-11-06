@@ -4,6 +4,7 @@ import NavBar from "./components/navbar";
 import Footer from "./components/footer";
 import EventArchive from "./pages/EventArchive";
 import IntroToQuantPanel from "./pages/event-archive/introtoquantpanel";
+import IntroToTrading from "./pages/event-archive/intrototrading";
 import { SECTIONS, ROUTES } from "./util/constants";
 
 function HomePage() {
@@ -25,7 +26,8 @@ function App() {
       <Routes>
         <Route path={ROUTES.HOME} element={<HomePage />} />
         <Route path={ROUTES.EVENTS_ARCHIVE} element={<EventArchive />} />
-        <Route path={ROUTES.EVENT_DETAIL} element={<IntroToQuantPanel />} />
+        <Route path="/events/intro-to-quant-panel" element={<IntroToQuantPanel />} />
+        <Route path="/events/intro-to-trading" element={<IntroToTrading />} />
       </Routes>
     </div>
   );

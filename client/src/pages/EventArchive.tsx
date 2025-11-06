@@ -35,12 +35,8 @@ function EventArchive() {
             imageUrl="/events/intrototrading.png"
             links={[
               {
-                text: "Slides",
-                href: "https://docs.google.com/presentation/d/1EblF0_GjA--Eie6c0fP-YGNt3EmFFW59/edit?usp=sharing&ouid=114331788599003086089&rtpof=true&sd=true",
-              },
-              {
-                text: "Recording",
-                href: "https://drive.google.com/file/d/1Z1Gn93rwBu6VWECMNu7DQImiHSFk1PbW/view?usp=drive_link",
+                text: "View details",
+                href: "/events/intro-to-trading",
               },
             ]}
           />
