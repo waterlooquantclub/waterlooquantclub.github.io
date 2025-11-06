@@ -136,21 +136,31 @@ export const PRESIDENT: Member = {
 
 export const MEMBERINFO: Record<string, Memberinfo> = {
   "Harry Jiang": {
-    bio: "",
+    bio: "I'm a 5th year Statistics student, and a Quant Trader at Jane Street. I love sports, photography, and cubing!",
     role: "President",
     image: "/members/harry_jiang.JPG",
+    linkedin: "https://www.linkedin.com/in/harryjiang7/",
+    email: "harryjiang@waterlooquantclub.com",
   },
 
-  "Ian Zhao": { bio: "", role: "VP Tech", image: "/members/ian_zhao.jpeg" },
+  "Ian Zhao": {
+    bio: "I'm a CS + CO student and a SWE at HRT. When I'm not thinking about systems programming or programming languages, I enjoy running, reading, and everything music!",
+    role: "VP Tech",
+    image: "/members/ian_zhao.jpeg",
+    email: "ianzhao@waterlooquantclub.com",
+    linkedin: "https://www.linkedin.com/in/ian-zhao/",
+  },
   "Daniel Shen": {
     bio: "",
     role: "VP Trading",
     image: "/members/daniel_shen.png",
   },
   "Samantha La": {
-    bio: "",
+    bio: "I'm studying Systems Design Engineering with experiences at the Canadian Banks. I love collecting jellycats and smiskis:)",
     role: "VP Logistics",
     image: "/members/sam_la.jpg",
+    email: "samanthala@waterlooquantclub.com",
+    linkedin: "https://www.linkedin.com/in/samanthala/",
   },
   "John Huang": {
     bio: "",
@@ -190,9 +200,11 @@ export const MEMBERINFO: Record<string, Memberinfo> = {
     email: "s24parma@uwaterloo.ca",
   },
   "Marcus Lee": {
-    bio: "",
+    bio: "I'm a Math and Econ student with an interest in finance. In my free time, I enjoy hiking and eating!",
     role: "External Relations",
     image: "/members/marcus_lee.jpeg",
+    linkedin: "https://www.linkedin.com/in/marcus-lee-4355aa214/",
+    email: "mys2lee@uwaterloo.ca",
   },
   "Aurora Shi": {
     bio: "I'm a software eng student with 2x internships at Bloomberg! I love baking + painting, check out my website :)!",
