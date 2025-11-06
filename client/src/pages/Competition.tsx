@@ -1,4 +1,4 @@
-import { useState, type FormEvent, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Text } from "../components/text";
 import { Button } from "../components/button";
 import Section from "../components/section";
@@ -34,51 +34,6 @@ function Competition() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const [email, setEmail] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!email) return;
-
-    setIsLoading(true);
-    setError("");
-    setSuccess(false);
-
-    try {
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/subscribe`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email }),
-        }
-      );
-
-      if (!response.ok) {
-        const errorData = await response
-          .json()
-          .catch(() => ({ error: "Unknown error" }));
-        throw new Error(
-          `Failed to subscribe: ${errorData.error || "Server error"}`
-        );
-      }
-
-      setSuccess(true);
-      setEmail("");
-    } catch (err) {
-      setError(
-        err instanceof Error
-          ? err.message
-          : "Failed to subscribe. Please try again."
-      );
-    } finally {
-      setIsLoading(false);
-    }
-  };
   return (
     <Section
       id="competition"
@@ -102,34 +57,31 @@ function Competition() {
 
         <div className="bg-gradient-to-b from-black to-[#603067] backdrop-blur-sm rounded-3xl border border-[#818181] flex flex-col items-center justify-center sm:w-[70vw] w-[85vw] h-auto sm:h-[60vh] z-10 px-8 py-16">
           <Text
-            font="inter"
-            className="sm:text-[18px] text-center sm:mb-4 mb-4"
+            size="lg"
+            className="sm:text-[24px] text-center mb-6 font-semibold"
           >
-            Applications for the Fall 2025 competition have not yet opened.
+            Applications for our Fall 2025 Trading Competition are now open!
           </Text>
-          <Text font="inter" className="sm:text-[18px] sm:mb-12 mb-8">
-            Stay tuned for more info.
+          <Text className="sm:text-[18px] text-center mb-2">
+            We are excited to hold our inaugural trading competition on November
+            22, from 10am to 5pm in DC 1351!
           </Text>
-          {(error || success) && (
-            <Text font="inter" className="text-sm mb-4">
-              {error || "Successfully subscribed!"}
-            </Text>
-          )}
-          <form
-            onSubmit={handleSubmit}
-            className="flex sm:flex-row flex-col items-center justify-center sm:gap-5 gap-4"
+          <Text className="sm:text-[16px] text-center mb-12">
+            Join us to test your skills in a fun day of exciting trading games,
+            food, merch, and prizes.
+          </Text>
+          <Text className="sm:text-[16px] text-center mb-8">
+            Applications close on November 16 at 11:59pm. We welcome
+            applications from students of all experience levels!
+          </Text>
+          <Button
+            as="a"
+            href="https://forms.gle/Rg9fr8f59XsbiGtEA"
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            <input
-              placeholder="Your email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="border border-white/80 bg-white/20 rounded-full py-2 px-4 sm:w-[250px] w-full focus:outline-none focus:ring-2 focus:ring-[#B670D6]"
-            />
-            <Button type="submit" disabled={isLoading}>
-              {isLoading ? "Subscribing..." : "Subscribe"}
-            </Button>
-          </form>
+            Apply Now
+          </Button>
         </div>
         <img
           src={"/Point.png"}
