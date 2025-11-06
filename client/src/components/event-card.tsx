@@ -10,6 +10,11 @@ interface EventCardProps {
   links?: { text: string; href: string }[];
 }
 
+const isExternalLink = (href: string) =>
+  href.startsWith("http://") || href.startsWith("https://");
+
+const isSectionLink = (href: string) => href.startsWith("#");
+
 function EventCard({
   eventName,
   dateTime,
@@ -18,12 +23,9 @@ function EventCard({
   imageUrl,
   links,
 }: EventCardProps) {
-  const isExternalLink = (href: string) => {
-    return href.startsWith("http://") || href.startsWith("https://");
-  };
   return (
     <div className="flex flex-col sm:flex-row rounded-xl overflow-hidden max-w-sm sm:max-w-4xl w-[85vw] hover:shadow-[0_0_8px_4px_#EECFEF] transition-shadow duration-200 ease-out z-[50]">
-  <div className="relative flex-shrink-0 h-32 w-32 mx-auto mt-6 rounded-full overflow-hidden sm:h-64 sm:w-64 sm:m-6 sm:flex-shrink-0">
+      <div className="relative flex-shrink-0 h-32 w-32 mx-auto mt-6 rounded-full overflow-hidden sm:h-64 sm:w-64 sm:m-6 sm:flex-shrink-0">
         <img
           src={imageUrl}
           alt={eventName}
@@ -31,7 +33,10 @@ function EventCard({
         />
       </div>
       <div className="p-6 sm:pl-0 flex flex-col sm:justify-center flex-1 items-center sm:items-start">
-        <Text size="xl" className="font-semibold mb-2 sm:mb-3 text-lg sm:text-2xl text-center sm:text-left">
+        <Text
+          size="xl"
+          className="font-semibold mb-2 sm:mb-3 text-lg sm:text-2xl text-center sm:text-left"
+        >
           {eventName}
         </Text>
         {dateTime && location && (
@@ -49,37 +54,38 @@ function EventCard({
         )}
         {links && links.length > 0 && (
           <div className="space-y-2">
-            {links.map(({ text, href }, i) =>
-              isExternalLink(href) ? (
+            {links.map(({ text, href }, i) => {
+              const className = "flex items-center cursor-pointer group";
+              const children = (
+                <>
+                  <Text className="font-medium group-hover:text-[#BB68C5] text-sm sm:text-base">
+                    {text}
+                  </Text>
+                  <span className="ml-2 transform group-hover:translate-x-1 group-hover:text-[#BB68C5] transition-transform duration-200">
+                    &rsaquo;
+                  </span>
+                </>
+              );
+              return isExternalLink(href) ? (
                 <a
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center cursor-pointer group"
+                  className={className}
                   key={i}
                 >
-                  <Text className="font-medium group-hover:text-[#BB68C5] text-sm sm:text-base">
-                    {text}
-                  </Text>
-                  <span className="ml-2 transform group-hover:translate-x-1 group-hover:text-[#BB68C5] transition-transform duration-200">
-                    &rsaquo;
-                  </span>
+                  {children}
+                </a>
+              ) : isSectionLink(href) ? (
+                <a href={href} className={className} key={i}>
+                  {children}
                 </a>
               ) : (
-                <Link
-                  to={href}
-                  className="flex items-center cursor-pointer group"
-                  key={i}
-                >
-                  <Text className="font-medium group-hover:text-[#BB68C5] text-sm sm:text-base">
-                    {text}
-                  </Text>
-                  <span className="ml-2 transform group-hover:translate-x-1 group-hover:text-[#BB68C5] transition-transform duration-200">
-                    &rsaquo;
-                  </span>
+                <Link to={href} className={className} key={i}>
+                  {children}
                 </Link>
-              )
-            )}
+              );
+            })}
           </div>
         )}
       </div>

@@ -22,11 +22,28 @@ function EventArchive() {
           photos, and recaps from our Quant Club sessions.
         </Text>
         <div className="flex justify-center mb-10">
-          <Link to={ROUTES.HOME}>
-            <Button as="button">Back to Home</Button>
-          </Link>
+          <Button as={Link} to={ROUTES.HOME}>
+            Back to Home
+          </Button>
         </div>
         <div className="flex flex-col gap-8 items-center pb-20">
+          <EventCard
+            eventName="Intro to Trading"
+            dateTime="Oct 29, 2025 @ 6:00PM"
+            location="RCH 302"
+            description="An introductory workshop on trading and market structure — covering market making terminology, order book mechanics, and real trade examples."
+            imageUrl="/events/intrototrading.png"
+            links={[
+              {
+                text: "Slides",
+                href: "https://docs.google.com/presentation/d/1EblF0_GjA--Eie6c0fP-YGNt3EmFFW59/edit?usp=sharing&ouid=114331788599003086089&rtpof=true&sd=true",
+              },
+              {
+                text: "Recording",
+                href: "https://drive.google.com/file/d/1Z1Gn93rwBu6VWECMNu7DQImiHSFk1PbW/view?usp=drive_link",
+              },
+            ]}
+          />
           <EventCard
             eventName="Intro to Quant Panel"
             dateTime="Oct 8, 2025 @ 7:30PM"

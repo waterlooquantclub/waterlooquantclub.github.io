@@ -27,25 +27,11 @@ function Events() {
         >
           Become a member
         </Button>
-        <Link to={ROUTES.EVENTS_ARCHIVE}>
-          <Button as="button">Events Archive</Button>
-        </Link>
+        <Button as={Link} to={ROUTES.EVENTS_ARCHIVE}>
+          Events Archive
+        </Button>
       </div>
       <div className="flex flex-col gap-8 items-center">
-        <EventCard
-          eventName="Intro to Trading"
-          dateTime="Oct 29, 2025 @ 6:00PM"
-          location="RCH 302"
-          description="An introductory workshop on trading and market structure — covering market making terminology, order book mechanics, and real trade examples."
-          imageUrl="/events/intrototrading.png"
-          // Add "View details" link after Instagram post is up
-          // links={[
-          //   {
-          //     text: "View details",
-          //     href: "https://www.instagram.com/wlooquantclub/?hl=en",
-          //   },
-          // ]}
-        />
         <EventCard
           eventName="Asset Class Deep Dive"
           dateTime="Nov 12, 2025 @ 6:00PM"
@@ -59,6 +45,19 @@ function Events() {
           location="RCH 302"
           description="An introduction to options trading — calls, puts, volatility and all the greeks."
           imageUrl="/events/options101.png"
+        />
+        <EventCard
+          eventName="Fall 2025 Trading Competition"
+          dateTime="Nov 22, 2025 @ 10AM—5PM"
+          location="DC 1351"
+          description="Our inaugural trading competition — test your skills and compete for prizes!"
+          imageUrl="/events/intrototrading.png"
+          links={[
+            {
+              text: "Scroll to details",
+              href: "#competition",
+            },
+          ]}
         />
         <EventCard
           eventName="Capital Markets"

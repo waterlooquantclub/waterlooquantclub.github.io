@@ -19,10 +19,22 @@ function IntroToQuantPanel() {
     () => [
       { src: "/events/introtoquantpanel/qanda.jpg", alt: "Q&A Session" },
       { src: "/events/introtoquantpanel/crowd.jpg", alt: "Event Crowd" },
-      { src: "/events/introtoquantpanel/harry.jpg", alt: "Harry Jiang: QT @ Jane Street" },
-      { src: "/events/introtoquantpanel/wpanel.jpg", alt: "Waterloo Quant Club Execs" },
-      { src: "/events/introtoquantpanel/john.jpg", alt: "John Huang: QR at Cubist" },
-      { src: "/events/introtoquantpanel/daniel.jpg", alt: "Daniel Shen: QT @ SIG" },
+      {
+        src: "/events/introtoquantpanel/harry.jpg",
+        alt: "Harry Jiang: QT @ Jane Street",
+      },
+      {
+        src: "/events/introtoquantpanel/wpanel.jpg",
+        alt: "Waterloo Quant Club Execs",
+      },
+      {
+        src: "/events/introtoquantpanel/john.jpg",
+        alt: "John Huang: QR at Cubist",
+      },
+      {
+        src: "/events/introtoquantpanel/daniel.jpg",
+        alt: "Daniel Shen: QT @ SIG",
+      },
       { src: "/events/introtoquantpanel/ian.jpg", alt: "Ian Zhao: SWE @ HRT" },
     ],
     []
@@ -70,9 +82,9 @@ function IntroToQuantPanel() {
       <div className="max-w-4xl mx-auto px-6 py-24">
         {/* Back button */}
         <div className="mb-8">
-          <Link to={ROUTES.EVENTS_ARCHIVE}>
-            <Button as="button">← Back to Archive</Button>
-          </Link>
+          <Button as={Link} to={ROUTES.EVENTS_ARCHIVE}>
+            ← Back to Archive
+          </Button>
         </div>
 
         {/* Event title and info */}
@@ -191,7 +203,13 @@ function IntroToQuantPanel() {
             slides={galleryImages}
             carousel={{ preload: 1 }}
             controller={{ closeOnBackdropClick: true, closeOnPullDown: false }}
-            thumbnails={{ position: "bottom", width: 96, height: 64, gap: 12, border: 1 }}
+            thumbnails={{
+              position: "bottom",
+              width: 96,
+              height: 64,
+              gap: 12,
+              border: 1,
+            }}
             render={{
               slide: ({ slide, rect }) => (
                 <div
@@ -348,16 +366,17 @@ function IntroToQuantPanel() {
             Want to know our next event?
           </Text>
           <div className="flex flex-wrap gap-4 justify-center">
-            <a
+            <Button
+              as="a"
               href="https://discord.gg/QwmucS8qBv"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <Button as="button">Join our Discord</Button>
-            </a>
-            <Link to={ROUTES.HOME}>
-              <Button as="button">View Upcoming Events</Button>
-            </Link>
+              Join our Discord
+            </Button>
+            <Button as={Link} to={ROUTES.HOME}>
+              View Upcoming Events
+            </Button>
           </div>
         </div>
       </div>
