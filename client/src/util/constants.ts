@@ -163,7 +163,7 @@ export const MEMBERINFO: Record<string, Memberinfo> = {
     linkedin: "https://www.linkedin.com/in/samanthala/",
   },
   "John Huang": {
-    bio: "",
+    bio: "I'm a CS + Math Finance student and a Quant Researcher at Cubist. I love reading, strategy games, and word puzzles.",
     role: "VP Research",
     image: "/members/john_huang.jpg",
   },
