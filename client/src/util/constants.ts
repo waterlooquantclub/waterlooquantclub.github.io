@@ -3,7 +3,7 @@ import Events from "../pages/Events";
 import Join from "../pages/Join";
 import Team from "../pages/Team";
 import Competition from "../pages/Competition";
-import type { Member, Memberinfo } from "../pages/Team";
+import type { Memberinfo } from "../pages/Team";
 
 export const ROUTES = {
   HOME: "/",
@@ -47,92 +47,12 @@ export const SOCIAL_LINKS = {
   MEMBER_FORM: "https://forms.gle/iHKc2pY1o9r4WerZ8",
 };
 
-export const MEMBERS: Member[] = [
-  {
-    name: "Angelina Wu",
-    role: "Creative Design",
-    link: "https://linkedin.com/in/anglerona",
-    image: "/members/default_profile.png",
-  },
-  {
-    name: "Meilin Cai",
-    role: "Social Media",
-    image: "/members/default_profile.png",
-  },
+export const MEMBERS: string[] = ["Angelina Wu", "Meilin Cai", "Richard Yang", "Kenneth Xiao", "Soham Parmar", "Marcus Lee", "Aurora Shi", 
+  "Patrick Huang", "Alex Oláh"];
 
-  {
-    name: "Richard Yang",
-    role: "Advisor",
-    link: "https://www.linkedin.com/in/richardyang03/",
-    image: "/members/richard_yang.jpg",
-  },
+export const VPMEMBERS: string[] = [ "Ian Zhao", "Daniel Shen", "Samantha La", "John Huang"];
 
-  {
-    name: "Kenneth Xiao",
-    role: "Industry Relations",
-    link: "https://www.linkedin.com/in/kdxiao",
-    image: "/members/kenneth_xiao.JPG",
-  },
-  {
-    name: "Soham Parmar",
-    role: "Industry Relations",
-    link: "https://www.linkedin.com/in/soham-parmar",
-    image: "/members/soham_parmar.jpeg",
-  },
-
-  {
-    name: "Marcus Lee",
-    role: "External Relations",
-    link: "https://www.linkedin.com/in/marcus-lee-4355aa214?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-    image: "/members/marcus_lee.jpeg",
-  },
-
-  {
-    name: "Aurora Shi",
-    role: "General Executive",
-    link: "https://aurorashi.com/",
-    image: "/members/aurora_shi.JPG",
-  },
-
-  {
-    name: "Patrick Huang",
-    role: "General Executive",
-    link: "https://www.patrickhuang.co/",
-    image: "/members/patrick_huang.jpeg",
-  },
-];
-
-export const VPMEMBERS: Member[] = [
-  {
-    name: "Ian Zhao",
-    role: "VP Tech",
-    image: "/members/ian_zhao.jpeg",
-  },
-  {
-    name: "Daniel Shen",
-    role: "VP Trading",
-    image: "/members/daniel_shen.png",
-  },
-
-  {
-    name: "Samantha La",
-    role: "VP Logistics",
-    link: "https://www.linkedin.com/in/samanthala/",
-    image: "/members/sam_la.jpg",
-  },
-  {
-    name: "John Huang",
-    role: "VP Research",
-    image: "/members/john_huang.jpg",
-  },
-];
-
-export const PRESIDENT: Member = {
-  name: "Harry Jiang",
-  role: "President",
-  link: "https://www.linkedin.com/in/harryjiang7/",
-  image: "/members/harry_jiang.JPG",
-};
+export const PRESIDENT: string = "Harry Jiang"
 
 export const MEMBERINFO: Record<string, Memberinfo> = {
   "Harry Jiang": {
@@ -207,7 +127,7 @@ export const MEMBERINFO: Record<string, Memberinfo> = {
     email: "mys2lee@uwaterloo.ca",
   },
   "Aurora Shi": {
-    bio: "I'm a software eng student with 2x internships at Bloomberg! I love baking + painting, check out my website :)!",
+    bio: "I'm a Software Engineering student with 2x internships at Bloomberg. I love baking + painting, check out my website to see!",
     role: "General Executive",
     image: "/members/aurora_shi.JPG",
     linkedin: "https://www.linkedin.com/in/ashi16/",
@@ -221,5 +141,11 @@ export const MEMBERINFO: Record<string, Memberinfo> = {
     linkedin: "https://www.linkedin.com/in/patrick-y-huang/",
     email: "patrick.huang@uwaterloo.ca",
     website: "https://www.patrickhuang.co/",
+  },
+  "Alex Oláh": {
+    bio: "EY Tax",
+    role: "General Executive",
+    image: "/members/alex-olah.png",
+    linkedin: "https://www.linkedin.com/in/alexolah",
   },
 };
