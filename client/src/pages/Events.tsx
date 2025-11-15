@@ -33,13 +33,6 @@ function Events() {
       </div>
       <div className="flex flex-col gap-8 items-center">
         <EventCard
-          eventName="Asset Class Deep Dive"
-          dateTime="Nov 12, 2025 @ 6:00PM"
-          location="RCH 302"
-          description="A survey of all other asset classes — exploring fixed income, equities, commodities, and more."
-          imageUrl="/events/assetclassdeepdive.png"
-        />
-        <EventCard
           eventName="Options 101"
           dateTime="Nov 19, 2025 @ 6:00PM"
           location="RCH 302"

@@ -28,6 +28,19 @@ function EventArchive() {
         </div>
         <div className="flex flex-col gap-8 items-center pb-20">
           <EventCard
+            eventName="Asset Class Deep Dive"
+            dateTime="Nov 12, 2025 @ 6:00PM"
+            location="RCH 302"
+            description="A survey of all other asset classes — exploring fixed income, equities, commodities, and more."
+            imageUrl="/events/assetclassdeepdive.png"
+            links={[
+              {
+                text: "Coming soon!",
+                href: "#", // TO-DO: Update with link once resources have been updated
+              },
+            ]}
+          />
+          <EventCard
             eventName="Intro to Trading"
             dateTime="Oct 29, 2025 @ 6:00PM"
             location="RCH 302"
