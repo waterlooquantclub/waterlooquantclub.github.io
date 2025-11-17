@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import { Text } from "../components/text";
-import { Button } from "../components/button";
 import Section from "../components/section";
 
 function easeOut(t: number): number {
