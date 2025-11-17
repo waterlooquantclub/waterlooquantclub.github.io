@@ -60,19 +60,28 @@ function Competition() {
             size="lg"
             className="sm:text-[24px] text-center mb-6 font-semibold"
           >
-            Applications for our Fall 2025 Trading Competition are now closed.
+            Applications for our Fall 2025 Trading Competition are now open!
           </Text>
           <Text className="sm:text-[18px] text-center mb-2">
             We are excited to hold our inaugural trading competition on November
             22, from 10am to 5pm in DC 1351!
           </Text>
-          <Text className="sm:text-[18px] text-center mb-12">
+          <Text className="sm:text-[16px] text-center mb-12">
             Join us to test your skills in a fun day of exciting trading games,
             food, merch, and prizes.
           </Text>
-          <Text className="sm:text-[18px] text-center mb-8">
-          Please keep an eye out on your inbox for further details! 
+          <Text className="sm:text-[16px] text-center mb-8">
+            Applications close on November 16 at 11:59pm. We welcome
+            applications from students of all experience levels!
           </Text>
+          <Button
+            as="a"
+            href="https://forms.gle/Rg9fr8f59XsbiGtEA"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Apply Now
+          </Button>
         </div>
         <img
           src={"/Point.png"}
