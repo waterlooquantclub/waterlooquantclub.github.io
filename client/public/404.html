@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Waterloo Quant Club</title>
     
-    <!-- GitHub Pages SPA redirect (except for /games/ which are static) -->
+    <!-- GitHub Pages SPA redirect (except for static game files in /games/*/...) -->
     <script>
-      // Don't redirect if we're in the /games/ path - those are static files
-      if (!location.pathname.startsWith('/games/')) {
+      // Only skip redirect for actual static game files (paths like /games/renjie-poker/...)
+      // The /games route itself (React page) should still use SPA redirect
+      const isStaticGameFile = location.pathname.match(/^\/games\/[^\/]+\/.*/);
+      if (!isStaticGameFile) {
         // Store the path for redirect
         sessionStorage.setItem('redirect', location.pathname + location.search + location.hash);
         // Redirect to root
