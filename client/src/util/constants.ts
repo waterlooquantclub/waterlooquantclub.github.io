@@ -9,7 +9,33 @@ export const ROUTES = {
   HOME: "/",
   EVENTS_ARCHIVE: "/events-archive",
   EVENT_DETAIL: "/events/:eventId",
+  GAMES: "/games",
 } as const;
+
+// We add new games here: each game should have its own folder in public/games/
+export interface GameInfo {
+  id: string; // Folder name in public/games/
+  name: string;
+  description: string;
+  thumbnail?: string; // Optional thumbnail image path
+  creator?: {
+    name: string;
+    url: string;
+  };
+}
+
+export const GAMES_REGISTRY: GameInfo[] = [
+  {
+    id: "renjie-poker",
+    name: "Renjie Poker",
+    description:
+      "A poker solitaire game. Select cards to build a better hand than the dealer!",
+    creator: {
+      name: "paramt",
+      url: "https://github.com/paramt/poker",
+    },
+  },
+];
 
 export const SECTIONS = [
   {
@@ -47,12 +73,26 @@ export const SOCIAL_LINKS = {
   MEMBER_FORM: "https://forms.gle/iHKc2pY1o9r4WerZ8",
 };
 
-export const MEMBERS: string[] = ["Angelina Wu", "Meilin Cai", "Richard Yang", "Kenneth Xiao", "Soham Parmar", "Marcus Lee", "Aurora Shi", 
-  "Patrick Huang", "Alex Oláh"];
+export const MEMBERS: string[] = [
+  "Angelina Wu",
+  "Meilin Cai",
+  "Richard Yang",
+  "Kenneth Xiao",
+  "Soham Parmar",
+  "Marcus Lee",
+  "Aurora Shi",
+  "Patrick Huang",
+  "Alex Oláh",
+];
 
-export const VPMEMBERS: string[] = [ "Ian Zhao", "Daniel Shen", "Samantha La", "John Huang"];
+export const VPMEMBERS: string[] = [
+  "Ian Zhao",
+  "Daniel Shen",
+  "Samantha La",
+  "John Huang",
+];
 
-export const PRESIDENT: string = "Harry Jiang"
+export const PRESIDENT: string = "Harry Jiang";
 
 export const MEMBERINFO: Record<string, Memberinfo> = {
   "Harry Jiang": {

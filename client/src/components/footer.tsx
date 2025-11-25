@@ -1,5 +1,6 @@
 import { Instagram, Linkedin, Mail } from "lucide-react";
-import { SOCIAL_LINKS, SECTIONS } from "../util/constants";
+import { SOCIAL_LINKS, SECTIONS, ROUTES } from "../util/constants";
+import { Link } from "react-router-dom";
 
 const SOCIALS = [
   {
@@ -101,6 +102,22 @@ function Footer() {
                   </a>
                 </li>
               ))}
+              <li>
+                <Link
+                  to={ROUTES.GAMES}
+                  className="transition-colors text-[#EAD0ED] hover:text-[#9770D6]"
+                >
+                  Games
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={ROUTES.EVENTS_ARCHIVE}
+                  className="transition-colors text-[#EAD0ED] hover:text-[#9770D6]"
+                >
+                  Events Archive
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
@@ -144,6 +161,22 @@ function Footer() {
                   </a>
                 </li>
               ))}
+              <li>
+                <Link
+                  to={ROUTES.GAMES}
+                  className="transition-colors text-[#EAD0ED] hover:text-[#9770D6]"
+                >
+                  Games
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to={ROUTES.EVENTS_ARCHIVE}
+                  className="transition-colors text-[#EAD0ED] hover:text-[#9770D6]"
+                >
+                  Events Archive
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

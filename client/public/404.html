@@ -6,12 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Waterloo Quant Club</title>
     
-    <!-- GitHub Pages SPA redirect -->
+    <!-- GitHub Pages SPA redirect (except for /games/ which are static) -->
     <script>
-      // Store the path for redirect
-      sessionStorage.setItem('redirect', location.pathname + location.search + location.hash);
+      // Don't redirect if we're in the /games/ path - those are static files
+      if (!location.pathname.startsWith('/games/')) {
+        // Store the path for redirect
+        sessionStorage.setItem('redirect', location.pathname + location.search + location.hash);
+        // Redirect to root
+        location.replace('/');
+      }
     </script>
-    <meta http-equiv="refresh" content="0;URL='/'">
   </head>
   <body>
     <div id="root"></div>
