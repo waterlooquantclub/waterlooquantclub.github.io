@@ -51,6 +51,17 @@
     border: 2px solid var(--retro-text);
     user-select: none;
     /* Prevent text selection during drag */
+    transition: opacity 0.2s, border-color 0.2s;
+}
+
+.selection-grid.locked {
+    opacity: 0.6;
+    border-color: #ff6b6b;
+    cursor: not-allowed;
+}
+
+.selection-grid.locked .grid-cell {
+    cursor: not-allowed;
 }
 
 .grid-cell {

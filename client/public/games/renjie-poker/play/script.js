@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Selection State: Set of card codes '2s', 'Ah', etc.
     let currentSelection = new Set();
+    
+    // Lock state: once you make a selection, you can't change it until you hit a card from your set
+    let selectionLocked = false;
 
     const dealerHandEl = document.getElementById('dealer-hand');
     const playerHandEl = document.getElementById('player-hand');
@@ -116,6 +119,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Interaction
                 const startDrag = (e) => {
+                    // Don't allow selection changes when locked
+                    if (selectionLocked) return;
+                    
                     isDragging = true;
                     dragStart = { r: rowIdx, c: colIdx };
                     dragCurrent = { r: rowIdx, c: colIdx };
@@ -132,6 +138,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 cell.addEventListener('touchstart', startDrag, { passive: false });
 
                 cell.addEventListener('click', (e) => {
+                    // Don't allow selection changes when locked
+                    if (selectionLocked) return;
+                    
                     if (ignoreClick) {
                         ignoreClick = false;
                         return;
@@ -330,6 +339,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         document.getElementById('player-rank').textContent = playerBest.name;
         document.getElementById('dealer-rank').textContent = dealerBest.name;
+        
+        // Update header based on lock state
+        const selectionHeader = document.getElementById('selection-header');
+        if (selectionLocked) {
+            selectionHeader.textContent = "Selection LOCKED";
+            selectionHeader.style.color = "#ff6b6b";
+        } else {
+            selectionHeader.textContent = "Drag to select cards";
+            selectionHeader.style.color = "";
+        }
 
         if (gameOver) return; // Don't overwrite game over message
 
@@ -338,9 +357,10 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (deck.length === 0) {
             messageEl.textContent = "GAME OVER (Deck Empty)";
             gameOver = true;
+        } else if (selectionLocked) {
+            messageEl.textContent = "Keep drawing until you hit your selection!";
         } else {
             messageEl.textContent = "";
-            gameOver = false;
         }
     }
 
@@ -370,7 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (playerBest.score < dealerBest.score) {
             msg = `YOU LOSE! ${dealerBest.name} beats ${playerBest.name}`;
         } else {
-            msg = `IT'S A TIE! ${playerBest.name}`;
+            msg = `YOU LOSE! Tie goes to the dealer. ${playerBest.name}`;
         }
         messageEl.textContent = msg;
         document.getElementById('new-game-btn').style.display = 'block';
@@ -443,14 +463,30 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('draw-one-btn').addEventListener('click', () => {
         if (gameOver) return;
         if (deck.length === 0) return;
+        
+        // Must have at least one card selected to draw
+        if (currentSelection.size === 0) {
+            messageEl.textContent = "Select at least one card first!";
+            return;
+        }
+        
+        // Lock selection as soon as you draw (can only change after hitting)
+        if (!selectionLocked) {
+            selectionLocked = true;
+            selectionGridEl.classList.add('locked');
+        }
 
         const card = deck.pop();
         selectionsHistory += encodeSelectionHex(currentSelection);
 
         if (currentSelection.has(card.code)) {
             playerHand.push(card);
+            // Player hit their selection - unlock so they can change it
+            selectionLocked = false;
+            selectionGridEl.classList.remove('locked');
         } else {
             dealerHand.push(card);
+            // Selection stays locked
         }
 
         updateUrlState();
