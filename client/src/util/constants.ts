@@ -29,7 +29,7 @@ export const GAMES_REGISTRY: GameInfo[] = [
     id: "renjie-poker",
     name: "Renjie Poker",
     description:
-      "A poker solitaire game. Select cards to build a better hand than the dealer!",
+      "A solo poker game. Select cards to build a better hand than the dealer!",
     creator: {
       name: "paramt",
       url: "https://github.com/paramt/poker",

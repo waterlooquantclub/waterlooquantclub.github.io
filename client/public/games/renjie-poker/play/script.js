@@ -355,8 +355,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (playerHand.length >= 5) {
             endGame();
         } else if (deck.length === 0) {
-            messageEl.textContent = "GAME OVER (Deck Empty)";
+            // Deck empty before player got 5 cards = player loses
             gameOver = true;
+            messageEl.textContent = "YOU LOSE! Deck empty before you got 5 cards.";
+            document.getElementById('new-game-btn').style.display = 'block';
         } else if (selectionLocked) {
             messageEl.textContent = "Keep drawing until you hit your selection!";
         } else {
