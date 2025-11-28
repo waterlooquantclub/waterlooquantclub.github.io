@@ -33,33 +33,6 @@ function Events() {
       </div>
       <div className="flex flex-col gap-8 items-center">
         <EventCard
-          eventName="Options 101"
-          dateTime="Nov 19, 2025 @ 6:00PM"
-          location="RCH 302"
-          description="An introduction to options trading — calls, puts, volatility and all the greeks."
-          imageUrl="/events/options101.png"
-        />
-        <EventCard
-          eventName="Fall 2025 Trading Competition"
-          dateTime="Nov 22, 2025 @ 10AM—5PM"
-          location="DC 1351"
-          description="Our inaugural trading competition — test your skills and compete for prizes!"
-          imageUrl="/events/intrototrading.png"
-          links={[
-            {
-              text: "Scroll to details",
-              href: "#competition",
-            },
-          ]}
-        />
-        <EventCard
-          eventName="Capital Markets"
-          dateTime="Nov 26, 2025 @ 6:00PM"
-          location="RCH 302"
-          description="An overview of Capital Markets theory (CapM) — understanding and exploring the relationship between risk and expected return."
-          imageUrl="/events/capitalmarkets.png"
-        />
-        <EventCard
           eventName="Stay tuned for more!"
           imageUrl="/events/staytunedformore.png"
         />

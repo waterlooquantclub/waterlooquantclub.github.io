@@ -8,56 +8,33 @@ function AssetClassDeepDive() {
       title="Asset Class Deep Dive"
       dateTime="Nov 12, 2025 @ 6:00PM"
       location="RCH 302"
-      posterImage="/events/introtoquantpanelposter.png"
+      posterImage="/events/assetsdive/asset-poster.png"
       description="A survey of all other asset classes — exploring fixed income, equities, commodities, and more."
       galleryImages={[
         {
-          type: "image",
-          src: "/events/introtoquantpanel/qanda.jpg",
-          alt: "Q&A Session",
+          type: "video",
+          src: "https://drive.google.com/file/d/1e5W6W6SRfDCUJaWFJcLWQ_9WI56YcJ1M/preview",
+          alt: "Assets Deep Dive Recording",
         },
         {
           type: "image",
-          src: "/events/introtoquantpanel/crowd.jpg",
-          alt: "Event Crowd",
+          src: "/events/assetsdive/asset1.jpg",
+          alt: "Put Option Payoff slide",
         },
         {
           type: "image",
-          src: "/events/introtoquantpanel/harry.jpg",
-          alt: "Harry Jiang: QT @ Jane Street",
+          src: "/events/assetsdive/asset2.jpg",
+          alt: "Call Option Payoff slide",
         },
         {
           type: "image",
-          src: "/events/introtoquantpanel/wpanel.jpg",
-          alt: "Waterloo Quant Club Execs",
-        },
-        {
-          type: "image",
-          src: "/events/introtoquantpanel/john.jpg",
-          alt: "John Huang: QR at Cubist",
-        },
-        {
-          type: "image",
-          src: "/events/introtoquantpanel/daniel.jpg",
-          alt: "Daniel Shen: QT @ SIG",
-        },
-        {
-          type: "image",
-          src: "/events/introtoquantpanel/ian.jpg",
-          alt: "Ian Zhao: SWE @ HRT",
+          src: "/events/assetsdive/asset1.jpg",
+          alt: "Straddle slide",
         },
       ]}
-      slideDeckUrl="https://docs.google.com/presentation/d/e/2PACX-1vS7seVvgi7gQe6Hi9w4Hn2Zcz0Bn_DhC_uyaCH_R-Ag72rlg4SgWQegLVj1m5OX4g/pub?start=false&loop=false&delayms=3000"
+      slideDeckUrl="https://docs.google.com/presentation/d/e/2PACX-1vQ7GpETs4fUtfHzZbjVFOGptAzHMG7eEj7R8GsTZavWIEHOw9mDiRp6alIid1n9sQ/pub?start=true&loop=true&delayms=3000"
     />
   );
 }
 
 export default AssetClassDeepDive;
-
-{/* <EventCard
-  eventName="Asset Class Deep Dive"
-  dateTime="Nov 12, 2025 @ 6:00PM"
-  location="RCH 302"
-  description="A survey of all other asset classes — exploring fixed income, equities, commodities, and more."
-  imageUrl="/events/assetclassdeepdive.png"
-/>; */}

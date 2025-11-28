@@ -59,7 +59,7 @@ function Competition() {
             size="lg"
             className="sm:text-[24px] text-center mb-6 font-semibold"
           >
-            Applications for our Fall 2025 Trading Competition are now closed.
+            Thank you to all of the competitors for our Fall 2025 Trading Competition.
           </Text>
           {/* <Text className="sm:text-[18px] text-center mb-2">
             We are excited to hold our inaugural trading competition on November
@@ -70,7 +70,7 @@ function Competition() {
             food, merch, and prizes.
           </Text> */}
           <Text className="sm:text-[18px] text-center mb-8">
-            Please keep an eye on your inbox for further details soon!
+            Please keep an eye on your inbox for details about our next trading competition!
           </Text>
         </div>
         <img
