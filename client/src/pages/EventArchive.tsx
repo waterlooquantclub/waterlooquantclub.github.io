@@ -28,6 +28,45 @@ function EventArchive() {
         </div>
         <div className="flex flex-col gap-8 items-center pb-20">
           <EventCard
+            eventName="Capital Markets"
+            dateTime="Nov 26, 2025 @ 6:00PM"
+            location="RCH 302"
+            description="An overview of Capital Markets theory (CapM) — understanding and exploring the relationship between risk and expected return."
+            imageUrl="/events/capitalmarkets.png"
+            links={[
+              {
+                text: "View details",
+                href: "/events/capital-markets",
+              },
+            ]}
+          />
+          <EventCard
+            eventName="Fall 2025 Trading Competition"
+            dateTime="Nov 22, 2025 @ 10AM—5PM"
+            location="DC 1351"
+            description="Our inaugural trading competition — test your skills and compete for prizes!"
+            imageUrl="/events/intrototrading.png"
+            links={[
+              {
+                text: "Coming soon!",
+                href: "#",
+              },
+            ]}
+          />
+          <EventCard
+            eventName="Options 101"
+            dateTime="Nov 19, 2025 @ 6:00PM"
+            location="RCH 302"
+            description="An introduction to options trading — calls, puts, volatility and all the greeks."
+            imageUrl="/events/options101.png"
+            links={[
+              {
+                text: "View details",
+                href: "/events/options-101", // TO-DO: Update with link once resources have been updated
+              },
+            ]}
+          />
+          <EventCard
             eventName="Asset Class Deep Dive"
             dateTime="Nov 12, 2025 @ 6:00PM"
             location="RCH 302"
@@ -35,8 +74,8 @@ function EventArchive() {
             imageUrl="/events/assetclassdeepdive.png"
             links={[
               {
-                text: "Coming soon!",
-                href: "#", // TO-DO: Update with link once resources have been updated
+                text: "View details",
+                href: "/events/asset-class-deep-dive",
               },
             ]}
           />
