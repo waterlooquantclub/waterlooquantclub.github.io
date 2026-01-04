@@ -1,16 +1,18 @@
-import { defineConfig } from 'vite'
-import tailwindcss from '@tailwindcss/vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+import path from "path";
 
-// https://vite.dev/config/
-export default defineConfig({
-  plugins: [react(), tailwindcss(),],
-  build: {
-    rollupOptions: {
-      input: {
-        main: './index.html',
-        404: './public/404.html'
-      }
-    }
-  }
-})
+// https://vitejs.dev/config/
+export default defineConfig(({ mode }) => ({
+  base: "/",
+  server: {
+    host: "::",
+    port: 8080,
+  },
+  plugins: [react()].filter(Boolean),
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+}));
