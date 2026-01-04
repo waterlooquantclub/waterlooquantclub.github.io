@@ -1,50 +1,42 @@
-import { Routes, Route } from "react-router-dom";
-import Hero from "./pages/Hero";
-import NavBar from "./components/navbar";
-import Footer from "./components/footer";
-import EventArchive from "./pages/EventArchive";
+import { Toaster } from "@/components/ui/toaster";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ScrollToTop from "./components/ScrollToTop";
+import Index from "./pages/Index";
+
+import Events from "./pages/Events";
 import Games from "./pages/Games";
-import IntroToQuantPanel from "./pages/event-archive/introtoquantpanel";
-import IntroToTrading from "./pages/event-archive/intrototrading";
-import AssetClassDeepDive from "./pages/event-archive/assetclassdeepdive";
-import { SECTIONS, ROUTES } from "./util/constants";
-import Options101 from "./pages/event-archive/options101";
-import CapitalMarkets from "./pages/event-archive/capitalmarkets";
+import Competition from "./pages/Competition";
+import Team from "./pages/Team";
+import Sponsors from "./pages/Sponsors";
+import Join from "./pages/Join";
+import NotFound from "./pages/NotFound";
 
-function HomePage() {
-  return (
-    <>
-      <NavBar />
-      <Hero />
-      {SECTIONS.map(({ id, component: Component }) => (
-        <Component key={id} />
-      ))}
-      <Footer />
-    </>
-  );
-}
+const queryClient = new QueryClient();
 
-function App() {
-  return (
-    <div className="overflow-x-hidden">
-      <Routes>
-        <Route path={ROUTES.HOME} element={<HomePage />} />
-        <Route path={ROUTES.EVENTS_ARCHIVE} element={<EventArchive />} />
-        <Route path={ROUTES.GAMES} element={<Games />} />
-        <Route
-          path="/events/intro-to-quant-panel"
-          element={<IntroToQuantPanel />}
-        />
-        <Route path="/events/intro-to-trading" element={<IntroToTrading />} />
-        <Route
-          path="/events/asset-class-deep-dive"
-          element={<AssetClassDeepDive />}
-        />
-        <Route path="/events/options-101" element={<Options101 />} />
-        <Route path="/events/capital-markets" element={<CapitalMarkets />} />
-      </Routes>
-    </div>
-  );
-}
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Index />} />
+          
+          <Route path="/events" element={<Events />} />
+          <Route path="/games" element={<Games />} />
+          <Route path="/competition" element={<Competition />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/sponsors" element={<Sponsors />} />
+          <Route path="/join" element={<Join />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
+    </TooltipProvider>
+  </QueryClientProvider>
+);
 
 export default App;

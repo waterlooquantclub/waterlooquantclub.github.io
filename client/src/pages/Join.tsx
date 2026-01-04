@@ -1,57 +1,66 @@
-import Section from "../components/section";
-import { Button } from "../components/button";
-import SponsorshipForm from "../components/sponsorship-form";
-import { SOCIAL_LINKS } from "../util/constants";
+import Layout from "@/components/Layout";
+import { ArrowRight } from "lucide-react";
 
-function Join() {
+const Join = () => {
   return (
-    <div className="relative">
-      <img
-        src="/IMG_3818.png"
-        alt="Sponsorship background"
-        className="absolute -top-36 left-0 h-[116vh] w-auto"
-      />
+    <Layout>
+      <section className="min-h-[calc(100vh-4rem)] py-24 px-6">
+        <div className="container mx-auto max-w-3xl">
+          <p className="text-muted-foreground text-sm tracking-widest uppercase mb-4">Join</p>
+          <h1 className="text-4xl md:text-6xl font-light tracking-tight mb-6">Become a Member</h1>
+          <p className="text-muted-foreground text-lg mb-12">
+            Open to all University of Waterloo students interested in quantitative finance. No prior experience
+            required.
+          </p>
 
-      <img
-        src="/IMG_3819.png"
-        alt="Sponsorship background"
-        className="hidden md:block absolute -top-36 right-0 h-[116vh] w-auto"
-      />
-
-      <Section id="join" className="text-white py-16 font-lato">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-12 px-6">
-          <div className="relative flex flex-col items-center text-center space-y-6 md:pr-8 md:border-r-2 md:border-white">
-            <h2 className="text-4xl font-bold mb-4 font-krona">Join Us</h2>
-            <p className="text-lg mb-16 mt-8">
-              Interested in what we're doing?
-            </p>
-            <Button
-              as="a"
-              href={SOCIAL_LINKS.DISCORD}
+          <div className="flex flex-wrap gap-4">
+            <a
+              href="https://forms.gle/kWHndkBhMPLyueTv7"
               target="_blank"
               rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-foreground text-background px-6 py-3 text-sm font-medium tracking-wide hover:bg-foreground/90 transition-colors"
             >
-              Join on Discord
-            </Button>
-            <img
-              src="/logo_glow.png"
-              alt="Glowing logo"
-              className="w-56 h-auto mt-8"
-            />
+              Sign Up Now
+              <ArrowRight className="w-4 h-4" />
+            </a>
+            <a
+              href="https://discord.gg/yFHGX7gJ"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 border border-border px-6 py-3 text-sm font-medium tracking-wide text-foreground hover:bg-secondary transition-colors"
+            >
+              Join Discord
+            </a>
           </div>
 
-          <div className="relative flex flex-col items-center space-y-6 w-full">
-            <h2 className="text-4xl font-bold mb-4 font-krona">Sponsorship</h2>
-            <p className="text-lg mb-6 mt-8">Interested in sponsoring us?</p>
-
-            <div className="bg-black/60 backdrop-blur-md p-8 rounded-2xl w-full max-w-lg mt-8">
-              <SponsorshipForm />
+          <div className="mt-16 pt-16 border-t border-border">
+            <h2 className="text-2xl font-semibold mb-6">FAQ</h2>
+            <div className="space-y-6">
+              {[
+                {
+                  q: "Do I need prior experience?",
+                  a: "No! We welcome students of all skill levels and backgrounds.",
+                },
+                {
+                  q: "What programs can join?",
+                  a: "Any UWaterloo student can join, regardless of faculty.",
+                },
+                {
+                  q: "When do events happen?",
+                  a: "Most events are held on weekday evenings during the term.",
+                },
+              ].map((faq, index) => (
+                <div key={index}>
+                  <h3 className="text-foreground font-medium mb-1">{faq.q}</h3>
+                  <p className="text-muted-foreground text-sm">{faq.a}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
-      </Section>
-    </div>
+      </section>
+    </Layout>
   );
-}
+};
 
 export default Join;

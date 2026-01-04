@@ -1,67 +1,154 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&family=Lato:wght@400;700&family=Krona+One&display=swap");
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Merriweather+Sans:wght@300;400;500;600;700&display=swap');
 
-html,
-body,
-#root {
-  background: linear-gradient(to bottom, #000000, 70%, #532a58);
-  background-color: #000000;
-  color: white;
-  scroll-behavior: smooth;
-  font-family: "Inter", sans-serif;
-  font-weight: 200;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 3%;
+    --foreground: 0 0% 98%;
+
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 3%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 18%;
+    --input: 0 0% 18%;
+    --ring: 0 0% 98%;
+
+    --radius: 0.5rem;
+
+    /* Custom tokens */
+    --glow: 0 0 60px rgba(255, 255, 255, 0.1);
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 6%) 0%, hsl(0 0% 3%) 100%);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scrollbar-gutter: stable;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Merriweather Sans', sans-serif;
+  }
 }
 
-.companyList {
-  animation: infinity 20s linear infinite;
-  filter: brightness(95%);
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-foreground to-muted-foreground;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+
+  .animate-fade-in-delay {
+    animation: fadeIn 0.8s ease-out 0.2s forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-in-delay-2 {
+    animation: fadeIn 0.8s ease-out 0.4s forwards;
+    opacity: 0;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+  }
+
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1;
+  }
+
+  .nav-link {
+    @apply text-muted-foreground hover:text-foreground transition-colors duration-300 tracking-wide;
+  }
+
+  .nav-link-active {
+    @apply text-foreground;
+  }
 }
 
-@keyframes infinity {
+@keyframes fadeIn {
   from {
-    transform: translateX(0);
+    opacity: 0;
+    transform: translateY(20px);
   }
   to {
-    transform: translateX(-100%);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@keyframes float1 {
-  0%,
-  100% {
-    transform: translateY(10px);
+@keyframes dialogFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dialogFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.animate-dialog-fade-in {
+  animation: dialogFadeIn 0.3s ease-out forwards;
+}
+
+.animate-dialog-fade-out {
+  animation: dialogFadeOut 0.2s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0);
   }
   50% {
-    transform: translateY(-20px);
+    transform: translateY(-3px);
   }
 }
 
-@keyframes float2 {
-  0%,
-  100% {
-    transform: translateY(-20px);
-  }
-  50% {
-    transform: translateY(10px);
-  }
+.animate-wave {
+  animation: wave 3s ease-in-out infinite;
 }
 
-.animate-float1 {
-  animation: float1 5s ease-in-out infinite;
-}
-
-.animate-float2 {
-  animation: float2 5s ease-in-out infinite;
-}
-
-.font-inter {
-  font-family: "Inter", sans-serif;
-}
-
-.font-lato {
-  font-family: "Lato", sans-serif;
-}
-
-.font-krona {
-  font-family: "Krona One", sans-serif;
-}
