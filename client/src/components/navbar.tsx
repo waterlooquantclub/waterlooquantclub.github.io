@@ -1,51 +1,77 @@
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
-import { SECTIONS } from "../util/constants";
+import { Link, useLocation } from "react-router-dom";
+import { cn } from "@/lib/utils";
+import { Menu } from "lucide-react";
+import wqcLogo from "@/assets/wqc-logo.svg";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
-function NavBar() {
-  const [open, setOpen] = useState(false);
+const navLinks = [
+  { name: "Events", path: "/events" },
+  { name: "Games", path: "/games" },
+  { name: "Competition", path: "/competition" },
+  { name: "Team", path: "/team" },
+  { name: "Sponsors", path: "/sponsors" },
+  { name: "Join", path: "/join" },
+];
 
-  const toggleMenu = () => setOpen(!open);
+const Navbar = () => {
+  const location = useLocation();
 
   return (
-    <nav className="fixed top-[40px] z-[999] left-1/2 -translate-x-1/2 rounded-full bg-white/10 backdrop-blur-sm border border-white/70 shadow-[0_0_12px_#ffffff80] md:px-16">
-      <ul className="hidden md:flex items-center justify-around py-2 text-[12px] mx-4">
-        {SECTIONS.map(({ id, label }) => (
-          <li key={id}>
-            <a
-              href={`#${id}`}
-              className="hover:text-[#9770D6] transition-colors mx-4 hover:italic"
+    <nav className="fixed top-0 left-0 right-0 z-50">
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-transparent pointer-events-none" />
+      <div className="container mx-auto px-6 md:px-18 py-6 md:py-14 flex items-center justify-between relative">
+        <Link to="/" className="flex items-center gap-1 hover:opacity-80 transition-opacity">
+          <img src={wqcLogo} alt="WQC Logo" className="h-7 w-auto" />
+          <span className="text-foreground font-merriweather text-2xl tracking-tight">WQC</span>
+        </Link>
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-9">
+          {navLinks.map((link) => (
+            <Link
+              key={link.path}
+              to={link.path}
+              className={cn("nav-link text-xl", location.pathname === link.path && "nav-link-active")}
             >
-              {label}
-            </a>
-          </li>
-        ))}
-      </ul>
-
-      <button
-        className="md:hidden flex items-center justify-center h-10 text-white px-16"
-        onClick={toggleMenu}
-      >
-        {open ? <X size={20} /> : <Menu size={20} />}
-      </button>
-
-      {open && (
-        <ul className="absolute top-14 left-1/2 -translate-x-1/2 bg-gradient-to-b from-black/80 to-white/20 border border-white/50 backdrop-blur-sm rounded-lg p-4 flex flex-col space-y-2 text-sm md:hidden">
-          {SECTIONS.map(({ id, label }) => (
-            <li key={id}>
-              <a
-                href={`#${id}`}
-                onClick={toggleMenu}
-                className="block px-2 py-1 hover:text-[#9770D6] hover:italic"
-              >
-                {label}
-              </a>
-            </li>
+              {link.name}
+            </Link>
           ))}
-        </ul>
-      )}
+        </div>
+
+        {/* Mobile Navigation using Sheet */}
+        <Sheet>
+          <SheetTrigger asChild>
+            <button
+              className="md:hidden text-foreground p-2"
+              aria-label="Toggle menu"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
+          </SheetTrigger>
+          <SheetContent side="right" className="w-full bg-background border-none flex flex-col items-center justify-center">
+            <div className="flex flex-col items-center gap-8">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={cn(
+                    "text-3xl font-light tracking-wide",
+                    location.pathname === link.path ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                  )}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+          </SheetContent>
+        </Sheet>
+      </div>
     </nav>
   );
-}
+};
 
-export default NavBar;
+export default Navbar;
