@@ -4,6 +4,18 @@ import { Calendar, MapPin } from "lucide-react";
 import EventDialog, { EventData } from "@/components/EventDialog";
 
 const events: EventData[] = [
+    {
+    title: "Citadel Securities Trading Challenge",
+    date: "Jan 14, 2026 @ 6-8pm",
+    location: "DC 1350",
+    type: "Sponsor Event",
+    description:
+      "Learn about trading, put your market-making skills to the test, and connect with full-time Citadel traders. Sign up through our Instagram.",
+    galleryImages: [],
+    posterImage: "/events/citadel_event.png",
+    link: "https://waterloocitadelquantclub.splashthat.com/",
+    linktext: "Sign up now"
+  },
   {
     title: "Stay tuned for more events!",
     date: "Early January",

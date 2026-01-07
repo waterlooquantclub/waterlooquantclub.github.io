@@ -4,7 +4,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Calendar, MapPin, ExternalLink } from "lucide-react";
+import { Calendar, MapPin, ExternalLink, Link } from "lucide-react";
 
 export interface GalleryItem {
   type: "video" | "image";
@@ -21,6 +21,8 @@ export interface EventData {
   posterImage?: string;
   galleryImages?: GalleryItem[];
   slideDeckUrl?: string;
+  link?: string;
+  linktext?: string;
 }
 
 interface EventDialogProps {
@@ -41,7 +43,9 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
               {event.type}
             </span>
           </div>
-          <DialogTitle className="text-2xl font-medium">{event.title}</DialogTitle>
+          <DialogTitle className="text-2xl font-medium">
+            {event.title}
+          </DialogTitle>
           <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-muted-foreground text-sm pt-2">
             <div className="flex items-center gap-2">
               <Calendar className="w-4 h-4" />
@@ -56,6 +60,18 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
 
         <div className="space-y-6 mt-4">
           <p className="text-muted-foreground">{event.description}</p>
+
+          {event.link && (
+            <a
+              href={event.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-muted-foreground text-sm pt-2 hover:underline inline-flex items-center gap-1"
+            >
+              <Link className="w-4 h-4" />
+              <span>{event.linktext? event.linktext : "Link"}</span>
+            </a>
+          )}
 
           {event.posterImage && (
             <div className="border border-border overflow-hidden">
@@ -72,7 +88,10 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
               <h3 className="text-lg font-medium">Gallery</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {event.galleryImages.map((item, index) => (
-                  <div key={index} className="border border-border overflow-hidden">
+                  <div
+                    key={index}
+                    className="border border-border overflow-hidden"
+                  >
                     {item.type === "video" ? (
                       <iframe
                         src={item.src}
@@ -88,7 +107,9 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
                         className="w-full h-48 object-cover"
                       />
                     )}
-                    <p className="text-xs text-muted-foreground p-2">{item.alt}</p>
+                    <p className="text-xs text-muted-foreground p-2">
+                      {item.alt}
+                    </p>
                   </div>
                 ))}
               </div>
