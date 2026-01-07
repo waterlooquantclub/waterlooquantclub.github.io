@@ -20,7 +20,7 @@ const Footer = () => {
             Instagram
           </a>
           <a
-            href="https://discord.com/invite/QwmucS8qBv"
+            href="https://discord.gg/qsjtxnhCpE"
             className="text-muted-foreground hover:text-foreground text-sm transition-colors"
           >
             Discord
