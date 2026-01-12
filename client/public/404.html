@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waterloo Quant Club</title>
+
+    <!-- GitHub Pages SPA redirect (except for static game files in /games/*/...) -->
+    <script>
+      // Only skip redirect for actual static game files (paths like /games/renjie-poker/...)
+      // The /games route itself (React page) should still use SPA redirect
+      const isStaticGameFile = location.pathname.match(/^\/games\/[^\/]+\/.*/);
+      if (!isStaticGameFile) {
+        // Store the path for redirect
+        sessionStorage.setItem(
+          "redirect",
+          location.pathname + location.search + location.hash
+        );
+        // Redirect to root
+        location.replace("/");
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

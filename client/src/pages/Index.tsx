@@ -4,7 +4,7 @@ import { ArrowRight } from "lucide-react";
 import WavyGrid from "@/components/WavyGrid";
 import JaneStreetLogo from "@/assets/jane-street-logo.png";
 import HrtLogo from "@/assets/hrt-logo.png";
-import CitadelLogo from "@/assets/citadel-logo.webp";
+import CitadelLogo from "@/assets/citadel-logo.png";
 
 const Index = () => {
   return (
@@ -38,7 +38,11 @@ const Index = () => {
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <button
-                onClick={() => document.getElementById("about-section")?.scrollIntoView({ behavior: "smooth" })}
+                onClick={() =>
+                  document
+                    .getElementById("about-section")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
                 className="inline-flex items-center gap-2 border border-border px-6 py-3 text-sm font-medium tracking-wide text-foreground hover:bg-secondary transition-colors"
               >
                 Learn More
@@ -51,10 +55,13 @@ const Index = () => {
       {/* Brief About */}
       <section id="about-section" className="py-24 px-6 border-t border-border">
         <div className="container mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-light mb-8">Fostering the Waterloo quant community</h2>
+          <h2 className="text-3xl md:text-4xl font-light mb-8">
+            Fostering the Waterloo quant community
+          </h2>
           <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-            We prepare students for careers in quant finance by hosting seminars, games, and competitions, partnering
-            with industry-leading firms.
+            We prepare students for careers in quant finance by hosting
+            seminars, games, and competitions, partnering with industry-leading
+            firms.
           </p>
           <div className="mt-16">
             <h2 className="text-2xl font-semibold mb-8">What We Offer</h2>
@@ -62,24 +69,32 @@ const Index = () => {
               {[
                 {
                   title: "Education",
-                  description: "Workshops on statistics, programming, trading, and research.",
+                  description:
+                    "Workshops on statistics, programming, trading, and research.",
                 },
                 {
                   title: "Competitions",
-                  description: "Participate in puzzles, tech challenges, and trading competitions.",
+                  description:
+                    "Participate in puzzles, tech challenges, and trading competitions.",
                 },
                 {
                   title: "Networking",
-                  description: "Connect with professionals and recruiters from top firms.",
+                  description:
+                    "Connect with professionals and recruiters from top firms.",
                 },
                 {
                   title: "Mentorship",
-                  description: "Receive direct mentorship from current and former quants.",
+                  description:
+                    "Receive direct mentorship from current and former quants.",
                 },
               ].map((item, index) => (
                 <div key={index} className="group">
-                  <h3 className="text-foreground font-medium mb-2">{item.title}</h3>
-                  <p className="text-muted-foreground text-sm">{item.description}</p>
+                  <h3 className="text-foreground font-medium mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm">
+                    {item.description}
+                  </p>
                 </div>
               ))}
             </div>
@@ -90,26 +105,28 @@ const Index = () => {
       {/* Our Partners */}
       <section className="pt-0 pb-24 px-6">
         <div className="container mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-light mb-12">Our Partners</h2>
+          <h2 className="text-3xl md:text-4xl font-light mb-12">
+            Our Partners
+          </h2>
           <h2 className="text-2xl font-semibold mb-8">Diamond</h2>
           <div className="flex flex-col sm:flex-row items-center justify-between gap-8">
             <a
               href="https://www.janestreet.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:flex-1 sm:max-w-[45%]"
+              className="w-2/3 sm:flex-1 sm:max-w-[45%]"
             >
               <img
                 src={JaneStreetLogo}
                 alt="Jane Street"
-                className="w-full h-auto invert hover:opacity-80 transition-opacity"
+                className="w-full h-auto hover:opacity-80 transition-opacity"
               />
             </a>
             <a
               href="https://www.hudsonrivertrading.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:flex-1 sm:max-w-[45%]"
+              className="w-2/3 sm:flex-1 sm:max-w-[45%]"
             >
               <img
                 src={HrtLogo}
@@ -121,14 +138,14 @@ const Index = () => {
           <h2 className="text-2xl font-semibold mb-8 pt-12">Gold</h2>
           <div className="flex flex-wrap items-center justify-center gap-12">
             <a
-              href="https://www.citadelsecurities.com/"
+              href="https://www.citadel.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-2/3 sm:flex-1 sm:max-w-[30%]"
+              className="w-full sm:flex-1 sm:max-w-[80%]"
             >
               <img
                 src={CitadelLogo}
-                alt="Citadel Securities"
+                alt="Citadel | Citadel Securities"
                 className="w-full h-auto hover:opacity-80 transition-opacity"
               />
             </a>

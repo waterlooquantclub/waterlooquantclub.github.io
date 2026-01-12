@@ -6,16 +6,20 @@ const Join = () => {
     <Layout>
       <section className="min-h-[calc(100vh-4rem)] py-24 px-6">
         <div className="container mx-auto max-w-3xl">
-          <p className="text-muted-foreground text-sm tracking-widest uppercase mb-4">Join</p>
-          <h1 className="text-4xl md:text-6xl font-light tracking-tight mb-6">Become a Member</h1>
+          <p className="text-muted-foreground text-sm tracking-widest uppercase mb-4">
+            Join
+          </p>
+          <h1 className="text-4xl md:text-6xl font-light tracking-tight mb-6">
+            Become a Member
+          </h1>
           <p className="text-muted-foreground text-lg mb-12">
-            Open to all University of Waterloo students interested in quantitative finance. No prior experience
-            required.
+            Open to all University of Waterloo students interested in
+            quantitative finance. No prior experience required.
           </p>
 
           <div className="flex flex-wrap gap-4">
             <a
-              href="https://forms.gle/kWHndkBhMPLyueTv7"
+              href="https://me.waterlooquantclub.com/accounts/signup/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-foreground text-background px-6 py-3 text-sm font-medium tracking-wide hover:bg-foreground/90 transition-colors"

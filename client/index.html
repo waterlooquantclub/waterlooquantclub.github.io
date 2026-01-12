@@ -1,21 +1,39 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Waterloo Quant Club</title>
-    <meta name="description" content="The University of Waterloo's premier quantitative finance club. Join us for events, competitions, and networking opportunities." />
+    <meta
+      name="description"
+      content="The University of Waterloo's premier quantitative finance club. Join us for events, competitions, and networking opportunities."
+    />
     <meta name="author" content="Waterloo Quant Club" />
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
 
     <meta property="og:title" content="Waterloo Quant Club" />
-    <meta property="og:description" content="The University of Waterloo's premier quantitative finance club. Join us for events, competitions, and networking opportunities." />
+    <meta
+      property="og:description"
+      content="The University of Waterloo's premier quantitative finance club. Join us for events, competitions, and networking opportunities."
+    />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://waterlooquantclub.github.io" />
+    <meta property="og:url" content="https://waterlooquantclub.com" />
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@WaterlooQuant" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Lora:wght@400&display=swap">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Lora:wght@400&display=swap"
+    />
+
+    <!-- GitHub Pages SPA redirect handler -->
+    <script>
+      (function() {
+        var redirect = sessionStorage.getItem('redirect');
+        if (redirect) {
+          sessionStorage.removeItem('redirect');
+          history.replaceState(null, '', redirect);
+        }
+      })();
+    </script>
   </head>
 
   <body>

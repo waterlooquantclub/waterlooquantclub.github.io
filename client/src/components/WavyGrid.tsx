@@ -132,23 +132,33 @@ const WavyGrid = ({ className = "" }: { className?: string }) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const { rows, cols, width, height, segments, lineWidth, extraRows } = GRID_CONFIG;
-
-    // Set canvas size for crisp rendering
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    canvas.width = canvas.clientWidth * dpr;
-    canvas.height = canvas.clientHeight * dpr;
+    const { rows, cols, width, height, segments, lineWidth, extraRows } =
+      GRID_CONFIG;
 
     const gl = canvas.getContext("webgl", {
       alpha: true,
       antialias: true,
-      powerPreference: "high-performance",
     });
 
     if (!gl) {
       console.error("WebGL not supported");
       return;
     }
+
+    const setCanvasSize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const displayWidth = canvas.clientWidth;
+      const displayHeight = canvas.clientHeight;
+      if (displayWidth > 0 && displayHeight > 0) {
+        canvas.width = displayWidth * dpr;
+        canvas.height = displayHeight * dpr;
+        gl.viewport(0, 0, canvas.width, canvas.height);
+      }
+    };
+
+    const resizeObserver = new ResizeObserver(setCanvasSize);
+    resizeObserver.observe(canvas);
+    setCanvasSize();
 
     const vs = createShader(gl, gl.VERTEX_SHADER, VERTEX_SHADER);
     const fs = createShader(gl, gl.FRAGMENT_SHADER, FRAGMENT_SHADER);
@@ -258,7 +268,11 @@ const WavyGrid = ({ className = "" }: { className?: string }) => {
 
     const indexBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
-    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);
+    gl.bufferData(
+      gl.ELEMENT_ARRAY_BUFFER,
+      new Uint16Array(indices),
+      gl.STATIC_DRAW
+    );
 
     // Set static uniforms
     gl.uniform2f(locations.resolution, width, height);
@@ -301,6 +315,7 @@ const WavyGrid = ({ className = "" }: { className?: string }) => {
 
     return () => {
       cancelAnimationFrame(animationRef.current);
+      resizeObserver.disconnect();
       gl.deleteBuffer(positionBuffer);
       gl.deleteBuffer(normalBuffer);
       gl.deleteBuffer(lineIndexBuffer);
