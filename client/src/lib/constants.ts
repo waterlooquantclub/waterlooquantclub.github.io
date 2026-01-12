@@ -3,7 +3,6 @@ export const SOCIAL_LINKS = {
   INSTAGRAM: "https://www.instagram.com/wlooquantclub/",
   LINKEDIN: "https://linkedin.com/company/waterloo-quant-club",
   EMAIL: "mailto:info@waterlooquantclub.com",
-  MEMBER_FORM: "https://forms.gle/iHKc2pY1o9r4WerZ8",
 } as const;
 
 export interface MemberInfo {
