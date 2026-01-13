@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <footer className="py-12 px-6 border-t border-border">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-        <p className="text-muted-foreground text-sm order-2 md:order-1">© 2025 Waterloo Quant Club</p>
+        <p className="text-muted-foreground text-sm order-2 md:order-1">© 2026 Waterloo Quant Club</p>
         <img src={WqcLogo} alt="WQC Logo" className="h-8 opacity-50 order-1 md:order-2" />
         <div className="flex flex-wrap justify-center gap-4 sm:gap-6 order-3">
           <a

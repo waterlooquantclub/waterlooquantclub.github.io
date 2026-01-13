@@ -135,4 +135,13 @@ export const TEAM: MemberInfo[] = [
     linkedin: "https://www.linkedin.com/in/joshua-liu-265681220/",
     email: "joshliu@waterlooquantclub.com",
   },
+  {
+    name: "Amelie Zhou",
+    role: "General Executive",
+    program: "Mathematics",
+    bio: "I like solving puzzles and exploring alternative subcultures. I also sometimes write actuarial exams.",
+    image: "amelie_zhou.jpg",
+    linkedin: "https://www.linkedin.com/in/amelie-zhou",
+    email: "amelieezhou@gmail.com",
+  },
 ];
