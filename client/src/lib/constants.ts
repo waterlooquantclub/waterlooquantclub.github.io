@@ -126,4 +126,13 @@ export const TEAM: MemberInfo[] = [
     image: "alex_olah.jpg",
     linkedin: "https://www.linkedin.com/in/alexolah",
   },
+  {
+    name: "Joshua Liu",
+    role: "Tech Exec",
+    program: "Computer Science",
+    bio: "Hi, I am a competitive programmer turned CTF player turned SWE at HRT. I love homelabbing, climbing, and cooking!",
+    image: "joshua_liu.jpg",
+    linkedin: "https://www.linkedin.com/in/joshua-liu-265681220/",
+    email: "joshliu@waterlooquantclub.com",
+  },
 ];
