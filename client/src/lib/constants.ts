@@ -144,4 +144,13 @@ export const TEAM: MemberInfo[] = [
     linkedin: "https://www.linkedin.com/in/amelie-zhou",
     email: "amelieezhou@gmail.com",
   },
+  {
+    name: "Moses Xu",
+    role: "Tech Executive",
+    program: "Computer Science",
+    bio: "✨ parallel programming enjoyer ✨ ( I also like tetris, MC, bad jokes, and anything artsy :) )",
+    image: "moses_xu.jpg",
+    linkedin: "https://www.linkedin.com/in/moses-xu",
+    email: "moses.xu@uwaterloo.ca",
+  },
 ];
