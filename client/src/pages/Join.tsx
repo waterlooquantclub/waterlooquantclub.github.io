@@ -35,6 +35,14 @@ const Join = () => {
             >
               Join Discord
             </a>
+            <a
+              href="https://www.instagram.com/wlooquantclub"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 border border-border px-6 py-3 text-sm font-medium tracking-wide text-foreground hover:bg-secondary transition-colors"
+            >
+              Follow Instagram
+            </a>
           </div>
 
           <div className="mt-16 pt-16 border-t border-border">
@@ -53,6 +61,10 @@ const Join = () => {
                   q: "When do events happen?",
                   a: "Most events are held on weekday evenings during the term.",
                 },
+                {
+                  q: "How can I stay updated on upcoming events?",
+                  a: "Events are announced on Instagram and Discord."
+                }
               ].map((faq, index) => (
                 <div key={index}>
                   <h3 className="text-foreground font-medium mb-1">{faq.q}</h3>

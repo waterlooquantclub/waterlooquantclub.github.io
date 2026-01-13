@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+const SPEED = 0.6;
 
 const VERTEX_SHADER = `
   attribute vec2 a_position;
@@ -285,7 +286,7 @@ const WavyGrid = ({ className = "" }: { className?: string }) => {
     const indexCount = indices.length;
 
     const animate = () => {
-      timeRef.current += 0.016;
+      timeRef.current += 0.016 * SPEED;
 
       // Get line color from CSS
       const style = getComputedStyle(canvas);

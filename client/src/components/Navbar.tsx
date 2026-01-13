@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/sheet";
 
 const navLinks = [
+  { name: "Home", path: "/" },
   { name: "Events", path: "/events" },
   { name: "Games", path: "/games" },
   { name: "Competition", path: "/competition" },

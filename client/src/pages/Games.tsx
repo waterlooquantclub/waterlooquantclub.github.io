@@ -17,7 +17,7 @@ const Games = () => {
             <p className="text-muted-foreground">Coming soon...</p>
           </div>
           <div className="mt-16 pt-16 border-t border-border">
-            <h2 className="text-2xl font-semibold mb-8">Monthly Tech Challenge</h2>
+            <h2 className="text-2xl font-semibold mb-8">Weekly Blotto Tournament</h2>
             <p className="text-muted-foreground">Coming soon...</p>
           </div>
         </div>
