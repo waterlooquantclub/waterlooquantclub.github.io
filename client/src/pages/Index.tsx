@@ -2,9 +2,7 @@ import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { ArrowRight } from "lucide-react";
 import WavyGrid from "@/components/WavyGrid";
-import JaneStreetLogo from "@/assets/jane-street-logo.png";
-import HrtLogo from "@/assets/hrt-logo.png";
-import CitadelLogo from "@/assets/citadel-logo.png";
+import SponsorSection from "@/components/SponsorSection";
 
 const Index = () => {
   return (
@@ -104,53 +102,7 @@ const Index = () => {
 
       {/* Our Partners */}
       <section className="pt-0 pb-24 px-6">
-        <div className="container mx-auto max-w-3xl">
-          <h2 className="text-3xl md:text-4xl font-light mb-12">
-            Our Partners
-          </h2>
-          <h2 className="text-2xl font-semibold mb-8">Diamond</h2>
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-8">
-            <a
-              href="https://www.janestreet.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-2/3 sm:flex-1 sm:max-w-[45%]"
-            >
-              <img
-                src={JaneStreetLogo}
-                alt="Jane Street"
-                className="w-full h-auto hover:opacity-80 transition-opacity"
-              />
-            </a>
-            <a
-              href="https://www.hudsonrivertrading.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-2/3 sm:flex-1 sm:max-w-[45%]"
-            >
-              <img
-                src={HrtLogo}
-                alt="Hudson River Trading"
-                className="w-full h-auto hover:opacity-80 transition-opacity"
-              />
-            </a>
-          </div>
-          <h2 className="text-2xl font-semibold mb-8 pt-12">Gold</h2>
-          <div className="flex flex-wrap items-center justify-center gap-12">
-            <a
-              href="https://www.citadel.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:flex-1 sm:max-w-[80%]"
-            >
-              <img
-                src={CitadelLogo}
-                alt="Citadel | Citadel Securities"
-                className="w-full h-auto hover:opacity-80 transition-opacity"
-              />
-            </a>
-          </div>
-        </div>
+        <SponsorSection />
       </section>
     </Layout>
   );

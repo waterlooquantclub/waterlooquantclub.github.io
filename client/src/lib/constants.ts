@@ -102,7 +102,7 @@ export const TEAM: MemberInfo[] = [
     name: "Aurora Shi",
     role: "General Executive",
     program: "Software Engineering",
-    bio: "I'm a Software Engineering student with 2x internships at Bloomberg. I love baking + painting, check out my website to see!",
+    bio: "Software Engineering student with 2x internships at Bloomberg. I love baking + painting, check out my website to see!",
     image: "aurora_shi.jpg",
     linkedin: "https://www.linkedin.com/in/ashi16/",
     email: "aurorashi16@gmail.com",
