@@ -5,7 +5,7 @@ const Sponsors = () => {
   return (
     <Layout>
       <section className="min-h-[calc(100vh-4rem)] py-24 px-6">
-        <SponsorSection />
+        <SponsorSection withCta />
       </section>
     </Layout>
   );
