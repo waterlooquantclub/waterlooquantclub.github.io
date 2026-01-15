@@ -159,7 +159,7 @@ export const TEAM: MemberInfo[] = [
     program: "Systems Design Engineering",
     bio: "I'm a Systems Design engineering student with experience in SWE. In my free time, I love travelling, puzzles, and drawing!",
     image: "megan_wu.jpg",
-    linkedin: "https://www.linkedin.com/in/meganbxwu/",
+    linkedin: "https://www.linkedin.com/in/megan-bx-wu/",
     email: "meganwu@waterlooquantclub.com",
   },
 ];
