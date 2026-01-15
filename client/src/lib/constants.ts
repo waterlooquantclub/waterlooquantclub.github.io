@@ -153,4 +153,13 @@ export const TEAM: MemberInfo[] = [
     linkedin: "https://www.linkedin.com/in/moses-xu",
     email: "moses.xu@uwaterloo.ca",
   },
+  {
+    name: "Megan Wu",
+    role: "Design Exec",
+    program: "Systems Design Engineering",
+    bio: "I'm a Systems Design engineering student with experience in SWE. In my free time, I love travelling, puzzles, and drawing!",
+    image: "megan_wu.jpg",
+    linkedin: "https://www.linkedin.com/in/meganbxwu/",
+    email: "meganwu@waterlooquantclub.com",
+  },
 ];
