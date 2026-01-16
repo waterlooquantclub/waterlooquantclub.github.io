@@ -5,6 +5,13 @@ import EventDialog, { EventData } from "@/components/EventDialog";
 
 const events: EventData[] = [
   {
+    title: "Quant Panel Q&A",
+    date: "January 21, 2026 @ 6-8pm",
+    location: "DC 1350",
+    type: "Panel",
+    description: "Ever wondered what quants actually do? Join us for a panel with Waterloo students who have worked at companies such as Jane Street, SIG, HRT, and Point72.",
+  },
+  {
     title: "Stay tuned for more events!",
     date: "Early January",
     location: "DC or RCH",
