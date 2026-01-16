@@ -16,7 +16,7 @@ const Index = () => {
 
         <div className="container mx-auto max-w-6xl relative z-10">
           {/* Circular gradient backdrop for readability */}
-          <div className="absolute left-1/4 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1600px] md:w-[1800px] md:h-[2400px] bg-[radial-gradient(ellipse,hsl(var(--background))_0%,hsl(var(--background))_20%,hsl(var(--background)/0.8)_35%,hsl(var(--background)/0.5)_50%,hsl(var(--background)/0.2)_65%,transparent_85%)] pointer-events-none" />
+          <div className="absolute left-1/4 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] h-[150vh] min-w-[1200px] min-h-[1200px] bg-[radial-gradient(ellipse,hsl(var(--background))_0%,hsl(var(--background))_15%,hsl(var(--background)/0.7)_30%,hsl(var(--background)/0.4)_45%,hsl(var(--background)/0.15)_60%,hsl(var(--background)/0.05)_75%,transparent_100%)] pointer-events-none" />
 
           <div className="max-w-2xl relative">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight mb-6 animate-fade-in-delay">

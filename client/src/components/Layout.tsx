@@ -8,9 +8,17 @@ interface LayoutProps {
 
 const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col relative">
+      {/* Fixed blue gradient overlay */}
+      <div 
+        className="fixed inset-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse 120% 100% at 50% 90%, rgba(30, 80, 180, 0.4) 0%, transparent 50%)',
+          zIndex: 1,
+        }}
+      />
       <Navbar />
-      <main className="pt-16 flex-1">{children}</main>
+      <main className="pt-16 flex-1 relative z-10">{children}</main>
       <Footer />
     </div>
   );
