@@ -24,6 +24,7 @@ export interface EventData {
   location: string;
   type: string;
   description: string;
+  tags?: string[];
   posterImage?: string;
   galleryImages?: GalleryItem[];
   slideDeckUrl?: string;

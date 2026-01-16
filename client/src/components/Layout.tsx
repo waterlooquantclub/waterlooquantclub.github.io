@@ -13,7 +13,7 @@ const Layout = ({ children }: LayoutProps) => {
       <div 
         className="fixed inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse 120% 100% at 50% 90%, rgba(19, 44, 123, 0.5) 0%, transparent 50%)',
+          background: 'radial-gradient(ellipse 120% 100% at 50% 75%, rgba(19, 44, 123, 0.5) 0%, transparent 50%)',
           zIndex: 1,
         }}
       />

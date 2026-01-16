@@ -1,7 +1,18 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
-import { Calendar, MapPin } from "lucide-react";
+import { Calendar, MapPin, Search, X } from "lucide-react";
 import EventDialog, { EventData } from "@/components/EventDialog";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const events: EventData[] = [
   {
@@ -29,6 +40,7 @@ const archivedEvents: EventData[] = [
     type: "Sponsor Event",
     description:
       "Learn about trading, put your market-making skills to the test, and connect with full-time Citadel traders. Sign up through our Instagram.",
+    tags: ["WINTER 26", "COMPETITION"],
     galleryImages: [
       { type: "image", src: "/events/citadel-trading-challenge/citadel1.jpg", alt: "" },
       { type: "image", src: "/events/citadel-trading-challenge/citadel2.jpg", alt: "" },
@@ -54,6 +66,7 @@ const archivedEvents: EventData[] = [
     type: "Workshop",
     description:
       "An overview of Capital Markets theory (CapM) — understanding and exploring the relationship between risk and expected return.",
+    tags: ["FALL 25", "RECORDING"],
     galleryImages: [
       {
         type: "video",
@@ -70,6 +83,7 @@ const archivedEvents: EventData[] = [
     location: "DC 1351",
     type: "Competition",
     description: "Our inaugural trading competition — test your skills and compete for prizes!",
+    tags: ["FALL 25"],
     galleryImages: [
       { type: "image", src: "/events/f25tradingcomp/comp1.jpg", alt: "" },
       { type: "image", src: "/events/f25tradingcomp/comp2.jpg", alt: "" },
@@ -111,6 +125,7 @@ const archivedEvents: EventData[] = [
     location: "RCH 302",
     type: "Workshop",
     description: "An introduction to options trading — calls, puts, volatility and all the greeks.",
+    tags: ["FALL 25", "RECORDING"],
     galleryImages: [
       {
         type: "video",
@@ -142,6 +157,7 @@ const archivedEvents: EventData[] = [
     location: "RCH 302",
     type: "Workshop",
     description: "A survey of all other asset classes — exploring fixed income, equities, commodities, and more.",
+    tags: ["FALL 25", "RECORDING"],
     galleryImages: [
       {
         type: "video",
@@ -159,6 +175,7 @@ const archivedEvents: EventData[] = [
     type: "Workshop",
     description:
       "An introductory workshop on trading and market structure — covering market making terminology, order book mechanics, and real trade examples.",
+    tags: ["FALL 25", "RECORDING"],
     galleryImages: [
       {
         type: "video",
@@ -176,6 +193,7 @@ const archivedEvents: EventData[] = [
     type: "Panel",
     description:
       "We kicked off the term with our Intro to Quant Panel! Students who've worked at companies such as Jane Street, SIG, HRT, and Point72 shared their experiences, gave insight into the industry, and answered questions live.",
+    tags: ["FALL 25"],
     galleryImages: [
       {
         type: "image",
@@ -221,11 +239,62 @@ const archivedEvents: EventData[] = [
 const Events = () => {
   const [selectedEvent, setSelectedEvent] = useState<EventData | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [archiveQuery, setArchiveQuery] = useState("");
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   const handleEventClick = (event: EventData) => {
     setSelectedEvent(event);
     setDialogOpen(true);
   };
+
+  const normalizeTag = (tag: string) => tag.trim().toUpperCase();
+
+  const TERM_TAG_RE = /^(FALL|WINTER|SPRING|SUMMER)\s*\d{2}$/i;
+
+  const termTags = Array.from(
+    new Set(
+      archivedEvents.flatMap((e) =>
+        (e.tags ?? []).map(normalizeTag).filter((t) => TERM_TAG_RE.test(t)),
+      ),
+    ),
+  ).sort((a, b) => a.localeCompare(b));
+
+  const typeTags = Array.from(
+    new Set(archivedEvents.map((e) => normalizeTag(e.type))),
+  ).sort((a, b) => a.localeCompare(b));
+
+  const otherTags = Array.from(
+    new Set(
+      archivedEvents.flatMap((e) =>
+        (e.tags ?? []).map(normalizeTag).filter((t) => !TERM_TAG_RE.test(t)),
+      ),
+    ),
+  ).sort((a, b) => a.localeCompare(b));
+
+  const filteredArchivedEvents = archivedEvents.filter((event) => {
+    const haystack = [
+      event.title,
+      event.description,
+      event.location,
+      event.date,
+      event.type,
+      ...(event.tags ?? []),
+    ]
+      .join(" ")
+      .toLowerCase();
+
+    const matchesQuery = archiveQuery.trim()
+      ? haystack.includes(archiveQuery.trim().toLowerCase())
+      : true;
+
+    const tagSet = new Set([event.type, ...(event.tags ?? [])].map(normalizeTag));
+    const matchesTags =
+      selectedTags.length === 0
+        ? true
+        : selectedTags.every((t) => tagSet.has(normalizeTag(t)));
+
+    return matchesQuery && matchesTags;
+  });
 
   return (
     <Layout>
@@ -242,8 +311,8 @@ const Events = () => {
               <div
                 key={index}
                 onClick={() => handleEventClick(event)}
-                className="group p-6 border border-border hover:border-muted-foreground transition-colors cursor-pointer"
-                style={{ background: 'linear-gradient(to top left, rgba(19, 44, 123, 0.7) 0%, rgba(0, 0, 0, 0.95) 100%)' }}
+                className="group p-6 border border-[#FAFAFA]/20 hover:border-[#FAFAFA]/50 transition-colors cursor-pointer"
+                style={{ background: 'linear-gradient(to top left, rgba(19, 44, 123, 0.35) 0%, rgba(0, 0, 0, 0.97) 100%)' }}
               >
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 mb-3">
                   <span className="text-xs tracking-widest uppercase text-[#FAFAFA] bg-[#132C7B]/60 px-2 py-1 w-fit">
@@ -265,15 +334,110 @@ const Events = () => {
               </div>
             ))}
           </div>
-          <h1 className="text-4xl md:text-6xl font-light tracking-tight mb-12 mt-16">Events Archive</h1>
+          <h1 className="text-4xl md:text-6xl font-light tracking-tight mb-8 mt-16">
+            Events Archive
+          </h1>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <Input
+                value={archiveQuery}
+                onChange={(e) => setArchiveQuery(e.target.value)}
+                placeholder="Search"
+                className="pl-9 bg-black/40 border-[#FAFAFA]/20 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none"
+              />
+            </div>
+            <Select
+              key={selectedTags.join("|")}
+              onValueChange={(value) => {
+                const tag = normalizeTag(value);
+                setSelectedTags((prev) =>
+                  prev.includes(tag) ? prev : [...prev, tag],
+                );
+              }}
+            >
+              <SelectTrigger className="bg-black/40 border-[#FAFAFA]/20 rounded-none focus:ring-0 focus:ring-offset-0 focus:outline-none">
+                <SelectValue placeholder="Filter by" />
+              </SelectTrigger>
+              <SelectContent className="rounded-none">
+                {termTags.length > 0 && (
+                  <>
+                    <SelectGroup>
+                      <SelectLabel className="text-muted-foreground cursor-default select-none">
+                        Term
+                      </SelectLabel>
+                      {termTags.map((tag) => (
+                        <SelectItem key={tag} value={tag}>
+                          {tag}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                    {(typeTags.length > 0 || otherTags.length > 0) && (
+                      <SelectSeparator />
+                    )}
+                  </>
+                )}
+
+                {typeTags.length > 0 && (
+                  <>
+                    <SelectGroup>
+                      <SelectLabel className="text-muted-foreground cursor-default select-none">
+                        Type
+                      </SelectLabel>
+                      {typeTags.map((tag) => (
+                        <SelectItem key={tag} value={tag}>
+                          {tag}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                    {otherTags.length > 0 && <SelectSeparator />}
+                  </>
+                )}
+
+                {otherTags.length > 0 && (
+                  <>
+                    <SelectGroup>
+                      <SelectLabel className="text-muted-foreground cursor-default select-none">
+                        Other
+                      </SelectLabel>
+                      {otherTags.map((tag) => (
+                        <SelectItem key={tag} value={tag}>
+                          {tag}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                  </>
+                )}
+              </SelectContent>
+            </Select>
+          </div>
+
+          {selectedTags.length > 0 && (
+            <div className="flex flex-wrap gap-3 mb-8">
+              {selectedTags.map((tag) => (
+                <button
+                  key={tag}
+                  type="button"
+                  onClick={() =>
+                    setSelectedTags((prev) => prev.filter((t) => t !== tag))
+                  }
+                  className="inline-flex items-center gap-2 border border-[#0DBAFF]/60 text-[#0DBAFF] px-3 py-1 text-xs tracking-widest uppercase hover:border-[#0DBAFF] transition-colors"
+                >
+                  {tag}
+                  <X className="w-4 h-4" />
+                </button>
+              ))}
+            </div>
+          )}
 
           <div className="space-y-6">
-            {archivedEvents.map((event, index) => (
+            {filteredArchivedEvents.map((event, index) => (
               <div
                 key={index}
                 onClick={() => handleEventClick(event)}
-                className="group p-6 border border-border hover:border-muted-foreground transition-colors cursor-pointer"
-                style={{ background: 'linear-gradient(to top left, rgba(19, 44, 123, 0.7) 0%, rgba(0, 0, 0, 0.95) 100%)' }}
+                className="group p-6 border border-[#FAFAFA]/20 hover:border-[#FAFAFA]/50 transition-colors cursor-pointer"
+                style={{ background: 'linear-gradient(to top left, rgba(19, 44, 123, 0.35) 0%, rgba(0, 0, 0, 0.97) 100%)' }}
               >
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 mb-3">
                   <span className="text-xs tracking-widest uppercase text-[#FAFAFA] bg-[#132C7B]/60 px-2 py-1 w-fit">

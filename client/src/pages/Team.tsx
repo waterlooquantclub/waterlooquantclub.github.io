@@ -61,7 +61,7 @@ const Team = () => {
                 <button
                   key={index}
                   onClick={() => setSelectedIndex(index)}
-                  className="group border border-border hover:border-muted-foreground transition-colors text-left cursor-pointer overflow-hidden"
+                  className="group border border-[#FAFAFA]/20 hover:border-[#FAFAFA]/50 transition-colors text-left cursor-pointer overflow-hidden"
                   style={{ background: 'linear-gradient(to top left, rgba(19, 44, 123, 0.25) 0%, rgba(0, 0, 0, 0.98) 100%)' }}
                 >
                   {image ? (
@@ -132,7 +132,7 @@ const Team = () => {
             })}
           </div>
 
-          <div className="mt-16 pt-16 border-t border-border">
+          <div className="mt-16 pt-16 border-t border-[#FAFAFA]/15">
             <h2 className="text-2xl font-semibold mb-4">Join the Team</h2>
             <p className="text-muted-foreground">
               Executive applications are closed for Winter 2026. Stay tuned for
