@@ -38,7 +38,7 @@ const SponsorSection = ({ withCta, hideTitle }: { withCta?: boolean; hideTitle?:
       </div>
 
       {/* Gold card */}
-      <div className="border p-6 md:p-8 mt-6 bg-black/70 border-[rgba(212,175,55,0.28)]">
+      <div className="border p-6 md:p-8 mt-6 bg-black/70 border-[#f7c75e]/40">
         <h2 className="text-2xl font-semibold mb-8">Gold</h2>
         <div className="flex flex-wrap items-center justify-center gap-12">
           <a
