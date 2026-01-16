@@ -12,6 +12,12 @@ export interface GalleryItem {
   alt: string;
 }
 
+export interface RankingEntry {
+  rank: number;
+  name: string;
+  score: number;
+}
+
 export interface EventData {
   title: string;
   date: string;
@@ -23,6 +29,7 @@ export interface EventData {
   slideDeckUrl?: string;
   link?: string;
   linktext?: string;
+  rankings?: RankingEntry[];
 }
 
 interface EventDialogProps {
@@ -36,7 +43,7 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto">
+      <DialogContent className="max-w-4xl max-h-[85vh] overflow-y-auto">
         <DialogHeader>
           <div className="flex items-center gap-2 mb-2">
             <span className="text-xs tracking-widest uppercase text-muted-foreground bg-secondary px-2 py-1">
@@ -121,6 +128,41 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
             </div>
           )}
 
+          {event.rankings && event.rankings.length > 0 && (
+            <div className="space-y-4">
+              <h3 className="text-lg font-medium">Leaderboard</h3>
+              <div className="border border-border overflow-hidden">
+                <table className="w-full text-sm">
+                  <thead className="bg-secondary">
+                    <tr>
+                      <th className="text-left px-4 py-2 text-muted-foreground font-medium">Rank</th>
+                      <th className="text-left px-4 py-2 text-muted-foreground font-medium">Name</th>
+                      <th className="text-right px-4 py-2 text-muted-foreground font-medium">Score</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {event.rankings.map((entry, index) => (
+                      <tr key={index} className="border-t border-border">
+                        <td className="px-4 py-2">
+                          <span className={`inline-flex items-center justify-center w-7 h-7 rounded-full text-xs font-medium ${
+                            entry.rank === 1 ? 'bg-yellow-500 text-black' :
+                            entry.rank === 2 ? 'bg-gray-300 text-black' :
+                            entry.rank === 3 ? 'bg-amber-600 text-white' :
+                            'bg-muted text-muted-foreground'
+                          }`}>
+                            #{entry.rank}
+                          </span>
+                        </td>
+                        <td className="px-4 py-2 text-foreground">{entry.name}</td>
+                        <td className="px-4 py-2 text-right text-muted-foreground">{entry.score.toFixed(5)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+
           {event.galleryImages && event.galleryImages.filter(item => item.type === "image").length > 0 && (
             <div className="space-y-4">
               <h3 className="text-lg font-medium">Gallery</h3>
@@ -133,7 +175,7 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
                     <img
                       src={item.src}
                       alt={item.alt}
-                      className="w-full h-48 object-cover"
+                      className="w-full h-64 object-cover"
                     />
                     {item.alt && (
                       <p className="text-xs text-muted-foreground p-2">

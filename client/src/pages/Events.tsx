@@ -38,9 +38,6 @@ const archivedEvents: EventData[] = [
       { type: "image", src: "/events/citadel-trading-challenge/citadel14.jpg", alt: "" },
       { type: "image", src: "/events/citadel-trading-challenge/citadel15.jpg", alt: "" },
     ],
-    posterImage: "/events/citadel_event.png",
-    link: "https://waterloocitadelquantclub.splashthat.com/",
-    linktext: "Sign up now"
   },
   {
     title: "Capital Markets",
@@ -65,6 +62,40 @@ const archivedEvents: EventData[] = [
     location: "DC 1351",
     type: "Competition",
     description: "Our inaugural trading competition — test your skills and compete for prizes!",
+    galleryImages: [
+      { type: "image", src: "/events/f25tradingcomp/comp1.jpg", alt: "" },
+      { type: "image", src: "/events/f25tradingcomp/comp2.jpg", alt: "" },
+      { type: "image", src: "/events/f25tradingcomp/comp3.jpg", alt: "" },
+      { type: "image", src: "/events/f25tradingcomp/comp4.jpg", alt: "" },
+      { type: "image", src: "/events/f25tradingcomp/comp5.jpg", alt: "" },
+      { type: "image", src: "/events/f25tradingcomp/comp6.jpg", alt: "" },
+      { type: "image", src: "/events/f25tradingcomp/comp7.jpg", alt: "" },
+      { type: "image", src: "/events/f25tradingcomp/comp8.jpg", alt: "" },
+      { type: "image", src: "/events/f25tradingcomp/comp9.jpg", alt: "" },
+      { type: "image", src: "/events/f25tradingcomp/comp10.jpg", alt: "" },
+      { type: "image", src: "/events/f25tradingcomp/comp11.jpg", alt: "" },
+      { type: "image", src: "/events/f25tradingcomp/comp12.jpg", alt: "" },
+      { type: "image", src: "/events/f25tradingcomp/comp13.jpg", alt: "" },
+      { type: "image", src: "/events/f25tradingcomp/comp14.jpg", alt: "" },
+      { type: "image", src: "/events/f25tradingcomp/comp15.jpg", alt: "" },
+      { type: "image", src: "/events/f25tradingcomp/comp16.jpg", alt: "" },
+      { type: "image", src: "/events/f25tradingcomp/comp17.jpg", alt: "" },
+      { type: "image", src: "/events/f25tradingcomp/comp18.jpg", alt: "" },
+      { type: "image", src: "/events/f25tradingcomp/comp19.jpg", alt: "" },
+      { type: "image", src: "/events/f25tradingcomp/comp20.jpg", alt: "" },
+    ],
+    rankings: [
+      { rank: 1, name: "Alfred Zhang", score: 4.53587 },
+      { rank: 2, name: "Tian yi Tong", score: 5.53265 },
+      { rank: 3, name: "Joey Xu", score: 6.13033 },
+      { rank: 4, name: "David Shi", score: 6.95896 },
+      { rank: 5, name: "Adam Kamel", score: 7.78046 },
+      { rank: 6, name: "David Gan", score: 7.84710 },
+      { rank: 7, name: "Andrej Ohrablo", score: 8.28348 },
+      { rank: 8, name: "Leonardo Zhou", score: 8.48545 },
+      { rank: 9, name: "Aadya Khanna", score: 8.57984 },
+      { rank: 10, name: "Wilson Feng", score: 9.72621 },
+    ],
   },
   {
     title: "Options 101",
@@ -72,7 +103,6 @@ const archivedEvents: EventData[] = [
     location: "RCH 302",
     type: "Workshop",
     description: "An introduction to options trading — calls, puts, volatility and all the greeks.",
-    posterImage: "/events/options-poster.png",
     galleryImages: [
       {
         type: "video",
@@ -104,7 +134,6 @@ const archivedEvents: EventData[] = [
     location: "RCH 302",
     type: "Workshop",
     description: "A survey of all other asset classes — exploring fixed income, equities, commodities, and more.",
-    posterImage: "/events/options101/asset-poster.png",
     galleryImages: [
       {
         type: "video",
@@ -122,7 +151,6 @@ const archivedEvents: EventData[] = [
     type: "Workshop",
     description:
       "An introductory workshop on trading and market structure — covering market making terminology, order book mechanics, and real trade examples.",
-    posterImage: "/events/intrototradingposter.png",
     galleryImages: [
       {
         type: "video",
@@ -135,7 +163,6 @@ const archivedEvents: EventData[] = [
   },
   {
     title: "Intro to Quant Panel",
-    posterImage: "/events/introtoquantpanelposter.png",
     date: "Oct 8, 2025 @ 7:30PM",
     location: "RCH 302",
     type: "Panel",
