@@ -49,7 +49,13 @@ const archivedEvents: EventData[] = [
     type: "Workshop",
     description:
       "An overview of Capital Markets theory (CapM) — understanding and exploring the relationship between risk and expected return.",
-    galleryImages: [],
+    galleryImages: [
+      {
+        type: "video",
+        src: "https://www.youtube.com/embed/PpJN-D7hvbg",
+        alt: "Capital Markets Workshop Recording",
+      },
+    ],
     slideDeckUrl:
       "https://docs.google.com/presentation/d/e/2PACX-1vSSsqndHYJE7lZ57iMBTlmHZUYduD6Umil6eSrN0zCPGcfGWGqFQUtfU8S1jtdPLw/pub?start=true&loop=true&delayms=3000",
   },
@@ -70,8 +76,23 @@ const archivedEvents: EventData[] = [
     galleryImages: [
       {
         type: "video",
-        src: "https://drive.google.com/file/d/1NFJazeJYsZhhUMyDxCWRxBFEugrVk6TE/preview",
+        src: "https://www.youtube.com/embed/gp9hxfE0Eag",
         alt: "Options 101 Recording",
+      },
+      {
+        type: "image",
+        src: "/events/options101/options1.jpg",
+        alt: "",
+      },
+      {
+        type: "image",
+        src: "/events/options101/options2.jpg",
+        alt: "",
+      },
+      {
+        type: "image",
+        src: "/events/options101/options3.jpg",
+        alt: "",
       },
     ],
     slideDeckUrl:
@@ -83,27 +104,12 @@ const archivedEvents: EventData[] = [
     location: "RCH 302",
     type: "Workshop",
     description: "A survey of all other asset classes — exploring fixed income, equities, commodities, and more.",
-    posterImage: "/events/assetsdive/asset-poster.png",
+    posterImage: "/events/options101/asset-poster.png",
     galleryImages: [
       {
         type: "video",
-        src: "https://drive.google.com/file/d/1e5W6W6SRfDCUJaWFJcLWQ_9WI56YcJ1M/preview",
+        src: "https://www.youtube.com/embed/c71du1u3bHs",
         alt: "Assets Deep Dive Recording",
-      },
-      {
-        type: "image",
-        src: "/events/assetsdive/asset1.jpg",
-        alt: "Put Option Payoff slide",
-      },
-      {
-        type: "image",
-        src: "/events/assetsdive/asset2.jpg",
-        alt: "Call Option Payoff slide",
-      },
-      {
-        type: "image",
-        src: "/events/assetsdive/asset3.jpg",
-        alt: "Straddle slide",
       },
     ],
     slideDeckUrl:
@@ -120,7 +126,7 @@ const archivedEvents: EventData[] = [
     galleryImages: [
       {
         type: "video",
-        src: "https://drive.google.com/file/d/1Z1Gn93rwBu6VWECMNu7DQImiHSFk1PbW/preview",
+        src: "https://www.youtube.com/embed/M22fNi8o8W4",
         alt: "Intro to Trading Workshop Recording",
       },
     ],

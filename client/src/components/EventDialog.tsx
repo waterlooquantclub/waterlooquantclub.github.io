@@ -83,49 +83,67 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
             </div>
           )}
 
-          {event.galleryImages && event.galleryImages.length > 0 && (
+          {event.galleryImages && event.galleryImages.filter(item => item.type === "video").length > 0 && (
             <div className="space-y-4">
-              <h3 className="text-lg font-medium">Gallery</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {event.galleryImages.map((item, index) => (
-                  <div
-                    key={index}
-                    className="border border-border overflow-hidden"
-                  >
-                    {item.type === "video" ? (
-                      <iframe
-                        src={item.src}
-                        title={item.alt}
-                        className="w-full aspect-video"
-                        allow="autoplay; encrypted-media"
-                        allowFullScreen
-                      />
-                    ) : (
-                      <img
-                        src={item.src}
-                        alt={item.alt}
-                        className="w-full h-48 object-cover"
-                      />
-                    )}
+              {event.galleryImages.filter(item => item.type === "video").map((item, index) => (
+                <div
+                  key={index}
+                  className="border border-border overflow-hidden"
+                >
+                  <iframe
+                    src={item.src}
+                    title={item.alt}
+                    className="w-full aspect-video"
+                    allow="autoplay; encrypted-media"
+                    allowFullScreen
+                  />
+                  {item.alt && (
                     <p className="text-xs text-muted-foreground p-2">
                       {item.alt}
                     </p>
-                  </div>
-                ))}
-              </div>
+                  )}
+                </div>
+              ))}
             </div>
           )}
 
           {event.slideDeckUrl && (
-            <a
-              href={event.slideDeckUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-foreground hover:text-muted-foreground transition-colors border border-border px-4 py-2"
-            >
-              <ExternalLink className="w-4 h-4" />
-              View Slide Deck
-            </a>
+            <div className="flex justify-center">
+              <a
+                href={event.slideDeckUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-medium bg-foreground text-background hover:bg-muted-foreground transition-colors px-5 py-3 rounded-sm"
+              >
+                <ExternalLink className="w-4 h-4" />
+                View Slide Deck
+              </a>
+            </div>
+          )}
+
+          {event.galleryImages && event.galleryImages.filter(item => item.type === "image").length > 0 && (
+            <div className="space-y-4">
+              <h3 className="text-lg font-medium">Gallery</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {event.galleryImages.filter(item => item.type === "image").map((item, index) => (
+                  <div
+                    key={index}
+                    className="border border-border overflow-hidden"
+                  >
+                    <img
+                      src={item.src}
+                      alt={item.alt}
+                      className="w-full h-48 object-cover"
+                    />
+                    {item.alt && (
+                      <p className="text-xs text-muted-foreground p-2">
+                        {item.alt}
+                      </p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
           )}
         </div>
       </DialogContent>
