@@ -243,9 +243,10 @@ const Events = () => {
                 key={index}
                 onClick={() => handleEventClick(event)}
                 className="group p-6 border border-border hover:border-muted-foreground transition-colors cursor-pointer"
+                style={{ background: 'linear-gradient(to top left, rgba(19, 44, 123, 0.7) 0%, rgba(0, 0, 0, 0.95) 100%)' }}
               >
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 mb-3">
-                  <span className="text-xs tracking-widest uppercase text-muted-foreground bg-secondary px-2 py-1 w-fit">
+                  <span className="text-xs tracking-widest uppercase text-[#FAFAFA] bg-[#132C7B]/60 px-2 py-1 w-fit">
                     {event.type}
                   </span>
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-muted-foreground text-sm">
@@ -272,9 +273,10 @@ const Events = () => {
                 key={index}
                 onClick={() => handleEventClick(event)}
                 className="group p-6 border border-border hover:border-muted-foreground transition-colors cursor-pointer"
+                style={{ background: 'linear-gradient(to top left, rgba(19, 44, 123, 0.7) 0%, rgba(0, 0, 0, 0.95) 100%)' }}
               >
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 mb-3">
-                  <span className="text-xs tracking-widest uppercase text-muted-foreground bg-secondary px-2 py-1 w-fit">
+                  <span className="text-xs tracking-widest uppercase text-[#FAFAFA] bg-[#132C7B]/60 px-2 py-1 w-fit">
                     {event.type}
                   </span>
                   <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-muted-foreground text-sm">

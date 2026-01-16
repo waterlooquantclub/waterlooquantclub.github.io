@@ -62,6 +62,7 @@ const Team = () => {
                   key={index}
                   onClick={() => setSelectedIndex(index)}
                   className="group border border-border hover:border-muted-foreground transition-colors text-left cursor-pointer overflow-hidden"
+                  style={{ background: 'linear-gradient(to top left, rgba(19, 44, 123, 0.25) 0%, rgba(0, 0, 0, 0.98) 100%)' }}
                 >
                   {image ? (
                     <img
