@@ -4,18 +4,6 @@ import { Calendar, MapPin } from "lucide-react";
 import EventDialog, { EventData } from "@/components/EventDialog";
 
 const events: EventData[] = [
-    {
-    title: "Citadel Securities Trading Challenge",
-    date: "Jan 14, 2026 @ 6-8pm",
-    location: "DC 1350",
-    type: "Sponsor Event",
-    description:
-      "Learn about trading, put your market-making skills to the test, and connect with full-time Citadel traders. Sign up through our Instagram.",
-    galleryImages: [],
-    posterImage: "/events/citadel_event.png",
-    link: "https://waterloocitadelquantclub.splashthat.com/",
-    linktext: "Sign up now"
-  },
   {
     title: "Stay tuned for more events!",
     date: "Early January",
@@ -26,6 +14,34 @@ const events: EventData[] = [
 ];
 
 const archivedEvents: EventData[] = [
+    {
+    title: "Citadel Securities Trading Challenge",
+    date: "Jan 14, 2026 @ 6-8pm",
+    location: "DC 1350",
+    type: "Sponsor Event",
+    description:
+      "Learn about trading, put your market-making skills to the test, and connect with full-time Citadel traders. Sign up through our Instagram.",
+    galleryImages: [
+      { type: "image", src: "/events/citadel-trading-challenge/citadel1.jpg", alt: "" },
+      { type: "image", src: "/events/citadel-trading-challenge/citadel2.jpg", alt: "" },
+      { type: "image", src: "/events/citadel-trading-challenge/citadel3.jpg", alt: "" },
+      { type: "image", src: "/events/citadel-trading-challenge/citadel4.jpg", alt: "" },
+      { type: "image", src: "/events/citadel-trading-challenge/citadel5.jpg", alt: "" },
+      { type: "image", src: "/events/citadel-trading-challenge/citadel6.jpg", alt: "" },
+      { type: "image", src: "/events/citadel-trading-challenge/citadel7.jpg", alt: "" },
+      { type: "image", src: "/events/citadel-trading-challenge/citadel8.jpg", alt: "" },
+      { type: "image", src: "/events/citadel-trading-challenge/citadel9.jpg", alt: "" },
+      { type: "image", src: "/events/citadel-trading-challenge/citadel10.jpg", alt: "" },
+      { type: "image", src: "/events/citadel-trading-challenge/citadel11.jpg", alt: "" },
+      { type: "image", src: "/events/citadel-trading-challenge/citadel12.jpg", alt: "" },
+      { type: "image", src: "/events/citadel-trading-challenge/citadel13.jpg", alt: "" },
+      { type: "image", src: "/events/citadel-trading-challenge/citadel14.jpg", alt: "" },
+      { type: "image", src: "/events/citadel-trading-challenge/citadel15.jpg", alt: "" },
+    ],
+    posterImage: "/events/citadel_event.png",
+    link: "https://waterloocitadelquantclub.splashthat.com/",
+    linktext: "Sign up now"
+  },
   {
     title: "Capital Markets",
     date: "Nov 26, 2025 @ 6:00PM",
