@@ -263,10 +263,14 @@ const Events = () => {
     new Set(archivedEvents.map((e) => normalizeTag(e.type))),
   ).sort((a, b) => a.localeCompare(b));
 
+  const typeTagSet = new Set(typeTags);
+
   const otherTags = Array.from(
     new Set(
       archivedEvents.flatMap((e) =>
-        (e.tags ?? []).map(normalizeTag).filter((t) => !TERM_TAG_RE.test(t)),
+        (e.tags ?? [])
+          .map(normalizeTag)
+          .filter((t) => !TERM_TAG_RE.test(t) && !typeTagSet.has(t)),
       ),
     ),
   ).sort((a, b) => a.localeCompare(b));
