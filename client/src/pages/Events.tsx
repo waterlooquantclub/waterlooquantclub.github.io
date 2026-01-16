@@ -10,6 +10,14 @@ const events: EventData[] = [
     location: "DC 1350",
     type: "Panel",
     description: "Ever wondered what quants actually do? Join us for a panel with Waterloo students who have worked at companies such as Jane Street, SIG, HRT, and Point72.",
+    posterImage: "/events/26panel.jpg",
+  },
+  {
+    title: "Statistical and Human Biases",
+    date: "January 28, 2026 @ 6:00PM",
+    location: "DC 1350",
+    type: "Workshop",
+    description: "Learn about the statistical pitfalls and cognitive traps that lead smart people to make not-so-smart trades.",
   }
 ];
 
