@@ -1,5 +1,5 @@
 export const SOCIAL_LINKS = {
-  DISCORD: "https://discord.gg/QwmucS8qBv",
+  DISCORD: "https://discord.gg/Hu3FxfHnZt",
   INSTAGRAM: "https://www.instagram.com/wlooquantclub/",
   LINKEDIN: "https://linkedin.com/company/waterloo-quant-club",
   EMAIL: "mailto:info@waterlooquantclub.com",

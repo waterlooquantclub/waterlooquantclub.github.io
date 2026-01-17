@@ -309,7 +309,18 @@ const Events = () => {
           <p className="text-muted-foreground text-sm tracking-widest uppercase mb-4">Events</p>
           <h1 className="text-4xl md:text-6xl font-light tracking-tight mb-12">Upcoming Events</h1>
           <div className="space-y-8 text-muted-foreground text-lg leading-relaxed">
-            <p className="mb-4">Fill out the general member form to attend any of our events.</p>
+            <p className="mb-4">
+              Check into our events through the{" "}
+              <a
+                href="https://me.waterlooquantclub.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline"
+              >
+                member portal
+              </a>
+              .
+            </p>
           </div>
 
           <a

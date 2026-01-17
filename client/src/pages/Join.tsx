@@ -1,4 +1,5 @@
 import Layout from "@/components/Layout";
+import { SOCIAL_LINKS } from "@/lib/constants";
 import { ArrowRight } from "lucide-react";
 
 const Join = () => {
@@ -28,7 +29,7 @@ const Join = () => {
               <ArrowRight className="w-4 h-4" />
             </a>
             <a
-              href="https://discord.gg/yFHGX7gJ"
+              href={SOCIAL_LINKS.DISCORD}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 border border-border px-6 py-3 text-sm font-medium tracking-wide text-foreground hover:bg-secondary transition-colors"
@@ -36,7 +37,7 @@ const Join = () => {
               Join Discord
             </a>
             <a
-              href="https://www.instagram.com/wlooquantclub"
+              href={SOCIAL_LINKS.INSTAGRAM}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 border border-border px-6 py-3 text-sm font-medium tracking-wide text-foreground hover:bg-secondary transition-colors"
@@ -63,8 +64,16 @@ const Join = () => {
                 },
                 {
                   q: "How can I stay updated on upcoming events?",
-                  a: "Events are announced on Instagram and Discord."
-                }
+                  a: "Events are announced on Instagram and Discord.",
+                },
+                {
+                  q: "Why should I sign up for the member portal?",
+                  a: "The member portal lets you check into events, participate in our weekly games (coming soon!), and upload your resume to be shared with sponsors for recruiting opportunities.",
+                },
+                {
+                  q: "Do I need to sign up to attend events?",
+                  a: "Signing up through our member portal is optional. However, if you're looking to join any of our application-based events later on, checking into events is the best way to show us you're active and interested in the club!",
+                },
               ].map((faq, index) => (
                 <div key={index}>
                   <h3 className="text-foreground font-medium mb-1">{faq.q}</h3>
