@@ -113,16 +113,19 @@ function createProgram(
   return program;
 }
 
-// Grid configuration
-const GRID_CONFIG = {
-  rows: 7,
-  cols: 9,
-  width: 600,
-  height: 1000,
-  segments: 60,
-  lineWidth: 1.5,
-  extraRows: 6, // Buffer rows for wave displacement
-} as const;
+// Grid configuration - responsive based on screen width
+const getGridConfig = () => {
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  return {
+    rows: isMobile ? 5 : 7,
+    cols: isMobile ? 6 : 9,
+    width: 600,
+    height: 1000,
+    segments: 60,
+    lineWidth: isMobile ? 2.5 : 1.5,
+    extraRows: 6, // Buffer rows for wave displacement
+  };
+};
 
 const WavyGrid = ({ className = "" }: { className?: string }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -134,7 +137,7 @@ const WavyGrid = ({ className = "" }: { className?: string }) => {
     if (!canvas) return;
 
     const { rows, cols, width, height, segments, lineWidth, extraRows } =
-      GRID_CONFIG;
+      getGridConfig();
 
     const gl = canvas.getContext("webgl", {
       alpha: true,

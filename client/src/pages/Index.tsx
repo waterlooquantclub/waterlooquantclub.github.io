@@ -15,8 +15,13 @@ const Index = () => {
         </div>
 
         <div className="container mx-auto max-w-6xl relative z-10">
-          {/* Circular gradient backdrop for readability */}
-          <div className="absolute left-1/4 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] h-[150vh] min-w-[1200px] min-h-[1200px] bg-[radial-gradient(ellipse,hsl(var(--background))_0%,hsl(var(--background))_15%,hsl(var(--background)/0.7)_30%,hsl(var(--background)/0.4)_45%,hsl(var(--background)/0.15)_60%,hsl(var(--background)/0.05)_75%,transparent_100%)] pointer-events-none" />
+          {/* Circular gradient backdrop for readability - tinted dark blue to blend with global gradient */}
+          <div 
+            className="absolute left-1/4 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] h-[150vh] min-w-[1200px] min-h-[1200px] pointer-events-none"
+            style={{
+              background: 'radial-gradient(ellipse, rgba(3,8,20,1) 0%, rgba(3,8,20,1) 15%, rgba(3,8,20,0.7) 30%, rgba(3,8,20,0.4) 45%, rgba(3,8,20,0.15) 60%, rgba(3,8,20,0.05) 75%, transparent 100%)'
+            }}
+          />
 
           <div className="max-w-2xl relative">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight mb-6 animate-fade-in-delay">
