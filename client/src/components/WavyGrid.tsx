@@ -58,7 +58,7 @@ const VERTEX_SHADER = `
 
     // Apply fade masks
     float fadeV = smoothstep(-0.4, 0.05, normalizedY) * (1.0 - smoothstep(0.95, 1.4, normalizedY));
-    float fadeH = smoothstep(0.0, 0.3, normalizedX);
+    float fadeH = smoothstep(0.0, 0.8, normalizedX);
     v_opacity = a_opacity * fadeV * fadeH * lineFade;
 
     // Convert to clip space
