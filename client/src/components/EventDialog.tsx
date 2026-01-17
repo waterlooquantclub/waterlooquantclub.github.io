@@ -4,7 +4,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Calendar, MapPin, ExternalLink, Link } from "lucide-react";
+import { Calendar, MapPin, ExternalLink, CalendarPlus } from "lucide-react";
 
 export interface GalleryItem {
   type: "video" | "image";
@@ -28,9 +28,8 @@ export interface EventData {
   posterImage?: string;
   galleryImages?: GalleryItem[];
   slideDeckUrl?: string;
-  link?: string;
-  linktext?: string;
   rankings?: RankingEntry[];
+  calendarlink?: string;
 }
 
 interface EventDialogProps {
@@ -69,15 +68,16 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
         <div className="space-y-6 mt-4">
           <p className="text-muted-foreground">{event.description}</p>
 
-          {event.link && (
+          {event.calendarlink && (
             <a
-              href={event.link}
+              href={event.calendarlink}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground text-sm pt-2 hover:underline inline-flex items-center gap-1"
+              onClick={(e) => e.stopPropagation()}
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-white/5 px-3 py-1.5 text-xs hover:bg-white/10 hover:border-[#FAFAFA]/40 transition"
             >
-              <Link className="w-4 h-4" />
-              <span>{event.linktext? event.linktext : "Link"}</span>
+              <CalendarPlus className="w-4 h-4" />
+              Add to Calendar
             </a>
           )}
 
@@ -145,12 +145,11 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
                     {event.rankings.map((entry, index) => (
                       <tr key={index} className="border-t border-border">
                         <td className="px-4 py-2">
-                          <span className={`inline-flex items-center justify-center w-7 h-7 rounded-full text-xs font-medium ${
-                            entry.rank === 1 ? 'bg-yellow-500 text-black' :
+                          <span className={`inline-flex items-center justify-center w-7 h-7 rounded-full text-xs font-medium ${entry.rank === 1 ? 'bg-yellow-500 text-black' :
                             entry.rank === 2 ? 'bg-gray-300 text-black' :
-                            entry.rank === 3 ? 'bg-amber-600 text-white' :
-                            'bg-muted text-muted-foreground'
-                          }`}>
+                              entry.rank === 3 ? 'bg-amber-600 text-white' :
+                                'bg-muted text-muted-foreground'
+                            }`}>
                             #{entry.rank}
                           </span>
                         </td>

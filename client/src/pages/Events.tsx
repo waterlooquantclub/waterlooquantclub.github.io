@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
-import { Calendar, MapPin, Search, X } from "lucide-react";
+import { Calendar, MapPin, Search, X, CalendarPlus } from "lucide-react";
 import EventDialog, { EventData } from "@/components/EventDialog";
 import { Input } from "@/components/ui/input";
 import {
@@ -22,6 +22,7 @@ const events: EventData[] = [
     type: "Panel",
     description: "Ever wondered what quants actually do? Join us for a panel with Waterloo students who have worked at companies such as Jane Street, SIG, HRT, and Point72.",
     posterImage: "/events/26panel.jpg",
+    calendarlink: "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MmpjdW81a2tkYnV0Y3Q4bGQ5NjhncjA3N3AgMDBmYzFhYzhlODJkY2Q3YTIzMTg4ZWRkNDZjYjg0OTUwYTA5ZjlhYTE0MGJmODZmOWJjNzI1MmFlNGIwNjBlOUBn&tmsrc=00fc1ac8e82dcd7a23188edd46cb84950a09f9aa140bf86f9bc7252ae4b060e9%40group.calendar.google.com"
   },
   {
     title: "Statistical and Human Biases",
@@ -29,11 +30,12 @@ const events: EventData[] = [
     location: "DC 1350",
     type: "Workshop",
     description: "Learn about the statistical pitfalls and cognitive traps that lead smart people to make not-so-smart trades.",
+    calendarlink: "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=NHNna2owaDBhNm05MDM0YTNjMHQyNG5xODMgMDBmYzFhYzhlODJkY2Q3YTIzMTg4ZWRkNDZjYjg0OTUwYTA5ZjlhYTE0MGJmODZmOWJjNzI1MmFlNGIwNjBlOUBn&tmsrc=00fc1ac8e82dcd7a23188edd46cb84950a09f9aa140bf86f9bc7252ae4b060e9%40group.calendar.google.com"
   }
 ];
 
 const archivedEvents: EventData[] = [
-    {
+  {
     title: "Citadel Securities Trading Challenge",
     date: "Jan 14, 2026 @ 6-8pm",
     location: "DC 1350",
@@ -307,8 +309,20 @@ const Events = () => {
           <p className="text-muted-foreground text-sm tracking-widest uppercase mb-4">Events</p>
           <h1 className="text-4xl md:text-6xl font-light tracking-tight mb-12">Upcoming Events</h1>
           <div className="space-y-8 text-muted-foreground text-lg leading-relaxed">
-            <p className="mb-8">Fill out the general member form to attend any of our events.</p>
+            <p className="mb-4">Fill out the general member form to attend any of our events.</p>
           </div>
+
+          <a
+            href={"https://calendar.google.com/calendar/u/0?cid=MDBmYzFhYzhlODJkY2Q3YTIzMTg4ZWRkNDZjYjg0OTUwYTA5ZjlhYTE0MGJmODZmOWJjNzI1MmFlNGIwNjBlOUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            style={{ background: 'linear-gradient(to top left, rgba(19, 44, 123, 0.35) 0%, rgba(0, 0, 0, 0.97) 100%)' }}
+            className="text-muted-foreground mb-8 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-s hover:text-white border border-[#FAFAFA]/20 hover:border-[#FAFAFA]/50 cursor-pointer transition"
+          >
+            <CalendarPlus className="w-4 h-4" />
+            Subscribe to WQC's Winter 2026 Events Calendar
+          </a>
 
           <div className="space-y-6">
             {events.map((event, index) => (
