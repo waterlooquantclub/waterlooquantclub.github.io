@@ -61,7 +61,7 @@ const Team = () => {
                 <button
                   key={index}
                   onClick={() => setSelectedIndex(index)}
-                  className="group border border-[#FAFAFA]/20 hover:border-[#FAFAFA]/50 transition-colors text-left cursor-pointer overflow-hidden"
+                  className="group flex flex-col  border border-[#FAFAFA]/20 hover:border-[#FAFAFA]/50 transition-colors text-left cursor-pointer overflow-hidden"
                   style={{ background: 'linear-gradient(to top left, rgba(19, 44, 123, 0.25) 0%, rgba(0, 0, 0, 0.98) 100%)' }}
                 >
                   {image ? (
@@ -243,8 +243,8 @@ const Team = () => {
                       key={i}
                       onClick={() => setSelectedIndex(i)}
                       className={`w-1.5 h-1.5 rounded-full transition-colors ${i === selectedIndex
-                          ? "bg-foreground"
-                          : "bg-muted-foreground/30"
+                        ? "bg-foreground"
+                        : "bg-muted-foreground/30"
                         }`}
                     />
                   ))}
