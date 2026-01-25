@@ -197,6 +197,7 @@ export const TEAM: MemberInfo[] = [
     image: "jason_hon.jpg",
     linkedin: "https://www.linkedin.com/in/jasonhonhk/",
     email: "jasonhon@waterlooquantclub.com",
+    website: "https://jasonhon.com/",
   },
   {
     name: "David Kachroo",
