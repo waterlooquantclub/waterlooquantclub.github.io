@@ -23,6 +23,14 @@ const events: EventData[] = [
     posterImage: "events/biasesposter.png",
     description: "Learn about the statistical pitfalls and cognitive traps that lead smart people to make not-so-smart trades.",
     calendarlink: "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=NHNna2owaDBhNm05MDM0YTNjMHQyNG5xODMgMDBmYzFhYzhlODJkY2Q3YTIzMTg4ZWRkNDZjYjg0OTUwYTA5ZjlhYTE0MGJmODZmOWJjNzI1MmFlNGIwNjBlOUBn&tmsrc=00fc1ac8e82dcd7a23188edd46cb84950a09f9aa140bf86f9bc7252ae4b060e9%40group.calendar.google.com"
+  },
+  {
+    title: "2026 Waterloo Trading Competition",
+    date: "March 22, 2026",
+    location: "University of Waterloo (in-person)",
+    type: "Competition",
+    description: "Canada's first international university trading competition. Compete for $10,000+ in cash prizes. Open to university students in Canada & the U.S with travel reimbursements provided for accepted participants.",
+    externalLink: { label: "Learn More & Apply", url: "/competition" }
   }
 ];
 

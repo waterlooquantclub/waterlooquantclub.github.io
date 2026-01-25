@@ -30,6 +30,7 @@ export interface EventData {
   slideDeckUrl?: string;
   rankings?: RankingEntry[];
   calendarlink?: string;
+  externalLink?: { label: string; url: string };
 }
 
 interface EventDialogProps {
@@ -68,18 +69,33 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
         <div className="space-y-6 mt-4">
           <p className="text-muted-foreground">{event.description}</p>
 
-          {event.calendarlink && (
-            <a
-              href={event.calendarlink}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="inline-flex items-center gap-2 rounded-full border border-border bg-white/5 px-3 py-1.5 text-xs hover:bg-white/10 hover:border-[#FAFAFA]/40 transition"
-            >
-              <CalendarPlus className="w-4 h-4" />
-              Add to Calendar
-            </a>
-          )}
+          <div className="flex flex-wrap gap-3">
+            {event.calendarlink && (
+              <a
+                href={event.calendarlink}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-white/5 px-3 py-1.5 text-xs hover:bg-white/10 hover:border-[#FAFAFA]/40 transition"
+              >
+                <CalendarPlus className="w-4 h-4" />
+                Add to Calendar
+              </a>
+            )}
+
+            {event.externalLink && (
+              <a
+                href={event.externalLink.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-white/5 px-3 py-1.5 text-xs hover:bg-white/10 hover:border-[#FAFAFA]/40 transition"
+              >
+                <ExternalLink className="w-4 h-4" />
+                {event.externalLink.label}
+              </a>
+            )}
+          </div>
 
           {event.posterImage && (
             <div className="border border-border overflow-hidden">
