@@ -12,7 +12,7 @@ import {
   Clock4,
 } from "lucide-react";
 
-const applicationLink = "https://me.waterlooquantclub.com/";
+const applicationLink = "https://me.waterlooquantclub.com/forms/2026-waterloo-trading-competition-application/";
 
 const detailCards = [
   {
