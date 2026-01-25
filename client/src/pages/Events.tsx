@@ -20,6 +20,7 @@ const events: EventData[] = [
     date: "January 28, 2026 @ 6:00PM",
     location: "DC 1350",
     type: "Workshop",
+    posterImage: "events/biasesposter.png",
     description: "Learn about the statistical pitfalls and cognitive traps that lead smart people to make not-so-smart trades.",
     calendarlink: "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=NHNna2owaDBhNm05MDM0YTNjMHQyNG5xODMgMDBmYzFhYzhlODJkY2Q3YTIzMTg4ZWRkNDZjYjg0OTUwYTA5ZjlhYTE0MGJmODZmOWJjNzI1MmFlNGIwNjBlOUBn&tmsrc=00fc1ac8e82dcd7a23188edd46cb84950a09f9aa140bf86f9bc7252ae4b060e9%40group.calendar.google.com"
   }
@@ -33,7 +34,17 @@ const archivedEvents: EventData[] = [
     type: "Panel",
     description: "Ever wondered what quants actually do? Join us for a panel with Waterloo students who have worked at companies such as Jane Street, SIG, HRT, and Point72.",
     posterImage: "/events/26panel.jpg",
-    calendarlink: "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MmpjdW81a2tkYnV0Y3Q4bGQ5NjhncjA3N3AgMDBmYzFhYzhlODJkY2Q3YTIzMTg4ZWRkNDZjYjg0OTUwYTA5ZjlhYTE0MGJmODZmOWJjNzI1MmFlNGIwNjBlOUBn&tmsrc=00fc1ac8e82dcd7a23188edd46cb84950a09f9aa140bf86f9bc7252ae4b060e9%40group.calendar.google.com"
+    calendarlink: "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MmpjdW81a2tkYnV0Y3Q4bGQ5NjhncjA3N3AgMDBmYzFhYzhlODJkY2Q3YTIzMTg4ZWRkNDZjYjg0OTUwYTA5ZjlhYTE0MGJmODZmOWJjNzI1MmFlNGIwNjBlOUBn&tmsrc=00fc1ac8e82dcd7a23188edd46cb84950a09f9aa140bf86f9bc7252ae4b060e9%40group.calendar.google.com",
+    tags: ["WINTER 26"],
+    galleryImages: [
+      { type: "image", src: "/events/26panel/26panel1.jpg", alt: "" },
+      { type: "image", src: "/events/26panel/26panel2.jpg", alt: "" },
+      { type: "image", src: "/events/26panel/26panel3.jpg", alt: "" },
+      { type: "image", src: "/events/26panel/26panel4.jpg", alt: "" },
+      { type: "image", src: "/events/26panel/26panel5.jpg", alt: "" },
+      { type: "image", src: "/events/26panel/26panel6.jpg", alt: "" },
+      { type: "image", src: "/events/26panel/26panel7.jpg", alt: "" },
+    ],
   },
   {
     title: "Citadel Securities Trading Challenge",
