@@ -242,11 +242,10 @@ const Team = () => {
                     <button
                       key={i}
                       onClick={() => setSelectedIndex(i)}
-                      className={`w-1.5 h-1.5 rounded-full transition-colors ${
-                        i === selectedIndex
+                      className={`w-1.5 h-1.5 rounded-full transition-colors ${i === selectedIndex
                           ? "bg-foreground"
                           : "bg-muted-foreground/30"
-                      }`}
+                        }`}
                     />
                   ))}
                 </div>
