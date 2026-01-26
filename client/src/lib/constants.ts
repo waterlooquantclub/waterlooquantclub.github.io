@@ -20,7 +20,7 @@ export const TEAM: MemberInfo[] = [
   {
     name: "Harry Jiang",
     role: "President",
-    program: "Statistics",
+    program: "Statistics, Computer Science",
     bio: "I'm a Stat + CS student, that really enjoys trading. I love sports, landscape photography, and speedcubing! You can frequently find me at Fantastic Wok.",
     image: "harry_jiang.jpg",
     linkedin: "https://www.linkedin.com/in/harryjiang7/",
@@ -28,7 +28,7 @@ export const TEAM: MemberInfo[] = [
   },
   {
     name: "Ian Zhao",
-    role: "VP Tech",
+    role: "VP",
     program: "Computer Science, Combinatorics & Optimization",
     bio: "I'm a CS + CO student and a SWE at HRT. When I'm not thinking about systems programming or programming languages, I enjoy running, reading, and everything music!",
     image: "ian_zhao.jpg",
@@ -37,13 +37,13 @@ export const TEAM: MemberInfo[] = [
   },
   {
     name: "Daniel Shen",
-    role: "VP Trading",
+    role: "VP",
     program: "Computer Science",
     image: "daniel_shen.jpg",
   },
   {
     name: "John Huang",
-    role: "VP Research",
+    role: "VP",
     program: "Computer Science, Mathematical Finance",
     bio: "I'm a CS + Math Finance student and a Quant Researcher at Cubist. I love reading, strategy games, and word puzzles.",
     image: "john_huang.jpg",
