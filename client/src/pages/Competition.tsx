@@ -2,6 +2,7 @@ import Layout from "@/components/Layout";
 import JaneStreetLogo from "@/assets/jane-street-logo.png";
 import HrtLogo from "@/assets/hrt-logo.png";
 import CitadelLogo from "@/assets/citadel-logo.png";
+import PolymarketLogo from "@/assets/polymarket-logo-white.png";
 import {
   Calendar,
   MapPin,
@@ -161,8 +162,9 @@ const Competition = () => {
             <img src={HrtLogo} alt="Hudson River Trading" className="h-36 md:h-44 w-auto drop-shadow" />
             <img src={JaneStreetLogo} alt="Jane Street" className="h-36 md:h-44 w-auto drop-shadow" />
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-10 md:gap-14 text-center">
+          <div className="flex flex-col items-center justify-center gap-6 md:gap-8 text-center">
             <img src={CitadelLogo} alt="Citadel" className="h-12 md:h-16 w-auto drop-shadow" />
+            <img src={PolymarketLogo} alt="Polymarket" className="h-12 md:h-16 w-auto drop-shadow" />
             {/* <img src={CitadelLogo} alt="Citadel Securities" className="h-12 w-auto drop-shadow" /> */}
           </div>
         </div>
