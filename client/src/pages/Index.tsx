@@ -36,61 +36,61 @@ const Index = () => {
     return () => clearInterval(interval);
   }, []);
 
-  return (
-    <Layout>
-      {/* Call to Action Banner */}
-      <section className="relative border-b border-border py-16 px-6 overflow-hidden">
-        <div className="absolute inset-0 opacity-80" aria-hidden>
-          <div className="absolute -left-40 top-1/2 -translate-y-1/2 w-[50rem] h-[50rem] rounded-full bg-[radial-gradient(circle_at_center,_rgba(26,64,170,0.25)_0%,_rgba(5,7,12,0)_65%)] blur-2xl" />
-          <div className="absolute right-[-18rem] top-1/2 -translate-y-1/2 w-[40rem] h-[40rem] rounded-full bg-[radial-gradient(circle_at_center,_rgba(9,126,227,0.2)_0%,_rgba(5,7,12,0)_70%)] blur-2xl" />
-        </div>
-        <div className="container mx-auto max-w-4xl text-center relative z-10">
-          <p className="text-sm uppercase tracking-wider text-muted-foreground mb-4">
-            Applications Open
-          </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium mb-12">
-            2026 Waterloo Trading Competition
-          </h2>
+  const announcementBar = (
+    <div className="bg-background border-b border-border py-3 px-4 md:px-6">
+      <div className="container mx-auto max-w-7xl">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
+          {/* Left: Announcement */}
+          <div className="flex items-center gap-2 text-center md:text-left">
+            <span className="text-xs uppercase tracking-wider text-muted-foreground">Applications Open</span>
+            <span className="hidden sm:inline text-muted-foreground">—</span>
+            <span className="text-sm font-medium">2026 Waterloo Trading Competition</span>
+          </div>
 
-          {/* Countdown Timer */}
-          <div className="flex justify-center gap-6 md:gap-12 mb-10">
+          {/* Center: Countdown Timer */}
+          <div className="flex items-center gap-3 md:gap-4">
             {[
-              { value: timeLeft.days, label: "days" },
-              { value: timeLeft.hours, label: "hours" },
-              { value: timeLeft.minutes, label: "min" },
-              { value: timeLeft.seconds, label: "sec" },
+              { value: timeLeft.days, label: "d" },
+              { value: timeLeft.hours, label: "h" },
+              { value: timeLeft.minutes, label: "m" },
+              { value: timeLeft.seconds, label: "s" },
             ].map((item, index) => (
-              <div key={index} className="flex flex-col">
-                <span className="text-5xl md:text-6xl lg:text-7xl font-light tabular-nums">
+              <div key={index} className="flex items-baseline gap-0.5">
+                <span className="text-lg md:text-xl font-medium tabular-nums">
                   {String(item.value).padStart(2, "0")}
                 </span>
-                <span className="text-sm text-muted-foreground mt-2">
+                <span className="text-xs text-muted-foreground">
                   {item.label}
                 </span>
               </div>
             ))}
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          {/* Right: Action Buttons */}
+          <div className="flex items-center gap-2">
             <a
               href="https://me.waterlooquantclub.com/forms/2026-waterloo-trading-competition-application/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-foreground text-background px-8 py-3 text-sm font-medium tracking-wide hover:bg-foreground/90 transition-colors"
+              className="inline-flex items-center justify-center gap-1.5 bg-foreground text-background px-4 py-1.5 text-xs font-medium tracking-wide hover:bg-foreground/90 transition-colors"
             >
               Apply Now
-              <ExternalLink className="w-4 h-4" />
+              <ExternalLink className="w-3 h-3" />
             </a>
             <Link
               to="/competition"
-              className="inline-flex items-center justify-center gap-2 border border-border px-8 py-3 text-sm font-medium tracking-wide text-foreground hover:bg-secondary transition-colors"
+              className="inline-flex items-center justify-center gap-1.5 border border-border px-4 py-1.5 text-xs font-medium tracking-wide text-foreground hover:bg-secondary transition-colors"
             >
               View Info
             </Link>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  );
+
+  return (
+    <Layout announcementBar={announcementBar}>
 
       {/* Hero Section */}
       <section className="min-h-[calc(100vh-4rem)] flex flex-col justify-center px-6 relative overflow-hidden">

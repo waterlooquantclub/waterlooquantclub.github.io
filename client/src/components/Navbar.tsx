@@ -18,11 +18,15 @@ const navLinks = [
   { name: "Join", path: "/join" },
 ];
 
-const Navbar = () => {
+interface NavbarProps {
+  hasAnnouncementBar?: boolean;
+}
+
+const Navbar = ({ hasAnnouncementBar = false }: NavbarProps) => {
   const location = useLocation();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50">
+    <nav className={`fixed left-0 right-0 z-50 ${hasAnnouncementBar ? 'top-[52px] md:top-[44px]' : 'top-0'}`}>
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-transparent pointer-events-none" />
       <div className="container mx-auto px-6 md:px-18 py-6 md:py-14 flex items-center justify-between relative">
         <Link to="/" className="flex items-center gap-1 hover:opacity-80 transition-opacity">

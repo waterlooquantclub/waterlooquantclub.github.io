@@ -4,9 +4,10 @@ import Footer from "./Footer";
 
 interface LayoutProps {
   children: ReactNode;
+  announcementBar?: ReactNode;
 }
 
-const Layout = ({ children }: LayoutProps) => {
+const Layout = ({ children, announcementBar }: LayoutProps) => {
   return (
     <div className="min-h-screen bg-background flex flex-col relative">
       {/* Fixed blue gradient overlay */}
@@ -17,8 +18,14 @@ const Layout = ({ children }: LayoutProps) => {
           zIndex: 1,
         }}
       />
-      <Navbar />
-      <main className="pt-16 flex-1 relative z-10">{children}</main>
+      {/* Announcement Bar - above navbar */}
+      {announcementBar && (
+        <div className="fixed top-0 left-0 right-0 z-[60]">
+          {announcementBar}
+        </div>
+      )}
+      <Navbar hasAnnouncementBar={!!announcementBar} />
+      <main className={`flex-1 relative z-10 ${announcementBar ? 'pt-[calc(4rem+52px)] md:pt-[calc(4rem+44px)]' : 'pt-16'}`}>{children}</main>
       <Footer />
     </div>
   );
