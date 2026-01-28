@@ -105,7 +105,7 @@ const archivedEvents: EventData[] = [
     type: "Competition",
     description: "Our inaugural trading competition — test your skills and compete for prizes!",
     tags: ["FALL 25"],
-    pdfUrl: "/events/f25tradingcomp/tradingcomppackage.pdf",
+    pdfUrl: "/events/f25tradingcomp/f25tradingcomp.pdf",
     galleryImages: [
       { type: "image", src: "/events/f25tradingcomp/comp1.jpg", alt: "" },
       { type: "image", src: "/events/f25tradingcomp/comp2.jpg", alt: "" },
