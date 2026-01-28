@@ -12,6 +12,7 @@ import {
   Plane,
   Clock4,
 } from "lucide-react";
+import { SOCIAL_LINKS } from "@/lib/constants";
 
 const applicationLink = "https://me.waterlooquantclub.com/forms/2026-waterloo-trading-competition-application/";
 
@@ -141,6 +142,11 @@ const Competition = () => {
             <div>
               <p className="text-sm text-muted-foreground uppercase tracking-wide">Applications</p>
               <h3 className="text-xl md:text-2xl font-semibold text-white">Apply now through the Application Portal</h3>
+              <p className="text-sm text-muted-foreground mt-1">
+                For any issues, contact us by{" "}
+                <a href={SOCIAL_LINKS.EMAIL} className="underline">email</a> or on{" "}
+                <a href={SOCIAL_LINKS.DISCORD} className="underline">Discord</a>.
+              </p>
             </div>
             <a
               className="inline-flex items-center justify-center gap-2 bg-white text-black px-4 py-2 text-sm font-medium tracking-wide hover:bg-white/90 transition-colors"
