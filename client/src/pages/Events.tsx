@@ -20,7 +20,7 @@ const events: EventData[] = [
     date: "January 28, 2026 @ 6:00PM",
     location: "DC 1350",
     type: "Workshop",
-    posterImage: "events/biasesposter.png",
+    posterImage: "/events/biasesposter.png",
     description: "Learn about the statistical pitfalls and cognitive traps that lead smart people to make not-so-smart trades.",
     calendarlink: "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=NHNna2owaDBhNm05MDM0YTNjMHQyNG5xODMgMDBmYzFhYzhlODJkY2Q3YTIzMTg4ZWRkNDZjYjg0OTUwYTA5ZjlhYTE0MGJmODZmOWJjNzI1MmFlNGIwNjBlOUBn&tmsrc=00fc1ac8e82dcd7a23188edd46cb84950a09f9aa140bf86f9bc7252ae4b060e9%40group.calendar.google.com"
   },
@@ -29,6 +29,7 @@ const events: EventData[] = [
     date: "March 22, 2026",
     location: "University of Waterloo (in-person)",
     type: "Competition",
+    posterImage: "/events/w26compposter.png",
     description: "Canada's first international university trading competition. Compete for $10,000+ in cash prizes. Open to university students in Canada & the U.S with travel reimbursements provided for accepted participants.",
     externalLink: { label: "Learn More & Apply", url: "/competition" }
   }
@@ -41,7 +42,6 @@ const archivedEvents: EventData[] = [
     location: "DC 1350",
     type: "Panel",
     description: "Ever wondered what quants actually do? Join us for a panel with Waterloo students who have worked at companies such as Jane Street, SIG, HRT, and Point72.",
-    posterImage: "/events/26panel.jpg",
     calendarlink: "https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=MmpjdW81a2tkYnV0Y3Q4bGQ5NjhncjA3N3AgMDBmYzFhYzhlODJkY2Q3YTIzMTg4ZWRkNDZjYjg0OTUwYTA5ZjlhYTE0MGJmODZmOWJjNzI1MmFlNGIwNjBlOUBn&tmsrc=00fc1ac8e82dcd7a23188edd46cb84950a09f9aa140bf86f9bc7252ae4b060e9%40group.calendar.google.com",
     tags: ["WINTER 26"],
     galleryImages: [
@@ -105,6 +105,7 @@ const archivedEvents: EventData[] = [
     type: "Competition",
     description: "Our inaugural trading competition — test your skills and compete for prizes!",
     tags: ["FALL 25"],
+    pdfUrl: "/events/f25tradingcomp/tradingcomppackage.pdf",
     galleryImages: [
       { type: "image", src: "/events/f25tradingcomp/comp1.jpg", alt: "" },
       { type: "image", src: "/events/f25tradingcomp/comp2.jpg", alt: "" },

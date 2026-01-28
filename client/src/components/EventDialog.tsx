@@ -28,6 +28,7 @@ export interface EventData {
   posterImage?: string;
   galleryImages?: GalleryItem[];
   slideDeckUrl?: string;
+  pdfUrl?: string;
   rankings?: RankingEntry[];
   calendarlink?: string;
   externalLink?: { label: string; url: string };
@@ -141,6 +142,20 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
               >
                 <ExternalLink className="w-4 h-4" />
                 View Slide Deck
+              </a>
+            </div>
+          )}
+
+          {event.pdfUrl && (
+            <div className="flex justify-center">
+              <a
+                href={event.pdfUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-medium bg-foreground text-background hover:bg-muted-foreground transition-colors px-5 py-3 rounded-sm"
+              >
+                <ExternalLink className="w-4 h-4" />
+                View Event Details
               </a>
             </div>
           )}
