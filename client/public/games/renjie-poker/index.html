@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renjie Poker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="title">Renjie Poker</h1>
+
+        <div class="menu">
+            <button id="play-btn" class="retro-btn">PLAY</button>
+            <button id="instructions-btn" class="retro-btn">INSTRUCTIONS</button>
+        </div>
+
+        <div id="instructions-panel" class="instructions hidden">
+            <p>
+                GOAL: Create a higher 5-card poker hand than the dealer. Ties go to the dealer!
+            </p>
+            <br>
+            <p>
+                GAMEPLAY: Select a subset of the deck, then draw a random card. If the card belongs in your subset, it's
+                added to your hand. Otherwise, it's added to the dealer's hand.
+            </p>
+            <br>
+            <p>
+                LOCK RULE: Once you select your subset, you cannot change it until you hit a card from that subset.
+            </p>
+            <br>
+            <p>
+                The game ends when you have 5 cards. The dealer then draws to 8 cards. Best 5-card hand wins!
+            </p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
