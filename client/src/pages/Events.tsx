@@ -16,6 +16,14 @@ import {
 
 const events: EventData[] = [
   {
+    title: "Game Theory",
+    date: "Feb 4, 2026",
+    location: "EIT 1015 (in-person)",
+    type: "Workshop",
+    posterImage: "/events/gametheory-poster.jpg",
+    description: "Learn about game theory and compete in live trading games with our execs to win prizes!",
+  },
+  {
     title: "2026 Waterloo Trading Competition",
     date: "March 22, 2026",
     location: "University of Waterloo (in-person)",
