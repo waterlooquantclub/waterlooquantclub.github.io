@@ -25,7 +25,7 @@ const Layout = ({ children, announcementBar }: LayoutProps) => {
         </div>
       )}
       <Navbar hasAnnouncementBar={!!announcementBar} />
-      <main className={`flex-1 relative z-10 ${announcementBar ? 'pt-[calc(4rem+52px)] md:pt-[calc(4rem+44px)]' : 'pt-16'}`}>{children}</main>
+      <main className={`flex-1 relative z-10 ${announcementBar ? 'pt-[calc(4rem+36px)] md:pt-[calc(4rem+44px)]' : 'pt-16'}`}>{children}</main>
       <Footer />
     </div>
   );
