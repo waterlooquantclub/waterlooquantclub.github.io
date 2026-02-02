@@ -333,11 +333,28 @@ const Events = () => {
     <Layout>
       <section className="min-h-[calc(100vh-4rem)] py-24 px-6">
         <div className="container mx-auto max-w-3xl">
-          <p className="text-muted-foreground text-sm tracking-widest uppercase mb-4">Events</p>
-          <h1 className="text-4xl md:text-6xl font-light tracking-tight mb-12">Upcoming Events</h1>
-          <div className="space-y-8 text-muted-foreground text-lg leading-relaxed">
-            <p className="mb-4">
-              Check into our events through the{" "}
+          <p className="text-muted-foreground text-sm tracking-widest uppercase mb-4">
+            Events
+          </p>
+          <h1 className="text-4xl md:text-6xl font-light tracking-tight mb-12">
+            Upcoming Events
+          </h1>
+          <div className="space-y-4 text-muted-foreground text-lg leading-relaxed mb-8">
+            <p>
+              We hold regular events on campus, including workshops, panels,
+              game nights, and competitions. We try to record all of our
+              educational events, so if you miss one, check out our{" "}
+              <a href="#archive" className="underline" onClick={() => {
+                setSelectedTags(["RECORDING"]);
+              }}>
+                Events Archive
+              </a>{" "}
+              below!
+            </p>
+            <p>
+              If you're looking to attend our application-based competitions,
+              one of the best ways to show interest is to attend and check-in to
+              our events! To do so, make sure you have signed up on our{" "}
               <a
                 href="https://me.waterlooquantclub.com"
                 target="_blank"
@@ -351,11 +368,16 @@ const Events = () => {
           </div>
 
           <a
-            href={"https://calendar.google.com/calendar/u/0?cid=MDBmYzFhYzhlODJkY2Q3YTIzMTg4ZWRkNDZjYjg0OTUwYTA5ZjlhYTE0MGJmODZmOWJjNzI1MmFlNGIwNjBlOUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"}
+            href={
+              "https://calendar.google.com/calendar/u/0?cid=MDBmYzFhYzhlODJkY2Q3YTIzMTg4ZWRkNDZjYjg0OTUwYTA5ZjlhYTE0MGJmODZmOWJjNzI1MmFlNGIwNjBlOUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"
+            }
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
-            style={{ background: 'linear-gradient(to top left, rgba(19, 44, 123, 0.35) 0%, rgba(0, 0, 0, 0.97) 100%)' }}
+            style={{
+              background:
+                "linear-gradient(to top left, rgba(19, 44, 123, 0.35) 0%, rgba(0, 0, 0, 0.97) 100%)",
+            }}
             className="text-muted-foreground mb-8 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-s hover:text-white border border-[#FAFAFA]/20 hover:border-[#FAFAFA]/50 cursor-pointer transition"
           >
             <CalendarPlus className="w-4 h-4" />
@@ -368,7 +390,10 @@ const Events = () => {
                 key={index}
                 onClick={() => handleEventClick(event)}
                 className="group p-6 border border-[#FAFAFA]/20 hover:border-[#FAFAFA]/50 transition-colors cursor-pointer"
-                style={{ background: 'linear-gradient(to top left, rgba(19, 44, 123, 0.35) 0%, rgba(0, 0, 0, 0.97) 100%)' }}
+                style={{
+                  background:
+                    "linear-gradient(to top left, rgba(19, 44, 123, 0.35) 0%, rgba(0, 0, 0, 0.97) 100%)",
+                }}
               >
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 mb-3">
                   <span className="text-xs tracking-widest uppercase text-[#FAFAFA] bg-[#132C7B]/60 px-2 py-1 w-fit">
@@ -385,12 +410,19 @@ const Events = () => {
                     </div>
                   </div>
                 </div>
-                <h3 className="text-xl font-medium text-foreground mb-2">{event.title}</h3>
-                <p className="text-muted-foreground text-sm">{event.description}</p>
+                <h3 className="text-xl font-medium text-foreground mb-2">
+                  {event.title}
+                </h3>
+                <p className="text-muted-foreground text-sm">
+                  {event.description}
+                </p>
               </div>
             ))}
           </div>
-          <h1 className="text-4xl md:text-6xl font-light tracking-tight mb-8 mt-16">
+          <h1
+            className="text-4xl md:text-6xl font-light tracking-tight mb-8 mt-16"
+            id="archive"
+          >
             Events Archive
           </h1>
 
@@ -493,7 +525,10 @@ const Events = () => {
                 key={index}
                 onClick={() => handleEventClick(event)}
                 className="group p-6 border border-[#FAFAFA]/20 hover:border-[#FAFAFA]/50 transition-colors cursor-pointer"
-                style={{ background: 'linear-gradient(to top left, rgba(19, 44, 123, 0.35) 0%, rgba(0, 0, 0, 0.97) 100%)' }}
+                style={{
+                  background:
+                    "linear-gradient(to top left, rgba(19, 44, 123, 0.35) 0%, rgba(0, 0, 0, 0.97) 100%)",
+                }}
               >
                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 mb-3">
                   <span className="text-xs tracking-widest uppercase text-[#FAFAFA] bg-[#132C7B]/60 px-2 py-1 w-fit">
@@ -510,15 +545,23 @@ const Events = () => {
                     </div>
                   </div>
                 </div>
-                <h3 className="text-xl font-medium text-foreground mb-2">{event.title}</h3>
-                <p className="text-muted-foreground text-sm">{event.description}</p>
+                <h3 className="text-xl font-medium text-foreground mb-2">
+                  {event.title}
+                </h3>
+                <p className="text-muted-foreground text-sm">
+                  {event.description}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <EventDialog event={selectedEvent} open={dialogOpen} onOpenChange={setDialogOpen} />
+      <EventDialog
+        event={selectedEvent}
+        open={dialogOpen}
+        onOpenChange={setDialogOpen}
+      />
     </Layout>
   );
 };
