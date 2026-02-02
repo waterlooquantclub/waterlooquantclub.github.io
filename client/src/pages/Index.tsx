@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowRight, ExternalLink, X } from "lucide-react";
 import WavyGrid from "@/components/WavyGrid";
 import SponsorSection from "@/components/SponsorSection";
 import { useState, useEffect } from "react";
@@ -12,6 +12,7 @@ const Index = () => {
     minutes: 0,
     seconds: 0,
   });
+  const [mobilePopupDismissed, setMobilePopupDismissed] = useState(false);
 
   useEffect(() => {
     const targetDate = new Date("2026-02-15T23:59:00").getTime();
@@ -36,19 +37,20 @@ const Index = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const announcementBar = (
-    <div className="bg-background border-b border-border py-2 md:py-3 px-3 md:px-6">
+  // Desktop announcement bar (hidden on mobile)
+  const desktopAnnouncementBar = (
+    <div className="hidden md:block bg-background border-b border-border py-3 px-6">
       <div className="container mx-auto max-w-7xl">
-        <div className="flex items-center justify-between gap-2 md:gap-4">
+        <div className="flex items-center justify-between gap-4">
           {/* Left: Announcement */}
-          <div className="flex items-center gap-1.5 md:gap-2 min-w-0">
-            <span className="hidden sm:inline text-xs uppercase tracking-wider text-muted-foreground whitespace-nowrap">Applications Open</span>
-            <span className="hidden sm:inline text-muted-foreground">—</span>
-            <span className="text-xs md:text-sm font-medium truncate">2026 Trading Competition</span>
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="text-xs uppercase tracking-wider text-muted-foreground whitespace-nowrap">Applications Open</span>
+            <span className="text-muted-foreground">—</span>
+            <span className="text-sm font-medium truncate">2026 Waterloo Trading Competition</span>
           </div>
 
           {/* Center: Countdown Timer */}
-          <div className="flex items-center gap-1 md:gap-1.5 shrink-0 text-muted-foreground">
+          <div className="flex items-center gap-3 shrink-0 text-muted-foreground">
             {[
               { value: timeLeft.days, label: "d" },
               { value: timeLeft.hours, label: "h" },
@@ -56,31 +58,30 @@ const Index = () => {
               { value: timeLeft.seconds, label: "s" },
             ].map((item, index) => (
               <div key={index} className="flex items-baseline">
-                <span className="text-sm md:text-base font-light tabular-nums tracking-tight">
+                <span className="text-base font-light tabular-nums tracking-tight">
                   {String(item.value).padStart(2, "0")}
                 </span>
-                <span className="text-[10px] md:text-xs opacity-70">
+                <span className="text-xs opacity-70">
                   {item.label}
                 </span>
-                {index < 3 && <span className="text-sm md:text-base font-light opacity-40 mx-0.5">:</span>}
               </div>
             ))}
           </div>
 
           {/* Right: Action Buttons */}
-          <div className="flex items-center gap-1.5 md:gap-2 shrink-0">
+          <div className="flex items-center gap-2 shrink-0">
             <a
               href="https://me.waterlooquantclub.com/forms/2026-waterloo-trading-competition-application/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1 md:gap-1.5 bg-foreground text-background px-2.5 md:px-4 py-1 md:py-1.5 text-[10px] md:text-xs font-medium tracking-wide hover:bg-foreground/90 transition-colors"
+              className="inline-flex items-center justify-center gap-1.5 bg-foreground text-background px-4 py-1.5 text-xs font-medium tracking-wide hover:bg-foreground/90 transition-colors"
             >
-              Apply
-              <ExternalLink className="w-2.5 h-2.5 md:w-3 md:h-3 hidden sm:block" />
+              Apply Now
+              <ExternalLink className="w-3 h-3" />
             </a>
             <Link
               to="/competition"
-              className="hidden sm:inline-flex items-center justify-center gap-1.5 border border-border px-4 py-1.5 text-xs font-medium tracking-wide text-foreground hover:bg-secondary transition-colors"
+              className="inline-flex items-center justify-center gap-1.5 border border-border px-4 py-1.5 text-xs font-medium tracking-wide text-foreground hover:bg-secondary transition-colors"
             >
               View Info
             </Link>
@@ -90,8 +91,67 @@ const Index = () => {
     </div>
   );
 
+  // Mobile bottom popup
+  const mobilePopup = !mobilePopupDismissed && (
+    <div className="md:hidden fixed bottom-4 left-4 right-4 z-[70] bg-background border border-border shadow-lg p-4 animate-fade-in">
+      <button
+        onClick={() => setMobilePopupDismissed(true)}
+        className="absolute top-2 right-2 p-1 text-muted-foreground hover:text-foreground transition-colors"
+        aria-label="Dismiss"
+      >
+        <X className="w-4 h-4" />
+      </button>
+      
+      <div className="flex flex-col gap-3">
+        {/* Title */}
+        <div>
+          <p className="text-[10px] uppercase tracking-wider text-muted-foreground mb-0.5">Applications Open</p>
+          <p className="text-sm font-medium">2026 Trading Competition</p>
+        </div>
+
+        {/* Countdown */}
+        <div className="flex items-center gap-3 text-muted-foreground">
+          {[
+            { value: timeLeft.days, label: "d" },
+            { value: timeLeft.hours, label: "h" },
+            { value: timeLeft.minutes, label: "m" },
+            { value: timeLeft.seconds, label: "s" },
+          ].map((item, index) => (
+            <div key={index} className="flex items-baseline">
+              <span className="text-lg font-light tabular-nums tracking-tight">
+                {String(item.value).padStart(2, "0")}
+              </span>
+              <span className="text-[10px] opacity-70">
+                {item.label}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* Buttons */}
+        <div className="flex items-center gap-2">
+          <a
+            href="https://me.waterlooquantclub.com/forms/2026-waterloo-trading-competition-application/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 inline-flex items-center justify-center gap-1.5 bg-foreground text-background px-4 py-2 text-xs font-medium tracking-wide hover:bg-foreground/90 transition-colors"
+          >
+            Apply Now
+            <ExternalLink className="w-3 h-3" />
+          </a>
+          <Link
+            to="/competition"
+            className="flex-1 inline-flex items-center justify-center gap-1.5 border border-border px-4 py-2 text-xs font-medium tracking-wide text-foreground hover:bg-secondary transition-colors"
+          >
+            View Info
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
-    <Layout announcementBar={announcementBar}>
+    <Layout announcementBar={desktopAnnouncementBar}>
 
       {/* Hero Section */}
       <section className="min-h-[calc(100vh-4rem)] flex flex-col justify-center px-6 relative overflow-hidden">
@@ -195,6 +255,9 @@ const Index = () => {
       <section className="pt-0 pb-24 px-6">
         <SponsorSection />
       </section>
+
+      {/* Mobile Bottom Popup */}
+      {mobilePopup}
     </Layout>
   );
 };
