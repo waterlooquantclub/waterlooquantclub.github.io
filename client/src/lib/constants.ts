@@ -49,6 +49,15 @@ export const TEAM: MemberInfo[] = [
     image: "john_huang.jpg",
   },
   {
+    name: "Kenneth Xiao",
+    role: "VP",
+    program: "Pure Mathematics",
+    bio: "I like tea, math, and games. Previously at Point72.",
+    image: "kenneth_xiao.jpg",
+    linkedin: "https://www.linkedin.com/in/kdxiao",
+    email: "kdxiao@uwaterloo.ca",
+  },
+  {
     name: "Patrick Huang",
     role: "Executive",
     program: "Software Engineering",
@@ -57,15 +66,6 @@ export const TEAM: MemberInfo[] = [
     linkedin: "https://www.linkedin.com/in/patrick-y-huang/",
     email: "patrick.huang@uwaterloo.ca",
     website: "https://www.patrickhuang.co/",
-  },
-  {
-    name: "Kenneth Xiao",
-    role: "Executive",
-    program: "Pure Mathematics",
-    bio: "I like tea, math, and games. Previously at Point72.",
-    image: "kenneth_xiao.jpg",
-    linkedin: "https://www.linkedin.com/in/kdxiao",
-    email: "kdxiao@uwaterloo.ca",
   },
   {
     name: "Aurora Shi",
