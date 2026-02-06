@@ -16,12 +16,11 @@ import {
 
 const events: EventData[] = [
   {
-    title: "Game Theory",
-    date: "Feb 4, 2026",
-    location: "EIT 1015 (in-person)",
+    title: "Prop Trades, Pickoffs, and Other Whacky Things People Will Trade",
+    date: "Feb 11th @ 6:00PM",
+    location: "DC 1350 (in-person)",
     type: "Workshop",
-    posterImage: "/events/gametheory-poster.jpg",
-    description: "Learn about game theory and compete in live trading games with our execs to win prizes!",
+    description: "Come learn about fun prop trades, side bets, and market oddities we’ve seen over time.",
   },
   {
     title: "2026 Waterloo Trading Competition",
@@ -35,6 +34,15 @@ const events: EventData[] = [
 ];
 
 const archivedEvents: EventData[] = [
+  {
+    title: "Game Theory",
+    date: "Feb 4, 2026",
+    location: "EIT 1015 (in-person)",
+    type: "Workshop",
+    posterImage: "/events/gametheory-poster.jpg",
+    tags: ["WINTER 26"],
+    description: "Learn about game theory and compete in live trading games with our execs to win prizes!",
+  },
   {
     title: "Statistical and Human Biases",
     date: "January 28, 2026 @ 6:00PM",
