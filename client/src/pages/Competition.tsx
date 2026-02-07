@@ -33,7 +33,7 @@ const detailCards = [
     title: "Location",
     value: "University of Waterloo (in-person)",
     description:
-      "Hosted in-person at the University of Waterloo campus. Travel reimbursements provided for off-campus participants.",
+      "Hosted in-person at the University of Waterloo campus. Travel subsidies provided for off-campus participants.",
     Icon: MapPin,
   },
   {
@@ -41,6 +41,41 @@ const detailCards = [
     value: "February 15, 2026 · 11:59 PM ET",
     description: "Apply through the application portal by February 15, 2026 at 11:59 PM ET.",
     Icon: Clock4,
+  },
+];
+
+const FAQ = [
+  {
+    q: "What is a trading competition? What is it that is being traded?",
+    a: "Think of it as a high-stakes strategy tournament. Rather than trading actual stocks, you will participate in a series of “trading games” that simulate the core logic of quantitative trading.\nFor example, imagine a game where every participant receives a card, and the “price” of a contract is the sum of all cards across all participants. You only know your own card, so you have to infer what others are holding based on how they are buying or selling. If you think the total sum is 50, but the market is trading at 40, you “buy.” However, you have to be strategic: if you buy too aggressively, others might realize you have a high card, and the price will move against you before you can finish your trade.",
+  },
+  {
+    q: "Do I need prior experience to participate?",
+    a: "Not at all! You especially don’t need a background in finance. Instead, a passion for problem-solving and a “trader’s mindset” (quick decision-making and risk assessment) are essential. A strong foundation in probability, mental math, and game theory will give you a significant edge.",
+  },
+  {
+    q: "Will this be online or in-person?",
+    a: "The competition is a strictly in-person event hosted on the University of Waterloo campus in Waterloo, Ontario, Canada. Some trading games will be played on a digital competition platform.",
+  },
+  {
+    q: "Are food, travel, and accommodation provided?",
+    a: "Food will be provided throughout the event, with options for most dietary restrictions. Travel and accommodation are subsidized up to a maximum amount based on where you are coming from. To receive reimbursement, you must participate in the full schedule and provide receipts post-event.",
+  },
+  {
+    q: "Are there teams, or is it individual?",
+    a: "Overall rankings will be individual. However, some games will be team-based, where you will be randomly assigned a team. For these games, the overall contribution to your ranking will be based on your team’s performance. Teams may change across games.",
+  },
+  {
+    q: "What is the format and duration of the event?",
+    a: "This is a full-day, high-intensity event. More information will be available soon, but you can expect 5–6 distinct trading games throughout the day.",
+  },
+  {
+    q: "What are the prizes? How are winners determined?",
+    a: "We offer a guaranteed prize pool of at least $10,000 CAD. Overall rankings will be computed by combining your performances across all trading games. There will also be prizes for winning each individual game. All prizes will be paid in cash, with the option to receive the equivalent in CAD or USD.",
+  },
+  {
+    q: "Who is eligible to participate? ",
+    a: "All current university students are allowed to participate. Although we welcome students from all countries, our travel subsidy policies are designed to accommodate those in Canada and the United States. Also, since the competition will be taking place in-person in Canada, prospective participants should be wary of Canadian entry and visa requirements.",
   },
 ];
 
@@ -130,7 +165,7 @@ const Competition = () => {
               The competition takes place on March 22, 2026, with optional pre-competition events on March 21. No prior trading experience is required. The event is accessible to students from a wide range of academic backgrounds, while still offering meaningful challenges for experienced participants.
             </p>
             <p>
-              Top performers will compete for a cash prize pool, and travel reimbursements will be provided for accepted participants traveling from outside the Waterloo region. Applications are open to all university students in Canada and the United States and close on February 15, 2026.
+              Top performers will compete for a cash prize pool, and travel subsidies will be provided for accepted participants traveling from outside the Waterloo region. Applications are open to all university students and close on February 15, 2026.
             </p>
           </div>
         </div>
@@ -145,7 +180,7 @@ const Competition = () => {
               <p className="text-sm text-muted-foreground mt-1">
                 For any issues, contact us by{" "}
                 <a href={SOCIAL_LINKS.EMAIL} className="underline">email</a> or on{" "}
-                <a href={SOCIAL_LINKS.DISCORD} className="underline">Discord</a>.
+                <a href={SOCIAL_LINKS.DISCORD} target="_blank" rel="noopener noreferrer" className="underline">Discord</a>.
               </p>
             </div>
             <a
@@ -173,6 +208,31 @@ const Competition = () => {
             <img src={PolymarketLogo} alt="Polymarket" className="h-12 md:h-16 w-auto drop-shadow" />
             {/* <img src={CitadelLogo} alt="Citadel Securities" className="h-12 w-auto drop-shadow" /> */}
           </div>
+        </div>
+      </section>
+
+      <section className="relative pb-24 px-6">
+        <div className="container mx-auto max-w-5xl space-y-10">
+          <h2 className="text-2xl font-semibold mb-6">FAQ</h2>
+          <div className="space-y-6">
+            {FAQ.map((faq, index) => (
+              <div key={index}>
+                <h3 className="text-foreground font-medium mb-1">{faq.q}</h3>
+                <p className="text-muted-foreground text-sm whitespace-pre-line">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+          <p>
+            Have more questions? Ask us on our{" "}
+            <a href={SOCIAL_LINKS.DISCORD} target="_blank" rel="noopener noreferrer" className="underline">
+              Discord
+            </a>{" "}
+            server, or reach out by{" "}
+            <a href={SOCIAL_LINKS.EMAIL} className="underline">
+              email
+            </a>
+            .
+          </p>
         </div>
       </section>
     </Layout>
