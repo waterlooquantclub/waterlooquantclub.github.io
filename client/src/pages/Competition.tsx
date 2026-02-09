@@ -1,8 +1,6 @@
 import Layout from "@/components/Layout";
-import JaneStreetLogo from "@/assets/jane-street-logo.png";
-import HrtLogo from "@/assets/hrt-logo.png";
-import CitadelLogo from "@/assets/citadel-logo.png";
-import PolymarketLogo from "@/assets/polymarket-logo-white.png";
+import SponsorSection from "@/components/SponsorSection";
+import BayerTriangles from "@/components/BayerTriangles";
 import {
   Calendar,
   MapPin,
@@ -19,27 +17,27 @@ const applicationLink = "https://me.waterlooquantclub.com/forms/2026-waterloo-tr
 const detailCards = [
   {
     title: "Prize Pool",
-    value: "$10,000+ in cash prizes",
-    description: "Cash prizes for top-performing teams.",
+    value: "$10,000+ in prizes",
+    description: "Cash prizes for top-performing teams, per game and overall.",
     Icon: Trophy,
   },
   {
     title: "Eligibility",
-    value: "Canada & U.S. university students",
-    description: "Open to university students in Canada & the U.S.",
+    value: "Undergraduate students",
+    description: "Open to undergraduate students from any country.",
     Icon: GraduationCap,
   },
   {
     title: "Location",
     value: "University of Waterloo (in-person)",
     description:
-      "Hosted in-person at the University of Waterloo campus. Travel subsidies provided for off-campus participants.",
+      "Hosted in Waterloo. Travel and acommodation subsidies provided for off-campus participants.",
     Icon: MapPin,
   },
   {
     title: "Apply By",
     value: "February 15, 2026 · 11:59 PM ET",
-    description: "Apply through the application portal by February 15, 2026 at 11:59 PM ET.",
+    description: "Apply by February 15, 2026 at 11:59 PM ET.",
     Icon: Clock4,
   },
 ];
@@ -47,11 +45,11 @@ const detailCards = [
 const FAQ = [
   {
     q: "What is a trading competition? What is it that is being traded?",
-    a: "Think of it as a high-stakes strategy tournament. Rather than trading actual stocks, you will participate in a series of “trading games” that simulate the core logic of quantitative trading.\nFor example, imagine a game where every participant receives a card, and the “price” of a contract is the sum of all cards across all participants. You only know your own card, so you have to infer what others are holding based on how they are buying or selling. If you think the total sum is 50, but the market is trading at 40, you “buy.” However, you have to be strategic: if you buy too aggressively, others might realize you have a high card, and the price will move against you before you can finish your trade.",
+    a: "Think of it as a high-stakes strategy tournament. Rather than trading actual stocks, you will participate in a series of \u201Ctrading games\u201D that simulate the core logic of quantitative trading.\nFor example, imagine a game where every participant receives a card, and the \u201Cprice\u201D of a contract is the sum of all cards across all participants. You only know your own card, so you have to infer what others are holding based on how they are buying or selling. If you think the total sum is 50, but the market is trading at 40, you \u201Cbuy.\u201D However, you have to be strategic: if you buy too aggressively, others might realize you have a high card, and the price will move against you before you can finish your trade.",
   },
   {
     q: "Do I need prior experience to participate?",
-    a: "Not at all! You especially don’t need a background in finance. Instead, a passion for problem-solving and a “trader’s mindset” (quick decision-making and risk assessment) are essential. A strong foundation in probability, mental math, and game theory will give you a significant edge.",
+    a: "Not at all! You especially don\u2019t need a background in finance. Instead, a passion for problem-solving and a \u201Ctrader\u2019s mindset\u201D (quick decision-making and risk assessment) are essential. A strong foundation in probability, mental math, and game theory will give you a significant edge.",
   },
   {
     q: "Will this be online or in-person?",
@@ -63,7 +61,7 @@ const FAQ = [
   },
   {
     q: "Are there teams, or is it individual?",
-    a: "Overall rankings will be individual. However, some games will be team-based, where you will be randomly assigned a team. For these games, the overall contribution to your ranking will be based on your team’s performance. Teams may change across games.",
+    a: "Overall rankings will be individual. However, some games will be team-based, where you will be randomly assigned a team. For these games, the overall contribution to your ranking will be based on your team's performance. Teams may change across games.",
   },
   {
     q: "What is the format and duration of the event?",
@@ -82,82 +80,99 @@ const FAQ = [
 const Competition = () => {
   return (
     <Layout>
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 opacity-80" aria-hidden>
-          <div className="absolute inset-0 bg-gradient-to-b from-[#05070c] via-[#0b1224] to-[#04060b]" />
-          <div className="absolute -left-40 top-10 w-[55rem] h-[55rem] rounded-full bg-[radial-gradient(circle_at_center,_rgba(26,64,170,0.22)_0%,_rgba(5,7,12,0)_65%)] blur-2xl" />
-          <div className="absolute right-[-18rem] top-1/4 w-[45rem] h-[45rem] rounded-full bg-[radial-gradient(circle_at_center,_rgba(9,126,227,0.18)_0%,_rgba(5,7,12,0)_70%)] blur-2xl" />
+      {/* Hero */}
+      <section className="min-h-[calc(100vh-4rem)] flex flex-col justify-center px-6 relative overflow-hidden">
+        {/* Bayer Dither Triangle Background */}
+        <div className="absolute inset-0 animate-fade-in">
+          <BayerTriangles className="w-full h-full" />
         </div>
 
-        <div className="container mx-auto px-6 pt-24 pb-16 relative z-10">
-          <div className="max-w-5xl mx-auto space-y-6">
-            <div className="space-y-2">
-              <p className="text-[11px] md:text-xs uppercase tracking-[0.35em] text-muted-foreground">Competition</p>
-              <h1 className="text-4xl md:text-6xl font-light leading-tight">
-                2026 Waterloo
-                <br />
-                Trading Competition
-              </h1>
-            </div>
+        <div className="container mx-auto max-w-6xl relative z-10 pointer-events-none">
+          {/* Circular gradient backdrop for readability */}
+          <div
+            className="absolute left-1/4 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[150vw] h-[150vh] min-w-[1200px] min-h-[1200px] pointer-events-none"
+            style={{
+              background: 'radial-gradient(ellipse, rgba(3,8,20,1) 0%, rgba(3,8,20,1) 15%, rgba(3,8,20,0.7) 30%, rgba(3,8,20,0.4) 45%, rgba(3,8,20,0.15) 60%, rgba(3,8,20,0.05) 75%, transparent 100%)'
+            }}
+          />
 
-            <p className="text-muted-foreground text-lg max-w-3xl">
-              Canada’s first international university trading competition.
+          <div className="max-w-2xl relative">
+            <p className="text-muted-foreground text-sm tracking-widest uppercase mb-4 animate-fade-in">
+              Competition
+            </p>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-light tracking-tight mb-6 animate-fade-in-delay">
+              2026 Waterloo
+              <br />
+              Trading Competition
+            </h1>
+            <p className="text-muted-foreground text-lg md:text-xl max-w-xl mb-6 animate-fade-in-delay-2">
+              Canada's first international university trading competition.
             </p>
 
-            <div className="flex flex-wrap items-center gap-4 text-muted-foreground text-sm md:text-base">
-              <span className="inline-flex items-center gap-2 bg-white/5 px-3 py-2 rounded-full border border-white/10">
+            <div className="flex flex-wrap items-center gap-3 text-muted-foreground text-sm md:text-base mb-10 animate-fade-in-delay-2">
+              <span
+                className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm border border-[#FAFAFA]/20 hover:border-[#FAFAFA]/50 transition-colors"
+                style={{
+                  background:
+                    "linear-gradient(to top left, rgba(19, 44, 123, 0.35) 0%, rgba(0, 0, 0, 0.97) 100%)",
+                }}
+              >
                 <Calendar className="w-4 h-4" />
                 March 22, 2026
               </span>
-              <span className="inline-flex items-center gap-2 bg-white/5 px-3 py-2 rounded-full border border-white/10">
+              <span
+                className="inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm border border-[#FAFAFA]/20 hover:border-[#FAFAFA]/50 transition-colors"
+                style={{
+                  background:
+                    "linear-gradient(to top left, rgba(19, 44, 123, 0.35) 0%, rgba(0, 0, 0, 0.97) 100%)",
+                }}
+              >
                 <Plane className="w-4 h-4" />
                 University of Waterloo (in-person)
               </span>
             </div>
 
-            <div className="pt-2 flex flex-wrap gap-3">
+            <div className="flex gap-4 animate-fade-in-delay-2">
               <a
-                className="inline-flex items-center justify-center gap-2 bg-white text-black px-5 py-3 text-sm font-medium tracking-wide hover:bg-white/90 transition-colors"
+                className="pointer-events-auto inline-flex items-center gap-2 bg-foreground text-background px-6 py-3 text-sm font-medium tracking-wide hover:bg-foreground/90 transition-colors"
                 href={applicationLink}
                 target="_blank"
                 rel="noreferrer"
               >
-                Apply via Application Portal
+                Apply Now
                 <ExternalLink className="w-4 h-4" />
               </a>
+              <button
+                onClick={() =>
+                  document
+                    .getElementById("competition-details")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="pointer-events-auto inline-flex items-center gap-2 border border-border px-6 py-3 text-sm font-medium tracking-wide text-foreground hover:bg-secondary transition-colors"
+              >
+                Learn More
+              </button>
+              <button
+                onClick={() =>
+                  document
+                    .getElementById("faq")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="pointer-events-auto inline-flex items-center gap-2 border border-border px-6 py-3 text-sm font-medium tracking-wide text-foreground hover:bg-secondary transition-colors"
+              >
+                FAQ
+              </button>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="relative py-16 px-6">
-        <div className="container mx-auto max-w-5xl relative z-10">
-          <div className="grid md:grid-cols-2 gap-6">
-            {detailCards.map(({ title, value, description, Icon }) => (
-              <div
-                key={title}
-                className="bg-gradient-to-br from-white/5 via-white/10 to-white/5 border border-white/10 rounded-xl p-6 shadow-[0_0_40px_rgba(9,45,133,0.35)] hover:-translate-y-1 transition-transform"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-lg bg-white/5 border border-white/10 text-white">
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-sm uppercase tracking-wide text-muted-foreground">{title}</p>
-                    <h3 className="text-xl font-semibold text-white">{value}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* About the Competition */}
+      <section id="competition-details" className="py-24 px-6 border-t border-border">
+        <div className="container mx-auto max-w-3xl">
+          <h2 className="text-2xl font-semibold mb-8">About the Competition</h2>
 
-      <section className="relative py-12 px-6">
-        <div className="container mx-auto max-w-4xl space-y-6 relative z-10">
-          <h2 className="text-2xl md:text-3xl font-semibold">About the Competition</h2>
-          <div className="space-y-4 text-muted-foreground leading-relaxed text-base md:text-lg">
+          <div className="space-y-4 text-muted-foreground leading-relaxed text-base md:text-lg mb-10">
             <p>
               The 2026 Waterloo Trading Competition brings together university students from across Canada and the United States to compete in a fast-paced, simulated trading environment. Hosted by the Waterloo Quant Club, the competition will be held in-person on the University of Waterloo campus and is designed to test quantitative intuition, risk management, and real-time decision-making.
             </p>
@@ -168,15 +183,41 @@ const Competition = () => {
               Top performers will compete for a cash prize pool, and travel subsidies will be provided for accepted participants traveling from outside the Waterloo region. Applications are open to all university students and close on February 15, 2026.
             </p>
           </div>
-        </div>
-      </section>
 
-      <section className="relative px-6 pb-16">
-        <div className="container mx-auto max-w-5xl">
-          <div className="border border-white/10 bg-white/5 rounded-xl px-6 md:px-10 py-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-[0_0_30px_rgba(7,103,203,0.35)]">
+          <div className="grid md:grid-cols-2 gap-6 mb-10">
+            {detailCards.map(({ title, value, description, Icon }) => (
+              <div
+                key={title}
+                className="group p-6 border border-[#FAFAFA]/20 hover:border-[#FAFAFA]/50 transition-colors"
+                style={{
+                  background:
+                    "linear-gradient(to top left, rgba(19, 44, 123, 0.35) 0%, rgba(0, 0, 0, 0.97) 100%)",
+                }}
+              >
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-[#132C7B]/60 text-foreground">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-sm uppercase tracking-wide text-muted-foreground">{title}</p>
+                    <h3 className="text-xl font-semibold text-foreground">{value}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div
+            className="border border-[#FAFAFA]/20 p-6 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4"
+            style={{
+              background:
+                "linear-gradient(to top left, rgba(19, 44, 123, 0.35) 0%, rgba(0, 0, 0, 0.97) 100%)",
+            }}
+          >
             <div>
               <p className="text-sm text-muted-foreground uppercase tracking-wide">Applications</p>
-              <h3 className="text-xl md:text-2xl font-semibold text-white">Apply now through the Application Portal</h3>
+              <h3 className="text-xl md:text-2xl font-semibold text-foreground">Apply now through the Application Portal</h3>
               <p className="text-sm text-muted-foreground mt-1">
                 For any issues, contact us by{" "}
                 <a href={SOCIAL_LINKS.EMAIL} className="underline">email</a> or on{" "}
@@ -184,7 +225,7 @@ const Competition = () => {
               </p>
             </div>
             <a
-              className="inline-flex items-center justify-center gap-2 bg-white text-black px-4 py-2 text-sm font-medium tracking-wide hover:bg-white/90 transition-colors"
+              className="inline-flex items-center gap-2 bg-foreground text-background px-6 py-3 text-sm font-medium tracking-wide hover:bg-foreground/90 transition-colors shrink-0"
               href={applicationLink}
               target="_blank"
               rel="noreferrer"
@@ -196,24 +237,18 @@ const Competition = () => {
         </div>
       </section>
 
-      <section className="relative pb-24 px-6">
-        <div className="container mx-auto max-w-5xl space-y-10">
-          <p className="text-muted-foreground text-xl md:text-2xl font-semibold text-center">Thank you to our sponsors for making this competition possible.</p>
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 text-center">
-            <img src={HrtLogo} alt="Hudson River Trading" className="h-36 md:h-44 w-auto drop-shadow" />
-            <img src={JaneStreetLogo} alt="Jane Street" className="h-36 md:h-44 w-auto drop-shadow" />
-          </div>
-          <div className="flex flex-col items-center justify-center gap-6 md:gap-8 text-center">
-            <img src={CitadelLogo} alt="Citadel" className="h-12 md:h-16 w-auto drop-shadow" />
-            <img src={PolymarketLogo} alt="Polymarket" className="h-12 md:h-16 w-auto drop-shadow" />
-            {/* <img src={CitadelLogo} alt="Citadel Securities" className="h-12 w-auto drop-shadow" /> */}
-          </div>
+      {/* Sponsors */}
+      <section className="pt-16 pb-24 px-6 border-t border-border">
+        <div className="container mx-auto max-w-3xl">
+          <h2 className="text-2xl font-semibold mb-8">Thanks to our sponsors!</h2>
         </div>
+        <SponsorSection hideTitle />
       </section>
 
-      <section className="relative pb-24 px-6">
-        <div className="container mx-auto max-w-5xl space-y-10">
-          <h2 className="text-2xl font-semibold mb-6">FAQ</h2>
+      {/* FAQ */}
+      <section id="faq" className="pb-24 px-6 border-t border-border pt-16">
+        <div className="container mx-auto max-w-3xl">
+          <h2 className="text-2xl font-semibold mb-8">FAQ</h2>
           <div className="space-y-6">
             {FAQ.map((faq, index) => (
               <div key={index}>
@@ -222,7 +257,7 @@ const Competition = () => {
               </div>
             ))}
           </div>
-          <p>
+          <p className="mt-10">
             Have more questions? Ask us on our{" "}
             <a href={SOCIAL_LINKS.DISCORD} target="_blank" rel="noopener noreferrer" className="underline">
               Discord

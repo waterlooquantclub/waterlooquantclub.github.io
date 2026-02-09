@@ -2,10 +2,10 @@ import JaneStreetLogo from "@/assets/jane-street-logo.png";
 import HrtLogo from "@/assets/hrt-logo.png";
 import CitadelLogo from "@/assets/citadel-logo.png";
 import PolymarketLogo from "@/assets/polymarket-logo-white.png";
-const SponsorSection = ({ withCta, hideTitle }: { withCta?: boolean; hideTitle?: boolean }) => {
+const SponsorSection = ({ withCta, hideTitle, title }: { withCta?: boolean; hideTitle?: boolean; title?: string }) => {
   return (
     <div className="container mx-auto max-w-3xl">
-      {!hideTitle && <h2 className="text-3xl md:text-4xl font-light mb-12">Our Partners</h2>}
+      {!hideTitle && <h2 className="text-3xl md:text-4xl font-light mb-12">{title || "Our Partners"}</h2>}
 
       {/* Diamond card */}
       <div className="border p-6 md:p-8 bg-black/70 border-[#0DBAFF]/40">
