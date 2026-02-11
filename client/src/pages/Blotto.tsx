@@ -29,7 +29,8 @@ const Blotto = () => {
               </div>
 
               <p className="text-muted-foreground text-lg max-w-3xl">
-                Allocate your troops to claim territories, win points, climb the leaderboard, and win prizes!
+                Allocate your troops to claim territories, win points, climb the
+                leaderboard, and win prizes!
               </p>
 
               {/* COMING SOON CTA */}
@@ -55,11 +56,14 @@ const Blotto = () => {
 
             <div className="space-y-4 text-muted-foreground leading-relaxed text-base md:text-lg">
               <p>
-                In a game of colonel blotto, two players simultaneously distribute at most 100 soldiers across 10 towers.
-                Upon reveal, each tower is claimed by the player who assigned more soldiers, who is rewarded
-                points equivalent to the tower number (e.g. claiming tower 6 will earn you 6 points, and 
-                claiming both towers 3 and 6 will earn you 9 points). When both players tie at a tower, 
-                nobody is rewarded. In each tournament, a special scenario may take place to affect how points are rewarded.
+                In a game of Colonel Blotto, two players simultaneously
+                distribute at most 100 soldiers across 10 towers. Upon reveal,
+                each tower is claimed by the player who assigned more soldiers,
+                who is awarded points equivalent to the tower number (e.g.
+                claiming tower 6 will earn you 6 points, and claiming both
+                towers 3 and 6 will earn you 9 points). When both players tie at
+                a tower, nobody is awarded. In each tournament, a special
+                scenario may take place to affect how points are awarded.
               </p>
             </div>
 
@@ -72,11 +76,14 @@ const Blotto = () => {
 
             <div className="space-y-4 text-muted-foreground leading-relaxed text-base md:text-lg">
               <p>
-                Tournaments will take place twice a week. For each tournament, you will submit a strategy 
-                to allocate your soldiers, which will separately run against all other players who submitted. 
-                Your score for the tournament is calculated by the average score from all individual games. 
-                If you rank the i-th place among n players who submitted for the current tournament, a score of 
-                sqrt(n/i) is added to your accumulative total for the term (used for leaderboard ranking).
+                Tournaments will take place twice a week. For each tournament,
+                you will submit a strategy to allocate your soldiers, which will
+                separately run against all other players who submitted. Your
+                score for the tournament is calculated by the average score from
+                all individual games. If you rank the i-th place among n players
+                who submitted for the current tournament, a score of sqrt(n/i)
+                is added to your cumulative total for the term (used for
+                leaderboard ranking).
               </p>
             </div>
           </div>

@@ -10,7 +10,7 @@
     <script>
       // Only skip redirect for actual static game files (paths like /games/renjie-poker/...)
       // The /games route itself (React page) should still use SPA redirect
-      const isStaticGameFile = location.pathname.match(/^\/games\/[^\/]+\/.*/);
+      const isStaticGameFile = location.pathname.startsWith("/games/renjie-poker");
       if (!isStaticGameFile) {
         // Store the path for redirect
         sessionStorage.setItem(
