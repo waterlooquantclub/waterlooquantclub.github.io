@@ -13,6 +13,7 @@ import Team from "./pages/Team";
 import Sponsors from "./pages/Sponsors";
 import Join from "./pages/Join";
 import NotFound from "./pages/NotFound";
+import Blotto from "./pages/Blotto";
 
 const queryClient = new QueryClient();
 
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/team" element={<Team />} />
           <Route path="/sponsors" element={<Sponsors />} />
           <Route path="/join" element={<Join />} />
+          <Route path="/games/blotto" element={<Blotto />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

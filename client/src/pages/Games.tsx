@@ -20,13 +20,16 @@ const Games = () => {
               url="/games/renjie-poker/index.html"
             />
           </div>
+          <div className="mt-6 space-y-6">
+            <GameCard
+              title="Weekly Blotto Tournament"
+              description="A multi-player mind game. Allocate your troops strategically to claim territories and win points!"
+              url="/games/blotto"
+            />
+          </div>
 
           <div className="mt-16 pt-16 border-t border-border">
             <h2 className="text-2xl font-semibold mb-8">Puzzle of the Week</h2>
-            <p className="text-muted-foreground">Coming soon...</p>
-          </div>
-          <div className="mt-16 pt-16 border-t border-border">
-            <h2 className="text-2xl font-semibold mb-8">Weekly Blotto Tournament</h2>
             <p className="text-muted-foreground">Coming soon...</p>
           </div>
         </div>
