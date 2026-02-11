@@ -76,14 +76,15 @@ const Blotto = () => {
 
             <div className="space-y-4 text-muted-foreground leading-relaxed text-base md:text-lg">
               <p>
-                Tournaments will take place twice a week. For each tournament,
-                you will submit a strategy to allocate your soldiers, which will
-                separately run against all other players who submitted. Your
+                Two tournaments will take place per week, each with a special
+                scenario. For each tournament, you will submit a strategy to
+                allocate your soldiers, which will separately run against all
+                other players who submitted to the current tournament. Your
                 score for the tournament is calculated by the average score from
                 all individual games. If you rank the i-th place among n players
-                who submitted for the current tournament, a score of sqrt(n/i)
-                is added to your cumulative total for the term (used for
-                leaderboard ranking).
+                who submitted for the tournament, a score of sqrt(n/i) is added
+                to your cumulative total for the term (used for leaderboard
+                ranking).
               </p>
             </div>
           </div>
