@@ -62,8 +62,8 @@ const Blotto = () => {
                 who is awarded points equivalent to the tower number (e.g.
                 claiming tower 6 will earn you 6 points, and claiming both
                 towers 3 and 6 will earn you 9 points). When both players tie at
-                a tower, nobody is awarded. In each tournament, a special
-                scenario may take place to affect how points are awarded.
+                a tower, nobody is awarded. Special scenario may take place to 
+                affect how points are awarded.
               </p>
             </div>
 
@@ -76,16 +76,14 @@ const Blotto = () => {
 
             <div className="space-y-4 text-muted-foreground leading-relaxed text-base md:text-lg">
               <p>
-                Two tournaments (each with a special scenario) will take place 
-                each week. Submissions open from Monday to Sunday midnight.
-                For each tournament, you will submit a strategy to
-                allocate your soldiers, which will separately run against all
-                other players who submitted to the current tournament. Your
-                score for the tournament is calculated by the average score from
-                all individual games. If you rank the i-th place among n players
-                who submitted for the tournament, a score of sqrt(n/i) is added
-                to your cumulative total for the term (used for leaderboard
-                ranking).
+                1-3 scenarios will take place each week, where submissions open from 
+                Monday to Sunday midnight. For each scenario, you will submit a strategy 
+                to allocate your soldiers, which will separately run against all other 
+                players who submitted to the current scenario. Your score for the scenario 
+                is calculated by the average score from all individual 1v1 games. If you 
+                rank the i-th place among n players who submitted for the tournament, a 
+                score of sqrt(n/i) is added to your cumulative total for the term (used 
+                for leaderboard ranking).
               </p>
             </div>
           </div>
