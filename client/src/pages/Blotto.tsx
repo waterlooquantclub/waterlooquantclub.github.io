@@ -36,7 +36,7 @@ const Blotto = () => {
               {/* COMING SOON CTA */}
               <div className="pt-2 flex flex-wrap gap-3">
                 <div className="inline-flex items-center justify-center gap-2 bg-white/10 text-white/60 px-5 py-3 text-sm font-medium tracking-wide cursor-not-allowed">
-                  Coming Soon on Friday
+                  Coming Soon on Monday, Feb 16th
                   <Trophy className="w-4 h-4 opacity-60" />
                 </div>
               </div>
@@ -76,8 +76,9 @@ const Blotto = () => {
 
             <div className="space-y-4 text-muted-foreground leading-relaxed text-base md:text-lg">
               <p>
-                Two tournaments will take place per week, each with a special
-                scenario. For each tournament, you will submit a strategy to
+                Two tournaments (each with a special scenario) will take place 
+                each week. Submissions open from Monday to Sunday midnight.
+                For each tournament, you will submit a strategy to
                 allocate your soldiers, which will separately run against all
                 other players who submitted to the current tournament. Your
                 score for the tournament is calculated by the average score from
