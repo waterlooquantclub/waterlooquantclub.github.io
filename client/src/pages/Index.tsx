@@ -151,7 +151,7 @@ const Index = () => {
   );
 
   return (
-    <Layout announcementBar={desktopAnnouncementBar}>
+    <Layout announcementBar={void desktopAnnouncementBar}>
 
       {/* Hero Section */}
       <section className="min-h-[calc(100vh-4rem)] flex flex-col justify-center px-6 relative overflow-hidden">
@@ -257,7 +257,7 @@ const Index = () => {
       </section>
 
       {/* Mobile Bottom Popup */}
-      {mobilePopup}
+      {void mobilePopup}
     </Layout>
   );
 };
