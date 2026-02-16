@@ -4,15 +4,12 @@ import BayerTriangles from "@/components/BayerTriangles";
 import {
   Calendar,
   MapPin,
-  ExternalLink,
   Trophy,
   GraduationCap,
   Plane,
   Clock4,
 } from "lucide-react";
 import { SOCIAL_LINKS } from "@/lib/constants";
-
-const applicationLink = "https://me.waterlooquantclub.com/forms/2026-waterloo-trading-competition-application/";
 
 const detailCards = [
   {
@@ -35,9 +32,9 @@ const detailCards = [
     Icon: MapPin,
   },
   {
-    title: "Apply By",
-    value: "February 15, 2026 · 11:59 PM ET",
-    description: "Apply by February 15, 2026 at 11:59 PM ET.",
+    title: "Applications",
+    value: "Closed",
+    description: "Applications are now closed. Stay tuned for updates!",
     Icon: Clock4,
   },
 ];
@@ -133,15 +130,11 @@ const Competition = () => {
             </div>
 
             <div className="flex gap-4 animate-fade-in-delay-2">
-              <a
-                className="pointer-events-auto inline-flex items-center gap-2 bg-foreground text-background px-6 py-3 text-sm font-medium tracking-wide hover:bg-foreground/90 transition-colors"
-                href={applicationLink}
-                target="_blank"
-                rel="noreferrer"
+              <span
+                className="pointer-events-auto inline-flex items-center gap-2 bg-muted text-muted-foreground px-6 py-3 text-sm font-medium tracking-wide cursor-not-allowed"
               >
-                Apply Now
-                <ExternalLink className="w-4 h-4" />
-              </a>
+                Applications Closed
+              </span>
               <button
                 onClick={() =>
                   document
@@ -180,7 +173,7 @@ const Competition = () => {
               The competition takes place on March 22, 2026, with optional pre-competition events on March 21. No prior trading experience is required. The event is accessible to students from a wide range of academic backgrounds, while still offering meaningful challenges for experienced participants.
             </p>
             <p>
-              Top performers will compete for a cash prize pool, and travel subsidies will be provided for accepted participants traveling from outside the Waterloo region. Applications are open to all university students and close on February 15, 2026.
+              Top performers will compete for a cash prize pool, and travel subsidies will be provided for accepted participants traveling from outside the Waterloo region. Applications are now closed — stay tuned for updates!
             </p>
           </div>
 
@@ -217,22 +210,13 @@ const Competition = () => {
           >
             <div>
               <p className="text-sm text-muted-foreground uppercase tracking-wide">Applications</p>
-              <h3 className="text-xl md:text-2xl font-semibold text-foreground">Apply now through the Application Portal</h3>
+              <h3 className="text-xl md:text-2xl font-semibold text-foreground">Applications are now closed. Stay tuned!</h3>
               <p className="text-sm text-muted-foreground mt-1">
-                For any issues, contact us by{" "}
+                For any questions, contact us by{" "}
                 <a href={SOCIAL_LINKS.EMAIL} className="underline">email</a> or on{" "}
                 <a href={SOCIAL_LINKS.DISCORD} target="_blank" rel="noopener noreferrer" className="underline">Discord</a>.
               </p>
             </div>
-            <a
-              className="inline-flex items-center gap-2 bg-foreground text-background px-6 py-3 text-sm font-medium tracking-wide hover:bg-foreground/90 transition-colors shrink-0"
-              href={applicationLink}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Apply now
-              <ExternalLink className="w-4 h-4" />
-            </a>
           </div>
         </div>
       </section>
