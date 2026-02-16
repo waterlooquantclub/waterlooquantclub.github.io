@@ -33,12 +33,15 @@ const Blotto = () => {
                 leaderboard, and win prizes!
               </p>
 
-              {/* COMING SOON CTA */}
+              {/* SUBMIT CTA */}
               <div className="pt-2 flex flex-wrap gap-3">
-                <div className="inline-flex items-center justify-center gap-2 bg-white/10 text-white/60 px-5 py-3 text-sm font-medium tracking-wide cursor-not-allowed">
-                  Coming Soon on Monday, Feb 16th
-                  <Trophy className="w-4 h-4 opacity-60" />
-                </div>
+                <a
+                  href="https://me.waterlooquantclub.com/forms/" // placeholder URL
+                  className="inline-flex items-center justify-center gap-2 rounded-md bg-white/15 hover:bg-white/20 text-white px-5 py-3 text-sm font-medium tracking-wide border border-white/15 transition"
+                >
+                  Submit Your Strategy
+                  <Trophy className="w-4 h-4 opacity-80" />
+                </a>
               </div>
             </div>
           </div>
@@ -62,7 +65,7 @@ const Blotto = () => {
                 who is awarded points equivalent to the tower number (e.g.
                 claiming tower 6 will earn you 6 points, and claiming both
                 towers 3 and 6 will earn you 9 points). When both players tie at
-                a tower, nobody is awarded. Special scenario may take place to 
+                a tower, nobody is awarded. Special scenario may take place to
                 affect how points are awarded.
               </p>
             </div>
@@ -76,14 +79,15 @@ const Blotto = () => {
 
             <div className="space-y-4 text-muted-foreground leading-relaxed text-base md:text-lg">
               <p>
-                1-3 scenarios will take place each week, where submissions open from 
-                Monday to Sunday midnight. For each scenario, you will submit a strategy 
-                to allocate your soldiers, which will separately run against all other 
-                players who submitted to the current scenario. Your score for the scenario 
-                is calculated by the average score from all individual 1v1 games. If you 
-                rank the i-th place among n players who submitted for the tournament, a 
-                score of sqrt(n/i) is added to your cumulative total for the term (used 
-                for leaderboard ranking).
+                1-3 scenarios will take place each week, where submissions open
+                from Monday to Sunday midnight. For each scenario, you will
+                submit a strategy to allocate your soldiers, which will
+                separately run against all other players who submitted to the
+                current scenario. Your score for the scenario is calculated by
+                the average score from all individual 1v1 games. If you rank the
+                i-th place among n players who submitted for the tournament, a
+                score of sqrt(n/i) is added to your cumulative total for the
+                term (used for leaderboard ranking).
               </p>
             </div>
           </div>
