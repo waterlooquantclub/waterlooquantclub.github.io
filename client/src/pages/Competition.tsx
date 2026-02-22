@@ -11,6 +11,8 @@ import {
 } from "lucide-react";
 import { SOCIAL_LINKS } from "@/lib/constants";
 
+const PORTAL_URL = "https://me.waterlooquantclub.com";
+
 const detailCards = [
   {
     title: "Prize Pool",
@@ -28,13 +30,14 @@ const detailCards = [
     title: "Location",
     value: "University of Waterloo (in-person)",
     description:
-      "Hosted in Waterloo. Travel and acommodation subsidies provided for off-campus participants.",
+      "Hosted in Waterloo. Travel and accommodation subsidies provided for off-campus participants.",
     Icon: MapPin,
   },
   {
     title: "Applications",
-    value: "Closed",
-    description: "Applications are now closed. Stay tuned for updates!",
+    value: "Decisions released",
+    description:
+      "Acceptance decisions have been sent by email and are also visible on the portal. Accepted participants must RSVP on the portal to confirm their spot.",
     Icon: Clock4,
   },
 ];
@@ -133,8 +136,16 @@ const Competition = () => {
               <span
                 className="pointer-events-auto inline-flex items-center gap-2 bg-muted text-muted-foreground px-6 py-3 text-sm font-medium tracking-wide cursor-not-allowed"
               >
-                Applications Closed
+                Decisions Released
               </span>
+              <a
+                href={PORTAL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="pointer-events-auto inline-flex items-center gap-2 border border-border px-6 py-3 text-sm font-medium tracking-wide text-foreground hover:bg-secondary transition-colors"
+              >
+                Open Portal
+              </a>
               <button
                 onClick={() =>
                   document
@@ -173,7 +184,16 @@ const Competition = () => {
               The competition takes place on March 22, 2026, with optional pre-competition events on March 21. No prior trading experience is required. The event is accessible to students from a wide range of academic backgrounds, while still offering meaningful challenges for experienced participants.
             </p>
             <p>
-              Top performers will compete for a cash prize pool, and travel subsidies will be provided for accepted participants traveling from outside the Waterloo region. Applications are now closed — stay tuned for updates!
+              Top performers will compete for a cash prize pool, and travel subsidies will be provided for accepted participants traveling from outside the Waterloo region. Applications are closed, and acceptance decisions are out — check your email and the{" "}
+              <a
+                href={PORTAL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline"
+              >
+                member portal
+              </a>
+              .
             </p>
           </div>
 
@@ -210,9 +230,18 @@ const Competition = () => {
           >
             <div>
               <p className="text-sm text-muted-foreground uppercase tracking-wide">Applications</p>
-              <h3 className="text-xl md:text-2xl font-semibold text-foreground">Applications are now closed. Stay tuned!</h3>
+              <h3 className="text-xl md:text-2xl font-semibold text-foreground">Acceptance decisions are out</h3>
               <p className="text-sm text-muted-foreground mt-1">
-                For any questions, contact us by{" "}
+                Check your email (the address used on your application) and the{" "}
+                <a
+                  href={PORTAL_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline"
+                >
+                  portal
+                </a>
+                {" "}to view your decision. If you were accepted, please RSVP on the portal to confirm your spot. If you applied and didn’t receive an email, contact us by{" "}
                 <a href={SOCIAL_LINKS.EMAIL} className="underline">email</a> or on{" "}
                 <a href={SOCIAL_LINKS.DISCORD} target="_blank" rel="noopener noreferrer" className="underline">Discord</a>.
               </p>

@@ -16,13 +16,6 @@ import {
 
 const events: EventData[] = [
   {
-    title: "Prop Trades, Pickoffs, and Other Whacky Things People Will Trade",
-    date: "Feb 11th @ 6:00PM",
-    location: "DC 1350 (in-person)",
-    type: "Workshop",
-    description: "Come learn about fun prop trades, side bets, and market oddities we’ve seen over time.",
-  },
-  {
     title: "2026 Waterloo Trading Competition",
     date: "March 22, 2026",
     location: "University of Waterloo (in-person)",
@@ -35,8 +28,16 @@ const events: EventData[] = [
 
 const archivedEvents: EventData[] = [
   {
+    title: "Prop Trades, Pickoffs, and Other Whacky Things People Will Trade",
+    date: "Feb 11th @ 6:00PM",
+    location: "DC 1350 (in-person)",
+    type: "Workshop",
+    tags: ["WINTER 26"],
+    description: "Come learn about fun prop trades, side bets, and market oddities we’ve seen over time.",
+  },
+  {
     title: "Game Theory",
-    date: "Feb 4, 2026",
+    date: "Feb 4, 2026 @ 6:00PM",
     location: "EIT 1015 (in-person)",
     type: "Workshop",
     posterImage: "/events/gametheory-poster.jpg",
