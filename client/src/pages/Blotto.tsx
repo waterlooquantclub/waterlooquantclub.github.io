@@ -5,7 +5,6 @@ import {
   Swords,
   Clock,
   Calendar,
-  Sparkles,
   Target,
 } from "lucide-react";
 
@@ -46,12 +45,22 @@ const Blotto = () => {
                   Submit Strategies on the Member Portal
                   <Swords className="w-5 h-5" />
                 </a>
+
                 <a
                   href="#how-it-works"
                   className="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 text-white px-8 py-4 text-base font-medium border border-white/10 transition-all"
                 >
                   Read Rules
                   <ScrollText className="w-5 h-5" />
+                </a>
+
+                {/* LEADERBOARD */}
+                <a
+                  href="https://docs.google.com/spreadsheets/d/17zd-qyDw5gaZtAy1t8Xxp2v2lTOtsl4akDRQpFgYMeY/edit?usp=sharing"
+                  className="inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-4 text-base font-medium hover:bg-white/90 transition-colors"
+                >
+                  Leaderboard
+                  <Trophy className="w-5 h-5" />
                 </a>
               </div>
             </div>
@@ -99,16 +108,15 @@ const Blotto = () => {
               </ul>
             </div>
           </div>
+
           <div className="hidden md:block container mx-auto max-w-5xl">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {/* 2nd Place */}
               <div className="bg-white/5 border border-white/10 p-6 flex flex-col items-center justify-center text-center space-y-2 hover:bg-white/10 transition-colors md:mt-4">
                 <Trophy className="w-8 h-8 text-gray-400" />
                 <h3 className="text-xl font-bold text-white">2nd Place</h3>
                 <p className="text-2xl font-light text-blue-200">$75</p>
               </div>
 
-              {/* 1st Place */}
               <div className="bg-gradient-to-b from-blue-900/40 to-white/5 border border-blue-500/30 p-8 flex flex-col items-center justify-center text-center space-y-4 shadow-xl md:-mt-4 relative overflow-hidden group">
                 <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity" />
                 <Trophy className="w-12 h-12 text-yellow-400" />
@@ -121,7 +129,6 @@ const Blotto = () => {
                 </div>
               </div>
 
-              {/* 3rd Place */}
               <div className="bg-white/5 border border-white/10 p-6 flex flex-col items-center justify-center text-center space-y-2 hover:bg-white/10 transition-colors md:mt-4">
                 <Trophy className="w-8 h-8 text-orange-700" />
                 <h3 className="text-xl font-bold text-white">3rd Place</h3>
