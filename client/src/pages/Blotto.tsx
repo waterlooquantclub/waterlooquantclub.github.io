@@ -7,6 +7,7 @@ import {
   Calendar,
   Target,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Blotto = () => {
   return (
@@ -55,13 +56,13 @@ const Blotto = () => {
                 </a>
 
                 {/* LEADERBOARD */}
-                <a
-                  href="https://docs.google.com/spreadsheets/d/17zd-qyDw5gaZtAy1t8Xxp2v2lTOtsl4akDRQpFgYMeY/edit?usp=sharing"
+                <Link
+                  to="/games/blotto/leaderboard"
                   className="inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-4 text-base font-medium hover:bg-white/90 transition-colors"
                 >
                   Leaderboard
                   <Trophy className="w-5 h-5" />
-                </a>
+                </Link>
               </div>
             </div>
           </div>
