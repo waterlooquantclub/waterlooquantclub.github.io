@@ -16,14 +16,6 @@ import {
 
 const events: EventData[] = [
   {
-    title: "Interview Prep",
-    date: "Feb 25, 2026 at 6:00pm",
-    location: "EIT 1015",
-    type: "Workshop",
-    posterImage: "/events/interview-prep-w26.jpg",
-    description: "Want to crack into Quant Trading? 🤔 Join us next Wednesday to learn about Quant Trading interviews! Come learn about interview tips and tricks by traders from top firms.",
-  },
-  {
     title: "2026 Waterloo Trading Competition",
     date: "March 22, 2026",
     location: "University of Waterloo (in-person)",
@@ -35,6 +27,15 @@ const events: EventData[] = [
 ];
 
 const archivedEvents: EventData[] = [
+  {
+    title: "Interview Prep",
+    date: "Feb 25, 2026 at 6:00pm",
+    location: "EIT 1015",
+    type: "Workshop",
+    posterImage: "/events/interview-prep-w26.jpg",
+    tags: ["WINTER 26"],
+    description: "Want to crack into Quant Trading? 🤔 Join us next Wednesday to learn about Quant Trading interviews! Come learn about interview tips and tricks by traders from top firms.",
+  },
   {
     title: "Prop Trades, Pickoffs, and Other Whacky Things People Will Trade",
     date: "Feb 11th @ 6:00PM",
