@@ -180,7 +180,7 @@ export const TEAM: MemberInfo[] = [
     name: "Ian Leung",
     role: "Executive",
     program: "Computing and Financial Management",
-    bio: "I have 2 cats. Outside of cats, I like games, puzzles and music.",
+    bio: "Currently in first year studying CS + Finance. Outside of school, I like games, puzzles, and my 2 cats.",
     image: "ian_leung.jpg",
     linkedin: "https://www.linkedin.com/in/ianleung12/",
     email: "ianleung@waterlooquantclub.com",
