@@ -141,6 +141,15 @@ export const TEAM: MemberInfo[] = [
     website: "https://jasonhon.com/",
   },
   {
+    name: "Kaiya Li-Lin",
+    role: "Executive",
+    program: "Computing and Financial Management",
+    bio: "I love snowboarding, boxing, designing/altering clothes and curating random Spotify playlists.",
+    image: "kaiya_li-lin.png",
+    linkedin: "https://www.linkedin.com/in/kaiyaemmali77/",
+    email: "emmali@waterlooquantclub.com",
+  },
+  {
     name: "Michael Parker",
     role: "Executive",
     program: "Mathematics/BBA",
