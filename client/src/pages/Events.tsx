@@ -16,6 +16,14 @@ import {
 
 const events: EventData[] = [
   {
+    title: "Interview Prep",
+    date: "March 4th, 2026 at 6:00pm",
+    location: "EIT 1015",
+    type: "Workshop",
+    posterImage: "/events/swe-interview-prep-w26.png",
+    description: "Join us next week to learn about Interview Tips and watch live mock interviews by engineers from top firms.",
+  },
+  {
     title: "2026 Waterloo Trading Competition",
     date: "March 22, 2026",
     location: "University of Waterloo (in-person)",
