@@ -131,6 +131,14 @@ export const TEAM: MemberInfo[] = [
     email: "gordonwang@waterlooquantclub.com",
   },
   {
+    name: "Justin Torti",
+    role: "Executive",
+    program: "Mathematics and Business Administration",
+    bio: "Previous sell-side market making experience. I like hockey, chess, and science-based fitness.",
+    image: "justin_torti.png",
+    linkedin: "https://www.linkedin.com/in/justin-torti-205146197/",
+  },
+  {
     name: "Jason Hon",
     role: "Executive",
     program: "Computer Science",
