@@ -16,7 +16,7 @@ import {
 
 const events: EventData[] = [
   {
-    title: "Interview Prep",
+    title: "SWE & Quant Dev Interview Tips",
     date: "March 4th, 2026 at 6:00pm",
     location: "EIT 1015",
     type: "Workshop",
