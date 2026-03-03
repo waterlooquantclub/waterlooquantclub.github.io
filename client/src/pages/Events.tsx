@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
-import { Calendar, MapPin, Search, X, CalendarPlus } from "lucide-react";
+import { Calendar, MapPin, Search, X, CalendarPlus, ExternalLink } from "lucide-react";
 import EventDialog, { EventData } from "@/components/EventDialog";
 import { Input } from "@/components/ui/input";
 import {
@@ -22,6 +22,15 @@ const events: EventData[] = [
     type: "Workshop",
     posterImage: "/events/swe-interview-prep-w26.png",
     description: "Join us next week to learn about Interview Tips and watch live mock interviews by engineers from top firms.",
+  },
+  {
+    title: "Optiver Trading Challenge",
+    date: "March 11th, 2026 at 6:30pm",
+    location: "Location shared with invitees",
+    type: "Sponsor Event",
+    posterImage: "/events/optiver_event.png",
+    description: "Meet Optiver traders and engineers, participate in a live trading game, and enjoy free food, drinks, and merch! Application required due to limited spots.",
+    externalLink: { label: "Apply Here", url: "https://me.waterlooquantclub.com/forms/optiver-trading-challenge-application-w26/" }
   },
   {
     title: "2026 Waterloo Trading Competition",
@@ -442,6 +451,18 @@ const Events = () => {
                 <p className="text-muted-foreground text-sm">
                   {event.description}
                 </p>
+                {event.externalLink && (
+                <a
+                  href={event.externalLink.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="mt-2 inline-flex items-center gap-2 rounded-full border border-border bg-white/5 px-3 py-1.5 text-xs hover:bg-white/10 hover:border-[#FAFAFA]/40 transition"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  {event.externalLink.label}
+                </a>
+            )}
               </div>
             ))}
           </div>
