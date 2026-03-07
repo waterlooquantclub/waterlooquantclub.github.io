@@ -7,7 +7,6 @@ import {
   Calendar,
   Target,
 } from "lucide-react";
-import { Link } from "react-router-dom";
 
 const Blotto = () => {
   return (
@@ -56,13 +55,13 @@ const Blotto = () => {
                 </a>
 
                 {/* LEADERBOARD */}
-                <Link
-                  to="/games/blotto/leaderboard"
+                <a
+                  href="https://docs.google.com/spreadsheets/d/17zd-qyDw5gaZtAy1t8Xxp2v2lTOtsl4akDRQpFgYMeY/edit?usp=sharing"
                   className="inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-4 text-base font-medium hover:bg-white/90 transition-colors"
                 >
                   Leaderboard
                   <Trophy className="w-5 h-5" />
-                </Link>
+                </a>
               </div>
             </div>
           </div>
@@ -244,6 +243,91 @@ const Blotto = () => {
                 >
                   Go to Submission Forms on Portal &rarr;
                 </a>
+              </div>
+            </div>
+            
+            {/* SCENARIO ARCHIVE */}
+            <div className="md:col-span-2 pt-10">
+              <div className="space-y-6">
+                <div className="flex items-center gap-3 text-white">
+                  <ScrollText className="w-6 h-6 text-blue-600" />
+                  <h2 className="text-2xl font-semibold">Scenario Archive</h2>
+                </div>
+
+                <p className="text-muted-foreground max-w-2xl leading-relaxed">
+                  Explore past weekly scenarios.
+                </p>
+
+                <div className="space-y-5">
+                  {[
+                    {
+                      week: "Week 1",
+                      scenarios: [
+                        "Standard Blotto — each tower is worth points equivalent to their index.",
+                        "The highest-indexed tower won by each player is worth negative amount of points.",
+                      ],
+                    },
+                    {
+                      week: "Week 2",
+                      scenarios: [
+                        "The lowest-indexed tower won by each player is worth triple amount of points.",
+                        "If a player wins the tower whose index is equal to the number of towers won, then the player's total score doubles.",
+                      ],
+                    },
+                    {
+                      week: "Week 3",
+                      scenarios: [
+                        "If a player wins two or more consecutive towers, then the first tower of each consecutive run is worth double amount of points.",
+                        "If a player wins a tower that is not adjacent to any other towers won, then that tower is worth negative amount of points.",
+                      ],
+                    },
+                  ].map((entry, i) => (
+                    <div
+                      key={i}
+                      className="relative overflow-hidden border border-white/10 bg-white/[0.04] backdrop-blur-sm"
+                    >
+                      <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-blue-500 to-indigo-600" />
+
+                      <div className="p-6 md:p-7">
+                        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-5">
+                          <div>
+                            <h3 className="text-xl md:text-2xl font-semibold text-white">
+                              {entry.week}
+                            </h3>
+                          </div>
+
+                          <div className="inline-flex items-center self-start rounded-full border border-blue-500/20 bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-200">
+                            2 Scenarios
+                          </div>
+                        </div>
+
+                        <div className="grid gap-4">
+                          {entry.scenarios.map((scenario, j) => (
+                            <div
+                              key={j}
+                              className="border border-white/10 bg-[#0b1224]/70 p-4 md:p-5 hover:bg-[#101938] transition-colors"
+                            >
+                              <div className="flex items-start gap-4">
+                                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-blue-500/30 bg-blue-500/10 text-sm font-semibold text-blue-200">
+                                  {j + 1}
+                                </div>
+
+                                <div>
+                                  <h4 className="text-sm font-semibold uppercase tracking-wide text-white/90 mb-1">
+                                    Scenario {j + 1}
+                                  </h4>
+                                  <p className="text-sm md:text-base leading-relaxed text-muted-foreground">
+                                    {scenario}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
