@@ -2,6 +2,7 @@ import JaneStreetLogo from "@/assets/jane-street-logo.png";
 import HrtLogo from "@/assets/hrt-logo.png";
 import CitadelLogo from "@/assets/citadel-logo.png";
 import PolymarketLogo from "@/assets/polymarket-logo-white.png";
+import OptiverLogo from "@/assets/optiver-logo-white.png";
 const SponsorSection = ({ withCta, hideTitle, title }: { withCta?: boolean; hideTitle?: boolean; title?: string }) => {
   return (
     <div className="container mx-auto max-w-3xl">
@@ -63,6 +64,25 @@ const SponsorSection = ({ withCta, hideTitle, title }: { withCta?: boolean; hide
             <img
               src={PolymarketLogo}
               alt="Polymarket"
+              className="w-full h-auto hover:opacity-80 transition-opacity"
+            />
+          </a>
+        </div>
+      </div>
+
+      {/* Silver card */}
+      <div className="border p-6 md:p-8 mt-6 bg-black/70 border-white/20">
+        <h2 className="text-2xl font-semibold mb-8">Silver</h2>
+        <div className="flex flex-col items-center justify-center gap-12">
+          <a
+            href="https://www.optiver.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:max-w-[45%] md:max-w-[240px]"
+          >
+            <img
+              src={OptiverLogo}
+              alt="Optiver"
               className="w-full h-auto hover:opacity-80 transition-opacity"
             />
           </a>
