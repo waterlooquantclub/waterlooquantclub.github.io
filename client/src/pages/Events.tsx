@@ -16,14 +16,6 @@ import {
 
 const events: EventData[] = [
   {
-    title: "SWE & Quant Dev Interview Tips",
-    date: "March 4th, 2026 at 6:00pm",
-    location: "EIT 1015",
-    type: "Workshop",
-    posterImage: "/events/swe-interview-prep-w26.png",
-    description: "Join us next week to learn about Interview Tips and watch live mock interviews by engineers from top firms.",
-  },
-  {
     title: "Optiver Trading Challenge",
     date: "March 11th, 2026 at 6:30pm",
     location: "Location shared with invitees",
@@ -45,13 +37,27 @@ const events: EventData[] = [
 
 const archivedEvents: EventData[] = [
   {
+    title: "SWE & Quant Dev Interview Tips",
+    date: "March 4th, 2026 at 6:00pm",
+    location: "EIT 1015",
+    type: "Workshop",
+    tags: ["WINTER 26"],
+    description: "Join us next week to learn about Interview Tips and watch live mock interviews by engineers from top firms.",
+  },
+  {
     title: "Interview Prep",
     date: "Feb 25, 2026 at 6:00pm",
     location: "EIT 1015",
     type: "Workshop",
-    posterImage: "/events/interview-prep-w26.jpg",
-    tags: ["WINTER 26"],
+    tags: ["WINTER 26", "RECORDING"],
     description: "Want to crack into Quant Trading? 🤔 Join us next Wednesday to learn about Quant Trading interviews! Come learn about interview tips and tricks by traders from top firms.",
+    galleryImages: [
+      {
+        type: "video",
+        src: "https://www.youtube.com/embed/FV7QpCkC-GQ",
+        alt: "Quant Trading Interview Prep Recording",
+      },
+    ],
   },
   {
     title: "Prop Trades, Pickoffs, and Other Whacky Things People Will Trade",
@@ -66,7 +72,6 @@ const archivedEvents: EventData[] = [
     date: "Feb 4, 2026 @ 6:00PM",
     location: "EIT 1015 (in-person)",
     type: "Workshop",
-    posterImage: "/events/gametheory-poster.jpg",
     tags: ["WINTER 26"],
     description: "Learn about game theory and compete in live trading games with our execs to win prizes!",
   },
@@ -75,9 +80,15 @@ const archivedEvents: EventData[] = [
     date: "January 28, 2026 @ 6:00PM",
     location: "DC 1350",
     type: "Workshop",
-    posterImage: "/events/biasesposter.png",
-    tags: ["WINTER 26"],
+    tags: ["WINTER 26", "RECORDING"],
     description: "Learn about the statistical pitfalls and cognitive traps that lead smart people to make not-so-smart trades.",
+    galleryImages: [
+      {
+        type: "video",
+        src: "https://www.youtube.com/embed/pCNWcxCAydI",
+        alt: "Statistical and Human Biases Recording",
+      },
+    ],
   },
   {
     title: "Quant Panel Q&A",
@@ -452,17 +463,17 @@ const Events = () => {
                   {event.description}
                 </p>
                 {event.externalLink && (
-                <a
-                  href={event.externalLink.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="mt-2 inline-flex items-center gap-2 rounded-full border border-border bg-white/5 px-3 py-1.5 text-xs hover:bg-white/10 hover:border-[#FAFAFA]/40 transition"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  {event.externalLink.label}
-                </a>
-            )}
+                  <a
+                    href={event.externalLink.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={(e) => e.stopPropagation()}
+                    className="mt-2 inline-flex items-center gap-2 rounded-full border border-border bg-white/5 px-3 py-1.5 text-xs hover:bg-white/10 hover:border-[#FAFAFA]/40 transition"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    {event.externalLink.label}
+                  </a>
+                )}
               </div>
             ))}
           </div>
