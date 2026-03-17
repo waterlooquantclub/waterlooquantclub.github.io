@@ -282,6 +282,13 @@ const Blotto = () => {
                         "If a player wins a tower that is not adjacent to any other towers won, then that tower is worth negative amount of points.",
                       ],
                     },
+                    {
+                      week: "Week 4",
+                      scenarios: [
+                        "If the index of the last (highest-indexed) tower won by a player is larger than that of the opponent, then each tower the player wins is worth one point fewer.",
+                        "For each player, the tower they won by the maximum margin is worth double amount of points. If there is a tie, then the lowest-indexed tower is worth double."
+                       ],
+                    },
                   ].map((entry, i) => (
                     <div
                       key={i}
