@@ -16,13 +16,12 @@ import {
 
 const events: EventData[] = [
   {
-    title: "Optiver Trading Challenge",
-    date: "March 11th, 2026 at 6:30pm",
-    location: "Location shared with invitees",
-    type: "Sponsor Event",
-    posterImage: "/events/optiver_event.png",
-    description: "Meet Optiver traders and engineers, participate in a live trading game, and enjoy free food, drinks, and merch! Application required due to limited spots.",
-    externalLink: { label: "Apply Here", url: "https://me.waterlooquantclub.com/forms/optiver-trading-challenge-application-w26/" }
+    title: "Lo-ker Auction",
+    date: "March 18, 2026 at 6pm",
+    location: "DC 1350",
+    type: "Workshop",
+    posterImage: "/events/lo-ker-auction.png",
+    description: "Canada's first international university trading competition. Compete for $10,000+ in cash prizes. Open to university students in Canada & the U.S with travel reimbursements provided for accepted participants.",
   },
   {
     title: "2026 Waterloo Trading Competition",
@@ -36,6 +35,14 @@ const events: EventData[] = [
 ];
 
 const archivedEvents: EventData[] = [
+  {
+    title: "Optiver Trading Challenge",
+    date: "March 11th, 2026 at 6:30pm",
+    location: "Location shared with invitees",
+    type: "Sponsor Event",
+    tags: ["WINTER 26"],
+    description: "Meet Optiver traders and engineers, participate in a live trading game, and enjoy free food, drinks, and merch! Application required due to limited spots.",
+  },
   {
     title: "SWE & Quant Dev Interview Tips",
     date: "March 4th, 2026 at 6:00pm",
