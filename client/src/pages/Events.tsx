@@ -21,7 +21,7 @@ const events: EventData[] = [
     location: "DC 1350",
     type: "Workshop",
     posterImage: "/events/lo-ker-auction.png",
-    description: "Canada's first international university trading competition. Compete for $10,000+ in cash prizes. Open to university students in Canada & the U.S with travel reimbursements provided for accepted participants.",
+    description: "Join us for an auction based trading game to win company-branded merch!",
   },
   {
     title: "2026 Waterloo Trading Competition",
