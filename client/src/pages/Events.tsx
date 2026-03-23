@@ -15,26 +15,27 @@ import {
 } from "@/components/ui/select";
 
 const events: EventData[] = [
-  {
-    title: "Lo-ker Auction",
-    date: "March 18, 2026 at 6pm",
-    location: "DC 1350",
-    type: "Workshop",
-    posterImage: "/events/lo-ker-auction.png",
-    description: "Join us for an auction based trading game to win company-branded merch!",
-  },
+  
+];
+
+const archivedEvents: EventData[] = [
   {
     title: "2026 Waterloo Trading Competition",
     date: "March 22, 2026",
     location: "University of Waterloo (in-person)",
     type: "Competition",
-    posterImage: "/events/w26compposter.png",
+    tags: ["WINTER 26"],
     description: "Canada's first international university trading competition. Compete for $10,000+ in cash prizes. Open to university students in Canada & the U.S with travel reimbursements provided for accepted participants.",
-    externalLink: { label: "Learn More & Apply", url: "/competition" }
-  }
-];
-
-const archivedEvents: EventData[] = [
+    // externalLink: { label: "Learn More & Apply", url: "/competition" }
+  },
+  {
+    title: "Lo-ker Auction",
+    date: "March 18, 2026 at 6pm",
+    location: "DC 1350",
+    type: "Workshop",
+     tags: ["WINTER 26"],
+    description: "Join us for an auction based trading game to win company-branded merch!",
+  },
   {
     title: "Optiver Trading Challenge",
     date: "March 11th, 2026 at 6:30pm",
