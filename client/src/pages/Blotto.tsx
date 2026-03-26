@@ -289,6 +289,22 @@ const Blotto = () => {
                         "For each player, the tower they won by the maximum margin is worth double amount of points. If there is a tie, then the lowest-indexed tower is worth double."
                        ],
                     },
+                    {
+                      week: "Week 5",
+                      scenarios: [
+                        'If a player wins strictly more towers than the opponent, then each tower the player wins is worth one point fewer.',
+                        'If a player wins more than 1 tower, then the won tower with the maximum number of soldiers allocated by that player is worth 0 points. If there is a tie, the highest-indexed tower among them is worth 0.',
+                        'For each player, the lowest-indexed tower which the player wins by allocating more than 10 soldiers is worth 0 points.'
+                      ]
+                    },
+                    {
+                      week: "Week 6",
+                      scenarios: [
+                        'If a player wins consecutive towers, an arithmetic sequence of difference 3 is added to the consecutive streak. For example, if a player wins towers 5, 6, 7, 8, but not 4 and 9, then they are respectively worth 5 + 0, 6 + 1x3, 7 + 2x3, and 8 + 3x3.',
+                        'If a player wins both Tower i and Tower (11 - i), then both towers are worth 0.',
+                        'For both players, any unused soldier is worth 0.5 point each.'
+                      ]
+                    }
                   ].map((entry, i) => (
                     <div
                       key={i}
