@@ -4,7 +4,7 @@ import { Trophy, Search, ArrowLeft, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const SHEET_CSV_URL =
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vSahFyqrXJpmugCHQjdzNSGwu81hS6vKhrvXom03NNV70lR4gvW2pgEdB9gAjWeqhq3w6Lv_k-EqBx_/pub?gid=1380898845&single=true&output=csv";
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vSxpiHAJ0YOc4ROL-N9PjVTrXlCewD9QMHhiG0_zMii7JxE-1ZdaXAxSVPg-3MwCoNSXHxLr2hqITao/pub?gid=0&single=true&output=csv";
 
 interface LeaderboardEntry {
   rank: number;
@@ -139,7 +139,7 @@ const BlottoLeaderboard = () => {
               </div>
 
               <a
-                href="https://docs.google.com/spreadsheets/u/2/d/e/2PACX-1vSahFyqrXJpmugCHQjdzNSGwu81hS6vKhrvXom03NNV70lR4gvW2pgEdB9gAjWeqhq3w6Lv_k-EqBx_/pubhtml#gid=1380898845"
+                href="https://docs.google.com/spreadsheets/d/e/2PACX-1vSxpiHAJ0YOc4ROL-N9PjVTrXlCewD9QMHhiG0_zMii7JxE-1ZdaXAxSVPg-3MwCoNSXHxLr2hqITao/pubhtml"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1.5 underline underline-offset-4"
