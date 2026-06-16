@@ -4,7 +4,7 @@ import { Trophy, Search, ArrowLeft, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const SHEET_CSV_URL =
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vSxpiHAJ0YOc4ROL-N9PjVTrXlCewD9QMHhiG0_zMii7JxE-1ZdaXAxSVPg-3MwCoNSXHxLr2hqITao/pub?gid=0&single=true&output=csv";
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vSxpiHAJ0YOc4ROL-N9PjVTrXlCewD9QMHhiG0_zMii7JxE-1ZdaXAxSVPg-3MwCoNSXHxLr2hqITao/pub?gid=628734344&single=true&output=csv"
 
 interface LeaderboardEntry {
   rank: number;
