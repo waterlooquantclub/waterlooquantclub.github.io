@@ -20,7 +20,7 @@ const Join = () => {
 
           <div className="flex flex-wrap gap-4">
             <a
-              href="https://me.waterlooquantclub.com/accounts/signup/"
+              href="https://portal.waterlooquantclub.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-foreground text-background px-6 py-3 text-sm font-medium tracking-wide hover:bg-foreground/90 transition-colors"
