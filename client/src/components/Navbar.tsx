@@ -28,7 +28,7 @@ const Navbar = ({ hasAnnouncementBar = false }: NavbarProps) => {
   return (
     <nav className={`fixed left-0 right-0 z-50 ${hasAnnouncementBar ? 'top-0 md:top-[44px]' : 'top-0'}`}>
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-transparent pointer-events-none" />
-      <div className="container mx-auto px-6 md:px-18 py-6 md:py-14 flex items-center justify-between relative">
+      <div className="flex w-full items-center justify-between px-6 md:px-10 py-6 md:py-8 relative">
         <Link to="/" className="flex items-center gap-1 hover:opacity-80 transition-opacity">
           <img src={wqcLogo} alt="WQC Logo" className="h-7 w-auto" />
           <span className="text-foreground font-merriweather text-2xl tracking-tight">WQC</span>

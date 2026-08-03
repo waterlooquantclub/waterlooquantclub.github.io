@@ -48,7 +48,12 @@
   }
 
   html {
-    scrollbar-gutter: stable;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE / old Edge */
+  }
+
+  html::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
   }
 
   body {
