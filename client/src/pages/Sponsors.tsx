@@ -5,7 +5,7 @@ const Sponsors = () => {
   return (
     <Layout>
       <section className="min-h-[calc(100vh-4rem)] py-24 px-6">
-        <div className="container mx-auto max-w-4xl">
+        <div className="container mx-auto max-w-3xl">
           <p className="text-muted-foreground text-sm tracking-widest uppercase mb-4">
             Sponsors
           </p>
