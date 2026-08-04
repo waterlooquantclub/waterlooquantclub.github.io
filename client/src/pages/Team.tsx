@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
 import { TEAM } from "@/lib/constants";
-import { Linkedin, Mail, Globe, ChevronLeft, ChevronRight } from "lucide-react";
+import { Linkedin, Mail, Globe, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 // Dynamic imports for team images
@@ -134,10 +134,18 @@ const Team = () => {
 
           <div className="mt-16 pt-16 border-t border-[#FAFAFA]/15">
             <h2 className="text-2xl font-semibold mb-4">Join the Team</h2>
-            <p className="text-muted-foreground">
-              Executive applications are closed for Winter 2026. Stay tuned for
-              future openings!
+            <p className="text-muted-foreground mb-6">
+              Interested in joining the executive team? Apply through our portal.
             </p>
+            <a
+              href="https://portal.waterlooquantclub.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-foreground text-background px-6 py-3 text-sm font-medium tracking-wide hover:bg-foreground/90 transition-colors"
+            >
+              Apply Now
+              <ArrowRight className="w-4 h-4" />
+            </a>
           </div>
         </div>
       </section>
