@@ -168,7 +168,7 @@ export const TEAM: MemberInfo[] = [
   {
     name: "Caroline Lu",
     role: "Executive",
-    program: "Mathematics",
+    program: "Data Science",
     bio: "I like reading, math, racket sports, and music.",
     image: "caroline_lu.jpeg",
     linkedin: "https://www.linkedin.com/in/yiyang-lu-caroline",
