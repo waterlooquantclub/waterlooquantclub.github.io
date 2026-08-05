@@ -125,7 +125,7 @@ export const TEAM: MemberInfo[] = [
     role: "Executive",
     program: "Computing and Financial Management",
     bio: "I'm a CS + Finance student currently interning at Point72. I love soccer, football, and MMA.",
-    image: "gordon_wang.HEIC",
+    image: "gordon_wang.jpg",
     linkedin: "https://www.linkedin.com/in/gordon-wang-ab785b237/",
     email: "gordonwang@waterlooquantclub.com",
   },
