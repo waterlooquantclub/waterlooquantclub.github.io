@@ -1,7 +1,20 @@
 import { useState } from "react";
 import Layout from "@/components/Layout";
-import { TEAM } from "@/lib/constants";
-import { Linkedin, Mail, Globe, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import {
+  TEAM,
+  ALUMNI,
+  type MemberInfo,
+  type AlumniInfo,
+} from "@/lib/constants";
+import {
+  Linkedin,
+  Mail,
+  Globe,
+  ChevronLeft,
+  ChevronRight,
+  ArrowRight,
+  ArrowDown,
+} from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 // Dynamic imports for team images
@@ -10,7 +23,7 @@ const teamImages: Record<string, string> = import.meta.glob(
   {
     eager: true,
     import: "default",
-  }
+  },
 ) as Record<string, string>;
 
 const getTeamImage = (imageName?: string): string | undefined => {
@@ -19,28 +32,153 @@ const getTeamImage = (imageName?: string): string | undefined => {
   return key ? teamImages[key] : undefined;
 };
 
-const Team = () => {
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+type Person = MemberInfo | AlumniInfo;
+type Group = "team" | "alumni";
 
-  const selectedMember = selectedIndex !== null ? TEAM[selectedIndex] : null;
-  const selectedImage = selectedMember
-    ? getTeamImage(selectedMember.image)
+const isAlumni = (person: Person): person is AlumniInfo => "gradYear" in person;
+
+// Alumni show their full-time role and grad year where members show role and program.
+const primaryLine = (person: Person) =>
+  isAlumni(person) ? `${person.position}, ${person.company}` : person.role;
+
+const secondaryLine = (person: Person) =>
+  isAlumni(person) ? `Class of ${person.gradYear}` : person.program;
+
+const imageStyle = (person: Person) =>
+  person.name === "Alex Oláh" ? { objectPosition: "center 20%" } : undefined;
+
+const initials = (name: string) =>
+  name
+    .split(" ")
+    .map((n) => n[0])
+    .join("");
+
+const SocialLinks = ({
+  person,
+  size,
+}: {
+  person: Person;
+  size: "sm" | "lg";
+}) => {
+  const iconClass = size === "sm" ? "w-4 h-4" : "w-5 h-5";
+  return (
+    <>
+      {person.linkedin && (
+        <a
+          href={person.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <Linkedin className={iconClass} />
+        </a>
+      )}
+      {person.email && (
+        <a
+          href={`mailto:${person.email}`}
+          className="text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <Mail className={iconClass} />
+        </a>
+      )}
+      {person.website && (
+        <a
+          href={person.website}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-muted-foreground hover:text-foreground transition-colors"
+        >
+          <Globe className={iconClass} />
+        </a>
+      )}
+    </>
+  );
+};
+
+const PersonGrid = ({
+  people,
+  onSelect,
+}: {
+  people: Person[];
+  onSelect: (index: number) => void;
+}) => (
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+    {people.map((person, index) => {
+      const image = getTeamImage(person.image);
+      return (
+        <button
+          key={index}
+          onClick={() => onSelect(index)}
+          className="group flex flex-col  border border-[#FAFAFA]/20 hover:border-[#FAFAFA]/50 transition-colors text-left cursor-pointer overflow-hidden"
+          style={{
+            background:
+              "linear-gradient(to top left, rgba(19, 44, 123, 0.25) 0%, rgba(0, 0, 0, 0.98) 100%)",
+          }}
+        >
+          {image ? (
+            <img
+              src={image}
+              alt={person.name}
+              className="w-full aspect-square object-cover"
+              style={imageStyle(person)}
+            />
+          ) : (
+            <div className="w-full aspect-square bg-secondary flex items-center justify-center text-foreground font-medium text-2xl">
+              {initials(person.name)}
+            </div>
+          )}
+          <div className="p-4">
+            <h3 className="text-foreground font-medium">{person.name}</h3>
+            <p className="text-muted-foreground text-sm">
+              {primaryLine(person)}
+            </p>
+            <p className="text-muted-foreground text-xs mt-1">
+              {secondaryLine(person)}
+            </p>
+            <div
+              className="flex gap-2 mt-2"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <SocialLinks person={person} size="sm" />
+            </div>
+          </div>
+        </button>
+      );
+    })}
+  </div>
+);
+
+const Team = () => {
+  const [selected, setSelected] = useState<{
+    group: Group;
+    index: number;
+  } | null>(null);
+
+  const activeList: Person[] = selected?.group === "alumni" ? ALUMNI : TEAM;
+  const selectedPerson = selected ? activeList[selected.index] : null;
+  const selectedImage = selectedPerson
+    ? getTeamImage(selectedPerson.image)
     : undefined;
 
+  const goTo = (index: number) =>
+    setSelected((current) => (current ? { ...current, index } : current));
+
   const goToPrev = () => {
-    if (selectedIndex !== null) {
-      setSelectedIndex(
-        selectedIndex === 0 ? TEAM.length - 1 : selectedIndex - 1
-      );
+    if (selected) {
+      goTo(selected.index === 0 ? activeList.length - 1 : selected.index - 1);
     }
   };
 
   const goToNext = () => {
-    if (selectedIndex !== null) {
-      setSelectedIndex(
-        selectedIndex === TEAM.length - 1 ? 0 : selectedIndex + 1
-      );
+    if (selected) {
+      goTo(selected.index === activeList.length - 1 ? 0 : selected.index + 1);
     }
+  };
+
+  const scrollToAlumni = () => {
+    document
+      .getElementById("alumni")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
@@ -50,92 +188,50 @@ const Team = () => {
           <p className="text-muted-foreground text-sm tracking-widest uppercase mb-4">
             Team
           </p>
-          <h1 className="text-4xl md:text-6xl font-light tracking-tight mb-12">
-            Executive Board
-          </h1>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {TEAM.map((member, index) => {
-              const image = getTeamImage(member.image);
-              return (
-                <button
-                  key={index}
-                  onClick={() => setSelectedIndex(index)}
-                  className="group flex flex-col  border border-[#FAFAFA]/20 hover:border-[#FAFAFA]/50 transition-colors text-left cursor-pointer overflow-hidden"
-                  style={{ background: 'linear-gradient(to top left, rgba(19, 44, 123, 0.25) 0%, rgba(0, 0, 0, 0.98) 100%)' }}
-                >
-                  {image ? (
-                    <img
-                      src={image}
-                      alt={member.name}
-                      className="w-full aspect-square object-cover"
-                      style={
-                        member.name === "Alex Oláh"
-                          ? { objectPosition: "center 20%" }
-                          : undefined
-                      }
-                    />
-                  ) : (
-                    <div className="w-full aspect-square bg-secondary flex items-center justify-center text-foreground font-medium text-2xl">
-                      {member.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
-                    </div>
-                  )}
-                  <div className="p-4">
-                    <h3 className="text-foreground font-medium">
-                      {member.name}
-                    </h3>
-                    <p className="text-muted-foreground text-sm">
-                      {member.role}
-                    </p>
-                    <p className="text-muted-foreground text-xs mt-1">
-                      {member.program}
-                    </p>
-                    <div
-                      className="flex gap-2 mt-2"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      {member.linkedin && (
-                        <a
-                          href={member.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-muted-foreground hover:text-foreground transition-colors"
-                        >
-                          <Linkedin className="w-4 h-4" />
-                        </a>
-                      )}
-                      {member.email && (
-                        <a
-                          href={`mailto:${member.email}`}
-                          className="text-muted-foreground hover:text-foreground transition-colors"
-                        >
-                          <Mail className="w-4 h-4" />
-                        </a>
-                      )}
-                      {member.website && (
-                        <a
-                          href={member.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-muted-foreground hover:text-foreground transition-colors"
-                        >
-                          <Globe className="w-4 h-4" />
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </button>
-              );
-            })}
+          <div className="flex flex-wrap items-end justify-between gap-4 mb-12">
+            <h1 className="text-4xl md:text-6xl font-light tracking-tight">
+              Executive Board
+            </h1>
+            {ALUMNI.length > 0 && (
+              <button
+                onClick={scrollToAlumni}
+                className="group inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors pb-1 md:pb-3"
+              >
+                Alumni
+                <ArrowDown className="w-4 h-4 transition-transform group-hover:translate-y-0.5" />
+              </button>
+            )}
           </div>
+
+          <PersonGrid
+            people={TEAM}
+            onSelect={(index) => setSelected({ group: "team", index })}
+          />
+
+          {ALUMNI.length > 0 && (
+            <div
+              id="alumni"
+              className="mt-16 pt-16 border-t border-[#FAFAFA]/15 scroll-mt-24"
+            >
+              <p className="text-muted-foreground text-sm tracking-widest uppercase mb-4">
+                Where they are now
+              </p>
+              <h2 className="text-3xl md:text-5xl font-light tracking-tight mb-12">
+                Alumni
+              </h2>
+
+              <PersonGrid
+                people={ALUMNI}
+                onSelect={(index) => setSelected({ group: "alumni", index })}
+              />
+            </div>
+          )}
 
           <div className="mt-16 pt-16 border-t border-[#FAFAFA]/15">
             <h2 className="text-2xl font-semibold mb-4">Join the Team</h2>
             <p className="text-muted-foreground mb-6">
-              Interested in joining the executive team? Apply through our portal.
+              Interested in joining the executive team? Apply through our
+              portal.
             </p>
             <a
               href="https://portal.waterlooquantclub.com/"
@@ -151,15 +247,16 @@ const Team = () => {
       </section>
 
       <Dialog
-        open={selectedIndex !== null}
-        onOpenChange={(open) => !open && setSelectedIndex(null)}
+        open={selected !== null}
+        onOpenChange={(open) => !open && setSelected(null)}
       >
         <DialogContent className="max-w-md p-0 gap-0 overflow-hidden">
           <DialogTitle className="sr-only">
-            {selectedMember?.name} - {selectedMember?.role}
+            {selectedPerson?.name} -{" "}
+            {selectedPerson ? primaryLine(selectedPerson) : ""}
           </DialogTitle>
 
-          {selectedMember && (
+          {selectedPerson && (
             <div className="relative">
               {/* Navigation arrows */}
               <button
@@ -180,80 +277,47 @@ const Team = () => {
                   {selectedImage ? (
                     <img
                       src={selectedImage}
-                      alt={selectedMember.name}
+                      alt={selectedPerson.name}
                       className="w-64 h-64 object-cover mb-4"
-                      style={
-                        selectedMember.name === "Alex Oláh"
-                          ? { objectPosition: "center 20%" }
-                          : undefined
-                      }
+                      style={imageStyle(selectedPerson)}
                     />
                   ) : (
                     <div className="w-64 h-64 bg-secondary flex items-center justify-center text-foreground font-medium text-4xl mb-4">
-                      {selectedMember.name
-                        .split(" ")
-                        .map((n) => n[0])
-                        .join("")}
+                      {initials(selectedPerson.name)}
                     </div>
                   )}
                   <h3 className="text-foreground font-semibold text-lg">
-                    {selectedMember.name}
+                    {selectedPerson.name}
                   </h3>
                   <p className="text-muted-foreground text-sm">
-                    {selectedMember.role}
+                    {primaryLine(selectedPerson)}
                   </p>
                   <p className="text-muted-foreground text-xs">
-                    {selectedMember.program}
+                    {secondaryLine(selectedPerson)}
                   </p>
                 </div>
 
-                {selectedMember.bio && (
+                {selectedPerson.bio && (
                   <p className="text-muted-foreground text-sm leading-relaxed text-center mb-4">
-                    {selectedMember.bio}
+                    {selectedPerson.bio}
                   </p>
                 )}
 
                 <div className="flex justify-center gap-3">
-                  {selectedMember.linkedin && (
-                    <a
-                      href={selectedMember.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      <Linkedin className="w-5 h-5" />
-                    </a>
-                  )}
-                  {selectedMember.email && (
-                    <a
-                      href={`mailto:${selectedMember.email}`}
-                      className="text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      <Mail className="w-5 h-5" />
-                    </a>
-                  )}
-                  {selectedMember.website && (
-                    <a
-                      href={selectedMember.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      <Globe className="w-5 h-5" />
-                    </a>
-                  )}
+                  <SocialLinks person={selectedPerson} size="lg" />
                 </div>
 
                 {/* Pagination dots */}
                 <div className="flex justify-center gap-1.5 mt-4">
-                  {TEAM.map((_, i) => (
+                  {activeList.map((_, i) => (
                     <button
                       key={i}
-                      onClick={() => setSelectedIndex(i)}
-                      className={`w-1.5 h-1.5 rounded-full transition-colors ${i === selectedIndex
-                        ? "bg-foreground"
-                        : "bg-muted-foreground/30"
-                        }`}
+                      onClick={() => goTo(i)}
+                      className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                        i === selected?.index
+                          ? "bg-foreground"
+                          : "bg-muted-foreground/30"
+                      }`}
                     />
                   ))}
                 </div>
@@ -267,3 +331,4 @@ const Team = () => {
 };
 
 export default Team;
+

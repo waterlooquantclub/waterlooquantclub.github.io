@@ -16,46 +16,24 @@ export interface MemberInfo {
   website?: string;
 }
 
+export interface AlumniInfo {
+  name: string;
+  position: string;
+  company: string;
+  gradYear: number;
+  bio?: string;
+  image?: string;
+  linkedin?: string;
+  email?: string;
+  website?: string;
+}
+
 export const TEAM: MemberInfo[] = [
-  {
-    name: "Harry Jiang",
-    role: "President",
-    program: "Statistics, Computer Science",
-    bio: "I'm a Stat + CS student, that really enjoys trading. I love sports, landscape photography, and speedcubing! You can frequently find me at Fantastic Wok.",
-    image: "harry_jiang.jpg",
-    linkedin: "https://www.linkedin.com/in/harryjiang7/",
-    email: "harryjiang@waterlooquantclub.com",
-  },
-  {
-    name: "Ian Zhao",
-    role: "VP",
-    program: "Computer Science, Combinatorics & Optimization",
-    bio: "I'm a CS + CO student and a SWE at HRT. When I'm not thinking about systems programming or programming languages, I enjoy running, reading, and everything music!",
-    image: "ian_zhao.jpg",
-    linkedin: "https://www.linkedin.com/in/ian-zhao/",
-    email: "ianzhao@waterlooquantclub.com",
-  },
   {
     name: "Daniel Shen",
     role: "VP",
     program: "Computer Science",
     image: "daniel_shen.jpg",
-  },
-  {
-    name: "John Huang",
-    role: "VP",
-    program: "Computer Science, Mathematical Finance",
-    bio: "I'm a CS + Math Finance student and a Quant Researcher at Cubist. I love reading, strategy games, and word puzzles.",
-    image: "john_huang.jpg",
-  },
-  {
-    name: "Kenneth Xiao",
-    role: "VP",
-    program: "Pure Mathematics",
-    bio: "I like tea, math, and games. Previously at Point72.",
-    image: "kenneth_xiao.jpg",
-    linkedin: "https://www.linkedin.com/in/kdxiao",
-    email: "kdxiao@uwaterloo.ca",
   },
   {
     name: "Patrick Huang",
@@ -77,24 +55,6 @@ export const TEAM: MemberInfo[] = [
     website: "https://aurorashi.com/",
   },
   {
-    name: "Moses Xu",
-    role: "Executive",
-    program: "Computer Science",
-    bio: "✨ parallel programming enjoyer ✨ ( I also like tetris, MC, bad jokes, and anything artsy :) )",
-    image: "moses_xu.jpg",
-    linkedin: "https://www.linkedin.com/in/moses-xu",
-    email: "moses.xu@uwaterloo.ca",
-  },
-  {
-    name: "Joshua Liu",
-    role: "Executive",
-    program: "Computer Science",
-    bio: "Hi, I am a competitive programmer turned CTF player turned SWE at HRT. I love homelabbing, climbing, and cooking!",
-    image: "joshua_liu.jpg",
-    linkedin: "https://www.linkedin.com/in/joshua-liu-265681220/",
-    email: "joshliu@waterlooquantclub.com",
-  },
-  {
     name: "Alex Oláh",
     role: "Executive",
     program: "Masters of Accounting",
@@ -112,15 +72,6 @@ export const TEAM: MemberInfo[] = [
     email: "mys2lee@uwaterloo.ca",
   },
   {
-    name: "Soham Parmar",
-    role: "Executive",
-    program: "Computer Engineering",
-    bio: "I'm a Computer Engineering student with experience at Jane Street and an interest in software engineering, trading, and the world of finance.",
-    image: "soham_parmar.jpg",
-    linkedin: "https://www.linkedin.com/in/soham-parmar",
-    email: "s24parma@uwaterloo.ca",
-  },
-  {
     name: "Gordon Wang",
     role: "Executive",
     program: "Computing and Financial Management",
@@ -128,14 +79,6 @@ export const TEAM: MemberInfo[] = [
     image: "gordon_wang.jpg",
     linkedin: "https://www.linkedin.com/in/gordon-wang-ab785b237/",
     email: "gordonwang@waterlooquantclub.com",
-  },
-  {
-    name: "Justin Torti",
-    role: "Executive",
-    program: "Mathematics and Business Administration",
-    bio: "Previous sell-side market making experience. I like hockey, chess, and science-based fitness.",
-    image: "justin_torti.png",
-    linkedin: "https://www.linkedin.com/in/justin-torti-205146197/",
   },
   {
     name: "Jason Hon",
@@ -262,3 +205,86 @@ export const TEAM: MemberInfo[] = [
     email: "elaine.li@waterlooquantclub.com",
   },
 ];
+
+// TODO: every position/company below is a placeholder — fill in real full-time
+// roles before deploying. Images live alongside team photos in @/assets/team/.
+export const ALUMNI: AlumniInfo[] = [
+  {
+    name: "Harry Jiang",
+    position: "TBD",
+    company: "Jane Street",
+    gradYear: 2026,
+    bio: "I'm a Stat + CS student, that really enjoys trading. I love sports, landscape photography, and speedcubing! You can frequently find me at Fantastic Wok.",
+    image: "harry_jiang.jpg",
+    linkedin: "https://www.linkedin.com/in/harryjiang7/",
+    email: "harryjiang@waterlooquantclub.com",
+  },
+  {
+    name: "Ian Zhao",
+    position: "TBD",
+    company: "Hudson River Trading",
+    gradYear: 2026,
+    bio: "I'm a CS + CO student and a SWE at HRT. When I'm not thinking about systems programming or programming languages, I enjoy running, reading, and everything music!",
+    image: "ian_zhao.jpg",
+    linkedin: "https://www.linkedin.com/in/ian-zhao/",
+    email: "ianzhao@waterlooquantclub.com",
+  },
+  {
+    name: "John Huang",
+    position: "Quantitative Research Analyst",
+    company: "Cubist Systematic Strategies",
+    gradYear: 2026,
+    bio: "I'm a CS + Math Finance student and a Quant Researcher at Cubist. I love reading, strategy games, and word puzzles.",
+    image: "john_huang.jpg",
+  },
+  {
+    name: "Kenneth Xiao",
+    position: "TBD",
+    company: "Cubist Systematic Strategies",
+    gradYear: 2026,
+    bio: "I like tea, math, and games. Previously at Point72.",
+    image: "kenneth_xiao.jpg",
+    linkedin: "https://www.linkedin.com/in/kdxiao",
+    email: "kdxiao@uwaterloo.ca",
+  },
+  {
+    name: "Soham Parmar",
+    position: "TBD",
+    company: "TBD",
+    gradYear: 2026,
+    bio: "I'm a Computer Engineering student with experience at Jane Street and an interest in software engineering, trading, and the world of finance.",
+    image: "soham_parmar.jpg",
+    linkedin: "https://www.linkedin.com/in/soham-parmar",
+    email: "s24parma@uwaterloo.ca",
+  },
+  {
+    name: "Moses Xu",
+    position: "TBD",
+    company: "Radix Trading",
+    gradYear: 2026,
+    bio: "✨ parallel programming enjoyer ✨ ( I also like tetris, MC, bad jokes, and anything artsy :) )",
+    image: "moses_xu.jpg",
+    linkedin: "https://www.linkedin.com/in/moses-xu",
+    email: "moses.xu@uwaterloo.ca",
+  },
+  {
+    name: "Joshua Liu",
+    position: "TBD",
+    company: "TBD",
+    gradYear: 2026,
+    bio: "Hi, I am a competitive programmer turned CTF player turned SWE at HRT. I love homelabbing, climbing, and cooking!",
+    image: "joshua_liu.jpg",
+    linkedin: "https://www.linkedin.com/in/joshua-liu-265681220/",
+    email: "joshliu@waterlooquantclub.com",
+  },
+  {
+    name: "Justin Torti",
+    position: "Quantitative Trading Intern",
+    company: "TransMarket Group",
+    gradYear: 2026,
+    bio: "Previous sell-side market making experience. I like hockey, chess, and science-based fitness.",
+    image: "justin_torti.png",
+    linkedin: "https://www.linkedin.com/in/justin-torti-205146197/",
+  },
+];
+
