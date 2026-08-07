@@ -30,6 +30,12 @@ export interface AlumniInfo {
 
 export const TEAM: MemberInfo[] = [
   {
+    name: "Daniel Shen",
+    role: "Co-President",
+    program: "Computer Science",
+    image: "daniel_shen.jpg",
+  },
+  {
     name: "Patrick Huang",
     role: "Co-President",
     program: "Software Engineering",
@@ -47,12 +53,6 @@ export const TEAM: MemberInfo[] = [
     image: "sam_la.png",
     linkedin: "https://www.linkedin.com/in/samanthala/",
     email: "samanthala@waterlooquantclub.com",
-  },
-  {
-    name: "Daniel Shen",
-    role: "Co-President",
-    program: "Computer Science",
-    image: "daniel_shen.jpg",
   },
   {
     name: "Aurora Shi",
