@@ -212,7 +212,7 @@ export const ALUMNI: AlumniInfo[] = [
   },
   {
     name: "Ian Zhao",
-    position: "Algorithmic Developer",
+    position: "Software Engineer",
     company: "Hudson River Trading",
     gradYear: 2026,
     bio: "I'm a CS + CO student and a SWE at HRT. When I'm not thinking about systems programming or programming languages, I enjoy running, reading, and everything music!",
@@ -271,7 +271,7 @@ export const ALUMNI: AlumniInfo[] = [
   {
     name: "Joshua Liu",
     position: "Software Engineer",
-    company: "Radix Trading",
+    company: "Hudson River Trading",
     gradYear: 2026,
     bio: "Hi, I am a competitive programmer turned CTF player turned SWE at HRT. I love homelabbing, climbing, and cooking!",
     image: "joshua_liu.jpg",
