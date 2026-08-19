@@ -32,6 +32,14 @@ const Games = () => {
               url="/games/blotto"
             />
           </div>
+          <div className="mt-6 space-y-6">
+            <GameCard
+              title="2v2 Bluff"
+              description="Bluff with 4 players. Take turns declaring poker hands on the field or call cheat to catch your opponents bluffing."
+              url="/games/2v2bluff/"
+              external
+            />
+          </div>
           <div className="mt-16 pt-16 border-t border-border">
             <h2 className="text-2xl font-semibold mb-8">Puzzle of the Week</h2>
             <p className="text-muted-foreground">Coming soon...</p>
