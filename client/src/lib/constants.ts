@@ -128,7 +128,7 @@ export const TEAM: MemberInfo[] = [
     role: "Executive",
     program: "Computing and Financial Management",
     bio: "I'm studying CS + Finance + Stats and I like games, puzzles, and my two cats.",
-    image: "ian_leung.jpg",
+    image: "ileung.jpg",
     linkedin: "https://www.linkedin.com/in/ianleung12/",
     email: "ianleung@waterlooquantclub.com",
   },
