@@ -1,8 +1,8 @@
 import JaneStreetLogo from "@/assets/jane-street-logo.png";
 import HrtLogo from "@/assets/hrt-logo.png";
 import CitadelLogo from "@/assets/citadel-logo.png";
-import PolymarketLogo from "@/assets/polymarket-logo-white.png";
 import OptiverLogo from "@/assets/optiver-logo-white.png";
+import Point72Logo from "@/assets/point72.png";
 const SponsorSection = ({ withCta, hideTitle, title }: { withCta?: boolean; hideTitle?: boolean; title?: string }) => {
   return (
     <div className="container mx-auto max-w-3xl">
@@ -25,14 +25,14 @@ const SponsorSection = ({ withCta, hideTitle, title }: { withCta?: boolean; hide
             />
           </a>
           <a
-            href="https://www.hudsonrivertrading.com/"
+            href="https://www.citadelsecurities.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="w-2/3 sm:flex-1 sm:max-w-[45%]"
           >
             <img
-              src={HrtLogo}
-              alt="Hudson River Trading"
+              src={CitadelLogo}
+              alt="Citadel Securities"
               className="w-full h-auto hover:opacity-80 transition-opacity"
             />
           </a>
@@ -44,36 +44,17 @@ const SponsorSection = ({ withCta, hideTitle, title }: { withCta?: boolean; hide
         <h2 className="text-2xl font-semibold mb-8">Gold</h2>
         <div className="flex flex-col items-center justify-center gap-12">
           <a
-            href="https://www.citadel.com/"
+            href="https://www.hudsonrivertrading.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:max-w-[80%]"
+            className="w-full sm:max-w-[45%] md:max-w-[240px]"
           >
             <img
-              src={CitadelLogo}
-              alt="Citadel | Citadel Securities"
+              src={HrtLogo}
+              alt="Hudson River Trading"
               className="w-full h-auto hover:opacity-80 transition-opacity"
             />
           </a>
-          <a
-            href="https://polymarket.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full sm:max-w-[55%] md:max-w-[300px]"
-          >
-            <img
-              src={PolymarketLogo}
-              alt="Polymarket"
-              className="w-full h-auto hover:opacity-80 transition-opacity"
-            />
-          </a>
-        </div>
-      </div>
-
-      {/* Silver card */}
-      <div className="border p-6 md:p-8 mt-6 bg-black/70 border-white/20">
-        <h2 className="text-2xl font-semibold mb-8">Silver</h2>
-        <div className="flex flex-col items-center justify-center gap-12">
           <a
             href="https://www.optiver.com/"
             target="_blank"
@@ -86,8 +67,21 @@ const SponsorSection = ({ withCta, hideTitle, title }: { withCta?: boolean; hide
               className="w-full h-auto hover:opacity-80 transition-opacity"
             />
           </a>
+          <a
+            href="https://point72.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:max-w-[45%] md:max-w-[240px]"
+          >
+            <img
+              src={Point72Logo}
+              alt="Point72"
+              className="w-full h-auto hover:opacity-80 transition-opacity"
+            />
+          </a>
         </div>
       </div>
+
       {withCta && (
         <div className="mt-16 pt-6">
           <h2 className="text-2xl font-semibold mb-8">Become a Sponsor</h2>
