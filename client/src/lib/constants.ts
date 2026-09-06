@@ -77,7 +77,7 @@ export const TEAM: MemberInfo[] = [
     role: "VP",
     program: "Computer Science",
     bio: "Computer Science student with a Minecraft YouTube channel. Checkout my website!",
-    image: "jason_hon.jpg",
+    image: "jason_hon.png",
     linkedin: "https://www.linkedin.com/in/jasonhonhk/",
     email: "jasonhon@waterlooquantclub.com",
     website: "https://jasonhon.com/",
