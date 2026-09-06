@@ -11,7 +11,7 @@ const SponsorSection = ({ withCta, hideTitle, title }: { withCta?: boolean; hide
       {/* Diamond card */}
       <div className="border p-6 md:p-8 bg-black/70 border-[#0DBAFF]/40">
         <h2 className="text-2xl font-semibold mb-8">Diamond</h2>
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-8">
+        <div className="flex flex-row items-center justify-between gap-8">
           <a
             href="https://www.janestreet.com/"
             target="_blank"
@@ -42,12 +42,12 @@ const SponsorSection = ({ withCta, hideTitle, title }: { withCta?: boolean; hide
       {/* Gold card */}
       <div className="border p-6 md:p-8 mt-6 bg-black/70 border-[#f7c75e]/40">
         <h2 className="text-2xl font-semibold mb-8">Gold</h2>
-        <div className="flex flex-col items-center justify-center gap-12">
+        <div className="flex flex-row items-center justify-between gap-6">
           <a
             href="https://www.hudsonrivertrading.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:max-w-[45%] md:max-w-[240px]"
+            className="flex-1 min-w-0"
           >
             <img
               src={HrtLogo}
@@ -59,7 +59,7 @@ const SponsorSection = ({ withCta, hideTitle, title }: { withCta?: boolean; hide
             href="https://www.optiver.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:max-w-[45%] md:max-w-[240px]"
+            className="flex-1 min-w-0"
           >
             <img
               src={OptiverLogo}
@@ -71,7 +71,7 @@ const SponsorSection = ({ withCta, hideTitle, title }: { withCta?: boolean; hide
             href="https://point72.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:max-w-[45%] md:max-w-[240px]"
+            className="flex-1 min-w-0"
           >
             <img
               src={Point72Logo}
