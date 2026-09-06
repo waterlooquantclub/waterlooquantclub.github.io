@@ -14,11 +14,27 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const events: EventData[] = [
-  
-];
+const events: EventData[] = [];
 
 const archivedEvents: EventData[] = [
+  {
+    title: "Mock + Mock Recap",
+    date: "April 1, 2026",
+    location: "DC 1350",
+    type: "Workshop",
+    tags: ["WINTER 26"],
+    description:
+      "We ran one of the games from the trading competition, then recapped how it should be played — including the strategies for making money.",
+  },
+  {
+    title: "Polymarket",
+    date: "March 25, 2026",
+    location: "DC 1350",
+    type: "Sponsor Event",
+    tags: ["WINTER 26"],
+    description:
+      "Come win merch & prizes and chat with market co-lead from Polymarket",
+  },
   {
     title: "2026 Waterloo Trading Competition",
     date: "March 22, 2026",
