@@ -3,6 +3,11 @@ import HrtLogo from "@/assets/hrt-logo.png";
 import CitadelLogo from "@/assets/citadel-logo.png";
 import OptiverLogo from "@/assets/optiver-logo-white.png";
 import Point72Logo from "@/assets/point72.png";
+
+// To fix: Several partner marks are dark ink on transparent,
+// so the logos sit on a white bg rather than directly on the black card
+const logoPlate = "bg-white px-6 py-8 md:px-8";
+
 const SponsorSection = ({ withCta, hideTitle, title }: { withCta?: boolean; hideTitle?: boolean; title?: string }) => {
   return (
     <div className="container mx-auto max-w-3xl">
@@ -11,7 +16,7 @@ const SponsorSection = ({ withCta, hideTitle, title }: { withCta?: boolean; hide
       {/* Diamond card */}
       <div className="border p-6 md:p-8 bg-black/70 border-[#0DBAFF]/40">
         <h2 className="text-2xl font-semibold mb-8">Diamond</h2>
-        <div className="flex flex-row items-center justify-between gap-8">
+        <div className={`flex flex-row items-center justify-between gap-8 ${logoPlate}`}>
           <a
             href="https://www.janestreet.com/"
             target="_blank"
@@ -42,7 +47,7 @@ const SponsorSection = ({ withCta, hideTitle, title }: { withCta?: boolean; hide
       {/* Gold card */}
       <div className="border p-6 md:p-8 mt-6 bg-black/70 border-[#f7c75e]/40">
         <h2 className="text-2xl font-semibold mb-8">Gold</h2>
-        <div className="flex flex-row items-center justify-between gap-6">
+        <div className={`flex flex-row items-center justify-between gap-6 ${logoPlate}`}>
           <a
             href="https://www.hudsonrivertrading.com/"
             target="_blank"
