@@ -159,3 +159,32 @@
   animation: wave 3s ease-in-out infinite;
 }
 
+@layer components {
+  /* Frosted pane for the glass sponsor variant. backdrop-filter samples what is
+     painted behind an element, so each pane needs its own light plate beneath
+     it; on flat black there is nothing to blur and the pane renders as a grey
+     fill. The plate is clipped to the pane, so no light spills into the card. */
+  .sponsor-glass {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, var(--glass-tint, 0.16)),
+      rgba(255, 255, 255, calc(var(--glass-tint, 0.16) * 0.42))
+    );
+    backdrop-filter: blur(var(--glass-blur, 20px)) saturate(180%) brightness(1.05);
+    -webkit-backdrop-filter: blur(var(--glass-blur, 20px)) saturate(180%) brightness(1.05);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow:
+      inset 0 1.5px 1px rgba(255, 255, 255, 0.75),
+      inset 0 -1.5px 1px rgba(255, 255, 255, 0.22),
+      0 10px 30px rgba(0, 0, 0, 0.45);
+  }
+  .sponsor-glass-plate {
+    background: radial-gradient(
+      74% 104% at 50% 46%,
+      rgba(255, 255, 255, var(--plate-a, 0.9)) 0%,
+      rgba(255, 255, 255, calc(var(--plate-a, 0.9) * 0.76)) 48%,
+      rgba(255, 255, 255, calc(var(--plate-a, 0.9) * 0.34)) 80%,
+      rgba(255, 255, 255, calc(var(--plate-a, 0.9) * 0.1)) 100%
+    );
+  }
+}
