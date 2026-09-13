@@ -22,9 +22,16 @@ const archivedEvents: EventData[] = [
     date: "April 1, 2026",
     location: "DC 1350",
     type: "Workshop",
-    tags: ["WINTER 26"],
+    tags: ["WINTER 26", "RECORDING"],
     description:
       "We ran one of the games from the trading competition, then recapped how it should be played — including the strategies for making money.",
+    galleryImages: [
+      {
+        type: "video",
+        src: "https://www.youtube.com/embed/FhFJazn7Mg4",
+        alt: "Mock + Mock Recap Recording",
+      },
+    ],
   },
   {
     title: "Polymarket",
@@ -49,8 +56,15 @@ const archivedEvents: EventData[] = [
     date: "March 18, 2026 at 6pm",
     location: "DC 1350",
     type: "Workshop",
-     tags: ["WINTER 26"],
+    tags: ["WINTER 26", "RECORDING"],
     description: "Join us for an auction based trading game to win company-branded merch!",
+    galleryImages: [
+      {
+        type: "video",
+        src: "https://www.youtube.com/embed/wA6iVrAbL34",
+        alt: "Lo-ker Auction Recording",
+      },
+    ],
   },
   {
     title: "Optiver Trading Challenge",
@@ -65,8 +79,15 @@ const archivedEvents: EventData[] = [
     date: "March 4th, 2026 at 6:00pm",
     location: "EIT 1015",
     type: "Workshop",
-    tags: ["WINTER 26"],
+    tags: ["WINTER 26", "RECORDING"],
     description: "Join us next week to learn about Interview Tips and watch live mock interviews by engineers from top firms.",
+    galleryImages: [
+      {
+        type: "video",
+        src: "https://www.youtube.com/embed/e2-CbmvcBjA",
+        alt: "SWE & Quant Dev Interview Tips Recording",
+      },
+    ],
   },
   {
     title: "Interview Prep",
