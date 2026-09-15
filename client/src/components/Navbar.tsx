@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Menu } from "lucide-react";
 import wqcLogo from "@/assets/wqc-logo.svg";
+import ExternalLink from "@/components/ExternalLink";
 import {
   Sheet,
   SheetContent,
@@ -10,6 +11,11 @@ import {
 
 const navLinks = [
   { name: "Home", path: "/" },
+  {
+    name: "Portal",
+    path: "https://portal.waterlooquantclub.com",
+    external: true,
+  },
   { name: "Events", path: "/events" },
   { name: "Games", path: "/games" },
   // { name: "Competition", path: "/competition" },
@@ -36,15 +42,25 @@ const Navbar = ({ hasAnnouncementBar = false }: NavbarProps) => {
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-9">
-          {navLinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={cn("nav-link text-xl", location.pathname === link.path && "nav-link-active")}
-            >
-              {link.name}
-            </Link>
-          ))}
+          {navLinks.map((link) =>
+            link.external ? (
+              <ExternalLink
+                key={link.path}
+                href={link.path}
+                className="nav-link text-xl"
+              >
+                {link.name}
+              </ExternalLink>
+            ) : (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={cn("nav-link text-xl", location.pathname === link.path && "nav-link-active")}
+              >
+                {link.name}
+              </Link>
+            ),
+          )}
         </div>
 
         {/* Mobile Navigation using Sheet */}
@@ -59,18 +75,28 @@ const Navbar = ({ hasAnnouncementBar = false }: NavbarProps) => {
           </SheetTrigger>
           <SheetContent side="right" className="w-full bg-background border-none flex flex-col items-center justify-center">
             <div className="flex flex-col items-center gap-8">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  className={cn(
-                    "text-3xl font-light tracking-wide",
-                    location.pathname === link.path ? "text-foreground" : "text-muted-foreground hover:text-foreground"
-                  )}
-                >
-                  {link.name}
-                </Link>
-              ))}
+              {navLinks.map((link) =>
+                link.external ? (
+                  <ExternalLink
+                    key={link.path}
+                    href={link.path}
+                    className="text-3xl font-light tracking-wide text-muted-foreground hover:text-foreground"
+                  >
+                    {link.name}
+                  </ExternalLink>
+                ) : (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className={cn(
+                      "text-3xl font-light tracking-wide",
+                      location.pathname === link.path ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                    )}
+                  >
+                    {link.name}
+                  </Link>
+                ),
+              )}
             </div>
           </SheetContent>
         </Sheet>
