@@ -131,6 +131,7 @@ export const TEAM: MemberInfo[] = [
     image: "ileung.jpg",
     linkedin: "https://www.linkedin.com/in/ianleung12/",
     email: "ianleung@waterlooquantclub.com",
+    website: "https://ianleung.com",
   },
   {
     name: "Alex Oláh",
