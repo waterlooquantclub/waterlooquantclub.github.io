@@ -16,21 +16,6 @@ import {
 
 const events: EventData[] = [
   {
-    title: "Jane Street Casual Social",
-    date: "September 18, 2026, 11:30 AM–2:30 PM EDT",
-    location: "MC 2065",
-    type: "Sponsor Event",
-    tags: ["FALL 26"],
-    description:
-      "Come hang out at the Jane Street Casual Social for a relaxed afternoon of conversation, networking, and meeting other students interested in quantitative finance and technology. Food and swag will be provided. Let us know you’re coming so we can plan for headcount.",
-    calendarlink:
-      "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Jane%20Street%20Casual%20Social&dates=20260918T153000Z%2F20260918T183000Z&details=Come%20hang%20out%20at%20the%20Jane%20Street%20Casual%20Social%20for%20a%20relaxed%20afternoon%20of%20conversation%2C%20networking%2C%20and%20meeting%20other%20students%20interested%20in%20quantitative%20finance%20and%20technology.%20Food%20and%20swag%20will%20be%20provided.&location=MC%202065",
-    externalLink: {
-      label: "RSVP",
-      url: "https://portal.waterlooquantclub.com/events/2",
-    },
-  },
-  {
     title: "WQC/Wat.ai x Optiver",
     date: "September 24, 2026, 6:00–8:00 PM EDT",
     location: "STC 0060",
@@ -48,6 +33,15 @@ const events: EventData[] = [
 ];
 
 const archivedEvents: EventData[] = [
+  {
+    title: "Jane Street Casual Social",
+    date: "September 18, 2026 at 12pm",
+    location: "MC 2065",
+    type: "Sponsor Event",
+    tags: ["FALL 26"],
+    description:
+      "Come hang out at the Jane Street Casual Social for a relaxed afternoon of conversation, networking, and meeting other students interested in quantitative finance and technology.",
+  },
   {
     title: "WQC/DSC x Cubist",
     date: "September 16, 2026 at 6pm",
