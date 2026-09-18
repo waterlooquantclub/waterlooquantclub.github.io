@@ -16,21 +16,6 @@ import {
 
 const events: EventData[] = [
   {
-    title: "WQC/DSC x Cubist",
-    date: "September 16, 2026, 6:00–8:00 PM EDT",
-    location: "AL 116",
-    type: "Sponsor Event",
-    tags: ["FALL 26"],
-    description:
-      "Join us for an evening with Quant Developers and Researchers from Cubist Systematic Strategies, hosted in collaboration with the Data Science Club. Hear directly from industry professionals about their work in quantitative finance, systematic strategies, and research, followed by an open Q&A panel where you’ll have the opportunity to ask your questions. Food will be provided. Let us know you’re coming so we can plan for headcount.",
-    calendarlink:
-      "https://calendar.google.com/calendar/render?action=TEMPLATE&text=WQC%2FDSC%20x%20Cubist&dates=20260916T220000Z%2F20260917T000000Z&details=Join%20us%20for%20an%20evening%20with%20Quant%20Developers%20and%20Researchers%20from%20Cubist%20Systematic%20Strategies%2C%20hosted%20in%20collaboration%20with%20the%20Data%20Science%20Club.%20Hear%20directly%20from%20industry%20professionals%20about%20their%20work%20in%20quantitative%20finance%2C%20systematic%20strategies%2C%20and%20research%2C%20followed%20by%20an%20open%20Q%26A%20panel.%20Food%20will%20be%20provided.&location=AL%20116",
-    externalLink: {
-      label: "RSVP",
-      url: "https://portal.waterlooquantclub.com/events/1",
-    },
-  },
-  {
     title: "Jane Street Casual Social",
     date: "September 18, 2026, 11:30 AM–2:30 PM EDT",
     location: "MC 2065",
@@ -63,6 +48,28 @@ const events: EventData[] = [
 ];
 
 const archivedEvents: EventData[] = [
+  {
+    title: "WQC/DSC x Cubist",
+    date: "September 16, 2026 at 6pm",
+    location: "AL 116",
+    type: "Sponsor Event",
+    tags: ["FALL 26"],
+    description:
+      "Join us for an evening with Quant Developers and Researchers from Cubist Systematic Strategies, hosted in collaboration with the Data Science Club.",
+    galleryImages: [
+      { type: "image", src: "/events/f26cubist/cubist1.jpg", alt: "" },
+      { type: "image", src: "/events/f26cubist/cubist2.jpg", alt: "" },
+      { type: "image", src: "/events/f26cubist/cubist3.jpg", alt: "" },
+      { type: "image", src: "/events/f26cubist/cubist4.jpg", alt: "" },
+      { type: "image", src: "/events/f26cubist/cubist5.jpg", alt: "" },
+      { type: "image", src: "/events/f26cubist/cubist6.jpg", alt: "" },
+      { type: "image", src: "/events/f26cubist/cubist7.jpg", alt: "" },
+      { type: "image", src: "/events/f26cubist/cubist8.jpg", alt: "" },
+      { type: "image", src: "/events/f26cubist/cubist9.jpg", alt: "" },
+      { type: "image", src: "/events/f26cubist/cubist10.jpg", alt: "" },
+      { type: "image", src: "/events/f26cubist/cubist11.jpg", alt: "" },
+    ],
+  },
   {
     title: "Mock + Mock Recap",
     date: "April 1, 2026",
