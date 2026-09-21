@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import Layout from "@/components/Layout";
 import { Calendar, MapPin, Search, X, CalendarPlus, ExternalLink } from "lucide-react";
 import EventDialog, { EventData } from "@/components/EventDialog";
@@ -13,401 +14,43 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { fetchPublicEvents } from "@/lib/portal";
+import { toEventData } from "@/lib/eventMapping";
+import { warnUnmatchedGalleries } from "@/lib/eventGallery";
 
-const events: EventData[] = [
-  {
-    title: "WQC/Wat.ai x Optiver",
-    date: "September 24, 2026, 6:00–8:00 PM EDT",
-    location: "STC 0060",
-    type: "Sponsor Event",
-    tags: ["FALL 26"],
-    description:
-      "Join Waterloo Quant Club and Wat.ai for an evening with Optiver. Meet industry professionals, learn more about quantitative trading and technology, and connect with other students interested in quant and AI. Let us know you’re coming so we can plan for headcount.",
-    calendarlink:
-      "https://calendar.google.com/calendar/render?action=TEMPLATE&text=WQC%2FWat.ai%20x%20Optiver&dates=20260924T220000Z%2F20260925T000000Z&details=Join%20Waterloo%20Quant%20Club%20and%20Wat.ai%20for%20an%20evening%20with%20Optiver.%20Meet%20industry%20professionals%2C%20learn%20more%20about%20quantitative%20trading%20and%20technology%2C%20and%20connect%20with%20other%20students%20interested%20in%20quant%20and%20AI.&location=STC%200060",
-    externalLink: {
-      label: "RSVP",
-      url: "https://portal.waterlooquantclub.com/events/3",
-    },
-  },
-];
+const CARD_STYLE = {
+  background:
+    "linear-gradient(to top left, rgba(19, 44, 123, 0.35) 0%, rgba(0, 0, 0, 0.97) 100%)",
+};
 
-const archivedEvents: EventData[] = [
-  {
-    title: "Jane Street Casual Social",
-    date: "September 18, 2026 at 12pm",
-    location: "MC 2065",
-    type: "Sponsor Event",
-    tags: ["FALL 26"],
-    description:
-      "Come hang out at the Jane Street Casual Social for a relaxed afternoon of conversation, networking, and meeting other students interested in quantitative finance and technology.",
-  },
-  {
-    title: "WQC/DSC x Cubist",
-    date: "September 16, 2026 at 6pm",
-    location: "AL 116",
-    type: "Sponsor Event",
-    tags: ["FALL 26"],
-    description:
-      "Join us for an evening with Quant Developers and Researchers from Cubist Systematic Strategies, hosted in collaboration with the Data Science Club.",
-    galleryImages: [
-      { type: "image", src: "/events/f26cubist/cubist1.jpg", alt: "" },
-      { type: "image", src: "/events/f26cubist/cubist2.jpg", alt: "" },
-      { type: "image", src: "/events/f26cubist/cubist3.jpg", alt: "" },
-      { type: "image", src: "/events/f26cubist/cubist4.jpg", alt: "" },
-      { type: "image", src: "/events/f26cubist/cubist5.jpg", alt: "" },
-      { type: "image", src: "/events/f26cubist/cubist6.jpg", alt: "" },
-      { type: "image", src: "/events/f26cubist/cubist7.jpg", alt: "" },
-      { type: "image", src: "/events/f26cubist/cubist8.jpg", alt: "" },
-      { type: "image", src: "/events/f26cubist/cubist9.jpg", alt: "" },
-      { type: "image", src: "/events/f26cubist/cubist10.jpg", alt: "" },
-      { type: "image", src: "/events/f26cubist/cubist11.jpg", alt: "" },
-    ],
-  },
-  {
-    title: "Mock + Mock Recap",
-    date: "April 1, 2026",
-    location: "DC 1350",
-    type: "Workshop",
-    tags: ["WINTER 26", "RECORDING"],
-    description:
-      "We ran one of the games from the trading competition, then recapped how it should be played — including the strategies for making money.",
-    galleryImages: [
-      {
-        type: "video",
-        src: "https://www.youtube.com/embed/FhFJazn7Mg4",
-        alt: "Mock + Mock Recap Recording",
-      },
-    ],
-  },
-  {
-    title: "Polymarket",
-    date: "March 25, 2026",
-    location: "DC 1350",
-    type: "Sponsor Event",
-    tags: ["WINTER 26"],
-    description:
-      "Come win merch & prizes and chat with market co-lead from Polymarket",
-  },
-  {
-    title: "2026 Waterloo Trading Competition",
-    date: "March 22, 2026",
-    location: "University of Waterloo (in-person)",
-    type: "Competition",
-    tags: ["WINTER 26"],
-    description: "Canada's first international university trading competition. Compete for $10,000+ in cash prizes. Open to university students in Canada & the U.S with travel reimbursements provided for accepted participants.",
-    // externalLink: { label: "Learn More & Apply", url: "/competition" }
-  },
-  {
-    title: "Lo-ker Auction",
-    date: "March 18, 2026 at 6pm",
-    location: "DC 1350",
-    type: "Workshop",
-    tags: ["WINTER 26", "RECORDING"],
-    description: "Join us for an auction based trading game to win company-branded merch!",
-    galleryImages: [
-      {
-        type: "video",
-        src: "https://www.youtube.com/embed/wA6iVrAbL34",
-        alt: "Lo-ker Auction Recording",
-      },
-    ],
-  },
-  {
-    title: "Optiver Trading Challenge",
-    date: "March 11th, 2026 at 6:30pm",
-    location: "Location shared with invitees",
-    type: "Sponsor Event",
-    tags: ["WINTER 26"],
-    description: "Meet Optiver traders and engineers, participate in a live trading game, and enjoy free food, drinks, and merch! Application required due to limited spots.",
-  },
-  {
-    title: "SWE & Quant Dev Interview Tips",
-    date: "March 4th, 2026 at 6:00pm",
-    location: "EIT 1015",
-    type: "Workshop",
-    tags: ["WINTER 26", "RECORDING"],
-    description: "Join us next week to learn about Interview Tips and watch live mock interviews by engineers from top firms.",
-    galleryImages: [
-      {
-        type: "video",
-        src: "https://www.youtube.com/embed/e2-CbmvcBjA",
-        alt: "SWE & Quant Dev Interview Tips Recording",
-      },
-    ],
-  },
-  {
-    title: "Interview Prep",
-    date: "Feb 25, 2026 at 6:00pm",
-    location: "EIT 1015",
-    type: "Workshop",
-    tags: ["WINTER 26", "RECORDING"],
-    description: "Want to crack into Quant Trading? 🤔 Join us next Wednesday to learn about Quant Trading interviews! Come learn about interview tips and tricks by traders from top firms.",
-    galleryImages: [
-      {
-        type: "video",
-        src: "https://www.youtube.com/embed/FV7QpCkC-GQ",
-        alt: "Quant Trading Interview Prep Recording",
-      },
-    ],
-  },
-  {
-    title: "Prop Trades, Pickoffs, and Other Whacky Things People Will Trade",
-    date: "Feb 11th @ 6:00PM",
-    location: "DC 1350 (in-person)",
-    type: "Workshop",
-    tags: ["WINTER 26"],
-    description: "Come learn about fun prop trades, side bets, and market oddities we’ve seen over time.",
-  },
-  {
-    title: "Game Theory",
-    date: "Feb 4, 2026 @ 6:00PM",
-    location: "EIT 1015 (in-person)",
-    type: "Workshop",
-    tags: ["WINTER 26"],
-    description: "Learn about game theory and compete in live trading games with our execs to win prizes!",
-  },
-  {
-    title: "Statistical and Human Biases",
-    date: "January 28, 2026 @ 6:00PM",
-    location: "DC 1350",
-    type: "Workshop",
-    tags: ["WINTER 26", "RECORDING"],
-    description: "Learn about the statistical pitfalls and cognitive traps that lead smart people to make not-so-smart trades.",
-    galleryImages: [
-      {
-        type: "video",
-        src: "https://www.youtube.com/embed/pCNWcxCAydI",
-        alt: "Statistical and Human Biases Recording",
-      },
-    ],
-  },
-  {
-    title: "Quant Panel Q&A",
-    date: "January 21, 2026 @ 6-8pm",
-    location: "DC 1350",
-    type: "Panel",
-    description: "Ever wondered what quants actually do? Join us for a panel with Waterloo students who have worked at companies such as Jane Street, SIG, HRT, and Point72.",
-    tags: ["WINTER 26"],
-    galleryImages: [
-      { type: "image", src: "/events/26panel/26panel1.jpg", alt: "" },
-      { type: "image", src: "/events/26panel/26panel2.jpg", alt: "" },
-      { type: "image", src: "/events/26panel/26panel3.jpg", alt: "" },
-      { type: "image", src: "/events/26panel/26panel4.jpg", alt: "" },
-      { type: "image", src: "/events/26panel/26panel5.jpg", alt: "" },
-      { type: "image", src: "/events/26panel/26panel6.jpg", alt: "" },
-      { type: "image", src: "/events/26panel/26panel7.jpg", alt: "" },
-    ],
-  },
-  {
-    title: "Citadel Securities Trading Challenge",
-    date: "Jan 14, 2026 @ 6-8pm",
-    location: "DC 1350",
-    type: "Sponsor Event",
-    description:
-      "Learn about trading, put your market-making skills to the test, and connect with full-time Citadel traders. Sign up through our Instagram.",
-    tags: ["WINTER 26", "COMPETITION"],
-    galleryImages: [
-      { type: "image", src: "/events/citadel-trading-challenge/citadel1.jpg", alt: "" },
-      { type: "image", src: "/events/citadel-trading-challenge/citadel2.jpg", alt: "" },
-      { type: "image", src: "/events/citadel-trading-challenge/citadel3.jpg", alt: "" },
-      { type: "image", src: "/events/citadel-trading-challenge/citadel4.jpg", alt: "" },
-      { type: "image", src: "/events/citadel-trading-challenge/citadel5.jpg", alt: "" },
-      { type: "image", src: "/events/citadel-trading-challenge/citadel6.jpg", alt: "" },
-      { type: "image", src: "/events/citadel-trading-challenge/citadel7.jpg", alt: "" },
-      { type: "image", src: "/events/citadel-trading-challenge/citadel8.jpg", alt: "" },
-      { type: "image", src: "/events/citadel-trading-challenge/citadel9.jpg", alt: "" },
-      { type: "image", src: "/events/citadel-trading-challenge/citadel10.jpg", alt: "" },
-      { type: "image", src: "/events/citadel-trading-challenge/citadel11.jpg", alt: "" },
-      { type: "image", src: "/events/citadel-trading-challenge/citadel12.jpg", alt: "" },
-      { type: "image", src: "/events/citadel-trading-challenge/citadel13.jpg", alt: "" },
-      { type: "image", src: "/events/citadel-trading-challenge/citadel14.jpg", alt: "" },
-      { type: "image", src: "/events/citadel-trading-challenge/citadel15.jpg", alt: "" },
-    ],
-  },
-  {
-    title: "Capital Markets",
-    date: "Nov 26, 2025 @ 6:00PM",
-    location: "RCH 302",
-    type: "Workshop",
-    description:
-      "An overview of Capital Markets theory (CapM) — understanding and exploring the relationship between risk and expected return.",
-    tags: ["FALL 25", "RECORDING"],
-    galleryImages: [
-      {
-        type: "video",
-        src: "https://www.youtube.com/embed/PpJN-D7hvbg",
-        alt: "Capital Markets Workshop Recording",
-      },
-    ],
-    slideDeckUrl:
-      "https://docs.google.com/presentation/d/e/2PACX-1vSSsqndHYJE7lZ57iMBTlmHZUYduD6Umil6eSrN0zCPGcfGWGqFQUtfU8S1jtdPLw/pub?start=true&loop=true&delayms=3000",
-  },
-  {
-    title: "Fall 2025 Trading Competition",
-    date: "Nov 22, 2025 @ 10AM—5PM",
-    location: "DC 1351",
-    type: "Competition",
-    description: "Our inaugural trading competition — test your skills and compete for prizes!",
-    tags: ["FALL 25"],
-    pdfUrl: "/events/f25tradingcomp/f25tradingcomp.pdf",
-    galleryImages: [
-      { type: "image", src: "/events/f25tradingcomp/comp1.jpg", alt: "" },
-      { type: "image", src: "/events/f25tradingcomp/comp2.jpg", alt: "" },
-      { type: "image", src: "/events/f25tradingcomp/comp3.jpg", alt: "" },
-      { type: "image", src: "/events/f25tradingcomp/comp4.jpg", alt: "" },
-      { type: "image", src: "/events/f25tradingcomp/comp5.jpg", alt: "" },
-      { type: "image", src: "/events/f25tradingcomp/comp6.jpg", alt: "" },
-      { type: "image", src: "/events/f25tradingcomp/comp7.jpg", alt: "" },
-      { type: "image", src: "/events/f25tradingcomp/comp8.jpg", alt: "" },
-      { type: "image", src: "/events/f25tradingcomp/comp9.jpg", alt: "" },
-      { type: "image", src: "/events/f25tradingcomp/comp10.jpg", alt: "" },
-      { type: "image", src: "/events/f25tradingcomp/comp11.jpg", alt: "" },
-      { type: "image", src: "/events/f25tradingcomp/comp12.jpg", alt: "" },
-      { type: "image", src: "/events/f25tradingcomp/comp13.jpg", alt: "" },
-      { type: "image", src: "/events/f25tradingcomp/comp14.jpg", alt: "" },
-      { type: "image", src: "/events/f25tradingcomp/comp15.jpg", alt: "" },
-      { type: "image", src: "/events/f25tradingcomp/comp16.jpg", alt: "" },
-      { type: "image", src: "/events/f25tradingcomp/comp17.jpg", alt: "" },
-      { type: "image", src: "/events/f25tradingcomp/comp18.jpg", alt: "" },
-      { type: "image", src: "/events/f25tradingcomp/comp19.jpg", alt: "" },
-      { type: "image", src: "/events/f25tradingcomp/comp20.jpg", alt: "" },
-    ],
-    rankings: [
-      { rank: 1, name: "Alfred Zhang", score: 4.53587 },
-      { rank: 2, name: "Tian yi Tong", score: 5.53265 },
-      { rank: 3, name: "Joey Xu", score: 6.13033 },
-      { rank: 4, name: "David Shi", score: 6.95896 },
-      { rank: 5, name: "Adam Kamel", score: 7.78046 },
-      { rank: 6, name: "David Gan", score: 7.84710 },
-      { rank: 7, name: "Andrej Ohrablo", score: 8.28348 },
-      { rank: 8, name: "Leonardo Zhou", score: 8.48545 },
-      { rank: 9, name: "Aadya Khanna", score: 8.57984 },
-      { rank: 10, name: "Wilson Feng", score: 9.72621 },
-    ],
-  },
-  {
-    title: "Options 101",
-    date: "Nov 19, 2025 @ 6:00PM",
-    location: "RCH 302",
-    type: "Workshop",
-    description: "An introduction to options trading — calls, puts, volatility and all the greeks.",
-    tags: ["FALL 25", "RECORDING"],
-    galleryImages: [
-      {
-        type: "video",
-        src: "https://www.youtube.com/embed/gp9hxfE0Eag",
-        alt: "Options 101 Recording",
-      },
-      {
-        type: "image",
-        src: "/events/options101/options1.jpg",
-        alt: "",
-      },
-      {
-        type: "image",
-        src: "/events/options101/options2.jpg",
-        alt: "",
-      },
-      {
-        type: "image",
-        src: "/events/options101/options3.jpg",
-        alt: "",
-      },
-    ],
-    slideDeckUrl:
-      "https://docs.google.com/presentation/d/e/2PACX-1vTNgHHSZist8YCaOyQC-K4o4Tfatl_mSsLC5wOLD53CuYTZwlgLGbA6sZQhyYkiTw/pub?start=true&loop=true&delayms=3000",
-  },
-  {
-    title: "Asset Class Deep Dive",
-    date: "Nov 12, 2025 @ 6:00PM",
-    location: "RCH 302",
-    type: "Workshop",
-    description: "A survey of all other asset classes — exploring fixed income, equities, commodities, and more.",
-    tags: ["FALL 25", "RECORDING"],
-    galleryImages: [
-      {
-        type: "video",
-        src: "https://www.youtube.com/embed/c71du1u3bHs",
-        alt: "Assets Deep Dive Recording",
-      },
-    ],
-    slideDeckUrl:
-      "https://docs.google.com/presentation/d/e/2PACX-1vQ7GpETs4fUtfHzZbjVFOGptAzHMG7eEj7R8GsTZavWIEHOw9mDiRp6alIid1n9sQ/pub?start=true&loop=true&delayms=3000",
-  },
-  {
-    title: "Intro to Trading",
-    date: "Oct 29, 2025 @ 6:00PM",
-    location: "RCH 302",
-    type: "Workshop",
-    description:
-      "An introductory workshop on trading and market structure — covering market making terminology, order book mechanics, and real trade examples.",
-    tags: ["FALL 25", "RECORDING"],
-    galleryImages: [
-      {
-        type: "video",
-        src: "https://www.youtube.com/embed/M22fNi8o8W4",
-        alt: "Intro to Trading Workshop Recording",
-      },
-    ],
-    slideDeckUrl:
-      "https://docs.google.com/presentation/d/e/2PACX-1vRnTRrNVTQMUFj-O4AZfgDedyvpwU4vtPN127ogpsayu4JB19xMl6C-9_Yr3_B2XQ/pub?start=false&loop=false&delayms=3000",
-  },
-  {
-    title: "Intro to Quant Panel",
-    date: "Oct 8, 2025 @ 7:30PM",
-    location: "RCH 302",
-    type: "Panel",
-    description:
-      "We kicked off the term with our Intro to Quant Panel! Students who've worked at companies such as Jane Street, SIG, HRT, and Point72 shared their experiences, gave insight into the industry, and answered questions live.",
-    tags: ["FALL 25"],
-    galleryImages: [
-      {
-        type: "image",
-        src: "/events/introtoquantpanel/qanda.jpg",
-        alt: "Q&A Session",
-      },
-      {
-        type: "image",
-        src: "/events/introtoquantpanel/crowd.jpg",
-        alt: "Event Crowd",
-      },
-      {
-        type: "image",
-        src: "/events/introtoquantpanel/harry.jpg",
-        alt: "Harry Jiang: QT @ Jane Street",
-      },
-      {
-        type: "image",
-        src: "/events/introtoquantpanel/wpanel.jpg",
-        alt: "Waterloo Quant Club Execs",
-      },
-      {
-        type: "image",
-        src: "/events/introtoquantpanel/john.jpg",
-        alt: "John Huang: QR at Cubist",
-      },
-      {
-        type: "image",
-        src: "/events/introtoquantpanel/daniel.jpg",
-        alt: "Daniel Shen: QT @ SIG",
-      },
-      {
-        type: "image",
-        src: "/events/introtoquantpanel/ian.jpg",
-        alt: "Ian Zhao: SWE @ HRT",
-      },
-    ],
-    slideDeckUrl:
-      "https://docs.google.com/presentation/d/e/2PACX-1vS7seVvgi7gQe6Hi9w4Hn2Zcz0Bn_DhC_uyaCH_R-Ag72rlg4SgWQegLVj1m5OX4g/pub?start=false&loop=false&delayms=3000",
-  },
-];
+const PORTAL_URL = "https://portal.waterlooquantclub.com";
 
 const Events = () => {
   const [selectedEvent, setSelectedEvent] = useState<EventData | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [archiveQuery, setArchiveQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+
+  // Events come from the member portal, so this page and the portal never drift.
+  // Photos are the one thing kept in this repo; see src/lib/eventGallery.ts.
+  const { data, isPending, isError } = useQuery({
+    queryKey: ["portal", "public-events"],
+    queryFn: ({ signal }) => fetchPublicEvents(signal),
+    staleTime: 5 * 60 * 1000,
+    retry: 1,
+  });
+
+  useEffect(() => {
+    if (data) warnUnmatchedGalleries(data.map((e) => e.slug));
+  }, [data]);
+
+  const events: EventData[] = (data ?? [])
+    .filter((e) => e.status === "upcoming" || e.status === "live")
+    .map(toEventData);
+
+  const archivedEvents: EventData[] = (data ?? [])
+    .filter((e) => e.status === "past")
+    .map(toEventData);
 
   const handleEventClick = (event: EventData) => {
     setSelectedEvent(event);
@@ -467,6 +110,45 @@ const Events = () => {
     return matchesQuery && matchesTags;
   });
 
+  const renderEventCard = (event: EventData, index: number, showLink: boolean) => (
+    <div
+      key={index}
+      onClick={() => handleEventClick(event)}
+      className="group p-6 border border-[#FAFAFA]/20 hover:border-[#FAFAFA]/50 transition-colors cursor-pointer"
+      style={CARD_STYLE}
+    >
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 mb-3">
+        <span className="text-xs tracking-widest uppercase text-[#FAFAFA] bg-[#132C7B]/60 px-2 py-1 w-fit">
+          {event.type}
+        </span>
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-muted-foreground text-sm">
+          <div className="flex items-center gap-2">
+            <MapPin className="w-4 h-4" />
+            {event.location}
+          </div>
+          <div className="flex items-center gap-2">
+            <Calendar className="w-4 h-4" />
+            {event.date}
+          </div>
+        </div>
+      </div>
+      <h3 className="text-xl font-medium text-foreground mb-2">{event.title}</h3>
+      <p className="text-muted-foreground text-sm">{event.description}</p>
+      {showLink && event.externalLink && (
+        <a
+          href={event.externalLink.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
+          className="mt-2 inline-flex items-center gap-2 rounded-full border border-border bg-white/5 px-3 py-1.5 text-xs hover:bg-white/10 hover:border-[#FAFAFA]/40 transition"
+        >
+          <ExternalLink className="w-4 h-4" />
+          {event.externalLink.label}
+        </a>
+      )}
+    </div>
+  );
+
   return (
     <Layout>
       <section className="min-h-[calc(100vh-4rem)] py-24 px-6">
@@ -512,63 +194,48 @@ const Events = () => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
-            style={{
-              background:
-                "linear-gradient(to top left, rgba(19, 44, 123, 0.35) 0%, rgba(0, 0, 0, 0.97) 100%)",
-            }}
+            style={CARD_STYLE}
             className="text-muted-foreground mb-8 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-s hover:text-white border border-[#FAFAFA]/20 hover:border-[#FAFAFA]/50 cursor-pointer transition"
           >
             <CalendarPlus className="w-4 h-4" />
             Subscribe to WQC's Winter 2026 Events Calendar
           </a>
 
-          <div className="space-y-6">
-            {events.map((event, index) => (
-              <div
-                key={index}
-                onClick={() => handleEventClick(event)}
-                className="group p-6 border border-[#FAFAFA]/20 hover:border-[#FAFAFA]/50 transition-colors cursor-pointer"
-                style={{
-                  background:
-                    "linear-gradient(to top left, rgba(19, 44, 123, 0.35) 0%, rgba(0, 0, 0, 0.97) 100%)",
-                }}
+          {isError && (
+            <div
+              className="p-6 border border-[#FAFAFA]/20 text-muted-foreground text-sm mb-6"
+              style={CARD_STYLE}
+            >
+              We couldn't load events right now. Try again in a moment, or see
+              them on the{" "}
+              <a
+                href={`${PORTAL_URL}/events`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline"
               >
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 mb-3">
-                  <span className="text-xs tracking-widest uppercase text-[#FAFAFA] bg-[#132C7B]/60 px-2 py-1 w-fit">
-                    {event.type}
-                  </span>
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-muted-foreground text-sm">
-                    <div className="flex items-center gap-2">
-                      <MapPin className="w-4 h-4" />
-                      {event.location}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4" />
-                      {event.date}
-                    </div>
-                  </div>
-                </div>
-                <h3 className="text-xl font-medium text-foreground mb-2">
-                  {event.title}
-                </h3>
-                <p className="text-muted-foreground text-sm">
-                  {event.description}
-                </p>
-                {event.externalLink && (
-                  <a
-                    href={event.externalLink.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="mt-2 inline-flex items-center gap-2 rounded-full border border-border bg-white/5 px-3 py-1.5 text-xs hover:bg-white/10 hover:border-[#FAFAFA]/40 transition"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    {event.externalLink.label}
-                  </a>
-                )}
+                member portal
+              </a>
+              .
+            </div>
+          )}
+
+          <div className="space-y-6">
+            {isPending && (
+              <p className="text-muted-foreground text-sm">Loading events…</p>
+            )}
+            {!isPending && !isError && events.length === 0 && (
+              <div
+                className="p-6 border border-[#FAFAFA]/20 text-muted-foreground text-sm"
+                style={CARD_STYLE}
+              >
+                No upcoming events right now. Follow us on Instagram or subscribe
+                to the calendar above to hear about the next one.
               </div>
-            ))}
+            )}
+            {events.map((event, index) => renderEventCard(event, index, true))}
           </div>
+
           <h1
             className="text-4xl md:text-6xl font-light tracking-tight mb-8 mt-16"
             id="archive"
@@ -670,39 +337,16 @@ const Events = () => {
           )}
 
           <div className="space-y-6">
-            {filteredArchivedEvents.map((event, index) => (
-              <div
-                key={index}
-                onClick={() => handleEventClick(event)}
-                className="group p-6 border border-[#FAFAFA]/20 hover:border-[#FAFAFA]/50 transition-colors cursor-pointer"
-                style={{
-                  background:
-                    "linear-gradient(to top left, rgba(19, 44, 123, 0.35) 0%, rgba(0, 0, 0, 0.97) 100%)",
-                }}
-              >
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 mb-3">
-                  <span className="text-xs tracking-widest uppercase text-[#FAFAFA] bg-[#132C7B]/60 px-2 py-1 w-fit">
-                    {event.type}
-                  </span>
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-muted-foreground text-sm">
-                    <div className="flex items-center gap-2">
-                      <MapPin className="w-4 h-4" />
-                      {event.location}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4" />
-                      {event.date}
-                    </div>
-                  </div>
-                </div>
-                <h3 className="text-xl font-medium text-foreground mb-2">
-                  {event.title}
-                </h3>
-                <p className="text-muted-foreground text-sm">
-                  {event.description}
-                </p>
-              </div>
-            ))}
+            {!isPending && !isError && filteredArchivedEvents.length === 0 && (
+              <p className="text-muted-foreground text-sm">
+                {archivedEvents.length === 0
+                  ? "No past events yet."
+                  : "No events match your search."}
+              </p>
+            )}
+            {filteredArchivedEvents.map((event, index) =>
+              renderEventCard(event, index, false),
+            )}
           </div>
         </div>
       </section>
