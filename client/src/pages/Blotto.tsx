@@ -8,6 +8,7 @@ import {
   Target,
 } from "lucide-react";
 import { Link } from "react-router-dom";
+import { PORTAL_APP_URL } from "@/lib/portal";
 
 const Blotto = () => {
   return (
@@ -40,7 +41,9 @@ const Blotto = () => {
               {/* ACTION BUTTONS */}
               <div className="pt-4 flex flex-wrap gap-4">
                 <a
-                  href="https://me.waterlooquantclub.com/forms/"
+                  href={`${PORTAL_APP_URL}/blotto`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-foreground text-background px-6 py-3 text-sm font-medium tracking-wide hover:bg-foreground/90 transition-colors"
                 >
                   Submit Strategies on the Member Portal
@@ -239,10 +242,12 @@ const Blotto = () => {
                   Check the member portal for this week's scenarios.
                 </p>
                 <a
-                  href="https://me.waterlooquantclub.com/forms/"
+                  href={`${PORTAL_APP_URL}/blotto`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-blue-400 hover:text-blue-300 text-sm font-medium hover:underline"
                 >
-                  Go to Submission Forms on Portal &rarr;
+                  Go to Submissions on the Portal &rarr;
                 </a>
               </div>
             </div>

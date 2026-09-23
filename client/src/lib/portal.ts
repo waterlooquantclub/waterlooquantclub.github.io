@@ -1,13 +1,18 @@
 /**
- * Read-only client for the member portal's public events feed.
+ * Read-only client for the member portal's public feeds (events, Blotto
+ * leaderboard).
  *
- * The portal is the single source of truth for event data; this site only
- * renders it (and supplies photos from `src/assets/events/<slug>/`).
+ * The portal is the single source of truth for this data; this site only
+ * renders it (and supplies event photos from `src/assets/events/<slug>/`).
  */
 
 export const PORTAL_API_URL =
   import.meta.env.VITE_PORTAL_API_URL?.trim().replace(/\/$/, "") ||
   "https://portal.waterlooquantclub.com/api";
+
+export const PORTAL_APP_URL =
+  import.meta.env.VITE_PORTAL_APP_URL?.trim().replace(/\/$/, "") ||
+  "https://portal.waterlooquantclub.com";
 
 export type PublicEventStatus = "upcoming" | "live" | "past";
 export type PublicEventLinkKind = "video" | "slides" | "pdf" | "external";
@@ -47,4 +52,21 @@ export async function fetchPublicEvents(signal?: AbortSignal): Promise<PublicEve
     throw new Error(`Portal responded with ${res.status}`);
   }
   return (await res.json()) as PublicEvent[];
+}
+
+export interface PublicLeaderboardEntry {
+  rank: number;
+  name: string;
+  waterloo: boolean;
+  total_score: number;
+}
+
+export async function fetchPublicBlottoLeaderboard(
+  signal?: AbortSignal
+): Promise<PublicLeaderboardEntry[]> {
+  const res = await fetch(`${PORTAL_API_URL}/blotto/leaderboard/public`, { signal });
+  if (!res.ok) {
+    throw new Error(`Portal responded with ${res.status}`);
+  }
+  return (await res.json()) as PublicLeaderboardEntry[];
 }

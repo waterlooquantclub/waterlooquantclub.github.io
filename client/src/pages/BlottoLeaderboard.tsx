@@ -2,30 +2,13 @@ import { useState, useEffect } from "react";
 import Layout from "@/components/Layout";
 import { Trophy, Search, ArrowLeft, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
-
-const SHEET_CSV_URL =
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vSxpiHAJ0YOc4ROL-N9PjVTrXlCewD9QMHhiG0_zMii7JxE-1ZdaXAxSVPg-3MwCoNSXHxLr2hqITao/pub?gid=628734344&single=true&output=csv"
+import { fetchPublicBlottoLeaderboard, PORTAL_APP_URL } from "@/lib/portal";
 
 interface LeaderboardEntry {
   rank: number;
   name: string;
   waterloo: boolean;
   totalScore: number;
-}
-
-function parseCSV(csv: string): LeaderboardEntry[] {
-  const lines = csv.trim().split("\n");
-  // skip header row
-  return lines.slice(1).map((line) => {
-    // handle potential commas inside quoted fields
-    const cols = line.split(",");
-    return {
-      rank: parseInt(cols[0], 10),
-      name: cols[1]?.trim() ?? "",
-      waterloo: cols[2]?.trim() === "*",
-      totalScore: parseFloat(cols[3]) || 0,
-    };
-  });
 }
 
 const BlottoLeaderboard = () => {
@@ -35,19 +18,25 @@ const BlottoLeaderboard = () => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch(SHEET_CSV_URL)
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch leaderboard data");
-        return res.text();
-      })
-      .then((csv) => {
-        setEntries(parseCSV(csv));
+    const controller = new AbortController();
+    fetchPublicBlottoLeaderboard(controller.signal)
+      .then((data) => {
+        setEntries(
+          data.map((e) => ({
+            rank: e.rank,
+            name: e.name,
+            waterloo: e.waterloo,
+            totalScore: e.total_score,
+          }))
+        );
         setLoading(false);
       })
       .catch((err) => {
-        setError(err.message);
+        if (err.name === "AbortError") return;
+        setError(err.message || "Failed to fetch leaderboard data");
         setLoading(false);
       });
+    return () => controller.abort();
   }, []);
 
   const filtered = entries.filter((e) =>
@@ -139,12 +128,12 @@ const BlottoLeaderboard = () => {
               </div>
 
               <a
-                href="https://docs.google.com/spreadsheets/d/e/2PACX-1vSxpiHAJ0YOc4ROL-N9PjVTrXlCewD9QMHhiG0_zMii7JxE-1ZdaXAxSVPg-3MwCoNSXHxLr2hqITao/pubhtml"
+                href={`${PORTAL_APP_URL}/blotto`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1.5 underline underline-offset-4"
               >
-                Full Scenario Breakdown Can Be Found Here
+                Full Round-by-Round Breakdown Can Be Found on the Portal
               </a>
             </div>
 
