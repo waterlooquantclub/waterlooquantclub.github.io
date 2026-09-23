@@ -58,7 +58,7 @@ const TIERS: Tier[] = [
       { name: "Optiver", href: "https://www.optiver.com/", logo: Optiver, width: 300 },
       { name: "Point72", href: "https://point72.com/", logo: Point72, width: 300 },
       { name: "Susquehanna", href: "https://sig.com/", logo: Susquehanna, width: 350 },
-      { name: "GBE", logo: Gbe, width: 150 },
+      { name: "GBE Energy", href: "https://www.gbe.energy/", logo: Gbe, width: 150 },
     ],
   },
   { name: "Silver", color: "#E3E4E4", suit: SuitClub, suitWidth: 43.9, suitHeight: 45.6, sponsors: [], placeholders: 3 },
