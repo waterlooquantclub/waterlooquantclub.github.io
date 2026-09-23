@@ -1,8 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import Layout from "@/components/Layout";
-import { Calendar, MapPin, Search, X, CalendarPlus, ExternalLink } from "lucide-react";
+import {
+  Calendar,
+  MapPin,
+  Search,
+  X,
+  CalendarPlus,
+  ExternalLink,
+  ChevronDown,
+} from "lucide-react";
 import EventDialog, { EventData } from "@/components/EventDialog";
+import CompetitionCatalogue from "@/components/CompetitionCatalogue";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -14,22 +23,25 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { fetchPublicEvents } from "@/lib/portal";
+import { fetchPublicEvents, type PublicEvent } from "@/lib/portal";
 import { toEventData } from "@/lib/eventMapping";
 import { warnUnmatchedGalleries } from "@/lib/eventGallery";
-
-const CARD_STYLE = {
-  background:
-    "linear-gradient(to top left, rgba(19, 44, 123, 0.35) 0%, rgba(0, 0, 0, 0.97) 100%)",
-};
+import { competitionContentFor } from "@/lib/competitions";
+import { CARD_STYLE } from "@/lib/constants";
 
 const PORTAL_URL = "https://portal.waterlooquantclub.com";
+const SHELL = "container mx-auto max-w-6xl px-6";
+
+// Flagship trading competitions get their own section; everything else is an event.
+const isCompetition = (event: PublicEvent) =>
+  event.event_type?.trim().toUpperCase() === "COMPETITION";
 
 const Events = () => {
   const [selectedEvent, setSelectedEvent] = useState<EventData | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [archiveQuery, setArchiveQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [selectedCompetitionId, setSelectedCompetitionId] = useState<number | null>(null);
 
   // Events come from the member portal, so this page and the portal never drift.
   // Photos are the one thing kept in this repo; see src/lib/eventGallery.ts.
@@ -44,12 +56,28 @@ const Events = () => {
     if (data) warnUnmatchedGalleries(data.map((e) => e.slug));
   }, [data]);
 
+  // Newest first, so the next or most recent edition opens by default.
+  const competitions = useMemo(
+    () =>
+      (data ?? [])
+        .filter(isCompetition)
+        .slice()
+        .sort((a, b) => new Date(b.start_time).getTime() - new Date(a.start_time).getTime()),
+    [data],
+  );
+
+  const activeCompetition =
+    competitions.find((e) => e.id === selectedCompetitionId) ?? competitions[0] ?? null;
+  const activeFaq = competitionContentFor(activeCompetition?.slug)?.faq;
+
   const events: EventData[] = (data ?? [])
     .filter((e) => e.status === "upcoming" || e.status === "live")
+    .filter((e) => !isCompetition(e))
     .map(toEventData);
 
   const archivedEvents: EventData[] = (data ?? [])
     .filter((e) => e.status === "past")
+    .filter((e) => !isCompetition(e))
     .map(toEventData);
 
   const handleEventClick = (event: EventData) => {
@@ -151,11 +179,50 @@ const Events = () => {
 
   return (
     <Layout>
-      <section className="min-h-[calc(100vh-4rem)] py-24 px-6">
-        <div className="container mx-auto max-w-3xl">
+      {/* Trading competitions */}
+      <section className="pt-16 pb-4 px-6">
+        <div className={SHELL}>
           <p className="text-muted-foreground text-sm tracking-widest uppercase mb-4">
             Events
           </p>
+          <h1 className="text-4xl md:text-6xl font-light tracking-tight mb-8">
+            Trading Competitions
+          </h1>
+
+          {isPending && (
+            <p className="text-muted-foreground text-sm">Loading competitions…</p>
+          )}
+
+          {!isPending && competitions.length === 0 && (
+            <p className="text-muted-foreground text-sm">
+              No competitions to show right now. See everything on the{" "}
+              <a
+                href={`${PORTAL_URL}/events`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline"
+              >
+                member portal
+              </a>
+              .
+            </p>
+          )}
+
+          {competitions.length > 0 && (
+            <CompetitionCatalogue
+              competitions={competitions}
+              selectedId={activeCompetition?.id ?? null}
+              onSelect={setSelectedCompetitionId}
+              onOpenGallery={(event) => handleEventClick(toEventData(event))}
+              faqHref={activeFaq?.length ? "#competition-faq" : undefined}
+            />
+          )}
+        </div>
+      </section>
+
+      {/* Upcoming events */}
+      <section id="upcoming" className="py-24 px-6 scroll-mt-24">
+        <div className={SHELL}>
           <h1 className="text-4xl md:text-6xl font-light tracking-tight mb-12">
             Upcoming Events
           </h1>
@@ -350,6 +417,37 @@ const Events = () => {
           </div>
         </div>
       </section>
+
+      {/* Competition FAQ */}
+      {activeFaq?.length ? (
+        <section id="competition-faq" className="pb-24 px-6 scroll-mt-24">
+          <div className={SHELL}>
+            <h1 className="text-4xl md:text-6xl font-light tracking-tight mb-8">
+              Competition FAQ
+            </h1>
+            <div
+              className="border border-[#FAFAFA]/20 p-6 md:p-7"
+              style={CARD_STYLE}
+            >
+              {activeFaq.map((entry, index) => (
+                <details
+                  key={entry.question}
+                  open={index === 0}
+                  className={`group py-5 first:pt-0 last:pb-0 ${index > 0 ? "border-t border-border" : ""}`}
+                >
+                  <summary className="flex justify-between gap-4 cursor-pointer list-none font-medium text-[17px] leading-snug [&::-webkit-details-marker]:hidden">
+                    {entry.question}
+                    <ChevronDown className="w-5 h-5 mt-0.5 shrink-0 text-muted-foreground transition-transform group-open:rotate-180" />
+                  </summary>
+                  <p className="mt-3 text-[15px] text-muted-foreground leading-[1.7] whitespace-pre-line max-w-[900px]">
+                    {entry.answer}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <EventDialog
         event={selectedEvent}

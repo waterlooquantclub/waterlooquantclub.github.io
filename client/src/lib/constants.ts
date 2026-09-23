@@ -1,3 +1,8 @@
+export const CARD_STYLE = {
+  background:
+    "linear-gradient(to top left, rgba(19, 44, 123, 0.35) 0%, rgba(0, 0, 0, 0.97) 100%)",
+} as const;
+
 export const SOCIAL_LINKS = {
   DISCORD: "https://discord.gg/Hu3FxfHnZt",
   INSTAGRAM: "https://www.instagram.com/wlooquantclub/",
