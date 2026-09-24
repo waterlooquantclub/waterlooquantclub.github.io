@@ -38,8 +38,8 @@ export interface CompetitionContent {
 const CONTENT: Record<string, CompetitionContent> = {
   "w26-trading-competition": {
     about: [
-      "The 2026 Waterloo Trading Competition brings together university students from across Canada and the United States to compete in a fast-paced, simulated trading environment. Hosted by the Waterloo Quant Club, the competition will be held in-person on the University of Waterloo campus and is designed to test quantitative intuition, risk management, and real-time decision-making.",
-      "The competition takes place on March 22, 2026, with optional pre-competition events on March 21. No prior trading experience is required. The event is accessible to students from a wide range of academic backgrounds, while still offering meaningful challenges for experienced participants.",
+      "The Waterloo Trading Competition brings together university students from across Canada and the United States to compete in a fast-paced, simulated trading environment. Hosted by the Waterloo Quant Club, the competition is designed to test quantitative intuition, risk management, and real-time decision-making.",
+      "No prior trading experience is required. The event is accessible to students from a wide range of academic backgrounds, while still offering meaningful challenges for experienced participants.",
     ],
     headline: {
       value: "$10,000+",

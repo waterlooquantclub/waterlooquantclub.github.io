@@ -2,6 +2,16 @@
 
 const TIME_ZONE = "America/Toronto";
 
+export function formatShortEventDate(startIso: string): string {
+  const date = new Date(startIso);
+  if (Number.isNaN(date.getTime())) return "Date TBA";
+  return new Intl.DateTimeFormat("en-US", {
+    timeZone: TIME_ZONE,
+    month: "short",
+    day: "numeric",
+  }).format(date);
+}
+
 const dateFmt = new Intl.DateTimeFormat("en-US", {
   timeZone: TIME_ZONE,
   month: "long",
