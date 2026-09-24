@@ -201,6 +201,48 @@ export const TEAM: MemberInfo[] = [
     linkedin: "https://www.linkedin.com/in/elaine-qy-li",
     email: "elaine.li@waterlooquantclub.com",
   },
+  {
+    name: "Luke Freund",
+    role: "Executive",
+    program: "Computational Mathematics",
+    image: "luke_freund.jpg",
+    linkedin: "https://www.linkedin.com/in/lukepfreund/",
+  },
+  {
+    name: "Daniel W Liu",
+    role: "Executive",
+    program: "Computing and Financial Management",
+    bio: "Always bet on Daniel W Liu",
+    image: "daniel_liu.jpg",
+    linkedin: "https://www.linkedin.com/in/danielwliu/",
+    email: "d347liu@uwaterloo.ca",
+    website: "https://www.danielwliu.com/",
+  },
+  {
+    name: "Melanie Cheung",
+    role: "Executive",
+    program: "Management Engineering",
+    image: "melanie_cheung.jpg",
+    linkedin: "https://www.linkedin.com/in/melaniecheung-",
+    email: "melaniecheung04@gmail.com",
+  },
+  {
+    name: "Dee Ruan",
+    role: "Executive",
+    program: "Pure Math",
+    image: "dee_ruan.jpg",
+    linkedin: "https://www.linkedin.com/in/deeruan/",
+    email: "druan@uwaterloo.ca",
+    website: "https://deeruan.com",
+  },
+  {
+    name: "William Li",
+    role: "Executive",
+    program: "Software Engineering",
+    bio: "i like poulet rouge and houkee",
+    image: "william_li.jpg",
+    linkedin: "https://www.linkedin.com/in/willi-li-am/",
+  },
 ];
 
 // TODO: every position/company below is a placeholder — fill in real full-time
