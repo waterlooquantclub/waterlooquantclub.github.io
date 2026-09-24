@@ -5,6 +5,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Calendar, MapPin, ExternalLink, CalendarPlus } from "lucide-react";
+import type { CompetitionContent } from "@/lib/competitions";
 
 export interface GalleryItem {
   type: "video" | "image";
@@ -32,6 +33,7 @@ export interface EventData {
   rankings?: RankingEntry[];
   calendarlink?: string;
   externalLink?: { label: string; url: string };
+  competitionContent?: CompetitionContent;
 }
 
 interface EventDialogProps {
@@ -69,6 +71,31 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
 
         <div className="space-y-6 mt-4">
           <p className="text-muted-foreground">{event.description}</p>
+
+          {event.competitionContent?.about?.map((paragraph) => (
+            <p key={paragraph} className="text-muted-foreground leading-relaxed">{paragraph}</p>
+          ))}
+
+          {event.competitionContent?.sponsors?.length ? (
+            <section className="space-y-4" aria-label="Competition sponsors">
+              <h3 className="text-lg font-medium">Sponsors</h3>
+              <div className="grid grid-cols-2 items-center justify-items-center gap-6">
+                {event.competitionContent.sponsors.map((sponsor) => (
+                  <img
+                    key={sponsor.name}
+                    src={sponsor.src}
+                    alt={sponsor.name}
+                    className={`max-w-full ${sponsor.wide ? "col-span-2" : ""}`}
+                    style={{
+                      height: sponsor.height ? `${sponsor.height}px` : undefined,
+                      width: sponsor.height ? "auto" : "80%",
+                      filter: sponsor.invert ? "brightness(0) invert(1)" : undefined,
+                    }}
+                  />
+                ))}
+              </div>
+            </section>
+          ) : null}
 
           <div className="flex flex-wrap gap-3">
             {event.calendarlink && (

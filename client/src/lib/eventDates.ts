@@ -2,6 +2,16 @@
 
 const TIME_ZONE = "America/Toronto";
 
+export function formatShortEventDate(startIso: string): string {
+  const date = new Date(startIso);
+  if (Number.isNaN(date.getTime())) return "Date TBA";
+  return new Intl.DateTimeFormat("en-US", {
+    timeZone: TIME_ZONE,
+    month: "short",
+    day: "numeric",
+  }).format(date);
+}
+
 const dateFmt = new Intl.DateTimeFormat("en-US", {
   timeZone: TIME_ZONE,
   month: "long",
@@ -68,4 +78,20 @@ export function termTag(startIso: string): string | null {
   if (!month || !year) return null;
   const term = month <= 4 ? "WINTER" : month <= 8 ? "SPRING" : "FALL";
   return `${term} ${year}`;
+}
+
+/** Season and four-digit year for the competition catalogue, e.g. `{ season: "Winter", year: "2026" }`. */
+export function termParts(startIso: string): { season: string; year: string } | null {
+  const start = new Date(startIso);
+  if (Number.isNaN(start.getTime())) return null;
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: TIME_ZONE,
+    month: "numeric",
+    year: "numeric",
+  }).formatToParts(start);
+  const month = Number(parts.find((p) => p.type === "month")?.value);
+  const year = parts.find((p) => p.type === "year")?.value;
+  if (!month || !year) return null;
+  const season = month <= 4 ? "Winter" : month <= 8 ? "Spring" : "Fall";
+  return { season, year };
 }
