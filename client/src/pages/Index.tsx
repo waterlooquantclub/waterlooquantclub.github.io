@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
 import { ArrowRight, ExternalLink, X } from "lucide-react";
 import WavyGrid from "@/components/WavyGrid";
-import SponsorSection from "@/components/SponsorSection";
+import SponsorsShowcase from "@/components/SponsorsShowcase";
 import { useState, useEffect } from "react";
 
 const Index = () => {
@@ -252,9 +252,7 @@ const Index = () => {
       </section>
 
       {/* Our Partners */}
-      <section className="pt-0 pb-24 px-6">
-        <SponsorSection />
-      </section>
+      <SponsorsShowcase />
 
       {/* Mobile Bottom Popup */}
       {void mobilePopup}
