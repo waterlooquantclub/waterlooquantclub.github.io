@@ -1,9 +1,9 @@
 import Layout from "@/components/Layout";
-import SponsorsShowcase from "@/components/SponsorsShowcase";
+import SponsorSection from "@/components/SponsorSection";
 
 const Sponsors = () => (
   <Layout flatBackground>
-    <SponsorsShowcase />
+    <SponsorSection />
   </Layout>
 );
 

@@ -141,7 +141,7 @@ const TierBoard = ({ tier }: { tier: Tier }) => {
   );
 };
 
-const SponsorsShowcase = () => (
+const SponsorSection = () => (
   <section className="px-6 pb-[188px] pt-[87px]">
     <div className="mx-auto w-full max-w-[727px]">
       <div className="flex flex-col items-start gap-[25px]">
@@ -182,4 +182,4 @@ const SponsorsShowcase = () => (
   </section>
 );
 
-export default SponsorsShowcase;
+export default SponsorSection;

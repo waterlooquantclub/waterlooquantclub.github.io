@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import SponsorsShowcase from "@/components/SponsorsShowcase";
+import SponsorSection from "@/components/SponsorSection";
 import BayerTriangles from "@/components/BayerTriangles";
 import {
   Calendar,
@@ -252,7 +252,7 @@ const Competition = () => {
 
       {/* Sponsors */}
       <div className="border-t border-border">
-        <SponsorsShowcase />
+        <SponsorSection />
       </div>
 
       {/* FAQ */}
