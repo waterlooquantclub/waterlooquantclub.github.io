@@ -159,3 +159,14 @@
   animation: wave 3s ease-in-out infinite;
 }
 
+/* Merriweather instanced at optical size 96, for the sponsors heading. The Google
+   Fonts import above serves the serif at its text cut, which renders a 48px heading
+   noticeably wider than the design. Kept under its own family name so the navbar
+   and homepage go on using the Google instance. */
+@font-face {
+  font-family: 'Merriweather Display';
+  src: url('./assets/fonts/merriweather-display-opsz96-latin.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
