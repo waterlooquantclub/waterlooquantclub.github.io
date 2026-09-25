@@ -1,13 +1,5 @@
 import Layout from "@/components/Layout";
-import {
-  Trophy,
-  ScrollText,
-  Swords,
-  Clock,
-  Calendar,
-  Target,
-} from "lucide-react";
-import { Link } from "react-router-dom";
+import { Trophy, Swords, Clock, Calendar, Target } from "lucide-react";
 import { PORTAL_APP_URL } from "@/lib/portal";
 
 const Blotto = () => {
@@ -49,23 +41,6 @@ const Blotto = () => {
                   Submit Strategies on the Member Portal
                   <Swords className="w-5 h-5" />
                 </a>
-
-                <a
-                  href="#how-it-works"
-                  className="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 text-white px-8 py-4 text-base font-medium border border-white/10 transition-all"
-                >
-                  Read Rules
-                  <ScrollText className="w-5 h-5" />
-                </a>
-
-                {/* LEADERBOARD */}
-                <Link
-                  to="/games/blotto/leaderboard"
-                  className="inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-4 text-base font-medium hover:bg-white/90 transition-colors"
-                >
-                  Leaderboard
-                  <Trophy className="w-5 h-5" />
-                </Link>
               </div>
             </div>
           </div>
@@ -249,114 +224,6 @@ const Blotto = () => {
                 >
                   Go to Submissions on the Portal &rarr;
                 </a>
-              </div>
-            </div>
-            
-            {/* SCENARIO ARCHIVE */}
-            <div className="md:col-span-2 pt-10">
-              <div className="space-y-6">
-                <div className="flex items-center gap-3 text-white">
-                  <ScrollText className="w-6 h-6 text-blue-600" />
-                  <h2 className="text-2xl font-semibold">Scenario Archive</h2>
-                </div>
-
-                <p className="text-muted-foreground max-w-2xl leading-relaxed">
-                  Explore past weekly scenarios.
-                </p>
-
-                <div className="space-y-5">
-                  {[
-                    {
-                      week: "Week 1",
-                      scenarios: [
-                        "Standard Blotto — each tower is worth points equivalent to their index.",
-                        "The highest-indexed tower won by each player is worth negative amount of points.",
-                      ],
-                    },
-                    {
-                      week: "Week 2",
-                      scenarios: [
-                        "The lowest-indexed tower won by each player is worth triple amount of points.",
-                        "If a player wins the tower whose index is equal to the number of towers won, then the player's total score doubles.",
-                      ],
-                    },
-                    {
-                      week: "Week 3",
-                      scenarios: [
-                        "If a player wins two or more consecutive towers, then the first tower of each consecutive run is worth double amount of points.",
-                        "If a player wins a tower that is not adjacent to any other towers won, then that tower is worth negative amount of points.",
-                      ],
-                    },
-                    {
-                      week: "Week 4",
-                      scenarios: [
-                        "If the index of the last (highest-indexed) tower won by a player is larger than that of the opponent, then each tower the player wins is worth one point fewer.",
-                        "For each player, the tower they won by the maximum margin is worth double amount of points. If there is a tie, then the lowest-indexed tower is worth double."
-                       ],
-                    },
-                    {
-                      week: "Week 5",
-                      scenarios: [
-                        'If a player wins strictly more towers than the opponent, then each tower the player wins is worth one point fewer.',
-                        'If a player wins more than 1 tower, then the won tower with the maximum number of soldiers allocated by that player is worth 0 points. If there is a tie, the highest-indexed tower among them is worth 0.',
-                        'For each player, the lowest-indexed tower which the player wins by allocating more than 10 soldiers is worth 0 points.'
-                      ]
-                    },
-                    {
-                      week: "Week 6",
-                      scenarios: [
-                        'If a player wins consecutive towers, an arithmetic sequence of difference 3 is added to the consecutive streak. For example, if a player wins towers 5, 6, 7, 8, but not 4 and 9, then they are respectively worth 5 + 0, 6 + 1x3, 7 + 2x3, and 8 + 3x3.',
-                        'If a player wins both Tower i and Tower (11 - i), then both towers are worth 0.',
-                        'For both players, any unused soldier is worth 0.5 point each.'
-                      ]
-                    }
-                  ].map((entry, i) => (
-                    <div
-                      key={i}
-                      className="relative overflow-hidden border border-white/10 bg-white/[0.04] backdrop-blur-sm"
-                    >
-                      <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-blue-500 to-indigo-600" />
-
-                      <div className="p-6 md:p-7">
-                        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-5">
-                          <div>
-                            <h3 className="text-xl md:text-2xl font-semibold text-white">
-                              {entry.week}
-                            </h3>
-                          </div>
-
-                          <div className="inline-flex items-center self-start rounded-full border border-blue-500/20 bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-200">
-                            2 Scenarios
-                          </div>
-                        </div>
-
-                        <div className="grid gap-4">
-                          {entry.scenarios.map((scenario, j) => (
-                            <div
-                              key={j}
-                              className="border border-white/10 bg-[#0b1224]/70 p-4 md:p-5 hover:bg-[#101938] transition-colors"
-                            >
-                              <div className="flex items-start gap-4">
-                                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-blue-500/30 bg-blue-500/10 text-sm font-semibold text-blue-200">
-                                  {j + 1}
-                                </div>
-
-                                <div>
-                                  <h4 className="text-sm font-semibold uppercase tracking-wide text-white/90 mb-1">
-                                    Scenario {j + 1}
-                                  </h4>
-                                  <p className="text-sm md:text-base leading-relaxed text-muted-foreground">
-                                    {scenario}
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
               </div>
             </div>
           </div>
