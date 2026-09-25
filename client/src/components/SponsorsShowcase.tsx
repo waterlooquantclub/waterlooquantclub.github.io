@@ -61,8 +61,8 @@ const TIERS: Tier[] = [
       { name: "GBE Energy", href: "https://www.gbe.energy/", logo: Gbe, width: 150 },
     ],
   },
-  { name: "Silver", color: "#E3E4E4", suit: SuitClub, suitWidth: 43.9, suitHeight: 45.6, sponsors: [], placeholders: 3 },
-  { name: "Bronze", color: "#946953", suit: SuitDiamond, suitWidth: 32.8, suitHeight: 45.6, sponsors: [], placeholders: 3 },
+  // { name: "Silver", color: "#E3E4E4", suit: SuitClub, suitWidth: 43.9, suitHeight: 45.6, sponsors: [], placeholders: 3 },
+  // { name: "Bronze", color: "#946953", suit: SuitDiamond, suitWidth: 32.8, suitHeight: 45.6, sponsors: [], placeholders: 3 },
 ];
 
 const TierHeader = ({ tier }: { tier: Tier }) => (
