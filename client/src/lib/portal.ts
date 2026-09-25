@@ -1,13 +1,17 @@
 /**
- * Read-only client for the member portal's public events feed.
+ * Read-only client for the member portal's public feeds (events).
  *
- * The portal is the single source of truth for event data; this site only
- * renders it (and supplies photos from `src/assets/events/<slug>/`).
+ * The portal is the single source of truth for this data; this site only
+ * renders it (and supplies event photos from `src/assets/events/<slug>/`).
  */
 
 export const PORTAL_API_URL =
   import.meta.env.VITE_PORTAL_API_URL?.trim().replace(/\/$/, "") ||
   "https://portal.waterlooquantclub.com/api";
+
+export const PORTAL_APP_URL =
+  import.meta.env.VITE_PORTAL_APP_URL?.trim().replace(/\/$/, "") ||
+  "https://portal.waterlooquantclub.com";
 
 export type PublicEventStatus = "upcoming" | "live" | "past";
 export type PublicEventLinkKind = "video" | "slides" | "pdf" | "external";
