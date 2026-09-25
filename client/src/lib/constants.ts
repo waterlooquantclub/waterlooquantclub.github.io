@@ -243,6 +243,15 @@ export const TEAM: MemberInfo[] = [
     image: "william_li.jpg",
     linkedin: "https://www.linkedin.com/in/willi-li-am/",
   },
+  {
+    name: "Kelly Qu",
+    role: "Executive",
+    program: "Computer Science",
+    bio: "I'm non-technical",
+    image: "kelly_qu.png",
+    linkedin: "https://www.linkedin.com/in/kellyqu",
+    email: "kellyqu@waterlooquantclub.com",
+  },
 ];
 
 // TODO: every position/company below is a placeholder — fill in real full-time
