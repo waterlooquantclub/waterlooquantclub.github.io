@@ -432,7 +432,6 @@ const Events = () => {
               {activeFaq.map((entry, index) => (
                 <details
                   key={entry.question}
-                  open={index === 0}
                   className={`group py-5 first:pt-0 last:pb-0 ${index > 0 ? "border-t border-border" : ""}`}
                 >
                   <summary className="flex justify-between gap-4 cursor-pointer list-none font-medium text-[17px] leading-snug [&::-webkit-details-marker]:hidden">
