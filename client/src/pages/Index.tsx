@@ -252,9 +252,7 @@ const Index = () => {
       </section>
 
       {/* Our Partners */}
-      <section className="pt-0 pb-24 px-6">
-        <SponsorSection />
-      </section>
+      <SponsorSection />
 
       {/* Mobile Bottom Popup */}
       {void mobilePopup}

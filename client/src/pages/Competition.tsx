@@ -251,12 +251,9 @@ const Competition = () => {
       </section>
 
       {/* Sponsors */}
-      <section className="pt-16 pb-24 px-6 border-t border-border">
-        <div className="container mx-auto max-w-3xl">
-          <h2 className="text-2xl font-semibold mb-8">Thanks to our sponsors!</h2>
-        </div>
-        <SponsorSection hideTitle />
-      </section>
+      <div className="border-t border-border">
+        <SponsorSection />
+      </div>
 
       {/* FAQ */}
       <section id="faq" className="pb-24 px-6 border-t border-border pt-16">

@@ -120,21 +120,21 @@ const Card = ({ label, cornerLabel, positionX, isDealt, isFlipped, isMultiLine =
   );
 };
 
+const cards: CardData[] = [
+  // Flop cards - flip almost together with slight left-to-right delay
+  { label: "W", cornerLabel: "W", dealDelay: 200, flipDelay: 1200, isMultiLine: false },
+  { label: "Q", cornerLabel: "Q", dealDelay: 400, flipDelay: 1280, isMultiLine: false },
+  { label: "C", cornerLabel: "C", dealDelay: 600, flipDelay: 1360, isMultiLine: false },
+  // Turn card
+  { label: "Trading", cornerLabel: "T", dealDelay: 2200, flipDelay: 2800, isMultiLine: true },
+  // River card
+  { label: "Comp.", cornerLabel: "C", dealDelay: 3200, flipDelay: 3800, isMultiLine: true, italicCorners: true },
+];
+
 const PokerFlop = () => {
   const [dealtCount, setDealtCount] = useState(0);
   const [flippedCards, setFlippedCards] = useState<Set<number>>(new Set());
   const [isMobile, setIsMobile] = useState(false);
-
-  const cards: CardData[] = [
-    // Flop cards - flip almost together with slight left-to-right delay
-    { label: "W", cornerLabel: "W", dealDelay: 200, flipDelay: 1200, isMultiLine: false },
-    { label: "Q", cornerLabel: "Q", dealDelay: 400, flipDelay: 1280, isMultiLine: false },
-    { label: "C", cornerLabel: "C", dealDelay: 600, flipDelay: 1360, isMultiLine: false },
-    // Turn card
-    { label: "Trading", cornerLabel: "T", dealDelay: 2200, flipDelay: 2800, isMultiLine: true },
-    // River card
-    { label: "Comp.", cornerLabel: "C", dealDelay: 3200, flipDelay: 3800, isMultiLine: true, italicCorners: true },
-  ];
 
   // Responsive spacing
   const spacing = isMobile ? 70 : 130;
