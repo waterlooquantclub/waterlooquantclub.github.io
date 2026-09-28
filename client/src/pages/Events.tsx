@@ -12,6 +12,8 @@ import {
 } from "lucide-react";
 import EventDialog, { EventData } from "@/components/EventDialog";
 import CompetitionCatalogue from "@/components/CompetitionCatalogue";
+import ArchiveEventCard from "@/components/ArchiveEventCard";
+import { termParts } from "@/lib/eventDates";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -30,7 +32,8 @@ import { competitionContentFor } from "@/lib/competitions";
 import { CARD_STYLE } from "@/lib/constants";
 
 const PORTAL_URL = "https://portal.waterlooquantclub.com";
-const SHELL = "container mx-auto max-w-6xl px-6";
+const SHELL = "mx-auto max-w-6xl";
+const ARCHIVE_PAGE_SIZE = 10;
 
 // Flagship trading competitions get their own section; everything else is an event.
 const isCompetition = (event: PublicEvent) =>
@@ -42,6 +45,12 @@ const Events = () => {
   const [archiveQuery, setArchiveQuery] = useState("");
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [selectedCompetitionId, setSelectedCompetitionId] = useState<number | null>(null);
+  const [archiveLimit, setArchiveLimit] = useState(ARCHIVE_PAGE_SIZE);
+  const [archiveOrder, setArchiveOrder] = useState("newest");
+
+  useEffect(() => {
+    setArchiveLimit(ARCHIVE_PAGE_SIZE);
+  }, [archiveQuery, selectedTags, archiveOrder]);
 
   // Events come from the member portal, so this page and the portal never drift.
   // Photos are the one thing kept in this repo; see src/lib/eventGallery.ts.
@@ -73,12 +82,25 @@ const Events = () => {
   const events: EventData[] = (data ?? [])
     .filter((e) => e.status === "upcoming" || e.status === "live")
     .filter((e) => !isCompetition(e))
+    .sort((a, b) => new Date(a.start_time).getTime() - new Date(b.start_time).getTime())
     .map(toEventData);
 
-  const archivedEvents: EventData[] = (data ?? [])
+  const archivedEvents = (data ?? [])
     .filter((e) => e.status === "past")
     .filter((e) => !isCompetition(e))
-    .map(toEventData);
+    .sort((a, b) => {
+      const difference = new Date(b.start_time).getTime() - new Date(a.start_time).getTime();
+      return archiveOrder === "oldest" ? -difference : difference;
+    })
+    .map((event) => {
+      const term = termParts(event.start_time);
+      return {
+        ...toEventData(event),
+        id: event.id,
+        startTime: event.start_time,
+        term: term ? `${term.season} ${term.year}` : "Other events",
+      };
+    });
 
   const handleEventClick = (event: EventData) => {
     setSelectedEvent(event);
@@ -138,14 +160,33 @@ const Events = () => {
     return matchesQuery && matchesTags;
   });
 
-  const renderEventCard = (event: EventData, index: number, showLink: boolean) => (
+  const visibleArchive = filteredArchivedEvents.slice(0, archiveLimit);
+  const archiveGroups = Array.from(new Set(visibleArchive.map((event) => event.term)))
+    .map((term) => ({ term, events: visibleArchive.filter((event) => event.term === term) }));
+
+  if (isPending || isError) {
+    return (
+      <Layout>
+        <section className="px-6 py-12">
+          <div className={SHELL}>
+            <h1 className="text-4xl md:text-6xl font-light tracking-tight">Events</h1>
+            <p role={isError ? "alert" : "status"} className="mt-4 text-sm text-muted-foreground">
+              {isError ? "Couldn't load content, please try again." : "Loading events…"}
+            </p>
+          </div>
+        </section>
+      </Layout>
+    );
+  }
+
+  const renderUpcomingEvent = (event: EventData, index: number) => (
     <div
       key={index}
       onClick={() => handleEventClick(event)}
-      className="group p-6 border border-[#FAFAFA]/20 hover:border-[#FAFAFA]/50 transition-colors cursor-pointer"
+      className="p-5 sm:p-6 border border-[#FAFAFA]/20 hover:border-[#FAFAFA]/50 transition-colors cursor-pointer"
       style={CARD_STYLE}
     >
-      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 mb-3">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4 mb-4">
         <span className="text-xs tracking-widest uppercase text-[#FAFAFA] bg-[#132C7B]/60 px-2 py-1 w-fit">
           {event.type}
         </span>
@@ -162,13 +203,13 @@ const Events = () => {
       </div>
       <h3 className="text-xl font-medium text-foreground mb-2">{event.title}</h3>
       <p className="text-muted-foreground text-sm">{event.description}</p>
-      {showLink && event.externalLink && (
+      {event.externalLink && (
         <a
           href={event.externalLink.url}
           target="_blank"
           rel="noopener noreferrer"
           onClick={(e) => e.stopPropagation()}
-          className="mt-2 inline-flex items-center gap-2 rounded-full border border-border bg-white/5 px-3 py-1.5 text-xs hover:bg-white/10 hover:border-[#FAFAFA]/40 transition"
+          className="mt-4 inline-flex items-center gap-2 rounded-full border border-border bg-white/5 px-3 py-1.5 text-xs hover:bg-white/10 hover:border-[#FAFAFA]/40 transition"
         >
           <ExternalLink className="w-4 h-4" />
           {event.externalLink.label}
@@ -180,20 +221,23 @@ const Events = () => {
   return (
     <Layout>
       {/* Trading competitions */}
-      <section className="pt-16 pb-4 px-6">
+      <section className="pt-12 px-6">
         <div className={SHELL}>
-          <p className="text-muted-foreground text-sm tracking-widest uppercase mb-4">
+          <h1 className="text-4xl md:text-6xl font-light tracking-tight">
             Events
-          </p>
-          <h1 className="text-4xl md:text-6xl font-light tracking-tight mb-8">
-            Trading Competitions
           </h1>
-
-          {isPending && (
-            <p className="text-muted-foreground text-sm">Loading competitions…</p>
+          <nav aria-label="On this page" className="mt-4 mb-12 flex flex-wrap gap-6 text-sm text-muted-foreground">
+            <a href="#competitions" className="underline underline-offset-4 hover:text-foreground">Competitions</a>
+            <a href="#upcoming" className="underline underline-offset-4 hover:text-foreground">Upcoming</a>
+            <a href="#archive" className="underline underline-offset-4 hover:text-foreground">Archive</a>
+          </nav>
+          {competitions.length === 0 && (
+            <h2 id="competitions" className="mb-2 scroll-mt-28 text-2xl md:text-3xl font-light tracking-tight">
+              Trading Competitions
+            </h2>
           )}
 
-          {!isPending && competitions.length === 0 && (
+          {competitions.length === 0 && (
             <p className="text-muted-foreground text-sm">
               No competitions to show right now. See everything on the{" "}
               <a
@@ -213,7 +257,10 @@ const Events = () => {
               competitions={competitions}
               selectedId={activeCompetition?.id ?? null}
               onSelect={setSelectedCompetitionId}
-              onOpenGallery={(event) => handleEventClick(toEventData(event))}
+              onOpenEvent={(event) => handleEventClick({
+                ...toEventData(event),
+                competitionContent: competitionContentFor(event.slug),
+              })}
               faqHref={activeFaq?.length ? "#competition-faq" : undefined}
             />
           )}
@@ -221,12 +268,12 @@ const Events = () => {
       </section>
 
       {/* Upcoming events */}
-      <section id="upcoming" className="py-24 px-6 scroll-mt-24">
+      <section id="upcoming" className="pt-12 pb-12 px-6 scroll-mt-24">
         <div className={SHELL}>
-          <h1 className="text-4xl md:text-6xl font-light tracking-tight mb-12">
+          <h2 className="text-2xl md:text-3xl font-light tracking-tight mb-2">
             Upcoming Events
-          </h1>
-          <div className="space-y-4 text-muted-foreground text-lg leading-relaxed mb-8">
+          </h2>
+          <div className="space-y-4 max-w-3xl text-muted-foreground text-sm leading-relaxed mb-4">
             <p>
               We hold regular events on campus, including workshops, panels,
               game nights, and competitions. We try to record all of our
@@ -262,36 +309,14 @@ const Events = () => {
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
             style={CARD_STYLE}
-            className="text-muted-foreground mb-8 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-s hover:text-white border border-[#FAFAFA]/20 hover:border-[#FAFAFA]/50 cursor-pointer transition"
+            className="text-muted-foreground mb-6 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-s hover:text-white border border-[#FAFAFA]/20 hover:border-[#FAFAFA]/50 cursor-pointer transition"
           >
             <CalendarPlus className="w-4 h-4" />
-            Subscribe to WQC's Winter 2026 Events Calendar
+            Subscribe to WQC's Events Calendar
           </a>
 
-          {isError && (
-            <div
-              className="p-6 border border-[#FAFAFA]/20 text-muted-foreground text-sm mb-6"
-              style={CARD_STYLE}
-            >
-              We couldn't load events right now. Try again in a moment, or see
-              them on the{" "}
-              <a
-                href={`${PORTAL_URL}/events`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline"
-              >
-                member portal
-              </a>
-              .
-            </div>
-          )}
-
-          <div className="space-y-6">
-            {isPending && (
-              <p className="text-muted-foreground text-sm">Loading events…</p>
-            )}
-            {!isPending && !isError && events.length === 0 && (
+          <div className="grid grid-cols-1 gap-4" aria-label="Upcoming events">
+            {events.length === 0 && (
               <div
                 className="p-6 border border-[#FAFAFA]/20 text-muted-foreground text-sm"
                 style={CARD_STYLE}
@@ -300,15 +325,15 @@ const Events = () => {
                 to the calendar above to hear about the next one.
               </div>
             )}
-            {events.map((event, index) => renderEventCard(event, index, true))}
+            {events.map(renderUpcomingEvent)}
           </div>
 
-          <h1
-            className="text-4xl md:text-6xl font-light tracking-tight mb-8 mt-16"
+          <h2
+            className="text-2xl md:text-3xl font-light tracking-tight mb-6 mt-12 scroll-mt-28"
             id="archive"
           >
             Events Archive
-          </h1>
+          </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div className="relative">
@@ -317,6 +342,7 @@ const Events = () => {
                 value={archiveQuery}
                 onChange={(e) => setArchiveQuery(e.target.value)}
                 placeholder="Search"
+                aria-label="Search archived events"
                 className="pl-9 bg-black/40 border-[#FAFAFA]/20 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0 focus:outline-none"
               />
             </div>
@@ -329,7 +355,7 @@ const Events = () => {
                 );
               }}
             >
-              <SelectTrigger className="bg-black/40 border-[#FAFAFA]/20 rounded-none focus:ring-0 focus:ring-offset-0 focus:outline-none">
+              <SelectTrigger aria-label="Filter archived events" className="bg-black/40 border-[#FAFAFA]/20 rounded-none focus:ring-0 focus:ring-offset-0 focus:outline-none">
                 <SelectValue placeholder="Filter by" />
               </SelectTrigger>
               <SelectContent className="rounded-none">
@@ -386,7 +412,7 @@ const Events = () => {
           </div>
 
           {selectedTags.length > 0 && (
-            <div className="flex flex-wrap gap-3 mb-8">
+            <div className="flex flex-wrap gap-3 mb-4">
               {selectedTags.map((tag) => (
                 <button
                   key={tag}
@@ -403,18 +429,46 @@ const Events = () => {
             </div>
           )}
 
+          <div className="mb-6 flex flex-wrap items-center justify-between gap-4 text-sm text-muted-foreground">
+            <p aria-live="polite">Showing {visibleArchive.length} of {filteredArchivedEvents.length} events</p>
+            <Select value={archiveOrder} onValueChange={setArchiveOrder}>
+              <SelectTrigger aria-label="Sort archived events" className="h-auto w-auto gap-2 rounded-none border-0 bg-transparent p-0 shadow-none focus:ring-0 focus:ring-offset-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent className="rounded-none">
+                <SelectItem value="newest">Newest first</SelectItem>
+                <SelectItem value="oldest">Oldest first</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
           <div className="space-y-6">
-            {!isPending && !isError && filteredArchivedEvents.length === 0 && (
+            {filteredArchivedEvents.length === 0 && (
               <p className="text-muted-foreground text-sm">
                 {archivedEvents.length === 0
                   ? "No past events yet."
                   : "No events match your search."}
               </p>
             )}
-            {filteredArchivedEvents.map((event, index) =>
-              renderEventCard(event, index, false),
-            )}
+            {archiveGroups.map((group) => (
+              <section key={group.term} aria-label={group.term}>
+                <h3 className="mb-4 flex items-center gap-4 text-base font-medium text-foreground">
+                  {group.term}<span className="h-px flex-1 bg-border" aria-hidden="true" />
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {group.events.map((event) => (
+                    <ArchiveEventCard key={event.id} event={event} startTime={event.startTime} term={event.term} onOpen={handleEventClick} />
+                  ))}
+                </div>
+              </section>
+            ))}
           </div>
+          {visibleArchive.length < filteredArchivedEvents.length && (
+            <div className="mt-6 flex justify-center">
+              <button type="button" onClick={() => setArchiveLimit((limit) => limit + ARCHIVE_PAGE_SIZE)} className="py-2 text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">
+                Load more events
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
@@ -422,11 +476,11 @@ const Events = () => {
       {activeFaq?.length ? (
         <section id="competition-faq" className="pb-24 px-6 scroll-mt-24">
           <div className={SHELL}>
-            <h1 className="text-4xl md:text-6xl font-light tracking-tight mb-8">
+            <h2 className="text-2xl md:text-3xl font-light tracking-tight mb-6">
               Competition FAQ
-            </h1>
+            </h2>
             <div
-              className="border border-[#FAFAFA]/20 p-6 md:p-7"
+              className="border border-[#FAFAFA]/20 p-5 sm:p-6"
               style={CARD_STYLE}
             >
               {activeFaq.map((entry, index) => (
