@@ -46,9 +46,9 @@ export function toEventData(event: PublicEvent): EventData {
   if (videos.length > 0) tags.add("RECORDING");
   for (const tag of event.tags) tags.add(tag.toUpperCase());
 
-  const externalLink = event.registration_url
-    ? { label: "RSVP", url: event.registration_url }
-    : undefined;
+  const externalLink = event.application_only
+    ? event.application_url ? { label: "Apply", url: event.application_url } : undefined
+    : event.registration_url ? { label: "RSVP", url: event.registration_url } : undefined;
 
   return {
     title: event.title,

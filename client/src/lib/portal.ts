@@ -38,6 +38,8 @@ export interface PublicEvent {
   links: PublicEventLink[];
   rankings: PublicRankingEntry[];
   registration_url: string | null;
+  application_only?: boolean;
+  application_url?: string | null;
   calendar_url: string;
 }
 
