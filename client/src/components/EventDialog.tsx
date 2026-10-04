@@ -5,6 +5,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Calendar, MapPin, ExternalLink, CalendarPlus } from "lucide-react";
+import EventLinks from "@/components/EventLinks";
 import type { CompetitionContent } from "@/lib/competitions";
 
 export interface GalleryItem {
@@ -33,6 +34,7 @@ export interface EventData {
   rankings?: RankingEntry[];
   calendarlink?: string;
   externalLink?: { label: string; url: string };
+  resourceLinks?: { label: string; url: string }[];
   competitionContent?: CompetitionContent;
 }
 
@@ -124,6 +126,8 @@ const EventDialog = ({ event, open, onOpenChange }: EventDialogProps) => {
               </a>
             )}
           </div>
+
+          <EventLinks links={event.resourceLinks ?? []} />
 
           {event.posterImage && (
             <div className="border border-border overflow-hidden">

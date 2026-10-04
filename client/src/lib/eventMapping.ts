@@ -34,9 +34,11 @@ export function toEventData(event: PublicEvent): EventData {
       alt: l.label ?? `${event.title} Recording`,
     }));
 
-  const slides = event.links.find((l) => l.kind === "slides");
-  const pdf = event.links.find((l) => l.kind === "pdf");
-  const external = event.links.find((l) => l.kind === "external");
+  const labels = { video: "Watch Recording", slides: "View Slide Deck", pdf: "View Event Details", external: "Learn More" };
+  const resourceLinks = event.links.map((link) => ({
+    label: link.label?.trim() || labels[link.kind],
+    url: link.url,
+  }));
 
   const tags = new Set<string>();
   const term = termTag(event.start_time);
@@ -46,9 +48,7 @@ export function toEventData(event: PublicEvent): EventData {
 
   const externalLink = event.registration_url
     ? { label: "RSVP", url: event.registration_url }
-    : external
-      ? { label: external.label ?? "Learn More", url: external.url }
-      : undefined;
+    : undefined;
 
   return {
     title: event.title,
@@ -58,8 +58,7 @@ export function toEventData(event: PublicEvent): EventData {
     tags: Array.from(tags),
     description: event.description ?? "",
     galleryImages: [...videos, ...galleryFor(event.slug)],
-    slideDeckUrl: slides?.url,
-    pdfUrl: pdf?.url,
+    resourceLinks,
     rankings: event.rankings.length > 0 ? event.rankings : undefined,
     calendarlink: event.status === "upcoming" ? event.calendar_url : undefined,
     externalLink,

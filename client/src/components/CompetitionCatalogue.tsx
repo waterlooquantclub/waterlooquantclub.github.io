@@ -1,4 +1,6 @@
 import { Calendar, MapPin, HelpCircle, ArrowUpRight } from "lucide-react";
+import EventLinks from "@/components/EventLinks";
+import { toEventData } from "@/lib/eventMapping";
 import { CARD_STYLE } from "@/lib/constants";
 import { formatEventDate, termParts } from "@/lib/eventDates";
 import { competitionContentFor } from "@/lib/competitions";
@@ -56,6 +58,7 @@ const FeaturedCompetition = ({
   faqHref?: string;
 }) => {
   const content = competitionContentFor(event.slug);
+  const details = toEventData(event);
 
   return (
     <div className="mt-6 border border-[#FAFAFA]/20 p-5 sm:p-6" style={CARD_STYLE}>
@@ -95,6 +98,17 @@ const FeaturedCompetition = ({
             Competition FAQ
           </a>
         ) : null}
+      </div>
+
+      <div className="mt-6 space-y-4">
+        {details.externalLink && (
+          <a href={details.externalLink.url} target="_blank" rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-foreground text-background px-5 py-3 text-sm font-medium hover:bg-muted-foreground transition-colors">
+            {details.externalLink.label}
+            <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+          </a>
+        )}
+        <EventLinks links={details.resourceLinks ?? []} />
       </div>
 
       <button
