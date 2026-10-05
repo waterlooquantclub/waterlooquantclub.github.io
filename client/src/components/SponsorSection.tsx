@@ -54,21 +54,29 @@ const TIERS: Tier[] = [
     suitWidth: 45,
     suitHeight: 42,
     sponsors: [
-      { name: "Hudson River Trading", href: "https://www.hudsonrivertrading.com/", logo: Hrt, width: 200 },
-      { name: "Optiver", href: "https://www.optiver.com/", logo: Optiver, width: 300 },
-      { name: "Point72", href: "https://point72.com/", logo: Point72, width: 300 },
-      { name: "Susquehanna", href: "https://sig.com/", logo: Susquehanna, width: 350 },
-      { name: "GBE Energy", href: "https://www.gbe.energy/", logo: Gbe, width: 150 },
+      { name: "Hudson River Trading", href: "https://www.hudsonrivertrading.com/", logo: Hrt, width: 160 },
+      { name: "Optiver", href: "https://www.optiver.com/", logo: Optiver, width: 240 },
+      { name: "Point72", href: "https://point72.com/", logo: Point72, width: 240 },
+      { name: "Susquehanna", href: "https://sig.com/", logo: Susquehanna, width: 280 },
+      { name: "GBE Energy", href: "https://www.gbe.energy/", logo: Gbe, width: 120 },
     ],
   },
   // { name: "Silver", color: "#E3E4E4", suit: SuitClub, suitWidth: 43.9, suitHeight: 45.6, sponsors: [], placeholders: 3 },
   // { name: "Bronze", color: "#946953", suit: SuitDiamond, suitWidth: 32.8, suitHeight: 45.6, sponsors: [], placeholders: 3 },
 ];
 
+// Suit dimensions are at their native artboard size; scale them down so they sit close to the title's 22.5px line height.
+const SUIT_SCALE = 0.65;
+
 const TierHeader = ({ tier }: { tier: Tier }) => (
   <div className="flex items-center gap-[18px]">
-    <div className="flex w-[45px] shrink-0 justify-center">
-      <img src={tier.suit} alt="" aria-hidden style={{ width: tier.suitWidth, height: tier.suitHeight }} />
+    <div className="flex w-[30px] shrink-0 justify-center">
+      <img
+        src={tier.suit}
+        alt=""
+        aria-hidden
+        style={{ width: tier.suitWidth * SUIT_SCALE, height: tier.suitHeight * SUIT_SCALE }}
+      />
     </div>
     {/* The negative margin drops the letter-space after the last glyph, so the rule starts one gap after the ink. */}
     <span
@@ -168,12 +176,12 @@ const SponsorSection = () => (
       </div>
 
       <div className="mt-[90px] flex flex-col items-center gap-[5px]">
-        <p className="text-center text-[14px] leading-[17.5px] text-white">
+        <p className="text-center text-[16px] leading-[20px] text-white">
           Interested in sponsoring the Waterloo Quant Club?
         </p>
         <a
           href="mailto:sponsors@waterlooquantclub.com"
-          className="inline-block h-[18px] border-b border-[#989999] text-[14px] leading-[17.5px] text-[#989999] transition-colors hover:text-white"
+          className="inline-block h-[21px] border-b border-[#989999] text-[16px] leading-[20px] text-[#989999] transition-colors hover:text-white"
         >
           Get in touch with us.
         </a>
