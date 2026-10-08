@@ -28,3 +28,13 @@ public file storage. They are matched to events by **slug**:
 Recordings, slide decks, and PDFs are links, and are added on the event in
 the portal, not here. In development, a folder whose name matches no portal
 slug logs a warning in the browser console.
+
+## Colonel Blotto
+
+Same pattern as Events: the leaderboard page fetches `GET
+/blotto/leaderboard/public` from the portal (`fetchPublicBlottoLeaderboard`
+in `client/src/lib/portal.ts`) instead of keeping its own copy — it used to
+read a public Google Sheet before the portal had this data. Submission
+links point at `${VITE_PORTAL_APP_URL}/blotto` (defaults to
+`https://portal.waterlooquantclub.com`) — the actual round/scenario
+management and CSV-based scoring all happen in the portal, not here.
