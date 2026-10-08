@@ -16,6 +16,7 @@ import {
   ArrowDown,
 } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import PlacementsBanner from "@/components/PlacementsBanner";
 
 // Dynamic imports for team images
 const teamImages: Record<string, string> = import.meta.glob(
@@ -207,6 +208,9 @@ const Team = () => {
             people={TEAM}
             onSelect={(index) => setSelected({ group: "team", index })}
           />
+
+          {/* Member Placements */}
+          <PlacementsBanner />
 
           {ALUMNI.length > 0 && (
             <div

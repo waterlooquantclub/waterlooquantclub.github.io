@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 import { ArrowRight, ExternalLink, X } from "lucide-react";
 import WavyGrid from "@/components/WavyGrid";
 import SponsorSection from "@/components/SponsorSection";
+import PlacementsBanner from "@/components/PlacementsBanner";
 import { useState, useEffect } from "react";
 
 const Index = () => {
@@ -253,6 +254,9 @@ const Index = () => {
 
       {/* Our Partners */}
       <SponsorSection />
+
+      {/* Member Placements */}
+      <PlacementsBanner />
 
       {/* Mobile Bottom Popup */}
       {void mobilePopup}
