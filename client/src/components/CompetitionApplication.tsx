@@ -7,11 +7,11 @@ export default function CompetitionApplication({ event }: { event: PublicEvent }
   const { applicationDeadline } = competitionDetailsFor(event);
   const label = formatApplicationDeadline(applicationDeadline);
   const open = applicationsAreOpen(event);
-  if (!event.application_only || !event.application_url || event.status !== "upcoming") return null;
+  if (!event.application_only || event.status !== "upcoming") return null;
 
   return (
     <div className="flex flex-wrap items-center gap-x-5 gap-y-4">
-      {open ? (
+      {open && event.application_url ? (
         <a href={event.application_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-foreground text-background px-5 py-3 text-sm font-medium hover:bg-muted-foreground transition-colors">
           Apply <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
         </a>

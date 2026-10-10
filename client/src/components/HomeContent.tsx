@@ -74,7 +74,7 @@ function CompetitionHighlight() {
             )}
             <Link to="/events?competitions=past" className="refined-details">View past competitions <ArrowRight size={16} aria-hidden="true" /></Link>
           </div>
-          {event.application_only && event.application_url && (
+          {event.application_only && (
             <p className="application-caption">{applicationsOpen ? "Applications open" : "Applications closed"}</p>
           )}
         </div>
