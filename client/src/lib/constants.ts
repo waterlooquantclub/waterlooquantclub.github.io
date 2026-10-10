@@ -252,6 +252,14 @@ export const TEAM: MemberInfo[] = [
     linkedin: "https://www.linkedin.com/in/kellyqu",
     email: "kellyqu@waterlooquantclub.com",
   },
+  {
+    name: "Ayman Abdul-Majid",
+    role: "Executive",
+    program: "Software Engineering",
+    image: "ayman_a.jpeg",
+    linkedin: "https://www.linkedin.com/in/sabdulmajid/",
+    email: "ayman.abdul-majid@uwaterloo.ca",
+  },
 ];
 
 // TODO: every position/company below is a placeholder — fill in real full-time
