@@ -1,3 +1,8 @@
+.home-hero {
+  min-height:calc(100vh - 4rem);
+  min-height:calc(100dvh - 4rem);
+  padding-block:calc(88px + env(safe-area-inset-bottom, 0px));
+}
 .home-field {
   position:fixed;
   top:64px;
@@ -27,20 +32,25 @@
   border-bottom:1px solid #ffffff24;
   z-index:12;
   display:flex;
-  justify-content:flex-end;
-  padding-bottom:22px;
+  justify-content:center;
+  padding-bottom:calc(clamp(16px, 3dvh, 32px) + env(safe-area-inset-bottom, 0px));
 }
 .hero-scroll-boundary button {
   display:flex;
   align-items:center;
-  gap:15px;
-  font-size:11px;
+  gap:10px;
+  min-height:44px;
+  font-size:12px;
   letter-spacing:.7px;
   color:#aab2c7;
-  padding:10px 0;
+  padding:10px 12px;
 }
 .hero-scroll-boundary button:hover {
   color:#fafafa;
+}
+.hero-scroll-boundary button:focus-visible {
+  outline:2px solid currentColor;
+  outline-offset:4px;
 }
 .refined-competition {
   position:relative;
@@ -365,9 +375,6 @@
   }
   .refined-details {
     font-size:12px;
-  }
-  .hero-scroll-boundary {
-    padding-bottom:12px;
   }
   .refined-about {
     padding:65px 24px;

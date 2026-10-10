@@ -9,7 +9,7 @@ const Index = () => {
 
       <HomeField />
       {/* Hero Section */}
-      <section className="min-h-[calc(100vh-4rem)] flex flex-col justify-center px-6 relative overflow-hidden">
+      <section className="home-hero flex flex-col justify-center px-6 relative overflow-hidden">
         <div className="container mx-auto max-w-6xl relative z-10">
           {/* Circular gradient backdrop for readability - tinted dark blue to blend with global gradient */}
           <div
