@@ -1,0 +1,458 @@
+.home-field {
+  position:fixed;
+  top:64px;
+  left:0;
+  right:0;
+  height:calc(100vh - 64px);
+  pointer-events:none;
+  z-index:0;
+  will-change:opacity;
+}
+.refined-home {
+  position:relative;
+  z-index:2;
+  scroll-margin-top:72px;
+}
+.refined-shell {
+  max-width:1152px;
+  margin:0 auto;
+}
+.hero-scroll-boundary {
+  position:absolute;
+  bottom:0;
+  left:24px;
+  right:24px;
+  max-width:1152px;
+  margin:0 auto;
+  border-bottom:1px solid #ffffff24;
+  z-index:12;
+  display:flex;
+  justify-content:flex-end;
+  padding-bottom:22px;
+}
+.hero-scroll-boundary button {
+  display:flex;
+  align-items:center;
+  gap:15px;
+  font-size:11px;
+  letter-spacing:.7px;
+  color:#aab2c7;
+  padding:10px 0;
+}
+.hero-scroll-boundary button:hover {
+  color:#fafafa;
+}
+.refined-competition {
+  position:relative;
+  padding:86px 24px 64px;
+  scroll-margin-top:72px;
+}
+.competition-layout {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 260px;
+  gap:80px;
+  align-items:start;
+}
+.section-eyebrow {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:11px;
+  line-height:1.5;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:#aab2c7;
+  margin:0 0 32px;
+}
+.status-dot {
+  width:5px;
+  height:5px;
+  background:#a9b9f0;
+  border-radius:50%;
+}
+.competition-copy h2 {
+  font-size:46px;
+  line-height:1.16;
+  letter-spacing:-1.5px;
+  font-weight:300;
+  margin:0 0 24px;
+  color:#fafafa;
+}
+.competition-intro {
+  font-size:17px;
+  line-height:1.8;
+  color:#a9aebe;
+  max-width:560px;
+}
+.competition-actions {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:26px;
+  margin-top:34px;
+}
+.refined-apply {
+  display:inline-flex;
+  align-items:center;
+  gap:16px;
+  padding:15px 21px;
+  background:#fafafa;
+  color:#030814;
+  font-size:13px;
+  font-weight:500;
+  transition:background .2s;
+}
+.refined-apply:hover {
+  background:#cdd6eb;
+}
+.refined-details {
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  font-size:13px;
+  color:#c5cada;
+  transition:color .2s;
+}
+.refined-details:hover {
+  color:white;
+}
+.application-caption {
+  font-size:11px;
+  letter-spacing:.5px;
+  color:#858d9f;
+  margin-top:15px;
+}
+.competition-facts {
+  padding-top:51px;
+  display:flex;
+  flex-direction:column;
+  gap:27px;
+}
+.competition-facts dt {
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:1.8px;
+  color:#8e9bb3;
+  margin-bottom:9px;
+}
+.competition-facts dd {
+  font-size:18px;
+  line-height:1.5;
+  color:#e4e8f0;
+  font-weight:300;
+}
+.refined-about {
+  padding:100px 24px 110px;
+  scroll-margin-top:90px;
+}
+.community-intro {
+  max-width:720px;
+}
+.refined-about h2 {
+  font-size:48px;
+  line-height:1.16;
+  letter-spacing:-1.7px;
+  font-weight:300;
+  margin-bottom:26px;
+}
+.about-intro {
+  font-size:17px;
+  color:#a9aebe;
+  line-height:1.8;
+  max-width:600px;
+  margin-bottom:26px;
+}
+.offer-list {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:44px;
+  margin-top:64px;
+}
+.offer-row h3 {
+  font-size:17px;
+  font-weight:400;
+  margin-bottom:14px;
+}
+.offer-row p {
+  font-size:13px;
+  color:#a0a8ba;
+  line-height:1.85;
+  max-width:245px;
+}
+/* Preserve the original sponsor artwork and brand colors. */
+.refined-partners {
+  padding:64px 24px 120px;
+  scroll-margin-top:100px;
+}
+.partners-heading {
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:48px;
+  margin-bottom:58px;
+}
+.partners-intro {
+  max-width:640px;
+}
+.partners-heading h2 {
+  font-size:48px;
+  font-weight:300;
+  letter-spacing:-1.7px;
+  line-height:1.16;
+  margin-bottom:26px;
+}
+.partners-intro p {
+  font-size:17px;
+  line-height:1.8;
+  color:#a9aebe;
+}
+.partners-heading>.refined-details {
+  flex-shrink:0;
+  margin-bottom:6px;
+}
+.partner-tier+.partner-tier {
+  margin-top:44px;
+}
+.tier-label {
+  display:flex;
+  align-items:center;
+  gap:14px;
+  font-size:12px;
+  line-height:1.5;
+  font-weight:400;
+  letter-spacing:1.8px;
+  text-transform:uppercase;
+}
+.tier-label img {
+  width:19px;
+  height:22px;
+  object-fit:contain;
+}
+.tier-label span {
+  height:1px;
+  flex:1;
+  margin-left:8px;
+  background:currentColor;
+  opacity:.32;
+}
+.diamond-tier .tier-label {
+  color:#8cbfff;
+}
+.gold-tier .tier-label {
+  color:#f5bf67;
+}
+.partner-marks {
+  display:grid;
+  align-items:center;
+  gap:36px;
+  margin-top:34px;
+}
+.diamond-marks {
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  padding:14px 0 18px;
+}
+.gold-marks {
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  padding:8px 0;
+}
+.partner-mark {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-width:0;
+  min-height:110px;
+  border-radius:4px;
+  transition:opacity .2s;
+}
+.partner-mark:hover {
+  opacity:.8;
+}
+.partner-mark:focus-visible {
+  outline:2px solid #a9b9f0;
+  outline-offset:8px;
+}
+.partner-mark img {
+  height:auto;
+  max-width:100%;
+  object-fit:contain;
+}
+.partner-mark.jane img {
+  width:300px;
+}
+.partner-mark.citadel img {
+  width:350px;
+}
+.partner-mark.hrt img {
+  width:125px;
+}
+.partner-mark.optiver img {
+  width:195px;
+}
+.partner-mark.point img {
+  width:180px;
+}
+.partner-mark.susquehanna img {
+  width:195px;
+}
+.partner-mark.gbe img {
+  width:86px;
+}
+@media(prefers-reduced-motion:reduce) {
+  .partner-mark {
+    transition:none;
+  }
+}
+@media(max-width:1050px) {
+  .competition-layout {
+    gap:35px;
+    grid-template-columns:minmax(0,1fr) 225px;
+  }
+  .competition-copy h2 {
+    font-size:40px;
+  }
+  .competition-actions {
+    gap:20px;
+  }
+  .offer-list {
+    gap:28px;
+  }
+  .gold-marks {
+    grid-template-columns:repeat(6,minmax(0,1fr));
+    gap:24px 36px;
+  }
+  .gold-marks .partner-mark {
+    grid-column:span 2;
+  }
+  .gold-marks .partner-mark:nth-child(4) {
+    grid-column:2 / span 2;
+  }
+}
+@media(max-width:700px) {
+  .refined-competition {
+    padding:60px 24px 40px;
+  }
+  .competition-layout {
+    grid-template-columns:1fr;
+    gap:28px;
+  }
+  .competition-copy h2 {
+    font-size:36px;
+    letter-spacing:-1px;
+  }
+  .section-eyebrow {
+    margin-bottom:24px;
+  }
+  .competition-intro {
+    font-size:16px;
+  }
+  .competition-facts {
+    padding-top:0;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+  }
+  .competition-facts>div:first-child {
+    grid-column:1 / -1;
+  }
+  .competition-facts dd {
+    font-size:16px;
+  }
+  .competition-actions {
+    gap:22px;
+  }
+  .refined-apply {
+    padding:14px 18px;
+  }
+  .refined-details {
+    font-size:12px;
+  }
+  .hero-scroll-boundary {
+    padding-bottom:12px;
+  }
+  .refined-about {
+    padding:65px 24px;
+  }
+  .refined-about h2 {
+    font-size:36px;
+    letter-spacing:-1px;
+  }
+  .about-intro {
+    font-size:15px;
+  }
+  .offer-list {
+    grid-template-columns:1fr 1fr;
+    gap:34px 24px;
+    margin-top:42px;
+  }
+  .offer-row h3 {
+    font-size:16px;
+    margin-bottom:10px;
+  }
+  .offer-row p {
+    font-size:12px;
+  }
+  .refined-partners {
+    padding:55px 24px 80px;
+  }
+  .partners-heading {
+    align-items:flex-start;
+    flex-direction:column;
+    gap:24px;
+    margin-bottom:42px;
+  }
+  .partners-heading h2 {
+    font-size:36px;
+    letter-spacing:-1px;
+    margin-bottom:22px;
+  }
+  .partners-intro p {
+    font-size:15px;
+  }
+  .partners-heading>.refined-details {
+    margin-bottom:0;
+  }
+  .partner-tier+.partner-tier {
+    margin-top:34px;
+  }
+  .partner-marks {
+    gap:24px;
+    margin-top:28px;
+  }
+  .diamond-marks {
+    padding:4px 0 8px;
+  }
+  .partner-mark {
+    min-height:86px;
+  }
+  .gold-marks {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:22px 30px;
+  }
+  .gold-marks .partner-mark {
+    grid-column:auto;
+  }
+  .gold-marks .partner-mark:nth-child(4) {
+    grid-column:auto;
+  }
+  .gold-marks .partner-mark:last-child {
+    grid-column:1 / -1;
+  }
+  .partner-mark.hrt img {
+    width:112px;
+  }
+  .partner-mark.gbe img {
+    width:76px;
+  }
+}
+@media(max-width:500px) {
+  .diamond-marks {
+    grid-template-columns:1fr;
+    gap:28px;
+  }
+  .partner-mark.jane img {
+    width:240px;
+  }
+  .partner-mark.citadel img {
+    width:285px;
+  }
+}

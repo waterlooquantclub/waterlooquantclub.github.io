@@ -149,6 +149,7 @@ const WavyGrid = ({ className = "" }: { className?: string }) => {
       return;
     }
 
+    let needsRedraw = true;
     const setCanvasSize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const displayWidth = canvas.clientWidth;
@@ -157,6 +158,7 @@ const WavyGrid = ({ className = "" }: { className?: string }) => {
         canvas.width = displayWidth * dpr;
         canvas.height = displayHeight * dpr;
         gl.viewport(0, 0, canvas.width, canvas.height);
+        needsRedraw = true;
       }
     };
 
@@ -287,8 +289,17 @@ const WavyGrid = ({ className = "" }: { className?: string }) => {
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
     const indexCount = indices.length;
+    let visible = true;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const visibilityObserver = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; });
+    visibilityObserver.observe(canvas);
 
     const animate = () => {
+      if (!visible || document.hidden || (reducedMotion.matches && !needsRedraw)) {
+        animationRef.current = requestAnimationFrame(animate);
+        return;
+      }
+      needsRedraw = false;
       timeRef.current += 0.016 * SPEED;
 
       // Get line color from CSS
@@ -320,6 +331,7 @@ const WavyGrid = ({ className = "" }: { className?: string }) => {
     return () => {
       cancelAnimationFrame(animationRef.current);
       resizeObserver.disconnect();
+      visibilityObserver.disconnect();
       gl.deleteBuffer(positionBuffer);
       gl.deleteBuffer(normalBuffer);
       gl.deleteBuffer(lineIndexBuffer);

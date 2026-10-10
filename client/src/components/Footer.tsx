@@ -1,9 +1,9 @@
 import WqcLogo from "@/assets/wqc-logo.svg";
 import { SOCIAL_LINKS } from "@/lib/constants";
 
-const Footer = () => {
+const Footer = ({ divider = true }: { divider?: boolean }) => {
   return (
-    <footer className="py-12 px-6 border-t border-border relative z-10">
+    <footer className={`py-12 px-6 relative z-10${divider ? " border-t border-border" : ""}`}>
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
         <p className="text-muted-foreground text-sm order-2 md:order-1">
           © 2026 Waterloo Quant Club

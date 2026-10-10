@@ -7,9 +7,10 @@ interface LayoutProps {
   announcementBar?: ReactNode;
   /** Leave out the blue gradient overlay, for pages drawn on flat black. */
   flatBackground?: boolean;
+  footerDivider?: boolean;
 }
 
-const Layout = ({ children, announcementBar, flatBackground }: LayoutProps) => {
+const Layout = ({ children, announcementBar, flatBackground, footerDivider = true }: LayoutProps) => {
   return (
     <div className="min-h-screen bg-background flex flex-col relative">
       {/* Fixed blue gradient overlay */}
@@ -30,7 +31,7 @@ const Layout = ({ children, announcementBar, flatBackground }: LayoutProps) => {
       )}
       <Navbar hasAnnouncementBar={!!announcementBar} />
       <main className={`flex-1 relative z-10 ${announcementBar ? 'pt-16 md:pt-[calc(4rem+44px)]' : 'pt-16'}`}>{children}</main>
-      <Footer />
+      <Footer divider={footerDivider} />
     </div>
   );
 };

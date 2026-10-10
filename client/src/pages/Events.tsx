@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import Layout from "@/components/Layout";
 import {
@@ -40,6 +41,7 @@ const isCompetition = (event: PublicEvent) =>
   event.event_type?.trim().toUpperCase() === "COMPETITION";
 
 const Events = () => {
+  const pastCompetitionsOnly = new URLSearchParams(useLocation().search).get('competitions') === 'past';
   const [selectedEvent, setSelectedEvent] = useState<EventData | null>(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [archiveQuery, setArchiveQuery] = useState("");
@@ -70,14 +72,15 @@ const Events = () => {
     () =>
       (data ?? [])
         .filter(isCompetition)
+        .filter(event => !pastCompetitionsOnly || event.status === 'past')
         .slice()
         .sort((a, b) => new Date(b.start_time).getTime() - new Date(a.start_time).getTime()),
-    [data],
+    [data, pastCompetitionsOnly],
   );
 
   const activeCompetition =
     competitions.find((e) => e.id === selectedCompetitionId) ?? competitions[0] ?? null;
-  const activeFaq = competitionContentFor(activeCompetition?.slug)?.faq;
+  const activeFaq = activeCompetition ? competitionContentFor(activeCompetition.slug).faq : undefined;
 
   const events: EventData[] = (data ?? [])
     .filter((e) => e.status === "upcoming" || e.status === "live")
@@ -474,9 +477,9 @@ const Events = () => {
 
       {/* Competition FAQ */}
       {activeFaq?.length ? (
-        <section id="competition-faq" className="pb-24 px-6 scroll-mt-24">
+        <section key={activeCompetition?.id} id="competition-faq" tabIndex={-1} aria-labelledby="competition-faq-title" className="pb-24 px-6 scroll-mt-24 focus:outline-none">
           <div className={SHELL}>
-            <h2 className="text-2xl md:text-3xl font-light tracking-tight mb-6">
+            <h2 id="competition-faq-title" className="text-2xl md:text-3xl font-light tracking-tight mb-6">
               Competition FAQ
             </h2>
             <div

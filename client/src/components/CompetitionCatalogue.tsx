@@ -1,3 +1,4 @@
+import CompetitionApplication from "./CompetitionApplication";
 import { Calendar, MapPin, HelpCircle, ArrowUpRight } from "lucide-react";
 import EventLinks from "@/components/EventLinks";
 import { toEventData } from "@/lib/eventMapping";
@@ -19,15 +20,18 @@ const EditionSelector = ({
   competitions,
   selectedId,
   onSelect,
-}: Pick<CompetitionCatalogueProps, "competitions" | "selectedId" | "onSelect">) => (
+}: Pick<CompetitionCatalogueProps, "competitions" | "selectedId" | "onSelect">) => {
+  const selected = competitions.find(event => event.id === selectedId) ?? competitions[0];
+  const isPast = selected?.status === 'past';
+  return (
   <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
     <div className="flex flex-col xl:flex-row xl:items-baseline gap-2 xl:gap-4">
       <h2 id="competitions" className="scroll-mt-28 text-2xl md:text-3xl font-light tracking-tight">
-        Trading Competitions
+        {isPast ? 'Past Competitions' : 'Upcoming Competition'}
       </h2>
-      <p className="text-sm text-muted-foreground">Explore our trading competitions!</p>
+      <p className="text-sm text-muted-foreground">{isPast ? 'Explore previous editions.' : 'Join our next trading competition.'}</p>
     </div>
-    <div className="flex items-center gap-3 min-w-0">
+    <div className="flex items-center gap-3 min-w-0" style={competitions.length === 1 ? {display:"none"} : undefined}>
       <label htmlFor="competition-edition" className="text-sm text-muted-foreground">Select:</label>
       <Select value={selectedId == null ? undefined : String(selectedId)} onValueChange={(value) => onSelect(Number(value))}>
         <SelectTrigger id="competition-edition" aria-label="Browse competition editions" className="w-44 rounded-none border-[#FAFAFA]/20 bg-black/40 text-left">
@@ -46,7 +50,8 @@ const EditionSelector = ({
       </Select>
     </div>
   </div>
-);
+  );
+};
 
 const FeaturedCompetition = ({
   event,
@@ -63,9 +68,16 @@ const FeaturedCompetition = ({
   return (
     <div className="mt-6 border border-[#FAFAFA]/20 p-5 sm:p-6" style={CARD_STYLE}>
       <div className="min-w-0">
-        <span className="inline-block text-xs tracking-widest uppercase text-foreground bg-[#132C7B]/60 px-2 py-1">
-          {event.event_type ?? "Competition"}
-        </span>
+        <div className="flex flex-wrap items-center gap-2" aria-label="Competition tags">
+          <span className="inline-block text-xs tracking-widest uppercase text-foreground bg-[#132C7B]/60 px-2 py-1">
+            Competition
+          </span>
+          {event.status === "upcoming" && (
+            <span className="inline-block border border-[#FAFAFA]/25 px-2 py-1 text-[11px] leading-4 tracking-widest uppercase text-muted-foreground">
+              Upcoming
+            </span>
+          )}
+        </div>
         <div className="mt-4 flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
           <h3 className="max-w-[760px] text-2xl md:text-4xl font-medium leading-tight tracking-tight">
             {event.title}
@@ -82,18 +94,25 @@ const FeaturedCompetition = ({
             <Calendar className="w-4 h-4" />
             {formatEventDate(event.start_time, event.end_time)}
           </span>
-          {event.location && (
+          {details.location && (
             <span className="inline-flex items-center gap-2">
               <MapPin className="w-4 h-4" />
-              {event.location}
+              {details.location}
             </span>
           )}
         </div>
         {event.description && (
-          <p className="text-sm text-muted-foreground leading-relaxed mt-4">{event.description}</p>
+          <p className="text-sm text-muted-foreground leading-relaxed mt-4 whitespace-pre-line">{event.description}</p>
         )}
         {faqHref && content?.faq?.length ? (
-          <a href={faqHref} className="mt-4 inline-flex items-center gap-2 text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground">
+          <a href={faqHref} onClick={(e) => {
+            const target = document.getElementById(faqHref.slice(1));
+            if (target) {
+              e.preventDefault();
+              target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+              target.focus({ preventScroll: true });
+            }
+          }} className="mt-4 inline-flex items-center gap-2 text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground">
             <HelpCircle className="w-4 h-4" />
             Competition FAQ
           </a>
@@ -101,11 +120,11 @@ const FeaturedCompetition = ({
       </div>
 
       <div className="mt-6 space-y-4">
-        {details.externalLink && (
+        <CompetitionApplication event={event} />
+        {!event.application_only && details.externalLink && (
           <a href={details.externalLink.url} target="_blank" rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-foreground text-background px-5 py-3 text-sm font-medium hover:bg-muted-foreground transition-colors">
-            {details.externalLink.label}
-            <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+            {details.externalLink.label}<ArrowUpRight className="h-4 w-4" aria-hidden="true" />
           </a>
         )}
         <EventLinks links={details.resourceLinks ?? []} />

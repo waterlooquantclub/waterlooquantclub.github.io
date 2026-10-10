@@ -40,6 +40,7 @@ export interface PublicEvent {
   registration_url: string | null;
   application_only?: boolean;
   application_url?: string | null;
+  application_deadline?: string | null;
   calendar_url: string;
 }
 

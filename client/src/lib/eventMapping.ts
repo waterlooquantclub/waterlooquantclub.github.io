@@ -3,6 +3,7 @@ import type { EventData, GalleryItem } from "@/components/EventDialog";
 import { formatEventDate, termTag } from "@/lib/eventDates";
 import { galleryFor } from "@/lib/eventGallery";
 import type { PublicEvent } from "@/lib/portal";
+import { applicationsAreOpen, competitionDetailsFor } from "@/lib/competitionDetails";
 
 /** Accepts watch, short, or embed YouTube URLs and returns an embeddable one. */
 export function toYouTubeEmbedUrl(url: string): string {
@@ -26,6 +27,17 @@ export function toYouTubeEmbedUrl(url: string): string {
 }
 
 export function toEventData(event: PublicEvent): EventData {
+  const { location } = competitionDetailsFor(event);
+  let calendarlink = event.status === "upcoming" ? event.calendar_url : undefined;
+  if (calendarlink && location && location !== event.location) {
+    try {
+      const url = new URL(calendarlink);
+      url.searchParams.set("location", location);
+      calendarlink = url.toString();
+    } catch {
+      // Preserve the portal's URL if it is not an absolute calendar link.
+    }
+  }
   const videos: GalleryItem[] = event.links
     .filter((l) => l.kind === "video")
     .map((l) => ({
@@ -47,20 +59,20 @@ export function toEventData(event: PublicEvent): EventData {
   for (const tag of event.tags) tags.add(tag.toUpperCase());
 
   const externalLink = event.application_only
-    ? event.application_url ? { label: "Apply", url: event.application_url } : undefined
+    ? applicationsAreOpen(event) ? { label: "Apply", url: event.application_url! } : undefined
     : event.registration_url ? { label: "RSVP", url: event.registration_url } : undefined;
 
   return {
     title: event.title,
     date: formatEventDate(event.start_time, event.end_time),
-    location: event.location ?? "TBA",
+    location: location ?? "TBA",
     type: event.event_type ?? "Event",
     tags: Array.from(tags),
     description: event.description ?? "",
     galleryImages: [...videos, ...galleryFor(event.slug)],
     resourceLinks,
     rankings: event.rankings.length > 0 ? event.rankings : undefined,
-    calendarlink: event.status === "upcoming" ? event.calendar_url : undefined,
+    calendarlink,
     externalLink,
   };
 }
