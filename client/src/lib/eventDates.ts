@@ -2,6 +2,38 @@
 
 const TIME_ZONE = "America/Toronto";
 
+/** Date-only range for the compact homepage highlight. */
+export function formatCompetitionDates(startIso: string, endIso: string | null): string {
+  const start = new Date(startIso);
+  const end = endIso ? new Date(endIso) : start;
+  if (Number.isNaN(start.getTime())) return "Date TBA";
+  const formatter = new Intl.DateTimeFormat("en-US", {
+    timeZone: TIME_ZONE, month: "long", day: "numeric", year: "numeric",
+  });
+  if (Number.isNaN(end.getTime()) || start.getTime() > end.getTime()) return formatter.format(start);
+  if (formatter.format(start) === formatter.format(end)) return formatter.format(start);
+  const parts = (date: Date) => Object.fromEntries(formatter.formatToParts(date).map(part => [part.type, part.value]));
+  const first = parts(start);
+  const last = parts(end);
+  if (first.year === last.year && first.month === last.month) {
+    return `${first.month} ${first.day}–${last.day}, ${first.year}`;
+  }
+  return `${formatter.format(start)} – ${formatter.format(end)}`;
+}
+
+export function formatApplicationDeadline(iso: string | null | undefined): string | null {
+  if (!iso) return null;
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return null;
+  const day = new Intl.DateTimeFormat("en-US", {
+    timeZone: TIME_ZONE, month: "long", day: "numeric",
+  }).format(date);
+  const time = new Intl.DateTimeFormat("en-US", {
+    timeZone: TIME_ZONE, hour: "numeric", minute: "2-digit", hour12: true,
+  }).format(date).replace("AM", "a.m.").replace("PM", "p.m.");
+  return `${day} · ${time} ET`;
+}
+
 export function formatShortEventDate(startIso: string): string {
   const date = new Date(startIso);
   if (Number.isNaN(date.getTime())) return "Date TBA";

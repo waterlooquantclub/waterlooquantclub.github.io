@@ -10,9 +10,17 @@ The events page does not keep its own list of events. It fetches
 returns. Create, edit, and archive events in the portal admin UI; archiving
 an event there removes it from this site.
 
+The homepage highlights the next upcoming competition from the same feed.
+`client/src/lib/competitionDetails.ts` holds confirmed public details that the
+feed does not yet supply: the Fall 2026 deadline, public location, and prize
+pool. A deadline supplied by the portal takes precedence; the Apply action
+closes after the deadline. The competition FAQ is shared across editions in
+`client/src/lib/competitions.ts`. Sponsor assets and tiers are shared between
+the homepage and Sponsors page in `client/src/lib/sponsors.ts`.
+
 ### Adding photos to an event
 
-Photos are the one thing this repo still holds, because the portal has no
+Photos are kept in this repo because the portal has no
 public file storage. They are matched to events by **slug**:
 
 1. Find the event's slug in the portal admin (the "Slug" field on the event's
