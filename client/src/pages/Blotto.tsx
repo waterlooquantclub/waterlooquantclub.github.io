@@ -41,6 +41,16 @@ const Blotto = () => {
                   Submit Strategies on the Member Portal
                   <Swords className="w-5 h-5" />
                 </a>
+
+                <a
+                  href={`${PORTAL_APP_URL}/blotto?section=leaderboard`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 text-white px-6 py-3 text-sm font-medium tracking-wide border border-white/10 transition-colors"
+                >
+                  Leaderboard
+                  <Trophy className="w-5 h-5" />
+                </a>
               </div>
             </div>
           </div>

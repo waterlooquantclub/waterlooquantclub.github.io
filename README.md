@@ -31,10 +31,9 @@ slug logs a warning in the browser console.
 
 ## Colonel Blotto
 
-Same pattern as Events: the leaderboard page fetches `GET
-/blotto/leaderboard/public` from the portal (`fetchPublicBlottoLeaderboard`
-in `client/src/lib/portal.ts`) instead of keeping its own copy — it used to
-read a public Google Sheet before the portal had this data. Submission
-links point at `${VITE_PORTAL_APP_URL}/blotto` (defaults to
-`https://portal.waterlooquantclub.com`) — the actual round/scenario
-management and CSV-based scoring all happen in the portal, not here.
+Round/scenario management, CSV-based scoring, and the leaderboard all live in
+the portal, not here. The Blotto page links to `${VITE_PORTAL_APP_URL}/blotto`
+for submissions and `${VITE_PORTAL_APP_URL}/blotto?section=leaderboard` for the
+leaderboard (`VITE_PORTAL_APP_URL` defaults to
+`https://portal.waterlooquantclub.com`). The old `/games/blotto/leaderboard`
+route redirects to the portal leaderboard so existing links keep working.
