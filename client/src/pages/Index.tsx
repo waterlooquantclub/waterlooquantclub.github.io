@@ -5,7 +5,7 @@ import { HomeField, HomeContent } from "@/components/HomeContent";
 
 const Index = () => {
   return (
-    <Layout footerDivider={false}>
+    <Layout footerDivider>
 
       <HomeField />
       {/* Hero Section */}

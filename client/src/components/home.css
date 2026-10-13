@@ -17,10 +17,16 @@
   position:relative;
   z-index:2;
   scroll-margin-top:72px;
+  background:
+    radial-gradient(ellipse 92% 62% at 50% 0%, rgba(38,70,155,.42) 0%, rgba(19,44,123,.18) 42%, transparent 72%),
+    #000000;
 }
 .refined-shell {
   max-width:1152px;
   margin:0 auto;
+}
+main:has(.refined-home) + footer {
+  background:linear-gradient(180deg, #030814 0%, #020611 100%);
 }
 .hero-scroll-boundary {
   position:absolute;
