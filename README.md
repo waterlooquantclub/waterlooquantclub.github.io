@@ -36,3 +36,12 @@ public file storage. They are matched to events by **slug**:
 Recordings, slide decks, and PDFs are links, and are added on the event in
 the portal, not here. In development, a folder whose name matches no portal
 slug logs a warning in the browser console.
+
+## Colonel Blotto
+
+Round/scenario management, CSV-based scoring, and the leaderboard all live in
+the portal, not here. The Blotto page links to `${VITE_PORTAL_APP_URL}/blotto`
+for submissions and `${VITE_PORTAL_APP_URL}/blotto?section=leaderboard` for the
+leaderboard (`VITE_PORTAL_APP_URL` defaults to
+`https://portal.waterlooquantclub.com`). The old `/games/blotto/leaderboard`
+route redirects to the portal leaderboard so existing links keep working.
