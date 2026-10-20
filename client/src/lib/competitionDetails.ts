@@ -11,7 +11,7 @@ interface CompetitionDetails {
 const DETAILS: Record<string, CompetitionDetails> = {
   "waterloo-fall-trading-competition": {
     publicLocation: "Waterloo, Ontario",
-    applicationDeadline: "2026-10-19T23:59:00-04:00",
+    applicationDeadline: "2026-10-21T23:59:00-04:00",
     prizePool: "$10,000",
   },
 };
