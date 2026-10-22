@@ -2,6 +2,22 @@
 
 Static Vite + React site deployed to GitHub Pages from `client/`.
 
+## Game tests
+
+Run these commands from `client/`:
+
+```sh
+npm ci
+npm test
+npx playwright install chromium
+npm run test:e2e
+```
+
+The browser tests build the app and start a local preview server. They cover
+24 Game keyboard controls, dialogs, mobile settings, and timer transitions.
+To use an installed Chrome instead of Playwright's Chromium, set
+`PLAYWRIGHT_CHANNEL=chrome` in your shell before running `npm run test:e2e`.
+
 ## Events
 
 The events page does not keep its own list of events. It fetches

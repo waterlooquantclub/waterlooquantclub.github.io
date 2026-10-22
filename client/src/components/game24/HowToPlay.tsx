@@ -1,31 +1,26 @@
-import { useEffect } from "react";
+import { useRef } from "react";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 
 export function HowToPlay({ open, onClose }: { open: boolean; onClose: () => void }) {
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [open, onClose]);
+  const returnFocus = useRef<HTMLElement | null>(null);
 
-  if (!open) return null;
   return (
-    <div className="fixed inset-0 z-50 grid place-items-center bg-black/70 backdrop-blur-sm p-4" onClick={onClose}>
-      <div
-        className="g24-card !bg-black max-w-lg w-full p-6 sm:p-8 max-h-[85vh] overflow-y-auto"
-        onClick={(e) => e.stopPropagation()}
-        role="dialog"
-        aria-label="How to play"
+    <Dialog open={open} onOpenChange={(value) => { if (!value) onClose(); }}>
+      <DialogContent
+        className="g24-card !bg-black w-[calc(100%-2rem)] max-w-lg p-6 sm:p-8 max-h-[85vh] overflow-y-auto block"
+        aria-describedby={undefined}
+        onOpenAutoFocus={() => { returnFocus.current = document.activeElement as HTMLElement; }}
+        onCloseAutoFocus={(event) => {
+          event.preventDefault();
+          returnFocus.current?.focus({ preventScroll: true });
+        }}
         data-testid="help"
       >
         <div className="flex items-start justify-between mb-6">
           <div>
             <p className="g24-eyebrow mb-2">Rules</p>
-            <h2 className="text-3xl font-light tracking-tight">How to play</h2>
+            <DialogTitle className="text-3xl font-light tracking-tight">How to play</DialogTitle>
           </div>
-          <button onClick={onClose} className="g24-btn-quiet text-xl" aria-label="Close">
-            ✕
-          </button>
         </div>
         <div className="space-y-5 text-sm text-dusty leading-relaxed">
           <p>
@@ -65,7 +60,7 @@ export function HowToPlay({ open, onClose }: { open: boolean; onClose: () => voi
             Difficulty tiers use 4nums.com&apos;s ranking of all 1362 solvable puzzles by median solve time.
           </p>
         </div>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 }

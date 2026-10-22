@@ -38,6 +38,16 @@ export default function TwentyFourGame() {
   const dealer = useRef<Dealer | null>(null);
   const rng = useRef(rngFromUrl());
   const forced = useRef(dealFromUrl());
+  const lastTick = useRef<number | null>(null);
+
+  // Settle time before every action as well as each display update. Capture
+  // elapsed time outside the state updater so the updater stays pure.
+  const updateSession = useCallback((action: (s: Session) => Session) => {
+    const now = performance.now();
+    const dt = lastTick.current === null ? 0 : now - lastTick.current;
+    if (lastTick.current !== null) lastTick.current = now;
+    setSession((s) => (s ? action(tick(s, dt)) : s));
+  }, []);
 
   const start = useCallback((mode: Mode, difficulty: Difficulty) => {
     dealer.current = new Dealer(poolFor(difficulty), rng.current);
@@ -59,15 +69,13 @@ export default function TwentyFourGame() {
   const phase = session?.phase;
   useEffect(() => {
     if (phase !== "playing") return;
-    let last = performance.now();
-    const id = setInterval(() => {
-      const now = performance.now();
-      const dt = now - last;
-      last = now;
-      setSession((s) => (s ? tick(s, dt) : s));
-    }, 100);
-    return () => clearInterval(id);
-  }, [phase]);
+    lastTick.current = performance.now();
+    const id = setInterval(() => updateSession((s) => s), 100);
+    return () => {
+      clearInterval(id);
+      lastTick.current = null;
+    };
+  }, [phase, updateSession]);
 
   // New screen (menu, game, summary): start at the top, not wherever the
   // last click left the scroll position.
@@ -86,9 +94,9 @@ export default function TwentyFourGame() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [over]);
 
-  const onBoard = useCallback((b: Board) => setSession((s) => (s ? withBoard(s, b) : s)), []);
-  const onSkip = useCallback(() => setSession((s) => (s ? skip(s) : s)), []);
-  const onDone = useCallback(() => setSession((s) => (s ? done(s) : s)), []);
+  const onBoard = useCallback((b: Board) => updateSession((s) => withBoard(s, b)), [updateSession]);
+  const onSkip = useCallback(() => updateSession(skip), [updateSession]);
+  const onDone = useCallback(() => updateSession(done), [updateSession]);
   const onNext = useCallback(() => {
     if (daily) {
       setSession(null);

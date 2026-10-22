@@ -29,6 +29,7 @@ export function Game(p: Props) {
   const { session: s, onBoard } = p;
   const b = s.board;
   const [shakeKey, setShakeKey] = useState(0);
+  const gameRef = useRef<HTMLElement>(null);
 
   const act = useCallback(
     (next: Board) => {
@@ -43,7 +44,16 @@ export function Game(p: Props) {
   // moves on from the solution screen.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (p.inputLocked || e.metaKey || e.ctrlKey || e.altKey) return;
+      if (p.inputLocked || e.defaultPrevented || e.metaKey || e.ctrlKey || e.altKey) return;
+      const target = e.target;
+      if (target instanceof HTMLElement) {
+        // Portalled dialogs (including the site's navigation drawer) and
+        // controls outside the game own their keyboard events.
+        if (target !== document.body && target !== document.documentElement && !gameRef.current?.contains(target)) return;
+        if (target.closest('input, textarea, select, a, [contenteditable]:not([contenteditable="false"])')) return;
+        // Let native activation work for Help, Menu, Next and other buttons.
+        if ((e.key === "Enter" || e.key === " ") && target.closest('button, [role="button"]')) return;
+      }
       if (s.phase === "reveal") {
         if (e.key === "Enter" || e.key === " " || e.key === "n" || e.key === "N") {
           e.preventDefault();
@@ -72,7 +82,7 @@ export function Game(p: Props) {
   const low = s.mode === "clock" && s.clockMs < 15_000;
 
   return (
-    <section className="mx-auto max-w-5xl pt-4 sm:pt-8 g24-fade-up">
+    <section ref={gameRef} className="mx-auto max-w-5xl pt-4 sm:pt-8 g24-fade-up">
       <div className="flex flex-wrap items-end justify-between gap-4 mb-6">
         <div>
           <p className="g24-eyebrow mb-2">
@@ -179,6 +189,7 @@ export function Game(p: Props) {
               seconds={revealSeconds(s)}
               auto={p.showSolutions && !p.daily}
               instant={!p.showSolutions && !p.daily}
+              paused={p.inputLocked}
               daily={p.daily}
               bonusSeconds={s.mode === "clock" ? (last.outcome === "solved" ? 10 : -20) : 0}
               onNext={p.onNext}
@@ -212,19 +223,19 @@ export function Game(p: Props) {
             <p>
               <span className="g24-kbd mx-0.5">Esc</span> undo · <span className="g24-kbd mx-0.5">R</span> reset · <span className="g24-kbd mx-0.5">N</span> skip
             </p>
-            {!p.daily && (
-              <label className="flex items-center gap-2 mt-3 cursor-pointer select-none">
-                <input
-                  type="checkbox"
-                  checked={p.showSolutions}
-                  onChange={(e) => p.onToggleSolutions(e.target.checked)}
-                  className="accent-[#132C7B]"
-                  data-testid="toggle-solutions"
-                />
-                Show solutions between puzzles
-              </label>
-            )}
           </div>
+          {!p.daily && (
+            <label className="col-span-3 lg:col-span-1 flex items-center gap-2 border border-alabaster/10 p-4 text-xs text-dusty cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={p.showSolutions}
+                onChange={(e) => p.onToggleSolutions(e.target.checked)}
+                className="accent-[#132C7B]"
+                data-testid="toggle-solutions"
+              />
+              Show solutions between puzzles
+            </label>
+          )}
         </aside>
       </div>
     </section>
@@ -250,12 +261,15 @@ function Reveal(r: {
   seconds: number;
   auto: boolean;
   instant: boolean;
+  paused: boolean;
   daily: boolean;
   bonusSeconds: number;
   onNext: () => void;
 }) {
-  const { onNext, auto, instant, seconds } = r;
+  const { onNext, auto, instant, seconds, paused } = r;
   const nextRef = useRef<HTMLButtonElement>(null);
+  const duration = instant ? 700 : seconds * 1000;
+  const countdown = useRef({ duration, remaining: duration });
   // Focus without scrolling: autoFocus would jump the page on short screens.
   useEffect(() => {
     nextRef.current?.focus({ preventScroll: true });
@@ -263,10 +277,15 @@ function Reveal(r: {
   // Auto-advance after the solutions have been up for a while (or almost
   // immediately when the player has turned the solution screen off).
   useEffect(() => {
-    if (!auto && !instant) return;
-    const id = setTimeout(onNext, instant ? 700 : seconds * 1000);
-    return () => clearTimeout(id);
-  }, [auto, instant, seconds, onNext]);
+    if (countdown.current.duration !== duration) countdown.current = { duration, remaining: duration };
+    if (paused || (!auto && !instant)) return;
+    const started = performance.now();
+    const id = setTimeout(onNext, countdown.current.remaining);
+    return () => {
+      clearTimeout(id);
+      countdown.current.remaining = Math.max(0, countdown.current.remaining - (performance.now() - started));
+    };
+  }, [auto, instant, duration, onNext, paused]);
 
   return (
     <div
@@ -314,7 +333,7 @@ function Reveal(r: {
         </button>
         {auto && (
           <div className="flex-1 h-px bg-alabaster/15 overflow-hidden">
-            <div className="h-full bg-alabaster origin-left" style={{ animation: `g24-drain ${seconds}s linear forwards` }} />
+            <div className="h-full bg-alabaster origin-left" style={{ animation: `g24-drain ${seconds}s linear forwards`, animationPlayState: paused ? "paused" : "running" }} />
           </div>
         )}
       </div>
