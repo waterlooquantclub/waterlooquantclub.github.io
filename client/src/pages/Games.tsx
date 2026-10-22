@@ -40,6 +40,13 @@ const Games = () => {
               external
             />
           </div>
+          <div className="mt-6 space-y-6">
+            <GameCard
+              title="24 Game"
+              description="A solo arithmetic game. Use all four numbers and + − × ÷ to make 24, against the clock or at your own pace."
+              url="/games/24"
+            />
+          </div>
           <div className="mt-16 pt-16 border-t border-border">
             <h2 className="text-2xl font-semibold mb-8">Puzzle of the Week</h2>
             <p className="text-muted-foreground">Coming soon...</p>

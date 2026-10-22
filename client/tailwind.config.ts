@@ -20,6 +20,11 @@ export default {
         merriweather: ['Merriweather', 'serif'],
       },
       colors: {
+        // Brand palette by name, as used by the 24 Game game.
+        alabaster: "#FAFAFA",
+        dusty: "#999999",
+        downriver: "#132C7B",
+        line: "#262626",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
