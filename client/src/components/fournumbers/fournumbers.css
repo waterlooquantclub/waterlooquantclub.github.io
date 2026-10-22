@@ -1,0 +1,51 @@
+/* 4 Numbers game styles. Prefixed fn- so nothing collides with site classes. */
+  .fn-eyebrow {
+    @apply text-dusty text-xs sm:text-sm tracking-widest uppercase;
+  }
+  .fn-card {
+    @apply border border-alabaster/20 transition-colors;
+    background: linear-gradient(to top left, rgba(19, 44, 123, 0.35) 0%, rgba(0, 0, 0, 0.97) 100%);
+  }
+  .fn-card-hover {
+    @apply hover:border-alabaster/50;
+  }
+  .fn-tag {
+    @apply text-[10px] sm:text-xs tracking-widest uppercase text-alabaster bg-downriver/60 px-2 py-1 w-fit;
+  }
+  .fn-btn {
+    @apply border border-alabaster/20 px-4 py-2.5 text-sm tracking-wide text-alabaster/90 transition-colors
+      hover:border-alabaster/60 hover:text-alabaster disabled:opacity-30 disabled:pointer-events-none;
+  }
+  .fn-btn-primary {
+    @apply border-alabaster bg-alabaster text-black hover:bg-alabaster/85 hover:text-black;
+  }
+  .fn-btn-quiet {
+    @apply text-dusty hover:text-alabaster transition-colors text-sm tracking-wide;
+  }
+  .fn-kbd {
+    @apply inline-block min-w-[1.5em] border border-alabaster/25 px-1 text-center font-mono text-[11px] text-alabaster/80;
+  }
+
+@keyframes fn-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+.fn-shake { animation: fn-shake 0.25s ease-in-out 2; }
+
+@keyframes fn-pop {
+  0% { transform: scale(0.92); opacity: 0.4; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.fn-pop { animation: fn-pop 0.18s ease-out; }
+
+@keyframes fn-fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fn-fade-up { animation: fn-fade-up 0.35s ease-out both; }
+
+@keyframes fn-drain {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}
