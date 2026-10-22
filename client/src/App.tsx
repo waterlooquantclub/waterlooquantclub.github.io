@@ -15,6 +15,7 @@ import Join from "./pages/Join";
 import NotFound from "./pages/NotFound";
 import Blotto from "./pages/Blotto";
 import BlottoLeaderboard from "./pages/BlottoLeaderboard";
+import TwentyFourGame from "./pages/TwentyFourGame";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/join" element={<Join />} />
           <Route path="/games/blotto" element={<Blotto />} />
           <Route path="/games/blotto/leaderboard" element={<BlottoLeaderboard />} />
+          <Route path="/games/24" element={<TwentyFourGame />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
