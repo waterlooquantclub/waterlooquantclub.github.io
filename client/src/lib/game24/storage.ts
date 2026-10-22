@@ -2,7 +2,7 @@ import type { Difficulty } from "./puzzles";
 import type { Mode } from "./session";
 
 /** Personal bests and settings live in localStorage; there is no backend. */
-const KEY = "wqc-4numbers:v1";
+const KEY = "wqc-24game:v1";
 
 export interface Best {
   score: number;

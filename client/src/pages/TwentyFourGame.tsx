@@ -1,18 +1,18 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Layout from "@/components/Layout";
-import { Menu } from "@/components/fournumbers/Menu";
-import { Game } from "@/components/fournumbers/Game";
-import { Summary } from "@/components/fournumbers/Summary";
-import { HowToPlay } from "@/components/fournumbers/HowToPlay";
-import { Dealer, dailyPuzzle, poolFor, seededRng, type Difficulty, type RankedPuzzle } from "@/lib/fournumbers/puzzles";
-import { done, finalScore, nextPuzzle, skip, startSession, tick, withBoard, type Mode, type Session } from "@/lib/fournumbers/session";
-import type { Board } from "@/lib/fournumbers/board";
-import "@/components/fournumbers/fournumbers.css";
-import { getShowSolutions, setShowSolutions, submitScore } from "@/lib/fournumbers/storage";
+import { Menu } from "@/components/game24/Menu";
+import { Game } from "@/components/game24/Game";
+import { Summary } from "@/components/game24/Summary";
+import { HowToPlay } from "@/components/game24/HowToPlay";
+import { Dealer, dailyPuzzle, poolFor, seededRng, type Difficulty, type RankedPuzzle } from "@/lib/game24/puzzles";
+import { done, finalScore, nextPuzzle, skip, startSession, tick, withBoard, type Mode, type Session } from "@/lib/game24/session";
+import type { Board } from "@/lib/game24/board";
+import "@/components/game24/game24.css";
+import { getShowSolutions, setShowSolutions, submitScore } from "@/lib/game24/storage";
 
 /**
- * Route /games/4numbers. A solo make-24 game after 4nums.com; all logic is in
- * lib/fournumbers, so nothing here talks to a server.
+ * Route /games/24. A solo make-24 game after 4nums.com; all logic is in
+ * lib/game24, so nothing here talks to a server.
  *
  * `?seed=N` makes the deal deterministic. Used by tests; harmless for players.
  */
@@ -29,7 +29,7 @@ function dealFromUrl(): RankedPuzzle | null {
   return { n: n as RankedPuzzle["n"], amt: 0, rate: 0 };
 }
 
-export default function FourNumbers() {
+export default function TwentyFourGame() {
   const [session, setSession] = useState<Session | null>(null);
   const [daily, setDaily] = useState(false);
   const [help, setHelp] = useState(false);

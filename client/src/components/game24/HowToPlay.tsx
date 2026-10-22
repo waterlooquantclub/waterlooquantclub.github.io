@@ -12,7 +12,7 @@ export function HowToPlay({ open, onClose }: { open: boolean; onClose: () => voi
   return (
     <div className="fixed inset-0 z-50 grid place-items-center bg-black/70 backdrop-blur-sm p-4" onClick={onClose}>
       <div
-        className="fn-card !bg-black max-w-lg w-full p-6 sm:p-8 max-h-[85vh] overflow-y-auto"
+        className="g24-card !bg-black max-w-lg w-full p-6 sm:p-8 max-h-[85vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-label="How to play"
@@ -20,10 +20,10 @@ export function HowToPlay({ open, onClose }: { open: boolean; onClose: () => voi
       >
         <div className="flex items-start justify-between mb-6">
           <div>
-            <p className="fn-eyebrow mb-2">Rules</p>
+            <p className="g24-eyebrow mb-2">Rules</p>
             <h2 className="text-3xl font-light tracking-tight">How to play</h2>
           </div>
-          <button onClick={onClose} className="fn-btn-quiet text-xl" aria-label="Close">
+          <button onClick={onClose} className="g24-btn-quiet text-xl" aria-label="Close">
             ✕
           </button>
         </div>
@@ -54,11 +54,11 @@ export function HowToPlay({ open, onClose }: { open: boolean; onClose: () => voi
           <div>
             <p className="text-alabaster mb-1">Keyboard</p>
             <ul className="space-y-1">
-              <li><span className="fn-kbd">1</span>–<span className="fn-kbd">4</span> select tiles, left to right, top to bottom</li>
-              <li><span className="fn-kbd">+</span> <span className="fn-kbd">-</span> <span className="fn-kbd">*</span> or <span className="fn-kbd">x</span> <span className="fn-kbd">/</span> operators</li>
-              <li><span className="fn-kbd">A</span> add everything left · <span className="fn-kbd">S</span> multiply everything left</li>
-              <li><span className="fn-kbd">Esc</span> undo · <span className="fn-kbd">R</span> reset · <span className="fn-kbd">N</span> skip</li>
-              <li><span className="fn-kbd">Enter</span> next puzzle</li>
+              <li><span className="g24-kbd">1</span>–<span className="g24-kbd">4</span> select tiles, left to right, top to bottom</li>
+              <li><span className="g24-kbd">+</span> <span className="g24-kbd">-</span> <span className="g24-kbd">*</span> or <span className="g24-kbd">x</span> <span className="g24-kbd">/</span> operators</li>
+              <li><span className="g24-kbd">A</span> add everything left · <span className="g24-kbd">S</span> multiply everything left</li>
+              <li><span className="g24-kbd">Esc</span> undo · <span className="g24-kbd">R</span> reset · <span className="g24-kbd">N</span> skip</li>
+              <li><span className="g24-kbd">Enter</span> next puzzle</li>
             </ul>
           </div>
           <p>

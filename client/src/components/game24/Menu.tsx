@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { DIFFICULTIES, dailyPuzzle, type Difficulty } from "@/lib/fournumbers/puzzles";
-import { getBest } from "@/lib/fournumbers/storage";
-import type { Mode } from "@/lib/fournumbers/session";
+import { DIFFICULTIES, dailyPuzzle, type Difficulty } from "@/lib/game24/puzzles";
+import { getBest } from "@/lib/game24/storage";
+import type { Mode } from "@/lib/game24/session";
 
 const MODES: { id: Mode; title: string; body: string }[] = [
   {
@@ -29,9 +29,9 @@ export function Menu({
   const today = dailyPuzzle();
 
   return (
-    <section className="mx-auto max-w-3xl pt-10 sm:pt-16 fn-fade-up">
-      <p className="fn-eyebrow mb-4">Games</p>
-      <h1 className="text-5xl md:text-7xl font-light tracking-tight mb-6">4 Numbers</h1>
+    <section className="mx-auto max-w-3xl pt-10 sm:pt-16 g24-fade-up">
+      <p className="g24-eyebrow mb-4">Games</p>
+      <h1 className="text-5xl md:text-7xl font-light tracking-tight mb-6">24 Game</h1>
       <p className="text-dusty text-lg leading-relaxed max-w-xl">
         Use all four numbers and <span className="text-alabaster">+ − × ÷</span> to make{" "}
         <span className="text-alabaster">24</span>. Every puzzle has a solution.{" "}
@@ -41,7 +41,7 @@ export function Menu({
       </p>
 
       <div className="mt-12">
-        <p className="fn-eyebrow mb-3">Difficulty</p>
+        <p className="g24-eyebrow mb-3">Difficulty</p>
         <div className="grid grid-cols-4 border border-alabaster/20" role="radiogroup" aria-label="Difficulty">
           {DIFFICULTIES.map((d, i) => (
             <button
@@ -69,10 +69,10 @@ export function Menu({
               key={m.id}
               data-testid={`mode-${m.id}`}
               onClick={() => onStart(m.id, difficulty)}
-              className="fn-card fn-card-hover group block w-full text-left p-6"
+              className="g24-card g24-card-hover group block w-full text-left p-6"
             >
               <div className="flex items-start justify-between gap-4 mb-3">
-                <span className="fn-tag">{m.id === "clock" ? "Timed" : "Untimed"}</span>
+                <span className="g24-tag">{m.id === "clock" ? "Timed" : "Untimed"}</span>
                 <span className="text-xs text-dusty tracking-wide" data-testid={`best-${m.id}`}>
                   {best ? `Best ${best.score.toLocaleString()}` : "No best yet"}
                 </span>
@@ -103,7 +103,7 @@ export function Menu({
                 </span>
               ))}
             </span>
-            <span className="fn-btn">Play →</span>
+            <span className="g24-btn">Play →</span>
           </button>
         </div>
       </div>

@@ -20,7 +20,7 @@ export default {
         merriweather: ['Merriweather', 'serif'],
       },
       colors: {
-        // Brand palette by name, as used by the 4 Numbers game.
+        // Brand palette by name, as used by the 24 Game game.
         alabaster: "#FAFAFA",
         dusty: "#999999",
         downriver: "#132C7B",

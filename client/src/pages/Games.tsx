@@ -42,9 +42,9 @@ const Games = () => {
           </div>
           <div className="mt-6 space-y-6">
             <GameCard
-              title="4 Numbers"
+              title="24 Game"
               description="A solo arithmetic game. Use all four numbers and + − × ÷ to make 24, against the clock or at your own pace."
-              url="/games/4numbers"
+              url="/games/24"
             />
           </div>
           <div className="mt-16 pt-16 border-t border-border">

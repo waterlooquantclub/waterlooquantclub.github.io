@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { clickOp, clickTile, foldAll, isDeadEnd, remaining, reset, undo, type Board } from "@/lib/fournumbers/board";
-import { format, OP_SYMBOL, OPS, type Op, type Rational } from "@/lib/fournumbers/rational";
-import { revealSeconds, type Session } from "@/lib/fournumbers/session";
-import { DIFFICULTIES } from "@/lib/fournumbers/puzzles";
+import { clickOp, clickTile, foldAll, isDeadEnd, remaining, reset, undo, type Board } from "@/lib/game24/board";
+import { format, OP_SYMBOL, OPS, type Op, type Rational } from "@/lib/game24/rational";
+import { revealSeconds, type Session } from "@/lib/game24/session";
+import { DIFFICULTIES } from "@/lib/game24/puzzles";
 
 interface Props {
   session: Session;
@@ -72,19 +72,19 @@ export function Game(p: Props) {
   const low = s.mode === "clock" && s.clockMs < 15_000;
 
   return (
-    <section className="mx-auto max-w-5xl pt-4 sm:pt-8 fn-fade-up">
+    <section className="mx-auto max-w-5xl pt-4 sm:pt-8 g24-fade-up">
       <div className="flex flex-wrap items-end justify-between gap-4 mb-6">
         <div>
-          <p className="fn-eyebrow mb-2">
+          <p className="g24-eyebrow mb-2">
             {p.daily ? "Puzzle of the Day" : `${s.mode === "clock" ? "Beat the clock" : "No time limit"} · ${diff.label}`}
           </p>
           <h1 className="text-3xl sm:text-4xl font-light tracking-tight">Make 24</h1>
         </div>
         <div className="flex items-center gap-5">
-          <button onClick={p.onHelp} className="fn-btn-quiet" data-testid="nav-help">
+          <button onClick={p.onHelp} className="g24-btn-quiet" data-testid="nav-help">
             How to play
           </button>
-          <button onClick={p.onQuit} className="fn-btn-quiet">
+          <button onClick={p.onQuit} className="g24-btn-quiet">
             ← Menu
           </button>
         </div>
@@ -92,10 +92,10 @@ export function Game(p: Props) {
 
       <div className="grid gap-6 lg:grid-cols-[1fr_280px]">
         {/* Board */}
-        <div className="fn-card p-4 sm:p-8 relative">
+        <div className="g24-card p-4 sm:p-8 relative">
           {/* Sized so the whole board, operators and actions fit above the fold. */}
           <div className="mx-auto" style={{ maxWidth: "clamp(17rem, 100vh - 30rem, 26rem)" }}>
-          <div key={shakeKey} className={`grid grid-cols-2 gap-3 sm:gap-4 ${shakeKey ? "fn-shake" : ""}`}>
+          <div key={shakeKey} className={`grid grid-cols-2 gap-3 sm:gap-4 ${shakeKey ? "g24-shake" : ""}`}>
             {b.slots.map((v, i) => {
               const sel = b.selected === i;
               return (
@@ -154,16 +154,16 @@ export function Game(p: Props) {
           </div>
 
           <div className="grid grid-cols-4 gap-2 sm:gap-3 mt-4">
-            <button className="fn-btn" onClick={() => act(undo(b))} disabled={s.phase !== "playing" || (!b.history.length && b.selected === null)} data-testid="undo">
+            <button className="g24-btn" onClick={() => act(undo(b))} disabled={s.phase !== "playing" || (!b.history.length && b.selected === null)} data-testid="undo">
               Undo
             </button>
-            <button className="fn-btn" onClick={() => act(reset(b))} disabled={s.phase !== "playing" || !b.history.length} data-testid="reset">
+            <button className="g24-btn" onClick={() => act(reset(b))} disabled={s.phase !== "playing" || !b.history.length} data-testid="reset">
               Reset
             </button>
-            <button className="fn-btn" onClick={p.onSkip} disabled={s.phase !== "playing"} data-testid="skip">
+            <button className="g24-btn" onClick={p.onSkip} disabled={s.phase !== "playing"} data-testid="skip">
               {p.daily ? "Give up" : "Skip"}
             </button>
-            <button className="fn-btn border-red-400/40 text-red-300 hover:border-red-300" onClick={p.daily ? p.onQuit : p.onDone} data-testid="done">
+            <button className="g24-btn border-red-400/40 text-red-300 hover:border-red-300" onClick={p.daily ? p.onQuit : p.onDone} data-testid="done">
               Done
             </button>
           </div>
@@ -199,18 +199,18 @@ export function Game(p: Props) {
             {s.score.toLocaleString()}
           </Stat>
           <div className="hidden lg:block border border-alabaster/10 p-4 text-xs text-dusty leading-6">
-            <p className="fn-eyebrow mb-2 !text-[11px]">Keys</p>
+            <p className="g24-eyebrow mb-2 !text-[11px]">Keys</p>
             <p>
-              <span className="fn-kbd mx-0.5">1</span>–<span className="fn-kbd mx-0.5">4</span> tiles · <span className="fn-kbd mx-0.5">+</span>
-              <span className="fn-kbd mx-0.5">-</span>
-              <span className="fn-kbd mx-0.5">*</span>
-              <span className="fn-kbd mx-0.5">/</span> ops
+              <span className="g24-kbd mx-0.5">1</span>–<span className="g24-kbd mx-0.5">4</span> tiles · <span className="g24-kbd mx-0.5">+</span>
+              <span className="g24-kbd mx-0.5">-</span>
+              <span className="g24-kbd mx-0.5">*</span>
+              <span className="g24-kbd mx-0.5">/</span> ops
             </p>
             <p>
-              <span className="fn-kbd mx-0.5">A</span> add all · <span className="fn-kbd mx-0.5">S</span> multiply all
+              <span className="g24-kbd mx-0.5">A</span> add all · <span className="g24-kbd mx-0.5">S</span> multiply all
             </p>
             <p>
-              <span className="fn-kbd mx-0.5">Esc</span> undo · <span className="fn-kbd mx-0.5">R</span> reset · <span className="fn-kbd mx-0.5">N</span> skip
+              <span className="g24-kbd mx-0.5">Esc</span> undo · <span className="g24-kbd mx-0.5">R</span> reset · <span className="g24-kbd mx-0.5">N</span> skip
             </p>
             {!p.daily && (
               <label className="flex items-center gap-2 mt-3 cursor-pointer select-none">
@@ -233,8 +233,8 @@ export function Game(p: Props) {
 
 function Stat({ label, children, testid, warn }: { label: string; children: React.ReactNode; testid: string; warn?: boolean }) {
   return (
-    <div className={`fn-card p-3 sm:p-5 ${warn ? "!border-red-400/60" : ""}`}>
-      <p className="fn-eyebrow !text-[10px] sm:!text-xs mb-1 sm:mb-2">{label}</p>
+    <div className={`g24-card p-3 sm:p-5 ${warn ? "!border-red-400/60" : ""}`}>
+      <p className="g24-eyebrow !text-[10px] sm:!text-xs mb-1 sm:mb-2">{label}</p>
       <p className={`text-2xl sm:text-4xl font-light tabular-nums ${warn ? "text-red-300" : ""}`} data-testid={testid}>
         {children}
       </p>
@@ -270,14 +270,14 @@ function Reveal(r: {
 
   return (
     <div
-      className="absolute inset-0 z-10 bg-black/90 backdrop-blur-sm flex flex-col p-5 sm:p-8 fn-fade-up"
+      className="absolute inset-0 z-10 bg-black/90 backdrop-blur-sm flex flex-col p-5 sm:p-8 g24-fade-up"
       data-testid="reveal"
       role="dialog"
       aria-label={r.solved ? "Solved" : "Skipped"}
     >
       <div className="flex items-baseline justify-between gap-4">
         <div>
-          <p className="fn-eyebrow mb-1">{r.solved ? "Solved" : r.daily ? "Solution" : "Skipped"}</p>
+          <p className="g24-eyebrow mb-1">{r.solved ? "Solved" : r.daily ? "Solution" : "Skipped"}</p>
           <p className="text-3xl sm:text-4xl font-light" data-testid="reveal-headline">
             {r.solved ? `+${r.points} points` : r.daily ? "Here's how" : "No points"}
           </p>
@@ -295,7 +295,7 @@ function Reveal(r: {
 
       {!instant && (
         <>
-          <p className="fn-eyebrow mt-6 mb-3">
+          <p className="g24-eyebrow mt-6 mb-3">
             {r.solutions.length} distinct solution{r.solutions.length === 1 ? "" : "s"}
           </p>
           <ul className="flex-1 overflow-y-auto space-y-2 text-lg sm:text-xl font-light tracking-wide tabular-nums pr-2" data-testid="solutions">
@@ -309,12 +309,12 @@ function Reveal(r: {
       )}
 
       <div className="mt-5 flex items-center gap-4">
-        <button ref={nextRef} onClick={onNext} className="fn-btn fn-btn-primary flex-1 sm:flex-none" data-testid="next">
+        <button ref={nextRef} onClick={onNext} className="g24-btn g24-btn-primary flex-1 sm:flex-none" data-testid="next">
           {r.daily ? "Back to menu" : "Next puzzle →"}
         </button>
         {auto && (
           <div className="flex-1 h-px bg-alabaster/15 overflow-hidden">
-            <div className="h-full bg-alabaster origin-left" style={{ animation: `fn-drain ${seconds}s linear forwards` }} />
+            <div className="h-full bg-alabaster origin-left" style={{ animation: `g24-drain ${seconds}s linear forwards` }} />
           </div>
         )}
       </div>
@@ -331,13 +331,13 @@ function TileValue({ v, testid }: { v: Rational; testid: string }) {
   const size = text.length > 4 ? "text-4xl sm:text-5xl" : "text-5xl sm:text-6xl";
   if (v.d === 1) {
     return (
-      <span key={text} className={`fn-pop font-light tabular-nums ${size}`} data-testid={testid}>
+      <span key={text} className={`g24-pop font-light tabular-nums ${size}`} data-testid={testid}>
         {text}
       </span>
     );
   }
   return (
-    <span key={text} className="fn-pop font-light tabular-nums flex flex-col items-center leading-none text-3xl sm:text-4xl" data-testid={testid}>
+    <span key={text} className="g24-pop font-light tabular-nums flex flex-col items-center leading-none text-3xl sm:text-4xl" data-testid={testid}>
       <span className="px-2 pb-1.5">{v.n}</span>
       <span className="sr-only">/</span>
       <span className="px-2 pt-1.5 border-t border-alabaster/80 w-full text-center">{v.d}</span>

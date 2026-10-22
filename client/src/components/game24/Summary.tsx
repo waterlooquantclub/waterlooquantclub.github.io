@@ -1,5 +1,5 @@
-import { bonus, finalScore, type Session } from "@/lib/fournumbers/session";
-import { DIFFICULTIES } from "@/lib/fournumbers/puzzles";
+import { bonus, finalScore, type Session } from "@/lib/game24/session";
+import { DIFFICULTIES } from "@/lib/game24/puzzles";
 
 export function Summary({ session: s, newBest, onAgain, onMenu }: { session: Session; newBest: boolean; onAgain: () => void; onMenu: () => void }) {
   const solvedTimes = s.records.filter((r) => r.outcome === "solved").map((r) => r.ms);
@@ -8,8 +8,8 @@ export function Summary({ session: s, newBest, onAgain, onMenu }: { session: Ses
   const diff = DIFFICULTIES.find((d) => d.id === s.difficulty)!;
 
   return (
-    <section className="mx-auto max-w-3xl pt-6 sm:pt-12 fn-fade-up" data-testid="summary">
-      <p className="fn-eyebrow mb-4">
+    <section className="mx-auto max-w-3xl pt-6 sm:pt-12 g24-fade-up" data-testid="summary">
+      <p className="g24-eyebrow mb-4">
         {s.mode === "clock" ? "Beat the clock" : "No time limit"} · {diff.label} · {s.endReason === "time" ? "Time's up" : "Finished"}
       </p>
       <div className="flex flex-wrap items-end gap-x-6 gap-y-2">
@@ -17,7 +17,7 @@ export function Summary({ session: s, newBest, onAgain, onMenu }: { session: Ses
           {finalScore(s).toLocaleString()}
         </h1>
         {newBest && (
-          <span className="fn-tag mb-3" data-testid="new-best">
+          <span className="g24-tag mb-3" data-testid="new-best">
             New personal best
           </span>
         )}
@@ -33,18 +33,18 @@ export function Summary({ session: s, newBest, onAgain, onMenu }: { session: Ses
           ["Average", avg === null ? "—" : `${(avg / 1000).toFixed(1)}s`],
           ["Fastest", fastest === null ? "—" : `${(fastest / 1000).toFixed(1)}s`],
         ].map(([k, v]) => (
-          <div key={k} className="fn-card p-4">
-            <p className="fn-eyebrow !text-[11px] mb-1">{k}</p>
+          <div key={k} className="g24-card p-4">
+            <p className="g24-eyebrow !text-[11px] mb-1">{k}</p>
             <p className="text-3xl font-light tabular-nums">{v}</p>
           </div>
         ))}
       </div>
 
       <div className="flex flex-wrap gap-3 mt-8">
-        <button className="fn-btn fn-btn-primary" onClick={onAgain} data-testid="again">
+        <button className="g24-btn g24-btn-primary" onClick={onAgain} data-testid="again">
           Play again
         </button>
-        <button className="fn-btn" onClick={onMenu} data-testid="menu">
+        <button className="g24-btn" onClick={onMenu} data-testid="menu">
           Change mode
         </button>
       </div>
