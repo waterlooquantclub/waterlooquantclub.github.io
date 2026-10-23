@@ -78,6 +78,13 @@ export const TEAM: MemberInfo[] = [
     email: "gordonwang@waterlooquantclub.com",
   },
   {
+    name: "Ryan Tan",
+    role: "VP",
+    program: "Computer Science, Stats, & MathFin",
+    bio: "天下无不散的筵席",
+    image: "ryan_tan.jpg",
+  },
+  {
     name: "Jason Hon",
     role: "VP",
     program: "Computer Science",
