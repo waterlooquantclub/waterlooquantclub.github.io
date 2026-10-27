@@ -36,6 +36,11 @@ export interface CompetitionContent {
 
 export const COMPETITION_FAQ: CompetitionFaqEntry[] = [
   {
+    question: "Can I still apply, or submit a late application?",
+    answer:
+      "No. Applications for the Fall 2026 Waterloo Trading Competition are closed. We are not accepting any further applications, including late or delayed ones. Resumes sent by email or direct message will not be reviewed.",
+  },
+  {
     question: "What is a trading competition? What is it that is being traded?",
     answer:
       "Think of it as a high-stakes strategy tournament. Rather than trading actual stocks, you will participate in a series of “trading games” that simulate the core logic of quantitative trading.\nFor example, imagine a game where every participant receives a card, and the “price” of a contract is the sum of all cards across all participants. You only know your own card, so you have to infer what others are holding based on how they are buying or selling. If you think the total sum is 50, but the market is trading at 40, you “buy.” However, you have to be strategic: if you buy too aggressively, others might realize you have a high card, and the price will move against you before you can finish your trade.",
