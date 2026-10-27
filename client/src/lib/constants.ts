@@ -186,7 +186,7 @@ export const TEAM: MemberInfo[] = [
     role: "Executive",
     program: "Computing and Financial Management",
     bio: "I'm a CS + Finance (CFM) student in 2A and a Junior Exec for WQC. I enjoy investing, brain teasers (QuantPrep), and coding side projects",
-    image: "david_kachroo.jpg",
+    image: "david_kachroo.png",
     linkedin: "https://www.linkedin.com/in/david-kachroo/",
     email: "davidkachroo@waterlooquantclub.com",
   },
