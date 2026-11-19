@@ -72,7 +72,7 @@ export const TEAM: MemberInfo[] = [
     name: "Gordon Wang",
     role: "VP",
     program: "Computing and Financial Management",
-    bio: "I'm a CS + Finance student currently interning at Point72. I love soccer, football, and MMA.",
+    bio: "C++ > Rust",
     image: "gordon_wang.jpg",
     linkedin: "https://www.linkedin.com/in/gordon-wang-ab785b237/",
     email: "gordonwang@waterlooquantclub.com",
