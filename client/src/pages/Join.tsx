@@ -46,6 +46,12 @@ const Join = () => {
             </a>
           </div>
 
+          <p className="mt-8 max-w-xl text-sm leading-relaxed text-muted-foreground">
+            By signing up, you acknowledge that any information you submit will
+            be stored on a secure WQC server, and that you understand your
+            resume may be sent to sponsors.
+          </p>
+
           <div className="mt-16 pt-16 border-t border-border">
             <h2 className="text-2xl font-semibold mb-6">FAQ</h2>
             <div className="space-y-6">

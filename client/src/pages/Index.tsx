@@ -26,7 +26,7 @@ const Index = () => {
               Quant Club
             </h1>
             <p className="text-muted-foreground text-lg md:text-xl max-w-xl mb-10 animate-fade-in-delay-2">
-              UWaterloo's premier quantitative finance group.
+              Waterloo's premier quantitative finance group.
             </p>
             <div className="flex gap-4 animate-fade-in-delay-2">
               <Link
